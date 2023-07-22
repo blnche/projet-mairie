@@ -1,0 +1,15 @@
+:root {
+    /*light mode*/
+    --text: rgb(5, 5, 5);
+    --background: rgb(250, 250, 250);
+    --primary: rgb(56, 25, 123);
+    --secondary: rgb(223, 212, 247);
+    --accent: rgb(92, 30, 225);
+    /*dark mode*/
+    --text: rgb(250, 250, 250);
+    --background: rgb(5, 5, 5);
+    --primary: rgb(56, 25, 123);
+    --secondary: rgb(19, 8, 43);
+    --accent: rgb(157, 120, 237);
+}
+    
