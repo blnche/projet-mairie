@@ -1,0 +1,55 @@
+/* ============================== */
+/* ======= Neue Montreal ======== */
+/* ============================== */
+@font-face {
+    font-family: 'Neue Montreal Book';
+    src: url('fonts/PP_Neue_Montreal/OTF/PPNeueMontreal-Book.otf') 
+}
+@font-face {
+    font-family: 'Neue Montreal Bold';
+    src: url('fonts/PP_Neue_Montreal/OTF/PPNeueMontreal-Bold.otf');
+}
+@font-face {
+    font-family: 'Neue Montreal Italic';
+    src: url('fonts/PP_Neue_Montreal/OTF/PPNeueMontreal-Italic.otf');
+}
+@font-face {
+    font-family: 'Neue Montreal Medium';
+    src: url('fonts/PP_Neue_Montreal/OTF/PPNeueMontreal-Medium.otf');
+}
+@font-face {
+    font-family: 'Neue Montreal SemiBoldItalic';
+    src: url('fonts/PP_Neue_Montreal/OTF/PPNeueMontreal-SemiBolditalic.otf');
+}
+@font-face {
+    font-family: 'Neue Montreal Thin';
+    src: url('fonts/PP_Neue_Montreal/OTF/PPNeueMontreal-Thin.otf');
+}
+
+/* ============================== */
+/* =========== Romie ============ */
+/* ============================== */
+@font-face {
+    font-family: 'Romie Regular';
+    src: url('fonts/ML_TYPE_FOUNDRY/ROMIE/RomieTrial-Regular.otf');
+} 
+@font-face {
+    font-family: 'Romie Regular Italic';
+    src: url('fonts/ML_TYPE_FOUNDRY/ROMIE/RomieTrial-Regular-Italic.otf');
+} 
+@font-face {
+    font-family: 'Romie Heavy';
+    src: url('fonts/ML_TYPE_FOUNDRY/ROMIE/RomieTrial-Heavy.otf');
+}
+/* ============================== */
+
+
+
+
+
+
+
+@font-face {
+    font-family: "Bitmap Bold";
+    src: url('fonts/Bitmap_Font_Pack/PPNeueBit-Bold.otf');
+}

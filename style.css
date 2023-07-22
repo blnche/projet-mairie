@@ -1,0 +1,45 @@
+@import url(/fonts.css);
+@import url(/header.css);
+
+html {
+    font-size: 62.4%;
+}
+
+body {
+    font-family: "Neue Montreal Book";
+    font-size: 1.5rem;
+}
+
+.container {
+    max-width: 80%;
+    margin-inline: auto;
+}
+
+.grid {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-areas:
+                    "title title title"
+                    "main main aside";
+}
+
+main h1 {
+    grid-area: title;
+    font-size: 3rem;
+}
+
+main section {
+    grid-area: main;
+}
+
+main aside {
+    grid-area: aside;
+}
+
+main h2, main h1 {
+    text-align: center;
+}
+
+main h2 {
+    font-size: 2.5rem;
+}
