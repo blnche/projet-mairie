@@ -1,11 +1,16 @@
 header {
+    background-color: white;
     background-image: url('assets/images/cropped-anne.jpg');
-    background-position: center top;
+    background-position: center -3.5rem;
     background-size: cover;
     background-repeat: no-repeat;
-    height: 30vh;
+    height: 45vh;
     margin-bottom: 4rem;
     color: white;
+}
+
+header .header section {
+    margin-bottom: 6rem;
 }
 
 header .header {
@@ -13,7 +18,7 @@ header .header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
 
 }
 header h1 {
@@ -52,7 +57,9 @@ header nav ul li a {
 }
 
 header .homepage-link {
-    border: 1.5px solid white;
+    border: 1.5px solid var(--accent);
     text-align: center;
     font-weight: bolder;
+    background-color: var(--background);
+    color: var(--text);
 }
