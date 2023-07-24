@@ -48,18 +48,25 @@ header nav ul {
 }
 
 header nav ul li a {
-    font-size: 1.75rem;
-    font-family: "Neue Montreal Medium";
     color: white;
+    font-family: "Neue Montreal Medium";
+    font-size: 1.75rem;
+    letter-spacing: 0.25rem;
+    text-align: center;
     padding-inline: 2rem;
     padding-block: 1rem;
-    letter-spacing: 0.25rem;
+    border-radius: 0.5rem;
+}
+
+header nav ul li a:hover {
+    color: var(--text);
+    background-color: var(--background);
 }
 
 header .homepage-link {
-    border: 1.5px solid var(--accent);
-    text-align: center;
     font-weight: bolder;
-    background-color: var(--background);
     color: var(--text);
+    background-color: var(--background);
+    border: 1.5px solid var(--background); /*permet d'avoir un rectangle plus large que les autres links*/
+    border-bottom: 3.5px solid var(--accent);
 }
