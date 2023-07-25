@@ -7,13 +7,14 @@
     <!-- <link rel="stylesheet" href="assets/styles/css/style.css"> -->
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script src="/assets/js/main.js"></script>
 </head>
-<body>
+<body id="page_start">
     <header>
         <section class="container header">
             <section>
-                <h1>Mairie de Saint-Broladre</h1>
+                <h1 >Mairie de Saint-Broladre</h1>
                 <p>Commune de la baie du Mont-Saint-Michel</p>
             </section>
             <nav>
@@ -25,11 +26,22 @@
                     <li><a href="#">Vivre</a></li>
                     <li><a href="#">Découvrir</a></li>
                     <li><a href="#">Espace Famille</a></li>
-                    <button id="themeBtn">Dark/Light Mode</button>
                 </ul>
             </nav>
         </section>
     </header>
+    <menu id="interactive_menu">
+        <li>
+            <a id="themeBtn">
+                <i class="fa-solid fa-2xl fa-circle-half-stroke"></i>
+            </a>
+        </li>
+        <li>
+            <a href="#page_start" id="arrowUpBtn">
+                <i class="fa-solid fa-arrow-up fa-2xl"></i>
+            </a>
+        </li>
+    </menu>
     <main class="container grid">
         <h1 class="element-card">Accueil</h1>
         <section class="element-card main_header">
