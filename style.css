@@ -24,8 +24,8 @@ body {
     grid-template-areas:
                     "title title title title"
                     "main main main horaires"
+                    "main main main horaires"
                     "main main main aside"
-                    "main main main social"
                     "image contact contact social";
     grid-gap: 2rem;
 }
@@ -126,4 +126,9 @@ footer a {
 
 #themeBtn {
     margin-right: 2rem;
+}
+
+.main_social-link_img {
+    height: auto;
+    width: 2rem;
 }
