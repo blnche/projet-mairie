@@ -82,7 +82,7 @@ main h2, main h1 {
 main h2 {
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
-    font-family: "Neue Montreal Medium";
+    font-family: "Romie Heavy";
 }
 
 .element-card {
@@ -124,25 +124,6 @@ footer a {
     line-height: 4rem;
 }
 
-
 #themeBtn {
-    /* border: transparent; */
-    /* border-radius: 2rem;
-    height: 4rem;
-    width: 4rem; */
-    /* margin-bottom: 1rem; */
-    /* position: absolute;
-    bottom: 6.5rem;
-    right: 2rem; */
     margin-right: 2rem;
-}
-
-#arrowUpBtn {
-    /* border-radius: 2rem;
-    height: 4rem;
-    width: 4rem; */
-    /* margin-bottom: 1rem; */
-    /* position: absolute;
-    bottom: 2rem;
-    right: 2rem; */
 }

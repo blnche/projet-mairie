@@ -70,3 +70,10 @@ header .homepage-link {
     border: 1.5px solid var(--background); /*permet d'avoir un rectangle plus large que les autres links*/
     border-bottom: 3.5px solid var(--accent);
 }
+
+.espace_famille {
+    border: 3px solid var(--box-border);
+    background: var(--background-lighter);
+    color: var(--text);
+    font-weight: bolder;
+}
