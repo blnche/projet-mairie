@@ -1,0 +1,49 @@
+.container {
+    max-width: 80%;
+    margin-inline: auto;
+}
+
+.grid {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+                    "title title title title"
+                    "main main main horaires"
+                    "main main main horaires"
+                    "main main main aside"
+                    "image contact contact social";
+    grid-gap: 2rem;
+}
+
+.main_header {
+    grid-area: main;
+}
+
+.main_aside {
+    grid-area: aside;
+}
+
+.main_contact-form {
+    grid-area: contact;
+}
+
+.main_image {
+    grid-area: image;
+    background-image: url('/assets/images/cropped-anne.jpg');
+    background-position: center center;
+    background-size: cover;
+}
+
+.main_horaires {
+    grid-area: horaires;
+}
+
+/* .main_image img {
+    width: 35rem;
+    height: auto;
+} */
+
+.main_social-links {
+    grid-area: social;
+}
