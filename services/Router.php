@@ -1,5 +1,7 @@
 <?php 
 
+    $userController = new UserController();
+
     if (isset($_GET['route']))
     {
         $route = $_GET['route'];
@@ -34,6 +36,7 @@
     }
     else
     {
-        require './views/layout.phtml';
+//        require './views/layout.phtml';
+          $userController->index();
     }
 ?>

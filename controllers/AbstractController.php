@@ -4,7 +4,7 @@
         protected string $template;
         protected array $data;
 
-        public function render(string $view, array $values)
+        public function render(string $view, array $values) : void
         {
             $this->template = $view;
             $this->data = $values;

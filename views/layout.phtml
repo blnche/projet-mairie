@@ -6,9 +6,33 @@
     <title>Mairie de Saint-Broladre</title>
 </head>
 <body>
-    <h1>layout</h1>
-    <?php require 'partials/public/_header.phtml'; ?>
+    <header>
+        <h1>layout</h1>
+        <?php require 'partials/public/_header.phtml'; ?>
+    </header>
 
-    <?php require 'partials/public/_footer.phtml'; ?>
+    <?php
+        /*$users = $this->data['users'];
+        var_dump($users);
+        echo '</br>';
+        foreach ($users as $user)
+            foreach ($user as $data)
+            {
+                echo $data.'</br>';
+
+            }
+        {
+        }
+        echo '</br>';
+        $user = $users[0];
+        echo $user['email'];*/
+    ?>
+    <main>
+        <?php require $this->template; ?>
+    </main>
+
+    <footer>
+        <?php require 'partials/public/_footer.phtml'; ?>
+    </footer>
 </body>
 </html>

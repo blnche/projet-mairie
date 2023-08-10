@@ -1,4 +1,5 @@
 <?php
+require_once 'AbstractManager.php';
     class AddressManager extends AbstractManager
     {
         public function getAddressById($id) : Address

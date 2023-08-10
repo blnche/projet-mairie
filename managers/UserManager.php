@@ -1,7 +1,6 @@
 <?php
 require_once 'AbstractManager.php';
 require_once 'AddressManager.php';
-
     class UserManager extends AbstractManager {
         private AddressManager $addressManager;
 
@@ -11,7 +10,7 @@ require_once 'AddressManager.php';
             $this->addressManager = new AddressManager();
         }
 
-        public function index() : array
+        public function getAllUsers() : array
         {
             $query = $this->db->prepare('
                 SELECT * 
