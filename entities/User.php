@@ -16,14 +16,13 @@
          * @param string $lastName
          * @param Address $address
          */
-        public function __construct(string $email, string $password, string $role, string $firstName, string $lastName, Address $address)
+        public function __construct(string $email, string $password, string $role, string $firstName, string $lastName)
         {
             $this->email = $email;
             $this->password = $password;
             $this->role = $role;
             $this->firstName = $firstName;
             $this->lastName = $lastName;
-            $this->address = $address;
         }
 
         /**

@@ -8,13 +8,14 @@
         private string $username;
         private string $password;
 
-        public function __construct(string $dbName, string $port, string $host, string $username, string $password)
+        public function __construct()
         {
-            $this->dbName = $dbName;
-            $this->port = $port;
-            $this->host = $host;
-            $this->username = $username;
-            $this->password = $password;
+            $host = 'db.3wa.io';
+            $port = '3306';
+            $dbName = 'blanchepeltier_projet-mairie';
+            $username = 'blanchepeltier';
+            $password = '6df6213ed1bccc46589270829cdb7338';
+
             $this->db = new PDO(
                 $connexionString = "mysql:host=$host;port=$port;dbname=$dbName",
                 $username,
