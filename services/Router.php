@@ -1,5 +1,4 @@
 <?php 
-
     class Router {
         private UserController $userController;
         private PageController $pageController;
@@ -19,26 +18,25 @@
             if (isset($_GET['route']))
             {
                 $route = $_GET['route'];
-                if ($route === 'login')
+
+                // AUTHENTICATION
+                if ($route === 'register')
+                {
+                    $this->authenticationController->register();
+                }
+                else if ($route === 'login')
                 {
                     $this->authenticationController->login();
                 }
-                else if(str_starts_with($route,'admin'))
+                else if ($route === 'logout')
                 {
-                    if (str_contains($route,'comptes-rendus-conseils-municipaux'))
-                    {
-                        $this->pageController->MunicipalCouncilReports();
-                    }
-                    else if (str_contains($route,'bulletins-municipaux'))
-                    {
-                        $this->pageController->MunicipalBulletins();
-                    }
-                    else if (str_contains($route,'ajouter-un-fichier'))
-                    {
-                        var_dump($_GET['file']);
-                        $this->fileController->uploadFile($_GET['file']);
-                    }
-                    require './views/admin/dashboard.phtml';
+                    $this->authenticationController->logout();
+                }
+
+                // PUBLIC
+                else if ($route === 'accueil')
+                {
+                    $this->pageController->homepage();
                 }
                 else if ($route === 'mairie')
                 {
@@ -60,14 +58,37 @@
                 {
                     require './views/public/decouvrir/decouvrir.phtml';
                 }
+
+                // ADMIN
+                else if(str_starts_with($route,'admin'))
+                {
+                    //check if session user is empty, if yes redirect to login, else check for the rest of the route or call dashboard
+                    if (str_contains($route,'comptes-rendus-conseils-municipaux'))
+                    {
+                        $this->pageController->MunicipalCouncilReports();
+                    }
+                    else if (str_contains($route,'bulletins-municipaux'))
+                    {
+                        $this->pageController->MunicipalBulletins();
+                    }
+                    else if (str_contains($route,'ajouter-un-fichier'))
+                    {
+                        $this->fileController->uploadFile($_GET['file']);
+                    }
+                    require './views/admin/dashboard.phtml';//need a render instead to pass into data stuff for dashboard
+                }
+
+                // USER
                 else if ($route === 'espace-famille')
                 {
-                    require './views/user/dashboard.phtml';
+                    //check is session user empty, if yes then login otherwise load dashboard with user infos
+                    require './views/user/dashboard.phtml';//need a render instead to pass into data stuff for dashboard
                 }
             }
+            // DEFAULT
             else
             {
-        //        require './views/layout.phtml';
+                  //require './views/layout.phtml';
                   $this->pageController->homepage();
             }
 

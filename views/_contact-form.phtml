@@ -1,0 +1,26 @@
+<form method="POST" action="index.php?"> <!-- ajouter bonne route -->
+    <fieldset>
+        <label for="firstname">Nom</label>
+        <input type="text" name="firstname" id="firstname" placeholder="Dupont">
+    </fieldset>
+    <fieldset>
+        <label for="lastname">Prénom</label>
+        <input type="text" name="lastname" id="lastname" placeholder="Jean">
+    </fieldset>
+    <fieldset>
+        <label for="email">Adresse email</label>
+        <input type="email" name="email" id="email" placeholder="dupontjean@hotmail.com">
+    </fieldset>
+    <fieldset>
+        <label for="type_of_demand">Nature de la demande </label>
+        <select name="type_of_demand" id="type_of_demand">
+            <option value="urbanisme">Urbanisme</option>
+            <option value="rendez-vous">Demande de prise de rendez-vous</option>
+            <option value="etat-civil">Etat civil</option>
+            <option value="infos">Informations</option>
+            <option value="voirie">Voirie</option>
+        </select>
+    </fieldset>
+    <textarea name="" id="" cols="30" rows="10" placeholder="Votre demande..."></textarea>
+    <input type="submit" value="Valider la demande">
+</form>

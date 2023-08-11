@@ -1,14 +1,16 @@
+<?php
+    $user = $this->data['user']; //need to put in render an array user ['firstName' = $user->getFirstName(), etc]
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Espace Famille - Compte de <?= $user['pronouns'].' '.$user['lastName'] ?> </title>
 </head>
 <body>
     <header>
         <h1>espace famille</h1>
-        <!--  add condition if user not connected -> no navigation   -->
         <?php require 'views/partials/user/_header.phtml'; ?>
     </header>
 
