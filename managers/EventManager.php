@@ -1,5 +1,5 @@
 <?php
-require_once 'AbstractManager.php';
+//require_once 'AbstractManager.php';
 
     class EventManager extends AbstractManager
     {

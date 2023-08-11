@@ -1,5 +1,5 @@
 <?php
-require_once 'AbstractController.php';
+//require_once 'AbstractController.php';
     class PageController extends AbstractController
     {
         private EventManager $eventManager;

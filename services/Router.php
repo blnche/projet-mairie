@@ -1,44 +1,64 @@
 <?php 
 
-    $userController = new UserController();
-    $pageController = new PageController();
-    $fileController = new FileController();
+    class Router {
+        private UserController $userController;
+        private PageController $pageController;
+        private FileController $fileController;
 
-    if (isset($_GET['route']))
-    {
-        $route = $_GET['route'];
-        if($route === 'back-office')
+        /**
+         * @param UserController $userController
+         * @param PageController $pageController
+         * @param FileController $fileController
+         */
+        public function __construct()
         {
-            require './views/admin/dashboard.phtml';
+            $this->userController = new UserController();
+            $this->pageController = new PageController();
+            $this->fileController = new FileController();
         }
-        else if ($route === 'mairie')
+
+        public function checkRoute() : void
         {
-            require './views/public/mairie/mairie.phtml';
+            if (isset($_GET['route']))
+            {
+                $route = $_GET['route'];
+                if($route === 'back-office')
+                {
+                    require './views/admin/dashboard.phtml';
+                }
+                else if ($route === 'mairie')
+                {
+                    require './views/public/mairie/mairie.phtml';
+                }
+                else if ($route === 'projets')
+                {
+                    require './views/public/projets/projets.phtml';
+                }
+                else if ($route === 'pratique')
+                {
+                    require './views/public/pratique/pratique.phtml';
+                }
+                else if ($route === 'vivre')
+                {
+                    require './views/public/vivre/vivre.phtml';
+                }
+                else if ($route === 'decouvrir')
+                {
+                    require './views/public/decouvrir/decouvrir.phtml';
+                }
+                else if ($route === 'espace-famille')
+                {
+                    require './views/user/dashboard.phtml';
+                }
+            }
+            else
+            {
+        //        require './views/layout.phtml';
+                  $this->pageController->homepage();
+            }
+
         }
-        else if ($route === 'projets')
-        {
-            require './views/public/projets/projets.phtml';
-        }
-        else if ($route === 'pratique')
-        {
-            require './views/public/pratique/pratique.phtml';
-        }
-        else if ($route === 'vivre')
-        {
-            require './views/public/vivre/vivre.phtml';
-        }
-        else if ($route === 'decouvrir')
-        {
-            require './views/public/decouvrir/decouvrir.phtml';
-        }
-        else if ($route === 'espace-famille')
-        {
-            require './views/user/dashboard.phtml';
-        }
+
     }
-    else
-    {
-//        require './views/layout.phtml';
-          $pageController->homepage();
-    }
+
 ?>

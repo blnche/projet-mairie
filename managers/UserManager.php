@@ -1,6 +1,6 @@
 <?php
-require_once 'AbstractManager.php';
-require_once 'AddressManager.php';
+//require_once 'AbstractManager.php';
+//require_once 'AddressManager.php';
     class UserManager extends AbstractManager {
         private AddressManager $addressManager;
 
