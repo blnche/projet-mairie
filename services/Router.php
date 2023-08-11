@@ -26,6 +26,19 @@
                 {
                     require './views/admin/dashboard.phtml';
                 }
+                else if ($route === 'comptes-rendus-conseils-municipaux')
+                {
+                    $this->pageController->MunicipalCouncilReports();
+                }
+                else if ($route === 'bulletins-municipaux')
+                {
+                    $this->pageController->MunicipalBulletins();
+                }
+                else if ($route === 'ajouter-un-fichier')
+                {
+                    var_dump($_GET['file']);
+                    $this->fileController->uploadFile($_GET['file']);
+                }
                 else if ($route === 'mairie')
                 {
                     require './views/public/mairie/mairie.phtml';

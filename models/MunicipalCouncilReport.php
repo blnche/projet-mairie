@@ -12,6 +12,7 @@
         {
             $this->date = $date;
             $this->url = $url;
+            $this->id = null;
         }
 
         /**

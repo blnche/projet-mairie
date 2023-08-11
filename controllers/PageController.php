@@ -26,5 +26,14 @@
                 'pastEvents' => $this->eventManager->getPastEvents(),
                 'events' => $events['future']]);
         }
+
+        public function MunicipalCouncilReports() : void
+        {
+            $this->render('views/admin/comptes_rendus_cm/comptes-rendus-conseils-municipaux.phtml', []);
+        }
+        public function MunicipalBulletins() : void
+        {
+            $this->render('views/admin/bulletins_municipaux/bulletins-municipaux.phtml', []);
+        }
     }
 ?>
