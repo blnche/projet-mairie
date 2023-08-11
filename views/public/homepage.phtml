@@ -1,1 +1,28 @@
+<?php
+$events = $this->data['events'];
+//var_dump($events);
+?>
 <h1>homepage public</h1>
+<aside class="element-card main_aside">
+    <h2>Évènements</h2>
+    <ul>
+        <?php
+        foreach($events as $event)
+        {
+        ?>
+            <li>
+                <?php echo $event['title'] ?>
+                <ul>
+                    <li>
+                        <?php echo $event['date'] ?>
+                    </li>
+                    <li>
+                        <?php echo $event['description'] ?>
+                    </li>
+                </ul>
+            </li>
+        <?php
+        }
+        ?>
+    </ul>
+</aside>
