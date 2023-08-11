@@ -5,14 +5,38 @@ require_once 'AbstractManager.php';
     {
         public function getAllEvents() : array
         {
-            $today = new DateTime();
             $query = $this->db->prepare('
                 SELECT * 
                 FROM events
-                /*WHERE events.date > :today*/
             ');
-            /*$parameters = ['today' => $today];*/
-            $query->execute(/*$parameters*/);
+            $query->execute();
+            return $query->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function getFutureEvents() : array
+        {
+            $today = new DateTime();
+            $formattedDate = $today->format('Y-m-d');
+            $query = $this->db->prepare('
+                SELECT * 
+                FROM events
+                WHERE events.date > :today
+            ');
+            $parameters = ['today' => $formattedDate];
+            $query->execute($parameters);
+            return $query->fetchAll(PDO::FETCH_ASSOC);
+        }
+        public function getPastEvents() : array
+        {
+            $today = new DateTime();
+            $formattedDate = $today->format('Y-m-d');
+            $query = $this->db->prepare('
+                SELECT * 
+                FROM events
+                WHERE events.date < :today
+            ');
+            $parameters = ['today' => $formattedDate];
+            $query->execute($parameters);
             return $query->fetchAll(PDO::FETCH_ASSOC);
         }
     }

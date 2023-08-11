@@ -10,9 +10,21 @@ require_once 'AbstractController.php';
             $this->eventManager = new EventManager();
         }
 
+        public function events() : array
+        {
+            $allEvents = $this->eventManager->getAllEvents();
+            $futureEvents = $this->eventManager->getFutureEvents();
+            $pastEvents = $this->eventManager->getPastEvents();
+
+            return ['all' => $allEvents, 'future' => $futureEvents, 'past' => $pastEvents];
+        }
         public function homepage() : void
         {
-            $this->render('views/public/homepage.phtml', ['events' => $this->eventManager->getAllEvents()]);
+            $events = $this->events();
+            $this->render('views/public/homepage.phtml', ['allEvents' => $this->eventManager->getAllEvents(),
+                'futureEvents' => $this->eventManager->getFutureEvents(),
+                'pastEvents' => $this->eventManager->getPastEvents(),
+                'events' => $events['future']]);
         }
     }
 ?>

@@ -2,6 +2,7 @@
 
     $userController = new UserController();
     $pageController = new PageController();
+    $fileController = new FileController();
 
     if (isset($_GET['route']))
     {
