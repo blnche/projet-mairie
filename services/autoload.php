@@ -27,6 +27,7 @@ require 'controllers/AbstractController.php';
 require 'controllers/UserController.php';
 require 'controllers/PageController.php';
 require 'controllers/FileController.php';
+require 'controllers/AuthenticationController.php';
 
 // Router
 require 'services/Router.php';
