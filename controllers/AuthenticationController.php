@@ -24,7 +24,7 @@
             }
             else
             {
-                $this->render('views/authentication/login.phtml',[]);
+                $this->render('views/authentication/login.phtml',[],'Login');
             }
         }
 

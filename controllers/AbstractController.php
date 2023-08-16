@@ -3,28 +3,17 @@
     {
         protected string $template;
         protected array $data;
+        protected string $pageTitle;
+        protected string $folder;
 
-        public function render(string $view, array $values) : void
+        public function render(string $view, array $values, string $title, string $file = 'public') : void
         {
             $this->template = $view;
             $this->data = $values;
+            $this->pageTitle = $title;
+            $this->folder = $file;
 
-            require 'views/layout.phtml';
-        }
-
-        public function renderAdmin(string $view, array $values) : void
-        {
-            $this->template = $view;
-            $this->data = $values;
-
-            require 'views/admin/dashboard.phtml';
-        }
-        public function renderUser(string $view, array $values) : void
-        {
-            $this->template = $view;
-            $this->data = $values;
-
-            require 'views/user/dashboard.phtml';
+            require "views/$file/layout.phtml";
         }
     }
 ?>
