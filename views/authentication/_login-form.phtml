@@ -1,11 +1,11 @@
 <form method="post" action="index.php?route=login">
     <fieldset>
         <label for="email">Adresse mail :</label>
-        <input type="email" name="email">
+        <input type="email" name="email" required>
     </fieldset>
     <fieldset>
         <label for="password">Mot de passe :</label>
-        <input type="text" name="password">
+        <input type="password" name="password" required>
     </fieldset>
     <input type="submit" name="login" value="Se connecter"/>
 </form>

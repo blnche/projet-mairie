@@ -12,17 +12,12 @@
          * @param string $email
          * @param string $password
          * @param string $role
-         * @param string $firstName
-         * @param string $lastName
-         * @param Address $address
          */
-        public function __construct(string $email, string $password, string $role, string $firstName, string $lastName)
+        public function __construct(string $email, string $password, string $role)
         {
             $this->email = $email;
             $this->password = $password;
             $this->role = $role;
-            $this->firstName = $firstName;
-            $this->lastName = $lastName;
         }
 
         /**

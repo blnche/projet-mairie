@@ -11,7 +11,7 @@
 
         public function index() : void
         {
-            $this->render('views/public/homepage.phtml', ['users' => $this->manager->getAllUsers()]);
+            //$this->render('views/public/homepage.phtml', ['users' => $this->manager->getAllUsers()]);
         }
 
         public function create() : void

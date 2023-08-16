@@ -1,0 +1,30 @@
+<form method="post" action="index.php?route=register">
+    <fieldset>
+        <label for="email">Adresse mail :</label>
+        <input type="email" name="email" required>
+    </fieldset>
+    <fieldset>
+        <label for="password">Mot de passe :</label>
+        <input type="password" name="password" required>
+    </fieldset>
+    <fieldset>
+        <label for="confirmPassword">Confirmer le Mot de passe :</label>
+        <input type="password" name="confirmPassword" required>
+    </fieldset>
+    <fieldset>
+        <label for="address">Adresse :</label>
+        <input type="text" name="address" required>
+    </fieldset>
+    <fieldset>
+        <label for="code-postal">Code postal :</label>
+        <input type="text" name="code-postal" required>
+    </fieldset>
+    <fieldset>
+        <label for="ville">Ville/Commune :</label>
+        <input type="text" name="ville" required>
+    </fieldset>
+    <fieldset>
+        <input type="hidden" name="role" value="ROLE_SUPER_ADMIN">
+    </fieldset>
+    <input type="submit" name="register" value="Créer son compte"/>
+</form>
