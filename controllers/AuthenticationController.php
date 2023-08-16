@@ -25,7 +25,6 @@
                     $addressString
                 );
                 $newAddress = $this->addressManager->addAddress($address);
-                $addressId = $newAddress->getId();
 
                 //Create new user
                 $email = $_POST['email'];
@@ -40,7 +39,7 @@
                     $password,
                     $role
                 );
-                $user->setAddress($addressId);
+                $user->setAddress($newAddress);
                 $this->userManager->addUser($user);
                 header('Location:index.php?route=login');
             }
@@ -56,8 +55,7 @@
                 //Find user
                 $email = $_POST['email'];
                 $user = $this->userManager->getUserByEmail($email);
-                var_dump($user);
-                xdebug_break();
+
                 //Check password
                 $password = $_POST['password'];
                 if (password_verify($password, $user->getPassword()))
@@ -65,16 +63,14 @@
                     //Save user in session
                     $id = $user->getId();
                     $role = $user->getRole();
-                    $pronouns = $user->getPronouns();//need to make
 
                     $_SESSION['user_id'] = $id;
                     $_SESSION['user_role'] = $role;
-                    $_SESSION['user_pronouns'] = $pronouns;
 
                     //Check role to render corresponding dashboard
                     if ($role === 'ROLE_SUPER_ADMIN' || $role === 'ROLE_ADMIN')
                     {
-                        $this->render('views/admin/dashboard.phtml',[],'Tableau de bord Admin', 'admin');
+                        $this->render('views/admin/dashboard.phtml',['user' => $user],'Tableau de bord Admin', 'admin');
                     }
                     else if ($role === 'ROLE_USER')
                     {

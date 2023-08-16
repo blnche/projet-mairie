@@ -80,13 +80,14 @@
         public function addUser (User $user) : User
         {
             $query = $this->db->prepare('
-                INSERT INTO users (email, password, role)
-                VALUES (:email, :password, :role)
+                INSERT INTO users (email, password, role, user_address_id)
+                VALUES (:email, :password, :role, :user_address_id)
             ');
             $parameters = [
                 'email' => $user->getEmail(),
                 'password' => $user->getPassword(),
-                'role' => $user->getRole()
+                'role' => $user->getRole(),
+                'user_address_id' => $user->getAddress()->getId()
             ];
             $query->execute($parameters);
 

@@ -3,11 +3,12 @@
     class PageController extends AbstractController
     {
         private EventManager $eventManager;
+        private MunicipalBulletinManager $bulletinManager;
 
         public function __construct()
         {
-
             $this->eventManager = new EventManager();
+            $this->bulletinManager = new MunicipalBulletinManager();
         }
 
         public function events() : array
@@ -33,7 +34,8 @@
         }
         public function MunicipalBulletins() : void
         {
-            $this->render('views/admin/bulletins_municipaux/bulletins-municipaux.phtml', []);
+            $bulletins = $this->bulletinManager->getBulletins();
+            $this->render('views/admin/bulletins_municipaux/bulletins-municipaux.phtml', ['bulletins' => $bulletins], 'Bulletins Municipaux', 'admin');
         }
     }
 ?>

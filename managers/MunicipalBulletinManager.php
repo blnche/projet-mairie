@@ -4,7 +4,13 @@
     {
         public function getBulletins() : array
         {
+            $query = $this->db->prepare('
+                SELECT *
+                FROM bulletins_municipaux
+            ');
+            $query->execute();
 
+            return $query->fetchAll(PDO::FETCH_ASSOC);
         }
 
         public function create(MunicipalBulletin $municipalBulletin) : MunicipalBulletin
