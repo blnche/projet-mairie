@@ -2,14 +2,30 @@
     class CafeteriaDate {
         private ?int $id;
         private int $week_of_year;
+        private string $monday;
+        private string $tuesday;
+        private string $wednesday;
+        private string $thursday;
+        private string $friday;
 
         /**
          * @param int $week_of_year
+         * @param string $monday
+         * @param string $tuesday
+         * @param string $wednesday
+         * @param string $thursday
+         * @param string $friday
          */
-        public function __construct(int $week_of_year)
+        public function __construct(int $week_of_year, string $monday, string $tuesday, string $wednesday, string $thursday, string $friday)
         {
             $this->week_of_year = $week_of_year;
+            $this->monday = $monday;
+            $this->tuesday = $tuesday;
+            $this->wednesday = $wednesday;
+            $this->thursday = $thursday;
+            $this->friday = $friday;
         }
+
 
         /**
          * @return int|null
@@ -41,6 +57,86 @@
         public function setWeekOfYear(int $week_of_year): void
         {
             $this->week_of_year = $week_of_year;
+        }
+
+        /**
+         * @return string
+         */
+        public function getMonday(): string
+        {
+            return $this->monday;
+        }
+
+        /**
+         * @param string $monday
+         */
+        public function setMonday(string $monday): void
+        {
+            $this->monday = $monday;
+        }
+
+        /**
+         * @return string
+         */
+        public function getTuesday(): string
+        {
+            return $this->tuesday;
+        }
+
+        /**
+         * @param string $tuesday
+         */
+        public function setTuesday(string $tuesday): void
+        {
+            $this->tuesday = $tuesday;
+        }
+
+        /**
+         * @return string
+         */
+        public function getWednesday(): string
+        {
+            return $this->wednesday;
+        }
+
+        /**
+         * @param string $wednesday
+         */
+        public function setWednesday(string $wednesday): void
+        {
+            $this->wednesday = $wednesday;
+        }
+
+        /**
+         * @return string
+         */
+        public function getThursday(): string
+        {
+            return $this->thursday;
+        }
+
+        /**
+         * @param string $thursday
+         */
+        public function setThursday(string $thursday): void
+        {
+            $this->thursday = $thursday;
+        }
+
+        /**
+         * @return string
+         */
+        public function getFriday(): string
+        {
+            return $this->friday;
+        }
+
+        /**
+         * @param string $friday
+         */
+        public function setFriday(string $friday): void
+        {
+            $this->friday = $friday;
         }
     }
 ?>
