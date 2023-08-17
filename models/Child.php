@@ -12,12 +12,11 @@
          * @param int $age
          * @param User $parent
          */
-        public function __construct(string $firstName, string $lastName, int $age, User $parent)
+        public function __construct(string $firstName, string $lastName, int $age)
         {
             $this->firstName = $firstName;
             $this->lastName = $lastName;
             $this->age = $age;
-            $this->parent = $parent;
         }
 
         /**

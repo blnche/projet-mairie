@@ -1,0 +1,12 @@
+<ul>
+    <?php
+    $children = $this->data['children'];
+    foreach($children as $child)
+    {
+    ?>
+        <li> <?php echo $child['firstName']; ?> <a href="index.php?route=consulter-enfant&enfantId=<?= $child['id']?>"> Consulter</a></li>
+    <?php
+    }
+    ?>
+
+</ul>

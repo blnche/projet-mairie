@@ -86,10 +86,36 @@
                 }
 
                 // USER
-                else if ($route === 'espace-famille')
+                else if (str_starts_with($route,'espace-famille'))
                 {
                     //check is session user empty, if yes then login otherwise load dashboard with user infos
-                    require './views/user/dashboard.phtml';//need a render instead to pass into data stuff for dashboard
+                    if (isset($_SESSION['user_id']) && ($_SESSION['user_role'] === 'ROLE_USER'))
+                    {
+                        if (str_contains($route, 'enfants'))
+                        {
+
+                        }
+                        else if (str_contains($route, 'cantine'))
+                        {
+
+                        }
+                        else if (str_contains($route, 'consulter-enfant'))
+                        {
+                            $this->pageController->Child($_GET['enfantId']);
+                        }
+                        else if (str_contains($route, 'modifier-enfant'))
+                        {
+                            $this->pageController->ModifyChild($_GET['enfantId']);
+                        }
+                        else
+                        {
+                            require './views/user/dashboard.phtml';//need a render instead to pass into data stuff for dashboard
+                        }
+                    }
+                    else
+                    {
+                        header('Location:index.php?route=login');
+                    }
                 }
             }
             // DEFAULT
