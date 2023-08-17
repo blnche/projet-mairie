@@ -63,19 +63,26 @@
                 else if(str_starts_with($route,'admin'))
                 {
                     //check if session user is empty, if yes redirect to login, else check for the rest of the route or call dashboard
-                    if (str_contains($route,'comptes-rendus-conseils-municipaux'))
+                    if (isset($_SESSION['user_id']) && (($_SESSION['user_role'] === 'ROLE_ADMIN') || ($_SESSION['user_role'] === 'ROLE_SUPER_ADMIN')))
                     {
-                        $this->pageController->MunicipalCouncilReports();
+                        if (str_contains($route,'comptes-rendus-conseils-municipaux'))
+                        {
+                            $this->pageController->MunicipalCouncilReports();
+                        }
+                        else if (str_contains($route,'bulletins-municipaux'))
+                        {
+                            $this->pageController->MunicipalBulletins();
+                        }
+                        else if (str_contains($route,'ajouter-un-fichier'))
+                        {
+                            $this->fileController->uploadFile($_GET['file']);
+                        }
+                        require './views/admin/dashboard.phtml';//need a render instead to pass into data stuff for dashboard
                     }
-                    else if (str_contains($route,'bulletins-municipaux'))
+                    else
                     {
-                        $this->pageController->MunicipalBulletins();
+                        header('Location:index.php?route=login');
                     }
-                    else if (str_contains($route,'ajouter-un-fichier'))
-                    {
-                        $this->fileController->uploadFile($_GET['file']);
-                    }
-                    require './views/admin/dashboard.phtml';//need a render instead to pass into data stuff for dashboard
                 }
 
                 // USER

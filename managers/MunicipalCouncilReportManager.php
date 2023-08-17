@@ -2,9 +2,15 @@
 //require_once 'AbstractManager.php';
     class MunicipalCouncilReportManager extends AbstractManager
     {
-        public function getCouncilReports() : void /*array*/
+        public function getCouncilReports() : array
         {
+            $query = $this->db->prepare('
+                SELECT *
+                FROM compte_rendus_conseil_municipaux
+            ');
+            $query->execute();
 
+            return $query->fetchAll(PDO::FETCH_ASSOC);
         }
 
         public function create(MunicipalCouncilReport $councilReport) : MunicipalCouncilReport
