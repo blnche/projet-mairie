@@ -77,7 +77,11 @@
                         {
                             $this->fileController->uploadFile($_GET['file']);
                         }
-                        require './views/admin/dashboard.phtml';//need a render instead to pass into data stuff for dashboard
+                        else
+                        {
+                            $this->pageController->adminHomepage();
+                            //require './views/admin/dashboard.phtml';//need a render instead to pass into data stuff for dashboard
+                        }
                     }
                     else
                     {
@@ -93,7 +97,7 @@
                     {
                         if (str_contains($route, 'enfants'))
                         {
-
+                            $this->pageController->Children($_SESSION['user_id']);
                         }
                         else if (str_contains($route, 'cantine'))
                         {
@@ -107,9 +111,14 @@
                         {
                             $this->pageController->ModifyChild($_GET['enfantId']);
                         }
+                        else if (str_contains($route, 'ajouter-enfant'))
+                        {
+                            $this->pageController->AddChild();
+                        }
                         else
                         {
-                            require './views/user/dashboard.phtml';//need a render instead to pass into data stuff for dashboard
+                            $this->pageController->userHomepage();
+                            //require './views/user/dashboard.phtml';//need a render instead to pass into data stuff for dashboard
                         }
                     }
                     else
@@ -122,7 +131,7 @@
             else
             {
                   //require './views/layout.phtml';
-                  $this->pageController->homepage();
+                  $this->pageController->publicHomepage();
             }
 
         }

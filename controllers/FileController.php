@@ -38,8 +38,10 @@
 
                     echo 'success';
                     header('Location:index.php?route=comptes-rendus-conseils-municipaux');
-                } else {
-                    $this->render('views/admin/comptes_rendus_cm/_form.phtml', [], 'Comptes rendus des CM');
+                }
+                else
+                {
+                    $this->render('views/admin/comptes_rendus_cm/_form.phtml', [], 'Comptes rendus des CM', 'admin');
                 }
             }
             if($fileType === 'bulletin')
@@ -63,7 +65,7 @@
                 }
                 else
                 {
-                    $this->render('views/admin/bulletins_municipaux/_form.phtml', [], 'Bulletins municipaux');
+                    $this->render('views/admin/bulletins_municipaux/_form.phtml', [], 'Bulletins municipaux', 'admin');
                 }
             }
         }

@@ -34,5 +34,53 @@
 
             return $child;
         }
+        public function getChildrenByParentId($id) : array
+        {
+            $query = $this->db->prepare('
+                SELECT *
+                FROM children
+                WHERE parent_id = :parent_id
+            ');
+            $parameters = [
+                'parent_id' => $id
+            ];
+            $query->execute($parameters);
+
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            $children = [];
+
+            foreach($result as $child)
+            {
+                $newChild = new Child(
+                    $child['firstName'],
+                    $child['lastName'],
+                    $child['age']
+                );
+                $newChild->setId($child['id']);
+                $newChild->setParent($this->userManager->getUserById($child['parent_id']));
+                $children[] = $newChild;
+            }
+
+            return $children;
+        }
+
+        public function createChild(Child $child) : Child
+        {
+            $query = $this->db->prepare('
+                INSERT INTO children (firstName, lastName, age, parent_id) 
+                VALUES (:firstName, :lastName, :age, :parent_id)                                              
+            ');
+            $parameters = [
+                'firstName' => $child->getFirstName(),
+                'lastName' => $child->getLastName(),
+                'age' => $child->getAge(),
+                'parent_id' => $child->getParent()->getId()
+            ];
+            $query->execute($parameters);
+
+            $child->setId($this->db->lastInsertId());
+
+            return $child;
+        }
     }
 ?>

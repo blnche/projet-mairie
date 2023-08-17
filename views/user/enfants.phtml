@@ -1,12 +1,16 @@
+<p>Liste de vos enfants : </p>
 <ul>
     <?php
     $children = $this->data['children'];
     foreach($children as $child)
     {
     ?>
-        <li> <?php echo $child['firstName']; ?> <a href="index.php?route=consulter-enfant&enfantId=<?= $child['id']?>"> Consulter</a></li>
+        <li> <?= $child->getFirstName(); ?>
+            <a href="index.php?route=espace-famille/consulter-enfant&enfantId=<?= $child->getId(); ?>">Consulter</a>
+        </li>
     <?php
     }
     ?>
 
 </ul>
+<a href="index.php?route=espace-famille/ajouter-enfant">ajouter enfant</a>

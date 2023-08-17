@@ -1,5 +1,6 @@
 <?php $child = $this->data['child']; ?>
-<h1> <?php echo $child->getFirstName().' '.$child->getFirstName(); ?> </h1>
+<h1> <?php echo $child->getFirstName().' '.$child->getLastName(); ?> </h1>
 <ul>
-    <li> <?= $child->getAge(); ?> <a href="index.php?route=modifier-enfant&enfantId=<?= $child->getId(); ?>"> Modifier</a></li>
+    <li> <?= $child->getAge(); ?> </li>
 </ul>
+<a href="index.php?route=espace-famille/modifier-enfant&enfantId=<?= $child->getId(); ?>">Modifier</a>
