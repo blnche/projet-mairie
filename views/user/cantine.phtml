@@ -1,1 +1,33 @@
+<?php
+$weeks = $this->data['cafeteria-weeks'];
+$children = $this->data['children'];
+?>
 <h1>cantine</h1>
+<?php
+foreach ($weeks as $week)
+{
+?>
+<ul>
+    <li>
+        <?= $week->getWeekOfYear(); ?>
+    </li>
+    <li>
+        <?php
+        if($week->getMonday() === "Yes")
+        {
+            echo '✅';
+        }
+        else if ($week->getMonday() === "No")
+        {
+            echo '❌';
+        }
+        else if ($week->getMonday() === "Holiday")
+        {
+            echo '☀️';
+        }
+        ?>
+    </li>
+</ul>
+<?php
+}
+?>

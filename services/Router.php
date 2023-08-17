@@ -99,10 +99,6 @@
                         {
                             $this->pageController->Children($_SESSION['user_id']);
                         }
-                        else if (str_contains($route, 'cantine'))
-                        {
-
-                        }
                         else if (str_contains($route, 'consulter-enfant'))
                         {
                             $this->pageController->Child($_GET['enfantId']);
@@ -114,6 +110,10 @@
                         else if (str_contains($route, 'ajouter-enfant'))
                         {
                             $this->pageController->AddChild();
+                        }
+                        else if (str_contains($route, 'cantine'))
+                        {
+                            $this->pageController->CafeteriaDates();
                         }
                         else
                         {

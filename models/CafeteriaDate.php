@@ -10,20 +10,10 @@
 
         /**
          * @param int $week_of_year
-         * @param string $monday
-         * @param string $tuesday
-         * @param string $wednesday
-         * @param string $thursday
-         * @param string $friday
          */
-        public function __construct(int $week_of_year, string $monday, string $tuesday, string $wednesday, string $thursday, string $friday)
+        public function __construct(int $week_of_year)
         {
             $this->week_of_year = $week_of_year;
-            $this->monday = $monday;
-            $this->tuesday = $tuesday;
-            $this->wednesday = $wednesday;
-            $this->thursday = $thursday;
-            $this->friday = $friday;
         }
 
 

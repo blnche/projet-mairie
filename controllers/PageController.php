@@ -6,6 +6,7 @@
         private MunicipalCouncilReportManager $councilReportManager;
         private ChildManager $childManager;
         private UserManager $userManager;
+        private CafeteriaDateManager $cafeteriaDateManager;
 
         public function __construct()
         {
@@ -14,6 +15,7 @@
             $this->councilReportManager = new MunicipalCouncilReportManager();
             $this->childManager = new ChildManager();
             $this->userManager = new UserManager();
+            $this->cafeteriaDateManager = new CafeteriaDateManager();
         }
 
         public function events() : array
@@ -95,7 +97,13 @@
             {
                 $this->render('views/user/_add-child.phtml', [], 'Ajouter mon enfant', 'user');
             }
+        }
 
+        public function CafeteriaDates() : void
+        {
+            $children = $this->childManager->getChildrenByParentId($_SESSION['user_id']);
+            $dates = $this->cafeteriaDateManager->getCafeteriaDates();
+            $this->render('views/user/cantine.phtml', ['cafeteria-weeks' => $dates, 'children' => $children], 'Dates de la cantine', 'user');
         }
     }
 ?>

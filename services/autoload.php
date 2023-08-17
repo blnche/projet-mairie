@@ -22,6 +22,7 @@
     require 'managers/MunicipalCouncilReportManager.php';
     require 'managers/AddressManager.php';
     require 'managers/ChildManager.php';
+    require 'managers/CafeteriaDateManager.php';
 
     // Controllers
     require 'controllers/AbstractController.php';

@@ -15,9 +15,10 @@
             $dbName = 'blanchepeltier_projet-mairie';
             $username = 'blanchepeltier';
             $password = '6df6213ed1bccc46589270829cdb7338';
+            $connexionString = "mysql:host=$host;port=$port;dbname=$dbName";
 
             $this->db = new PDO(
-                $connexionString = "mysql:host=$host;port=$port;dbname=$dbName",
+                $connexionString,
                 $username,
                 $password
             );
