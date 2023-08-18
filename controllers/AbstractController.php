@@ -10,7 +10,7 @@
         {
             $this->template = $view;
             $this->data = $values;
-            $this->pageTitle = $title;
+            $this->pageTitle = htmlspecialchars($title);
             $this->folder = $file;
 
             require "views/$file/layout.phtml";

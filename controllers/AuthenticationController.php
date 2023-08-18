@@ -15,9 +15,9 @@
             if(isset($_POST['register']))
             {
                 //Create new address
-                $addressString = $_POST['address'];
-                $codePostal = $_POST['code-postal'];
-                $ville = $_POST['ville'];
+                $addressString = htmlspecialchars($_POST['address']);
+                $codePostal = htmlspecialchars($_POST['code-postal']);
+                $ville = htmlspecialchars($_POST['ville']);
 
                 $address = new Address(
                     $codePostal,
@@ -27,12 +27,12 @@
                 $newAddress = $this->addressManager->addAddress($address);
 
                 //Create new user
-                $email = $_POST['email'];
+                $email = htmlspecialchars($_POST['email']);
                 if ($_POST['password'] === $_POST['confirmPassword'])
                 {
                     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
                 }
-                $role = $_POST['role'];
+                $role = htmlspecialchars($_POST['role']);
 
                 $user = new User(
                     $email,
@@ -53,7 +53,7 @@
             if (isset($_POST['login']))
             {
                 //Find user
-                $email = $_POST['email'];
+                $email = htmlspecialchars($_POST['email']);
                 $user = $this->userManager->getUserByEmail($email);
 
                 //Check password

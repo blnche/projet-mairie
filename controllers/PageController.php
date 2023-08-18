@@ -84,9 +84,9 @@
             if($_SERVER["REQUEST_METHOD"] === "POST")
             {
                 $child = new Child(
-                    $_POST['firstName'],
-                    $_POST['lastName'],
-                    $_POST['age']
+                    htmlspecialchars($_POST['firstName']),
+                    htmlspecialchars($_POST['lastName']),
+                    htmlspecialchars($_POST['age'])
                 );
                 $child->setParent($this->userManager->getUserById($_SESSION['user_id']));
 
