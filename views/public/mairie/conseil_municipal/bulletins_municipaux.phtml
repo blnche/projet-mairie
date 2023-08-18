@@ -1,1 +1,15 @@
 <h1>bulletins municpaux</h1>
+<?php
+$bulletins = $this->data['bulletins'];
+?>
+<ul>
+    <?php
+foreach ($bulletins as $bulletin)
+{
+    ?>
+    <li> <?php echo 'Bulletin du '.substr($bulletin['date'], 0, -8);?> <a target="_blank" href="<?=$bulletin['url']?>">Consulter le fichier</a>
+    </li>
+<?php
+}
+?>
+</ul>

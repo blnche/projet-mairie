@@ -36,11 +36,33 @@
                 // PUBLIC
                 else if ($route === 'accueil')
                 {
-                    $this->pageController->homepage();
+                    $this->pageController->publicHomepage();
                 }
-                else if ($route === 'mairie')
+                else if (str_starts_with($route, 'mairie'))
                 {
-                    require './views/public/mairie/mairie.phtml';
+                    if (str_contains($route, 'conseil-municipal'))
+                    {
+                        if (str_contains($route, 'crcm'))
+                        {
+                            $this->pageController->MunicipalCouncilReports();
+                        }
+                        else if (str_contains($route, 'bm'))
+                        {
+                            $this->pageController->MunicipalBulletins();
+                        }
+                        else
+                        {
+                            $this->pageController->conseilMunicipal();
+                        }
+                    }
+                    else if (str_contains($route, 'services-municipaux'))
+                    {
+                        $this->pageController->SM();
+                    }
+                    else
+                    {
+                        $this->pageController->townHall();
+                    }
                 }
                 else if ($route === 'projets')
                 {

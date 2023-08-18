@@ -26,7 +26,7 @@
                 if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     $file = $_FILES['compte_rendu'];
 
-                    $file_name = $file['name'];
+                    $file_name = htmlspecialchars($file['name']);
 
                     $path = 'data/comptes-rendus-CM/' . $file_name;
 
@@ -50,7 +50,7 @@
                 {
                     $file = $_FILES['bulletin'];
 
-                    $file_name = $file['name'];
+                    $file_name = htmlspecialchars($file['name']);
 
                     $path = 'data/bulletins-municipaux/'.$file_name;
 

@@ -44,26 +44,26 @@
         {
             $comptes_rendus = $this->councilReportManager->getCouncilReports();
 
-            if ($_SESSION['user_role'] === 'ROLE_ADMIN' || $_SESSION['user_role'] === 'ROLE_SUPER_ADMIN')
+            if (isset($_SESSION['user_role']) && ($_SESSION['user_role'] === 'ROLE_ADMIN' || $_SESSION['user_role'] === 'ROLE_SUPER_ADMIN'))
             {
                 $this->render('views/admin/comptes_rendus_cm/comptes-rendus-conseils-municipaux.phtml', ['comptes-rendus' => $comptes_rendus], 'Comptes rendus des conseils municipaux', 'admin');
             }
             else
             {
-                $this->render('views/admin/comptes_rendus_cm/comptes-rendus-conseils-municipaux.phtml', ['comptes-rendus' => $comptes_rendus], 'Comptes rendus des conseils municipaux');
+                $this->render('views/public/mairie/conseil_municipal/comptes_rendus_cm.phtml', ['comptes-rendus' => $comptes_rendus], 'Comptes rendus des conseils municipaux');
             }
         }
         public function MunicipalBulletins() : void
         {
             $bulletins = $this->bulletinManager->getBulletins();
 
-            if ($_SESSION['user_role'] === 'ROLE_ADMIN' || $_SESSION['user_role'] === 'ROLE_SUPER_ADMIN')
+            if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'ROLE_ADMIN' || $_SESSION['user_role'] === 'ROLE_SUPER_ADMIN')
             {
                 $this->render('views/admin/bulletins_municipaux/bulletins-municipaux.phtml', ['bulletins' => $bulletins], 'Bulletins Municipaux', 'admin');
             }
             else
             {
-                $this->render('views/admin/bulletins_municipaux/bulletins-municipaux.phtml', ['bulletins' => $bulletins], 'Bulletins Municipaux');
+                $this->render('views/public/mairie/conseil_municipal/bulletins_municipaux.phtml', ['bulletins' => $bulletins], 'Bulletins Municipaux');
             }
         }
 
@@ -104,6 +104,18 @@
             $children = $this->childManager->getChildrenByParentId($_SESSION['user_id']);
             $dates = $this->cafeteriaDateManager->getCafeteriaDates();
             $this->render('views/user/cantine.phtml', ['cafeteria-weeks' => $dates, 'children' => $children], 'Dates de la cantine', 'user');
+        }
+
+        public function conseilMunicipal() : void
+        {
+            $bm = $this->bulletinManager->getBulletins();
+            $crcm = $this->councilReportManager->getCouncilReports();
+
+            $this->render('views/public/mairie/conseil_municipal/conseil_municipal.phtml', ['bm' => $bm, 'crcm' => $crcm], 'Conseil Municipal');
+        }
+        public function townHall() : void
+        {
+            $this->render('views/public/mairie/mairie.phtml', [], 'Mairie');
         }
     }
 ?>
