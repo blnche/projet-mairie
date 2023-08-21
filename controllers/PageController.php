@@ -101,9 +101,33 @@
 
         public function CafeteriaDates() : void
         {
-            $children = $this->childManager->getChildrenByParentId($_SESSION['user_id']);
             $dates = $this->cafeteriaDateManager->getCafeteriaDates();
-            $this->render('views/user/cantine.phtml', ['cafeteria-weeks' => $dates, 'children' => $children], 'Dates de la cantine', 'user');
+            if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'ROLE_USER')
+            {
+                $children = $this->childManager->getChildrenByParentId($_SESSION['user_id']);
+                $this->render('views/user/cantine.phtml', ['cafeteria-weeks' => $dates, 'children' => $children], 'Dates de la cantine', 'user');
+            }
+            else
+            {
+                $this->render('views/admin/cantine/cantine.phtml', ['cafeteria-weeks' => $dates], 'Dates cantine', 'admin');
+            }
+        }
+
+        public function NewCafeteriaDates() : void
+        {
+
+            if ($_SERVER['REQUEST_METHOD'] === 'POST')
+            {
+                $yearStart = htmlspecialchars($_POST['year-start']);
+                $yearEnd = htmlspecialchars($_POST['year-end']);
+
+                $dates = $this->cafeteriaDateManager->getCafeteriaDates();
+                $this->render('views/admin/cantine/cantine.phtml', ['cafeteria-weeks' => $dates], 'dates cantine', 'admin');
+            }
+            else
+            {
+                $this->render('views/admin/cantine/_form_new-year.phtml', [], 'New year', 'admin');
+            }
         }
 
         public function conseilMunicipal() : void

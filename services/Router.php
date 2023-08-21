@@ -99,6 +99,17 @@
                         {
                             $this->fileController->uploadFile($_GET['file']);
                         }
+                        else if (str_contains($route, 'cantine'))
+                        {
+                            if (str_contains($route, 'nouvelle-annee'))
+                            {
+                                $this->pageController->NewCafeteriaDates();
+                            }
+                            else
+                            {
+                                $this->pageController->CafeteriaDates();
+                            }
+                        }
                         else
                         {
                             $this->pageController->adminHomepage();
