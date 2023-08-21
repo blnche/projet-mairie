@@ -62,6 +62,22 @@
         return $cafeteriaDate;
         }
 
-
+        public function EnrollChildCafeteria(CafeteriaDate $week, Child $child, array $days) : void
+        {
+            $query = $this->db->prepare('
+                INSERT INTO inscription_child_cantine (children_id, dates_cantine_id, monday, tuesday, wednesday, thursday, friday) 
+                VALUES (:childId, :cafeteriaId, :monday, :tuesday, :wednesday, :thursday, :friday)
+            ');
+            $parameters = [
+                'childId' => $child->getId(),
+                'cafeteriaId' => $week->getId(),
+                'monday' => $days['monday'],
+                'tuesday' => $days['tuesday'],
+                'wednesday' => $days['wednesday'],
+                'thursday' => $days['thursday'],
+                'friday' => $days['friday']
+            ];
+            $query->execute($parameters);
+        }
     }
 ?>

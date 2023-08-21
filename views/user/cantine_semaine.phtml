@@ -3,14 +3,16 @@ $week = $this->data['week'];
 $children = $this->data['children'];
 ?>
 <h1>cantine semaine <?= $_GET['semaine']?></h1>
-<form method="POST" action="index.php?route=espace-famille/cantine/modifier-semaine&semaine=<?= $week->getWeekOfYear(); ?>">
+<form method="POST" action="index.php?route=espace-famille/cantine/modifier-semaine&semaine=<?= $week->getWeekOfYear(); ?>" onsubmit="beforeSubmit()">
     <fieldset>
         <label for="enfant">Choississez quel enfant inscrire</label>
         <select name="enfant" id="enfant">
         <?php foreach($children as $child)
         {
             ?>
-                <option value="<?= $child->getFirstName(); ?>"><?= $child->getFirstName(); ?></option>
+                <option value="<?= $child->getId(); ?>">
+                    <?= $child->getFirstName(); ?>
+                </option>
             <?php
         }
         ?>
@@ -39,13 +41,21 @@ $children = $this->data['children'];
                     }
                     else if ($week->getMonday() === "Holiday")
                     {
-                        echo '☀️';
+                        ?>
+                        <fieldset>
+                            <label for="monday">(Vacances/Férié)</label>
+                            <input type="checkbox" name="mondayPlacebo" value="Holiday" checked disabled>
+                            <input type="hidden" value="Holiday" name="monday">
+                        </fieldset>
+                        <?php
                     }
                     else
                     {
                         ?>
-                        <label for="monday"></label>
-                        <input type="checkbox" name="monday">
+                        <fieldset>
+                            <label for="monday"></label>
+                            <input type="checkbox" name="monday" value="Yes">
+                        </fieldset>
                         <?php
                     }
                     ?>
@@ -61,13 +71,21 @@ $children = $this->data['children'];
                     }
                     else if ($week->getTuesday() === "Holiday")
                     {
-                        echo '☀️';
+                        ?>
+                        <fieldset>
+                            <label for="tuesday">(Vacances/Férié)</label>
+                            <input type="checkbox" name="tuesdayPlacebo" value="Holiday" checked disabled>
+                            <input type="hidden" value="Holiday" name="tuesday">
+                        </fieldset>
+                        <?php
                     }
                     else
                     {
                         ?>
-                        <label for="tuesday"></label>
-                        <input type="checkbox" name="tuesday">
+                        <fieldset>
+                            <label for="tuesday"></label>
+                            <input type="checkbox" name="tuesday" value="Yes">
+                        </fieldset>
                         <?php
                     }
                     ?>
@@ -83,13 +101,21 @@ $children = $this->data['children'];
                     }
                     else if ($week->getWednesday() === "Holiday")
                     {
-                        echo '☀️';
+                        ?>
+                        <fieldset>
+                            <label for="wednesday">(Vacances/Férié)</label>
+                            <input type="checkbox" name="wednesdayPlacebo" value="Holiday" checked disabled>
+                            <input type="hidden" value="Holiday" name="wednesday">
+                        </fieldset>
+                        <?php
                     }
                     else
                     {
                         ?>
-                        <label for="wednesday"></label>
-                        <input type="checkbox" name="wednesday">
+                        <fieldset>
+                            <label for="wednesday"></label>
+                            <input type="checkbox" name="wednesday" value="Yes">
+                        </fieldset>
                         <?php
                     }
                     ?>
@@ -105,13 +131,21 @@ $children = $this->data['children'];
                     }
                     else if ($week->getThursday() === "Holiday")
                     {
-                        echo '☀️';
+                        ?>
+                        <fieldset>
+                            <label for="thursday">(Vacances/Férié)</label>
+                            <input type="checkbox" name="thursdayPlacebo" value="Holiday" checked disabled>
+                            <input type="hidden" value="Holiday" name="thursday">
+                        </fieldset>
+                        <?php
                     }
                     else
                     {
                         ?>
-                        <label for="thursday"></label>
-                        <input type="checkbox" name="thursday">
+                        <fieldset>
+                            <label for="thursday"></label>
+                            <input type="checkbox" name="thursday" value="Yes">
+                        </fieldset>
                         <?php
                     }
                     ?>
@@ -127,13 +161,22 @@ $children = $this->data['children'];
                     }
                     else if ($week->getFriday() === "Holiday")
                     {
-                        echo '☀️';
+                        //echo '☀️';
+                        ?>
+                        <fieldset>
+                            <label for="friday">(Vacances/Férié)</label>
+                            <input type="checkbox" name="fridayPlacebo" value="Holiday" checked disabled="disabled" id="friday">
+                            <input type="hidden" value="Holiday" name="friday">
+                        </fieldset>
+                        <?php
                     }
                     else
                     {
                         ?>
-                        <label for="friday"></label>
-                        <input type="checkbox" name="friday">
+                        <fieldset>
+                            <label for="friday"></label>
+                            <input type="checkbox" name="friday" value="Yes">
+                        </fieldset>
                         <?php
                     }
                     ?>
@@ -141,5 +184,5 @@ $children = $this->data['children'];
             </tr>
         </tbody>
     </table>
-    <input type="submit">
+    <input type="submit" value="Inscrire l'enfant">
 </form>

@@ -134,10 +134,33 @@
 
         public function CafeteriaEnrollment() : void
         {
-            $week = $this->cafeteriaDateManager->getCafeteriaDateByWeekNumber($_GET['semaine']);
+            $week = $this->cafeteriaDateManager->getCafeteriaDateByWeekNumber(htmlspecialchars($_GET['semaine']));
             $children = $this->childManager->getChildrenByParentId($_SESSION['user_id']);
 
-            $this->render('views/user/cantine_semaine.phtml', ['week' => $week, 'children' => $children], 'Semaine du '.$_GET['semaine'], 'user' );
+            if ($_SERVER['REQUEST_METHOD'] === 'POST')
+            {
+                $child = $this->childManager->getChildById(htmlspecialchars($_POST['enfant']));
+                $days = [
+                    'monday' => isset($_POST['monday']) ? htmlspecialchars($_POST['monday']) : 'No',
+                    'tuesday' => isset($_POST['tuesday']) ? htmlspecialchars($_POST['tuesday']) : 'No',
+                    'wednesday' => isset($_POST['wednesday']) ? htmlspecialchars($_POST['wednesday']) : 'No',
+                    'thursday' => isset($_POST['thursday']) ? htmlspecialchars($_POST['thursday']) : 'No',
+                    'friday' => isset($_POST['friday']) ? htmlspecialchars($_POST['friday']) : 'No'
+                ];
+                foreach ($days as $day)
+                {
+                    if($day === '')
+                    {
+                        $day = 'No';
+                    }
+                }
+                $this->cafeteriaDateManager->EnrollChildCafeteria($week, $child, $days);
+                header('Location:index.php?route=espace-famille/cantine');
+            }
+            else
+            {
+                $this->render('views/user/cantine_semaine.phtml', ['week' => $week, 'children' => $children], 'Semaine du '.htmlspecialchars($_GET['semaine']), 'user' );
+            }
         }
 
         public function conseilMunicipal() : void
