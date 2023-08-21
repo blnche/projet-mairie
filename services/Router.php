@@ -146,7 +146,14 @@
                         }
                         else if (str_contains($route, 'cantine'))
                         {
-                            $this->pageController->CafeteriaDates();
+                            if (str_contains($route, 'modifier-semaine'))
+                            {
+                                $this->pageController->CafeteriaEnrollment();
+                            }
+                            else
+                            {
+                                $this->pageController->CafeteriaDates();
+                            }
                         }
                         else
                         {

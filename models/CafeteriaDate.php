@@ -2,11 +2,11 @@
     class CafeteriaDate {
         private ?int $id;
         private int $week_of_year;
-        private string $monday;
-        private string $tuesday;
-        private string $wednesday;
-        private string $thursday;
-        private string $friday;
+        private ?string $monday;
+        private ?string $tuesday;
+        private ?string $wednesday;
+        private ?string $thursday;
+        private ?string $friday;
 
         /**
          * @param int $week_of_year
@@ -50,83 +50,84 @@
         }
 
         /**
-         * @return string
+         * @return string|null
          */
-        public function getMonday(): string
+        public function getMonday(): ?string
         {
             return $this->monday;
         }
 
         /**
-         * @param string $monday
+         * @param string|null $monday
          */
-        public function setMonday(string $monday): void
+        public function setMonday(?string $monday): void
         {
             $this->monday = $monday;
         }
 
         /**
-         * @return string
+         * @return string|null
          */
-        public function getTuesday(): string
+        public function getTuesday(): ?string
         {
             return $this->tuesday;
         }
 
         /**
-         * @param string $tuesday
+         * @param string|null $tuesday
          */
-        public function setTuesday(string $tuesday): void
+        public function setTuesday(?string $tuesday): void
         {
             $this->tuesday = $tuesday;
         }
 
         /**
-         * @return string
+         * @return string|null
          */
-        public function getWednesday(): string
+        public function getWednesday(): ?string
         {
             return $this->wednesday;
         }
 
         /**
-         * @param string $wednesday
+         * @param string|null $wednesday
          */
-        public function setWednesday(string $wednesday): void
+        public function setWednesday(?string $wednesday): void
         {
             $this->wednesday = $wednesday;
         }
 
         /**
-         * @return string
+         * @return string|null
          */
-        public function getThursday(): string
+        public function getThursday(): ?string
         {
             return $this->thursday;
         }
 
         /**
-         * @param string $thursday
+         * @param string|null $thursday
          */
-        public function setThursday(string $thursday): void
+        public function setThursday(?string $thursday): void
         {
             $this->thursday = $thursday;
         }
 
         /**
-         * @return string
+         * @return string|null
          */
-        public function getFriday(): string
+        public function getFriday(): ?string
         {
             return $this->friday;
         }
 
         /**
-         * @param string $friday
+         * @param string|null $friday
          */
-        public function setFriday(string $friday): void
+        public function setFriday(?string $friday): void
         {
             $this->friday = $friday;
         }
+
     }
 ?>

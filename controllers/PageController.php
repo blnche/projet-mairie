@@ -102,9 +102,11 @@
         public function CafeteriaDates() : void
         {
             $dates = $this->cafeteriaDateManager->getCafeteriaDates();
+
             if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'ROLE_USER')
             {
                 $children = $this->childManager->getChildrenByParentId($_SESSION['user_id']);
+
                 $this->render('views/user/cantine.phtml', ['cafeteria-weeks' => $dates, 'children' => $children], 'Dates de la cantine', 'user');
             }
             else
@@ -128,6 +130,14 @@
             {
                 $this->render('views/admin/cantine/_form_new-year.phtml', [], 'New year', 'admin');
             }
+        }
+
+        public function CafeteriaEnrollment() : void
+        {
+            $week = $this->cafeteriaDateManager->getCafeteriaDateByWeekNumber($_GET['semaine']);
+            $children = $this->childManager->getChildrenByParentId($_SESSION['user_id']);
+
+            $this->render('views/user/cantine_semaine.phtml', ['week' => $week, 'children' => $children], 'Semaine du '.$_GET['semaine'], 'user' );
         }
 
         public function conseilMunicipal() : void

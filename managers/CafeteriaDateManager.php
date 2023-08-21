@@ -36,5 +36,32 @@
             return $weeks;
         }
 
+        public function getCafeteriaDateByWeekNumber($weekNumber) : CafeteriaDate
+        {
+            $query = $this->db->prepare('
+                SELECT *
+                FROM dates_cantine
+                WHERE week_of_year = :weekNumber
+            ');
+        $parameters = [
+            'weekNumber' => $weekNumber
+        ];
+        $query->execute($parameters);
+        $week = $query->fetch(PDO::FETCH_ASSOC);
+
+        $cafeteriaDate = new CafeteriaDate(
+            $week['week_of_year']
+        );
+        $cafeteriaDate->setMonday($week['monday']);
+        $cafeteriaDate->setTuesday($week['tuesday']);
+        $cafeteriaDate->setWednesday($week['wednesday']);
+        $cafeteriaDate->setThursday($week['thursday']);
+        $cafeteriaDate->setFriday($week['friday']);
+        $cafeteriaDate->setId($week['id']);
+
+        return $cafeteriaDate;
+        }
+
+
     }
 ?>

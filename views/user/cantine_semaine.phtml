@@ -1,1 +1,145 @@
-h1{cantine smeiane XX}
+<?php
+$week = $this->data['week'];
+$children = $this->data['children'];
+?>
+<h1>cantine semaine <?= $_GET['semaine']?></h1>
+<form method="POST" action="index.php?route=espace-famille/cantine/modifier-semaine&semaine=<?= $week->getWeekOfYear(); ?>">
+    <fieldset>
+        <label for="enfant">Choississez quel enfant inscrire</label>
+        <select name="enfant" id="enfant">
+        <?php foreach($children as $child)
+        {
+            ?>
+                <option value="<?= $child->getFirstName(); ?>"><?= $child->getFirstName(); ?></option>
+            <?php
+        }
+        ?>
+        </select>
+    </fieldset>
+    <table>
+        <thead>
+        <tr>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td> <?php
+                    if($week->getMonday() === "Yes")
+                    {
+                        echo '✅';
+                    }
+                    else if ($week->getMonday() === "No")
+                    {
+                        echo '❌';
+                    }
+                    else if ($week->getMonday() === "Holiday")
+                    {
+                        echo '☀️';
+                    }
+                    else
+                    {
+                        ?>
+                        <label for="monday"></label>
+                        <input type="checkbox" name="monday">
+                        <?php
+                    }
+                    ?>
+                </td>
+                <td> <?php
+                    if($week->getTuesday() === "Yes")
+                    {
+                        echo '✅';
+                    }
+                    else if ($week->getTuesday() === "No")
+                    {
+                        echo '❌';
+                    }
+                    else if ($week->getTuesday() === "Holiday")
+                    {
+                        echo '☀️';
+                    }
+                    else
+                    {
+                        ?>
+                        <label for="tuesday"></label>
+                        <input type="checkbox" name="tuesday">
+                        <?php
+                    }
+                    ?>
+                </td>
+                <td> <?php
+                    if($week->getWednesday() === "Yes")
+                    {
+                        echo '✅';
+                    }
+                    else if ($week->getWednesday() === "No")
+                    {
+                        echo '❌';
+                    }
+                    else if ($week->getWednesday() === "Holiday")
+                    {
+                        echo '☀️';
+                    }
+                    else
+                    {
+                        ?>
+                        <label for="wednesday"></label>
+                        <input type="checkbox" name="wednesday">
+                        <?php
+                    }
+                    ?>
+                </td>
+                <td> <?php
+                    if($week->getThursday() === "Yes")
+                    {
+                        echo '✅';
+                    }
+                    else if ($week->getThursday() === "No")
+                    {
+                        echo '❌';
+                    }
+                    else if ($week->getThursday() === "Holiday")
+                    {
+                        echo '☀️';
+                    }
+                    else
+                    {
+                        ?>
+                        <label for="thursday"></label>
+                        <input type="checkbox" name="thursday">
+                        <?php
+                    }
+                    ?>
+                </td>
+                <td> <?php
+                    if($week->getFriday() === "Yes")
+                    {
+                        echo '✅';
+                    }
+                    else if ($week->getFriday() === "No")
+                    {
+                        echo '❌';
+                    }
+                    else if ($week->getFriday() === "Holiday")
+                    {
+                        echo '☀️';
+                    }
+                    else
+                    {
+                        ?>
+                        <label for="friday"></label>
+                        <input type="checkbox" name="friday">
+                        <?php
+                    }
+                    ?>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <input type="submit">
+</form>
