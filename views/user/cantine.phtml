@@ -4,56 +4,44 @@ $children = $this->data['children'];
 $childrenEnrollments = $this->data['childrenEnrollments'];
 ?>
 <h1>cantine</h1>
-<?php
-var_dump($childrenEnrollments);
-foreach ($childrenEnrollments as $childEnrollment)
-{
-    echo '<br>';
-    echo '<br> prénom : ';
-    var_dump($childEnrollment[0]);
-    echo '<br>';
-    echo '<br> week enrolled for : <br>';
-    foreach ($childEnrollment[1] as $item)
-    {
-        var_dump($item['week'][0]);
-        echo '<br>';
-    }
-    echo '<br>';
-
-}
-?>
 <ul>
 <?php
 foreach ($weeks as $week)
 {
-foreach ($childrenEnrollments as $childEnrollment)
-{
-    foreach ($childEnrollment[1] as $item)
+    $foundMatch = false;
+    foreach ($childrenEnrollments as $childEnrollment)
     {
-        //var_dump($item['week'][0]);
-        echo '<br>';
+        $firstName = $childEnrollment[0];
+        //var_dump($firstName);
+        //echo '<br>';
+        $enrollments = $childEnrollment[1];
+        //var_dump($enrollments);
+        //echo '<br>';
 
-
-?>
-    <li>
-<?php
-            if ($week->getWeekOfYear() === $item['week'][0])
+        foreach ($enrollments as $item)
+        {
+        ?>
+        <li>
+        <?php
+            if (!$foundMatch && $week->getWeekOfYear() === $item->getWeekOfYear())
             {
-                var_dump($item['week'][0]);
-                var_dump($week->getWeekOfYear());
-                echo $childEnrollment[0].' registered for '.$week->getWeekOfYear();
+                $foundMatch = true;
+                echo $week->getWeekOfYear().' '.$item->getWeekOfYear().'<br>';
+                echo $firstName.' registered for '.$week->getWeekOfYear();
+
+                $data = $item;
             }
             else
             {
-                var_dump($item['week'][0]);
-                var_dump($week->getWeekOfYear());
-                echo $childEnrollment[0].' not registered for '.$week->getWeekOfYear();;
+                echo $week->getWeekOfYear().' '.$item->getWeekOfYear().'<br>';
+                echo $firstName.' not registered for '.$week->getWeekOfYear();
+                $data = $week;
             }
         ?>
-    </li>
+        </li>
         <?php
+        }
     }
-}
 }
 ?>
 </ul>

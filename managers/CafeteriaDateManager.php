@@ -119,10 +119,12 @@
 
             $results = $query->fetchAll(PDO::FETCH_ASSOC);
 
+            $enrollments = [];
+
             foreach ($results as $result)
             {
                 $week = $this->getCafeteriaDateById($result['dates_cantine_id']);
-                $enrollment =
+                /*$enrollment =
                     [
                         'childId' => $result['children_id'],
                         'dateId' => $result['dates_cantine_id'],
@@ -131,8 +133,19 @@
                         'wednesday' => $result['wednesday'],
                         'thursday' => $result['thursday'],
                         'friday' => $result['friday']
-                    ];
-                $enrollments[] = ['week' => [$week->getWeekOfYear(),$enrollment]];
+                    ];*/
+                $enrollment = new CafeteriaDate(
+                    $week->getWeekOfYear()
+                );
+                $enrollment->setMonday($result['monday']);
+                $enrollment->setTuesday($result['tuesday']);
+                $enrollment->setWednesday($result['wednesday']);
+                $enrollment->setThursday($result['thursday']);
+                $enrollment->setFriday($result['friday']);
+
+                //var_dump($enrollment);
+                //xdebug_break();
+                $enrollments[] = $enrollment;
             }
 
             return $enrollments;
