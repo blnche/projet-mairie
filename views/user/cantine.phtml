@@ -1,27 +1,59 @@
 <?php
 $weeks = $this->data['cafeteria-weeks'];
 $children = $this->data['children'];
-$enrollments = $this->data['enrollments'];
+$childrenEnrollments = $this->data['childrenEnrollments'];
 ?>
 <h1>cantine</h1>
 <?php
-var_dump($enrollments);
-foreach($enrollments as $enrollment)
+var_dump($childrenEnrollments);
+foreach ($childrenEnrollments as $childEnrollment)
 {
-    var_dump($enrollment);
     echo '<br>';
+    echo '<br> prénom : ';
+    var_dump($childEnrollment[0]);
+    echo '<br>';
+    echo '<br> week enrolled for : <br>';
+    foreach ($childEnrollment[1] as $item)
+    {
+        var_dump($item['week'][0]);
+        echo '<br>';
+    }
+    echo '<br>';
+
 }
-?>
 ?>
 <ul>
 <?php
 foreach ($weeks as $week)
 {
+foreach ($childrenEnrollments as $childEnrollment)
+{
+    foreach ($childEnrollment[1] as $item)
+    {
+        //var_dump($item['week'][0]);
+        echo '<br>';
+
+
 ?>
     <li>
-        <?= $week->getWeekOfYear(); ?>
-    </li>
 <?php
+            if ($week->getWeekOfYear() === $item['week'][0])
+            {
+                var_dump($item['week'][0]);
+                var_dump($week->getWeekOfYear());
+                echo $childEnrollment[0].' registered for '.$week->getWeekOfYear();
+            }
+            else
+            {
+                var_dump($item['week'][0]);
+                var_dump($week->getWeekOfYear());
+                echo $childEnrollment[0].' not registered for '.$week->getWeekOfYear();;
+            }
+        ?>
+    </li>
+        <?php
+    }
+}
 }
 ?>
 </ul>

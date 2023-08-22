@@ -112,11 +112,11 @@
 
                 foreach($children as $child)
                 {
-                    $enrollment = $this->cafeteriaDateManager->getEnrollmentCafeteriaDatesByChildId($child->getId());
-                    $enrollments = [$child->getFirstName() => $enrollment];
+                    $enrollments = $this->cafeteriaDateManager->getEnrollmentCafeteriaDatesByChildId($child->getId());
+                    $childrenEnrollments = ['enfant' => [$child->getFirstName(), $enrollments]];
                 }
 
-                $this->render('views/user/cantine.phtml', ['cafeteria-weeks' => $dates, 'children' => $children, 'enrollments' => $enrollments], 'Dates de la cantine', 'user');
+                $this->render('views/user/cantine.phtml', ['cafeteria-weeks' => $dates, 'children' => $children, 'childrenEnrollments' => $childrenEnrollments], 'Dates de la cantine', 'user');
             }
             else
             {

@@ -43,23 +43,48 @@
                 FROM dates_cantine
                 WHERE week_of_year = :weekNumber
             ');
-        $parameters = [
-            'weekNumber' => $weekNumber
-        ];
-        $query->execute($parameters);
-        $week = $query->fetch(PDO::FETCH_ASSOC);
+            $parameters = [
+                'weekNumber' => $weekNumber
+            ];
+            $query->execute($parameters);
+            $week = $query->fetch(PDO::FETCH_ASSOC);
 
-        $cafeteriaDate = new CafeteriaDate(
-            $week['week_of_year']
-        );
-        $cafeteriaDate->setMonday($week['monday']);
-        $cafeteriaDate->setTuesday($week['tuesday']);
-        $cafeteriaDate->setWednesday($week['wednesday']);
-        $cafeteriaDate->setThursday($week['thursday']);
-        $cafeteriaDate->setFriday($week['friday']);
-        $cafeteriaDate->setId($week['id']);
+            $cafeteriaDate = new CafeteriaDate(
+                $week['week_of_year']
+            );
+            $cafeteriaDate->setMonday($week['monday']);
+            $cafeteriaDate->setTuesday($week['tuesday']);
+            $cafeteriaDate->setWednesday($week['wednesday']);
+            $cafeteriaDate->setThursday($week['thursday']);
+            $cafeteriaDate->setFriday($week['friday']);
+            $cafeteriaDate->setId($week['id']);
 
-        return $cafeteriaDate;
+            return $cafeteriaDate;
+        }
+        public function getCafeteriaDateById($weekId) : CafeteriaDate
+        {
+            $query = $this->db->prepare('
+                SELECT *
+                FROM dates_cantine
+                WHERE id = :id
+            ');
+            $parameters = [
+                'id' => $weekId
+            ];
+            $query->execute($parameters);
+            $week = $query->fetch(PDO::FETCH_ASSOC);
+
+            $cafeteriaDate = new CafeteriaDate(
+                $week['week_of_year']
+            );
+            $cafeteriaDate->setMonday($week['monday']);
+            $cafeteriaDate->setTuesday($week['tuesday']);
+            $cafeteriaDate->setWednesday($week['wednesday']);
+            $cafeteriaDate->setThursday($week['thursday']);
+            $cafeteriaDate->setFriday($week['friday']);
+            $cafeteriaDate->setId($week['id']);
+
+            return $cafeteriaDate;
         }
 
         public function EnrollChildCafeteria(CafeteriaDate $week, Child $child, array $days) : void
@@ -93,14 +118,12 @@
             $query->execute($parameters);
 
             $results = $query->fetchAll(PDO::FETCH_ASSOC);
-            var_dump($results);
-            //xdebug_break();
 
             foreach ($results as $result)
             {
+                $week = $this->getCafeteriaDateById($result['dates_cantine_id']);
                 $enrollment =
                     [
-                        'dateId' => $result['dates_cantine_id'],
                         'childId' => $result['children_id'],
                         'dateId' => $result['dates_cantine_id'],
                         'monday' => $result['monday'],
@@ -109,11 +132,10 @@
                         'thursday' => $result['thursday'],
                         'friday' => $result['friday']
                     ];
+                $enrollments[] = ['week' => [$week->getWeekOfYear(),$enrollment]];
             }
-            var_dump($enrollment);
-            xdebug_break();
 
-            return $enrollment;
+            return $enrollments;
         }
     }
 ?>
