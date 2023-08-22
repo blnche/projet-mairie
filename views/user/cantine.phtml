@@ -4,165 +4,261 @@ $children = $this->data['children'];
 $childrenEnrollments = $this->data['childrenEnrollments'];
 ?>
 <h1>cantine</h1>
-<ul>
-<?php
-foreach ($weeks as $week)
-{
+<table>
+    <thead>
+    <tr>
+        <th>Week</th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+        <th>Actions</th>
+        <th>Enfants</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php
+    foreach ($weeks as $week)
+    {
     $foundMatch = false;
     foreach ($childrenEnrollments as $childEnrollment)
     {
-        $firstName = $childEnrollment[0];
+        //var_dump($childEnrollment);
+        //echo '<br>';
+        $firstName = $childEnrollment['enfant'][0];
         //var_dump($firstName);
         //echo '<br>';
-        $enrollments = $childEnrollment[1];
+        $enrollments = $childEnrollment['enfant'][1];
         //var_dump($enrollments);
         //echo '<br>';
 
         foreach ($enrollments as $item)
         {
-        ?>
-        <li>
-        <?php
             if (!$foundMatch && $week->getWeekOfYear() === $item->getWeekOfYear())
             {
                 $foundMatch = true;
-                echo $week->getWeekOfYear().' '.$item->getWeekOfYear().'<br>';
-                echo $firstName.' registered for '.$week->getWeekOfYear();
+                //echo $week->getWeekOfYear().' '.$item->getWeekOfYear().'<br>';
+                //echo $firstName.' registered for '.$week->getWeekOfYear();
 
                 $data = $item;
+                ?>
+                <tr>
+
+                    <td> <?= $data->getWeekOfYear(); ?></td>
+                    <td> <?php
+                        if($data->getMonday() === "Yes")
+                        {
+                            echo '✅';
+                        }
+                        else if ($data->getMonday() === "No")
+                        {
+                            echo '❌';
+                        }
+                        else if ($data->getMonday() === "Holiday")
+                        {
+                            echo '☀️';
+                        }
+                        else
+                        {
+                            echo 'à préciser';
+                        }
+                        ?>
+                    </td>
+                    <td> <?php
+                        if($data->getTuesday() === "Yes")
+                        {
+                            echo '✅';
+                        }
+                        else if ($data->getTuesday() === "No")
+                        {
+                            echo '❌';
+                        }
+                        else if ($data->getTuesday() === "Holiday")
+                        {
+                            echo '☀️';
+                        }
+                        else
+                        {
+                            echo 'à préciser';
+                        }
+                        ?>
+                    </td>
+                    <td> <?php
+                        if($data->getWednesday() === "Yes")
+                        {
+                            echo '✅';
+                        }
+                        else if ($data->getWednesday() === "No")
+                        {
+                            echo '❌';
+                        }
+                        else if ($data->getWednesday() === "Holiday")
+                        {
+                            echo '☀️';
+                        }
+                        else
+                        {
+                            echo 'à préciser';
+                        }
+                        ?>
+                    </td>
+                    <td> <?php
+                        if($data->getThursday() === "Yes")
+                        {
+                            echo '✅';
+                        }
+                        else if ($data->getThursday() === "No")
+                        {
+                            echo '❌';
+                        }
+                        else if ($data->getThursday() === "Holiday")
+                        {
+                            echo '☀️';
+                        }
+                        else
+                        {
+                            echo 'à préciser';
+                        }
+                        ?>
+                    </td>
+                    <td> <?php
+                        if($data->getFriday() === "Yes")
+                        {
+                            echo '✅';
+                        }
+                        else if ($data->getFriday() === "No")
+                        {
+                            echo '❌';
+                        }
+                        else if ($data->getFriday() === "Holiday")
+                        {
+                            echo '☀️';
+                        }
+                        else
+                        {
+                            echo 'à préciser';
+                        }
+                        ?>
+                    </td>
+                    <td><a href="index.php?route=espace-famille/cantine/modifier-semaine&semaine=<?= $data->getWeekOfYear(); ?>">Modifier</a></td>
+                    <td> <?= $firstName ?> </td>
+                </tr>
+                <?php
             }
             else
             {
-                echo $week->getWeekOfYear().' '.$item->getWeekOfYear().'<br>';
-                echo $firstName.' not registered for '.$week->getWeekOfYear();
+                //echo $week->getWeekOfYear().' '.$item->getWeekOfYear().'<br>';
+                //echo $firstName.' not registered for '.$week->getWeekOfYear();
                 $data = $week;
+                ?>
+                <tr>
+
+                    <td> <?= $data->getWeekOfYear(); ?></td>
+                    <td> <?php
+                        if($data->getMonday() === "Yes")
+                        {
+                            echo '✅';
+                        }
+                        else if ($data->getMonday() === "No")
+                        {
+                            echo '❌';
+                        }
+                        else if ($data->getMonday() === "Holiday")
+                        {
+                            echo '☀️';
+                        }
+                        else
+                        {
+                            echo 'à préciser';
+                        }
+                        ?>
+                    </td>
+                    <td> <?php
+                        if($data->getTuesday() === "Yes")
+                        {
+                            echo '✅';
+                        }
+                        else if ($data->getTuesday() === "No")
+                        {
+                            echo '❌';
+                        }
+                        else if ($data->getTuesday() === "Holiday")
+                        {
+                            echo '☀️';
+                        }
+                        else
+                        {
+                            echo 'à préciser';
+                        }
+                        ?>
+                    </td>
+                    <td> <?php
+                        if($data->getWednesday() === "Yes")
+                        {
+                            echo '✅';
+                        }
+                        else if ($data->getWednesday() === "No")
+                        {
+                            echo '❌';
+                        }
+                        else if ($data->getWednesday() === "Holiday")
+                        {
+                            echo '☀️';
+                        }
+                        else
+                        {
+                            echo 'à préciser';
+                        }
+                        ?>
+                    </td>
+                    <td> <?php
+                        if($data->getThursday() === "Yes")
+                        {
+                            echo '✅';
+                        }
+                        else if ($data->getThursday() === "No")
+                        {
+                            echo '❌';
+                        }
+                        else if ($data->getThursday() === "Holiday")
+                        {
+                            echo '☀️';
+                        }
+                        else
+                        {
+                            echo 'à préciser';
+                        }
+                        ?>
+                    </td>
+                    <td> <?php
+                        if($data->getFriday() === "Yes")
+                        {
+                            echo '✅';
+                        }
+                        else if ($data->getFriday() === "No")
+                        {
+                            echo '❌';
+                        }
+                        else if ($data->getFriday() === "Holiday")
+                        {
+                            echo '☀️';
+                        }
+                        else
+                        {
+                            echo 'à préciser';
+                        }
+                        ?>
+                    </td>
+                    <td><a href="index.php?route=espace-famille/cantine/modifier-semaine&semaine=<?= $data->getWeekOfYear(); ?>">Modifier</a></td>
+                    <td> <?= $firstName ?> </td>
+                </tr>
+                <?php
+                }
             }
-        ?>
-        </li>
-        <?php
         }
     }
-}
-?>
-</ul>
-    <table>
-        <thead>
-        <tr>
-            <th>Week</th>
-            <th>Monday</th>
-            <th>Tuesday</th>
-            <th>Wednesday</th>
-            <th>Thursday</th>
-            <th>Friday</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php foreach($weeks as $week)
-        {
-            ?>
-            <tr>
+    ?>
 
-                <td> <?= $week->getWeekOfYear(); ?></td>
-                <td> <?php
-                    if($week->getMonday() === "Yes")
-                    {
-                        echo '✅';
-                    }
-                    else if ($week->getMonday() === "No")
-                    {
-                        echo '❌';
-                    }
-                    else if ($week->getMonday() === "Holiday")
-                    {
-                        echo '☀️';
-                    }
-                    else
-                    {
-                        echo 'à préciser';
-                    }
-                    ?>
-                </td>
-                <td> <?php
-                    if($week->getTuesday() === "Yes")
-                    {
-                        echo '✅';
-                    }
-                    else if ($week->getTuesday() === "No")
-                    {
-                        echo '❌';
-                    }
-                    else if ($week->getTuesday() === "Holiday")
-                    {
-                        echo '☀️';
-                    }
-                    else
-                    {
-                        echo 'à préciser';
-                    }
-                    ?>
-                </td>
-                <td> <?php
-                    if($week->getWednesday() === "Yes")
-                    {
-                        echo '✅';
-                    }
-                    else if ($week->getWednesday() === "No")
-                    {
-                        echo '❌';
-                    }
-                    else if ($week->getWednesday() === "Holiday")
-                    {
-                        echo '☀️';
-                    }
-                    else
-                    {
-                        echo 'à préciser';
-                    }
-                    ?>
-                </td>
-                <td> <?php
-                    if($week->getThursday() === "Yes")
-                    {
-                        echo '✅';
-                    }
-                    else if ($week->getThursday() === "No")
-                    {
-                        echo '❌';
-                    }
-                    else if ($week->getThursday() === "Holiday")
-                    {
-                        echo '☀️';
-                    }
-                    else
-                    {
-                        echo 'à préciser';
-                    }
-                    ?>
-                </td>
-                <td> <?php
-                    if($week->getFriday() === "Yes")
-                    {
-                        echo '✅';
-                    }
-                    else if ($week->getFriday() === "No")
-                    {
-                        echo '❌';
-                    }
-                    else if ($week->getFriday() === "Holiday")
-                    {
-                        echo '☀️';
-                    }
-                    else
-                    {
-                        echo 'à préciser';
-                    }
-                    ?>
-                </td>
-                <td><a href="index.php?route=espace-famille/cantine/modifier-semaine&semaine=<?= $week->getWeekOfYear(); ?>">Modifier</a></td>
-            </tr>
-          <?php
-        }?>
-
-        </tbody>
-    </table>
+    </tbody>
+</table>

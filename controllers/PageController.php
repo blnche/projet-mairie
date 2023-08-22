@@ -109,11 +109,11 @@
             if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'ROLE_USER')
             {
                 $children = $this->childManager->getChildrenByParentId($_SESSION['user_id']);
-
+                $childrenEnrollments = [];
                 foreach($children as $child)
                 {
                     $enrollments = $this->cafeteriaDateManager->getEnrollmentCafeteriaDatesByChildId($child->getId());
-                    $childrenEnrollments = ['enfant' => [$child->getFirstName(), $enrollments]];
+                    $childrenEnrollments[] = ['enfant' => [$child->getFirstName(), $enrollments]];
                 }
 
                 $this->render('views/user/cantine.phtml', ['cafeteria-weeks' => $dates, 'children' => $children, 'childrenEnrollments' => $childrenEnrollments], 'Dates de la cantine', 'user');
