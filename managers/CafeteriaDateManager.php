@@ -79,5 +79,41 @@
             ];
             $query->execute($parameters);
         }
+
+        public function getEnrollmentCafeteriaDatesByChildId(int $childId) : array
+        {
+            $query = $this->db->prepare('
+                SELECT *
+                FROM inscription_child_cantine
+                WHERE children_id = :childId
+            ');
+            $parameters = [
+                'childId' => $childId
+            ];
+            $query->execute($parameters);
+
+            $results = $query->fetchAll(PDO::FETCH_ASSOC);
+            var_dump($results);
+            //xdebug_break();
+
+            foreach ($results as $result)
+            {
+                $enrollment =
+                    [
+                        'dateId' => $result['dates_cantine_id'],
+                        'childId' => $result['children_id'],
+                        'dateId' => $result['dates_cantine_id'],
+                        'monday' => $result['monday'],
+                        'tuesday' => $result['tuesday'],
+                        'wednesday' => $result['wednesday'],
+                        'thursday' => $result['thursday'],
+                        'friday' => $result['friday']
+                    ];
+            }
+            var_dump($enrollment);
+            xdebug_break();
+
+            return $enrollment;
+        }
     }
 ?>

@@ -102,12 +102,21 @@
         public function CafeteriaDates() : void
         {
             $dates = $this->cafeteriaDateManager->getCafeteriaDates();
+            //get inscription for children
+            //how do i check weeks on cantine for all children ? add a column for each child and if a inscription exist for the week number then say enrolled else not enrolled
+            //if a child enroll is ok for a day then say on this day enroll, else to decicde, the week row can have multiple line inside corresponding to each child status on enrollment
 
             if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'ROLE_USER')
             {
                 $children = $this->childManager->getChildrenByParentId($_SESSION['user_id']);
 
-                $this->render('views/user/cantine.phtml', ['cafeteria-weeks' => $dates, 'children' => $children], 'Dates de la cantine', 'user');
+                foreach($children as $child)
+                {
+                    $enrollment = $this->cafeteriaDateManager->getEnrollmentCafeteriaDatesByChildId($child->getId());
+                    $enrollments = [$child->getFirstName() => $enrollment];
+                }
+
+                $this->render('views/user/cantine.phtml', ['cafeteria-weeks' => $dates, 'children' => $children, 'enrollments' => $enrollments], 'Dates de la cantine', 'user');
             }
             else
             {

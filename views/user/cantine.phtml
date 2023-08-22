@@ -1,16 +1,29 @@
 <?php
 $weeks = $this->data['cafeteria-weeks'];
 $children = $this->data['children'];
+$enrollments = $this->data['enrollments'];
 ?>
 <h1>cantine</h1>
+<?php
+var_dump($enrollments);
+foreach($enrollments as $enrollment)
+{
+    var_dump($enrollment);
+    echo '<br>';
+}
+?>
+?>
+<ul>
 <?php
 foreach ($weeks as $week)
 {
 ?>
-<ul>
     <li>
         <?= $week->getWeekOfYear(); ?>
     </li>
+<?php
+}
+?>
 </ul>
     <table>
         <thead>
@@ -133,6 +146,3 @@ foreach ($weeks as $week)
 
         </tbody>
     </table>
-<?php
-}
-?>
