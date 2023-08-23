@@ -1,2 +1,38 @@
+<?php
+$weeks = $this->data['cafeteria-weeks'];
+var_dump($weeks);
+?>
 <h1>cantine</h1>
 <a href="index.php?route=admin/cantine/nouvelle-annee">générer semaine pour nouvelle année scolaire</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Week</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php
+    foreach ($weeks as $week)
+    {
+    ?>
+        <tr>
+            <td> <?= $week->getWeekOfYear(); ?> </td>
+            <td> <?php checkStatus($week->getMonday()); ?></td>
+            <td> <?php checkStatus($week->getTuesday()); ?></td>
+            <td> <?php checkStatus($week->getWednesday()); ?></td>
+            <td> <?php checkStatus($week->getThursday()); ?> </td>
+            <td> <?php checkStatus($week->getFriday()); ?> </td>
+            <td> </td>
+        </tr>
+    <?php
+    }
+    ?>
+    </tbody>
+</table>

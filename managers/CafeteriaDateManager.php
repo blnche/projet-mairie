@@ -31,7 +31,7 @@
                 $newWeek->setFriday($week['friday']);
                 $newWeek->setId($week['id']);
 
-                $weeks [] = $newWeek;
+                $weeks[] = $newWeek;
             }
             return $weeks;
         }

@@ -20,15 +20,15 @@
                 $route = $_GET['route'];
 
                 // AUTHENTICATION
-                if ($route === 'register')
+                if (str_contains($route, 'register'))
                 {
                     $this->authenticationController->register();
                 }
-                else if ($route === 'login')
+                else if (str_contains($route,'login'))
                 {
                     $this->authenticationController->login();
                 }
-                else if ($route === 'logout')
+                else if (str_contains($route, 'logout'))
                 {
                     $this->authenticationController->logout();
                 }

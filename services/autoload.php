@@ -1,4 +1,8 @@
 <?php
+    // Services
+    require 'services/safeEcho.php';
+    require 'services/weekStatusEcho.php';
+
     // Models
     require 'models/Address.php';
     require 'models/Association.php';
