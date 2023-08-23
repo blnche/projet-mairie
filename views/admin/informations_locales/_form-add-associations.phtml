@@ -1,0 +1,27 @@
+<form method="POST" action="index.php?route=admin/informations-locales/associations/ajouter">
+    <fieldset>
+        <label for="name">Nom de l'association</label>
+        <input type="text" name="name">
+    </fieldset>
+    <fieldset>
+        <label for="presidentFirstname">Prénom du président/de la présidente de l'association</label>
+        <input type="text" name="presidentFirstname">
+    </fieldset>
+    <fieldset>
+        <label for="presidentLastname">Nom Prénom du président/de la présidente de l'association</label>
+        <input type="text" name="presidentLastname">
+    </fieldset>
+    <fieldset>
+        <label for="address">Adresse postal :</label>
+        <input type="text" name="address" required>
+    </fieldset>
+    <fieldset>
+        <label for="code-postal">Code postal :</label>
+        <input type="text" name="code-postal" required>
+    </fieldset>
+    <fieldset>
+        <label for="ville">Ville/Commune :</label>
+        <input type="text" name="ville" required>
+    </fieldset>
+    <input type="submit" name="registerAssociation" value="Enregistrer l'association">
+</form>

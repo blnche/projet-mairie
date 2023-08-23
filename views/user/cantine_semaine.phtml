@@ -2,7 +2,7 @@
 $week = $this->data['week'];
 $children = $this->data['children'];
 ?>
-<h1>cantine semaine <?= $_GET['semaine']?></h1>
+<h1> <?= $this->pageTitle; ?> </h1>cantine semaine <?= $_GET['semaine']?></h1>
 <form method="POST" action="index.php?route=espace-famille/cantine/modifier-semaine&semaine=<?= $week->getWeekOfYear(); ?>" onsubmit="beforeSubmit()">
     <fieldset>
         <label for="enfant">Choississez quel enfant inscrire</label>

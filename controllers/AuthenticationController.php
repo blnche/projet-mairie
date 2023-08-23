@@ -70,11 +70,13 @@
                     //Check role to render corresponding dashboard
                     if ($role === 'ROLE_SUPER_ADMIN' || $role === 'ROLE_ADMIN')
                     {
-                        $this->render('views/admin/dashboard.phtml',['user' => $user],'Tableau de bord Admin', 'admin');
+                        //$this->render('views/admin/dashboard.phtml',['user' => $user],'Tableau de bord Admin', 'admin');
+                        header('Location:index.php?route=admin');
                     }
                     else if ($role === 'ROLE_USER')
                     {
-                        $this->render('views/user/dashboard.phtml',[],'Tableau de bord de', 'user');//pronouns & nouns to add with session infos
+                        //$this->render('views/user/dashboard.phtml',[],'Tableau de bord de', 'user');
+                        header('Location:index.php?route=espace-famille');
                     }
                 }
                 else

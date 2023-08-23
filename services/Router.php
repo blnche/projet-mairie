@@ -99,6 +99,25 @@
                         {
                             $this->fileController->uploadFile($_GET['file']);
                         }
+                        else if (str_contains($route, 'informations-locales'))
+                        {
+                            if (str_contains($route, 'associations'))
+                            {
+                                $this->pageController->Associations();
+                            }
+                            else if (str_contains($route, 'professionnels-locaux'))
+                            {
+                                $this->pageController->ProfessionnelsLocaux();
+                            }
+                            else if (str_contains($route, 'lieux'))
+                            {
+                                $this->pageController->Lieux();
+                            }
+                            else
+                            {
+                                $this->pageController->InformationsLocales();
+                            }
+                        }
                         else if (str_contains($route, 'cantine'))
                         {
                             if (str_contains($route, 'nouvelle-annee'))
@@ -118,7 +137,7 @@
                     }
                     else
                     {
-                        header('Location:index.php?route=login');
+                        header('Location:index.php?route=admin/login');
                     }
                 }
 
