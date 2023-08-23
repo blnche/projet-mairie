@@ -2,7 +2,7 @@
 //require_once 'AbstractManager.php';
     class MunicipalCouncilReportManager extends AbstractManager
     {
-        public function getCouncilReports() : array
+        public function getAllMunicipalCouncilReports() : array
         {
             $query = $this->db->prepare('
                 SELECT *
@@ -13,7 +13,7 @@
             return $query->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        public function create(MunicipalCouncilReport $councilReport) : MunicipalCouncilReport
+        public function addMunicipalCouncilReport(MunicipalCouncilReport $councilReport) : MunicipalCouncilReport
         {
             $query = $this->db->prepare('
                 INSERT INTO compte_rendus_conseil_municipaux (date, url) 

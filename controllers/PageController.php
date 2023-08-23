@@ -44,9 +44,14 @@
             $this->render('views/admin/dashboard.phtml', [], 'Admin Accueil', 'admin');
         }
 
+        public function error404() : void
+        {
+            $this->render('views/public/error404.phtml', [], 'Error 404');
+        }
+
         public function MunicipalCouncilReports() : void
         {
-            $comptes_rendus = $this->councilReportManager->getCouncilReports();
+            $comptes_rendus = $this->councilReportManager->getAllMunicipalCouncilReports();
 
             if (isset($_SESSION['user_role']) && ($_SESSION['user_role'] === 'ROLE_ADMIN' || $_SESSION['user_role'] === 'ROLE_SUPER_ADMIN'))
             {
@@ -59,7 +64,7 @@
         }
         public function MunicipalBulletins() : void
         {
-            $bulletins = $this->bulletinManager->getBulletins();
+            $bulletins = $this->bulletinManager->getAllMunicipalBulletins();
 
             if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'ROLE_ADMIN' || $_SESSION['user_role'] === 'ROLE_SUPER_ADMIN')
             {
@@ -94,7 +99,7 @@
                 );
                 $child->setParent($this->userManager->getUserById($_SESSION['user_id']));
 
-                $this->childManager->createChild($child);
+                $this->childManager->addChild($child);
                 header('Location:index.php?route=espace-famille/enfants');
             }
             else
@@ -105,7 +110,7 @@
 
         public function CafeteriaDates() : void
         {
-            $dates = $this->cafeteriaDateManager->getCafeteriaDates();
+            $dates = $this->cafeteriaDateManager->getAllCafeteriaDates();
             //get inscription for children
             //how do i check weeks on cantine for all children ? add a column for each child and if a inscription exist for the week number then say enrolled else not enrolled
             //if a child enroll is ok for a day then say on this day enroll, else to decicde, the week row can have multiple line inside corresponding to each child status on enrollment
@@ -137,7 +142,7 @@
                 $yearStart = htmlspecialchars($_POST['year-start']);
                 $yearEnd = htmlspecialchars($_POST['year-end']);
 
-                $dates = $this->cafeteriaDateManager->getCafeteriaDates();
+                $dates = $this->cafeteriaDateManager->getAllCafeteriaDates();
                 $this->render('views/admin/cantine/cantine.phtml', ['cafeteria-weeks' => $dates], 'dates cantine', 'admin');
             }
             else
@@ -179,8 +184,8 @@
 
         public function conseilMunicipal() : void
         {
-            $bm = $this->bulletinManager->getBulletins();
-            $crcm = $this->councilReportManager->getCouncilReports();
+            $bm = $this->bulletinManager->getAllMunicipalBulletins();
+            $crcm = $this->councilReportManager->getAllMunicipalCouncilReports();
 
             $this->render('views/public/mairie/conseil_municipal/conseil_municipal.phtml', ['bm' => $bm, 'crcm' => $crcm], 'Conseil Municipal');
         }

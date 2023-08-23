@@ -13,8 +13,8 @@
 
         public function documents() : array
         {
-            $bulletins = $this->bulletinManager->getBulletins();
-            $councilReports = $this->councilReportManager->getCouncilReports();
+            $bulletins = $this->bulletinManager->getAllMunicipalBulletins();
+            $councilReports = $this->councilReportManager->getAllMunicipalCouncilReports();
 
             return ['bulletins' => $bulletins, 'councilReports' => $councilReports];
         }
@@ -34,10 +34,10 @@
 
                     $newCouncilReport = new MunicipalCouncilReport($today, $path);
 
-                    $this->councilReportManager->create($newCouncilReport);
+                    $this->councilReportManager->addMunicipalCouncilReport($newCouncilReport);
 
                     echo 'success';
-                    header('Location:index.php?route=comptes-rendus-conseils-municipaux');
+                    header('Location:index.php?route=admin/comptes-rendus-conseils-municipaux');
                 }
                 else
                 {
@@ -58,10 +58,10 @@
 
                     $newMunicipalBulletin = new MunicipalBulletin($today, $path);
 
-                    $this->bulletinManager->create($newMunicipalBulletin);
+                    $this->bulletinManager->addMunicipalBulletin($newMunicipalBulletin);
 
                     echo 'success';
-                    header('Location:index.php?route=bulletins-municipaux');
+                    header('Location:index.php?route=admin/bulletins-municipaux');
                 }
                 else
                 {

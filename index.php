@@ -1,8 +1,15 @@
 <?php
     session_start();
 
-    require 'services/autoload.php';
+    require 'config/autoload.php';
 
     $router = new Router();
-    $router->checkRoute();
+    if(isset($_GET['route']))
+    {
+        $router->checkRoute($_GET['route']);
+    }
+    else
+    {
+        $router->checkRoute('');
+    }
 ?>

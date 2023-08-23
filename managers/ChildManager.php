@@ -64,7 +64,7 @@
             return $children;
         }
 
-        public function createChild(Child $child) : Child
+        public function addChild(Child $child) : Child
         {
             $query = $this->db->prepare('
                 INSERT INTO children (firstName, lastName, age, parent_id) 

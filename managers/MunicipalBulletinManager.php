@@ -2,7 +2,7 @@
 //require_once 'AbstractManager.php';
     class MunicipalBulletinManager extends AbstractManager
     {
-        public function getBulletins() : array
+        public function getAllMunicipalBulletins() : array
         {
             $query = $this->db->prepare('
                 SELECT *
@@ -13,7 +13,7 @@
             return $query->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        public function create(MunicipalBulletin $municipalBulletin) : MunicipalBulletin
+        public function addMunicipalBulletin(MunicipalBulletin $municipalBulletin) : MunicipalBulletin
         {
             $query = $this->db->prepare('
                 INSERT INTO bulletins_municipaux (date, url) 

@@ -9,7 +9,7 @@
             $this->childManager = new ChildManager();
         }
 
-        public function getCafeteriaDates() : array
+        public function getAllCafeteriaDates() : array
         {
             $query =$this->db->prepare('
                 SELECT *

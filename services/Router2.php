@@ -1,5 +1,5 @@
 <?php 
-    class Router {
+    class Router2 {
         private UserController $userController;
         private PageController $pageController;
         private FileController $fileController;
@@ -11,6 +11,38 @@
             $this->pageController = new PageController();
             $this->fileController = new FileController();
             $this->authenticationController = new AuthenticationController();
+        }
+
+        private function splitRouteAndParameters(string $route) : array
+        {
+            $routeAndParams = [];
+            $routeAndParams["route"] = null;
+            $routeAndParams["categorySlug"] = null;
+            $routeAndParams["productSlug"] = null;
+
+            if(strlen($route) > 0) // si la chaine de la route n'est pas vide (donc si ça n'est pas la home)
+            {
+                $tab = explode("/", $route);
+
+                if() // écrire une condition pour le cas où la route commence par "categories"
+                {
+                    // mettre les bonnes valeurs dans le tableau
+                    $routeAndParams["route"] = "";
+                    $routeAndParams["categorySlug"] = "";
+                }
+                else if() // écrire une condition pour le cas où la route commence par "produits"
+                {
+                    // mettre les bonnes valeurs dans le tableau
+                    $routeAndParams["route"] = "";
+                    $routeAndParams["productSlug"] = "";
+                }
+            }
+            else
+            {
+                $routeAndParams["route"] = "";
+            }
+
+            return $routeAndParams;
         }
 
         public function checkRoute($route) : void
