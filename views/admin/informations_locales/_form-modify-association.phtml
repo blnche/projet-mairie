@@ -1,15 +1,15 @@
-<form method="POST" action="index.php?route=admin/informations-locales/associations/ajouter">
+<form method="POST" action="index.php?route=admin/informations-locales/associations/modifier&associationId=<?= $_GET['associationId'] ?>">
     <fieldset>
         <label for="name">Nom de l'association</label>
-        <input type="text" name="name" required>
+        <input type="text" name="name">
     </fieldset>
     <fieldset>
         <label for="presidentFirstname">Prénom du président/de la présidente de l'association</label>
         <input type="text" name="presidentFirstname">
     </fieldset>
     <fieldset>
-        <label for="presidentLastname">Nom du président/de la présidente de l'association</label>
-        <input type="text" name="presidentLastname" required>
+        <label for="presidentLastname">Nom Prénom du président/de la présidente de l'association</label>
+        <input type="text" name="presidentLastname">
     </fieldset>
     <fieldset>
         <label for="address">Adresse postal :</label>
@@ -17,11 +17,11 @@
     </fieldset>
     <fieldset>
         <label for="code-postal">Code postal :</label>
-        <input type="text" name="code-postal" required>
+        <input type="text" name="code-postal">
     </fieldset>
     <fieldset>
         <label for="ville">Ville/Commune :</label>
-        <input type="text" name="ville" required>
+        <input type="text" name="ville">
     </fieldset>
-    <input type="submit" name="registerAssociation" value="Enregistrer l'association">
+    <input type="submit" name="modifyAssociation" value="Enregistrer l'association modifiée">
 </form>

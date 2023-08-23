@@ -7,6 +7,7 @@
         private ChildManager $childManager;
         private UserManager $userManager;
         private CafeteriaDateManager $cafeteriaDateManager;
+        private AddressManager $addressManager;
         private AssociationManager $associationManager;
 
         public function __construct()
@@ -17,6 +18,7 @@
             $this->childManager = new ChildManager();
             $this->userManager = new UserManager();
             $this->cafeteriaDateManager = new CafeteriaDateManager();
+            $this->addressManager = new AddressManager();
             $this->associationManager = new AssociationManager();
         }
 
@@ -194,6 +196,12 @@
 
         public function Associations() : void
         {
+            $associations = $this->associationManager->getAll();
+            $this->render('views/admin/informations_locales/associations.phtml', ['associations' => $associations], 'Infos locales - associations', 'admin');
+        }
+
+        public function AddAssociation() : void
+        {
             if(isset($_POST['registerAssociation']))
             {
                 //Create new address
@@ -219,13 +227,51 @@
                     $presidentLastname
                 );
                 $association->setAddress($newAddress);
-                $this->associationManager->addUser($association);
+                $this->associationManager->registerAssociation($association);
 
                 header('Location:index.php?route=admin/informations-locales/associations');
             }
             else
             {
-                $this->render('views/admin/informations_locales/associations.phtml', [], 'Infos locales - associations', 'admin');
+                $this->render('views/admin/informations_locales/_form-add-associations.phtml', [], 'Infos locales - associations', 'admin');
+            }
+        }
+
+        public function ModifyAssociation(int $associationId) : void
+        {
+            if(isset($_POST['modifyAssociation']))
+            {
+                $association = $this->associationManager->getAssociationById($associationId);
+                var_dump($association->getAddress());
+                xdebug_break();
+                $addressString = htmlspecialchars($_POST['address']);
+                $codePostal = htmlspecialchars($_POST['code-postal']);
+                $ville = htmlspecialchars($_POST['ville']);
+
+                $address = new Address(
+                    $codePostal,
+                    $ville,
+                    $addressString
+                );
+                $newAddress = $this->addressManager->addAddress($address);
+
+                $name = htmlspecialchars($_POST['name']);
+                $presidentFirstname = htmlspecialchars($_POST['presidentFirstname']);
+                $presidentLastname = htmlspecialchars($_POST['presidentLastname']);
+
+                $association = new Association(
+                    $name,
+                    $presidentFirstname,
+                    $presidentLastname
+                );
+                $association->setAddress($newAddress);
+                $this->associationManager->modifyAssociation($associationId, $association);
+
+                header('Location:index.php?route=admin/informations-locales/associations');
+            }
+            else
+            {
+                $this->render('views/admin/informations_locales/_form-modify-association.phtml', [], 'Infos locales - associations', 'admin');
             }
         }
 

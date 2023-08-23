@@ -103,7 +103,19 @@
                         {
                             if (str_contains($route, 'associations'))
                             {
-                                $this->pageController->Associations();
+                                if (str_contains($route, 'ajouter'))
+                                {
+                                    $this->pageController->AddAssociation();
+                                }
+                                else if (str_contains($route, 'modifier'))
+                                {
+                                    var_dump($_GET['associationId']);
+                                    $this->pageController->ModifyAssociation(htmlspecialchars($_GET['associationId']));
+                                }
+                                else
+                                {
+                                    $this->pageController->Associations();
+                                }
                             }
                             else if (str_contains($route, 'professionnels-locaux'))
                             {

@@ -10,14 +10,12 @@
          * @param string $name
          * @param string $president_firstName
          * @param string $president_lastName
-         * @param Address $address
          */
         public function __construct(string $name, string $president_firstName, string $president_lastName)
         {
             $this->name = $name;
             $this->president_firstName = $president_firstName;
             $this->president_lastName = $president_lastName;
-            $this->address = $address;
         }
 
         /**

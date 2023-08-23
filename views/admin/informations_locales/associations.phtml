@@ -1,2 +1,29 @@
+<?php
+$associations = $this->data['associations'];
+?>
 <h1><?= $this->pageTitle ?></h1>
 <a href="index.php?route=admin/informations-locales/associations/ajouter">add association</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>Nom de l'association</th>
+        <th>Nom et prénom de la présidente/du président</th>
+        <th>actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php
+    foreach($associations as $association)
+    {
+        ?>
+        <tr>
+            <td> <?= $association->getName(); ?> </td>
+            <td> <?= $association->getPresidentLastName().' '.$association->getPresidentFirstName(); ?> </td>
+            <td><a href="index.php?route=admin/informations-locales/associations/modifier&associationId=<?= $association->getId(); ?>">modifier association</a></td>
+        </tr>
+    <?php
+    }
+    ?>
+    </tbody>
+</table>
