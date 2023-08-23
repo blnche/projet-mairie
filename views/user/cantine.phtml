@@ -19,9 +19,11 @@ $childrenEnrollments = $this->data['childrenEnrollments'];
     </thead>
     <tbody>
     <?php
+foreach ($weeks as $week)
+{
+    $foundMatch = false;
     foreach ($childrenEnrollments as $childEnrollment)
     {
-    $foundMatch = false;
         //var_dump($childEnrollment);
         //echo '<br>';
         $firstName = $childEnrollment[0];
@@ -33,8 +35,6 @@ $childrenEnrollments = $this->data['childrenEnrollments'];
 
         foreach ($enrollments as $item)
         {
-            foreach ($weeks as $week)
-            {
             if (!$foundMatch && $week->getWeekOfYear() === $item->getWeekOfYear())
             {
                 //$foundMatch = true;
@@ -62,7 +62,7 @@ $childrenEnrollments = $this->data['childrenEnrollments'];
                         }
                         else
                         {
-                            echo 'à préciser';
+                            echo '-';
                         }
                         ?>
                     </td>
@@ -81,7 +81,7 @@ $childrenEnrollments = $this->data['childrenEnrollments'];
                         }
                         else
                         {
-                            echo 'à préciser';
+                            echo '-';
                         }
                         ?>
                     </td>
@@ -100,7 +100,7 @@ $childrenEnrollments = $this->data['childrenEnrollments'];
                         }
                         else
                         {
-                            echo 'à préciser';
+                            echo '-';
                         }
                         ?>
                     </td>
@@ -119,7 +119,7 @@ $childrenEnrollments = $this->data['childrenEnrollments'];
                         }
                         else
                         {
-                            echo 'à préciser';
+                            echo '-';
                         }
                         ?>
                     </td>
@@ -138,7 +138,7 @@ $childrenEnrollments = $this->data['childrenEnrollments'];
                         }
                         else
                         {
-                            echo 'à préciser';
+                            echo '-';
                         }
                         ?>
                     </td>
@@ -171,7 +171,7 @@ $childrenEnrollments = $this->data['childrenEnrollments'];
                         }
                         else
                         {
-                            echo 'à préciser';
+                            echo '-';
                         }
                         ?>
                     </td>
@@ -190,7 +190,7 @@ $childrenEnrollments = $this->data['childrenEnrollments'];
                         }
                         else
                         {
-                            echo 'à préciser';
+                            echo '-';
                         }
                         ?>
                     </td>
@@ -209,7 +209,7 @@ $childrenEnrollments = $this->data['childrenEnrollments'];
                         }
                         else
                         {
-                            echo 'à préciser';
+                            echo '-';
                         }
                         ?>
                     </td>
@@ -228,7 +228,7 @@ $childrenEnrollments = $this->data['childrenEnrollments'];
                         }
                         else
                         {
-                            echo 'à préciser';
+                            echo '-';
                         }
                         ?>
                     </td>
@@ -247,7 +247,7 @@ $childrenEnrollments = $this->data['childrenEnrollments'];
                         }
                         else
                         {
-                            echo 'à préciser';
+                            echo '-';
                         }
                         ?>
                     </td>
@@ -293,34 +293,186 @@ $childrenEnrollments = $this->data['childrenEnrollments'];
     <?php
     foreach ($weeks as $week)
     {
-        foreach ($this->data['childrenEnrollments'] as $childEnrollments)
-        {
-            $firstName = $childEnrollments[0];
-            foreach ($childEnrollments[1] as $enrollment)
-            {
-                //echo $firstName;
-                //echo $enrollment->getWeekOfYear();
 
-                if ($week->getWeekOfYear() === $enrollment->getWeekOfyear())
-                {
 
         ?>
         <tr>
             <td> <?= $week->getWeekOfYear(); ?></td>
-            <td>
-
+            <!--have another td that takes all td with days inside of it inside a table and tr element-->
+            <td> <?php
+                if($week->getMonday() === "Yes")
+                {
+                    echo '✅';
+                }
+                else if ($week->getMonday() === "No")
+                {
+                    echo '❌';
+                }
+                else if ($week->getMonday() === "Holiday")
+                {
+                    echo '☀️';
+                }
+                else
+                {
+                    echo '-';
+                }
+                ?>
             </td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><a href="#">modifier</a></td>
-            <td></td>
+            <td> <?php
+                if($week->getTuesday() === "Yes")
+                {
+                    echo '✅';
+                }
+                else if ($week->getTuesday() === "No")
+                {
+                    echo '❌';
+                }
+                else if ($week->getTuesday() === "Holiday")
+                {
+                    echo '☀️';
+                }
+                else
+                {
+                    echo '-';
+                }
+                ?>
+            </td>
+            <td> <?php
+                if($week->getWednesday() === "Yes")
+                {
+                    echo '✅';
+                }
+                else if ($week->getWednesday() === "No")
+                {
+                    echo '❌';
+                }
+                else if ($week->getWednesday() === "Holiday")
+                {
+                    echo '☀️';
+                }
+                else
+                {
+                    echo '-';
+                }
+                ?>
+            </td>
+            <td> <?php
+                if($week->getThursday() === "Yes")
+                {
+                    echo '✅';
+                }
+                else if ($week->getThursday() === "No")
+                {
+                    echo '❌';
+                }
+                else if ($week->getThursday() === "Holiday")
+                {
+                    echo '☀️';
+                }
+                else
+                {
+                    echo '-';
+                }
+                ?>
+            </td>
+            <td>
+                <ul>
+                    <?php
+                    foreach ($this->data['childrenEnrollments'] as $childEnrollments)
+                    {
+                        ?>
+                        <li>
+                            <?php
+                            $firstName = $childEnrollments[0];
+                            //echo $firstName;
+                            $foundMatch = false;
+                            foreach ($childEnrollments[1] as $enrollment)
+                            {
+                                //echo $enrollment->getWeekOfYear();
+                                //echo $week->getWeekOfYear();
+
+                                if (!$foundMatch && $enrollment->getWeekOfYear() === $week->getWeekOfYear())
+                                {
+                                    $foundMatch = true;
+                                    //echo 'not empty';
+                                    if($enrollment->getFriday() === "Yes")
+                                    {
+                                        echo '✅';
+                                    }
+                                    else if ($enrollment->getFriday() === "No")
+                                    {
+                                        echo '❌';
+                                    }
+                                    else if ($enrollment->getFriday() === "Holiday")
+                                    {
+                                        echo '☀️';
+                                    }
+                                    else
+                                    {
+                                        echo 'bug';
+                                    }
+                                    break;
+                                }
+                                else
+                                {
+                                    //echo 'empty';
+                                    if ($week->getFriday() === "Yes") {
+                                        echo '✅';
+                                    } else if ($week->getFriday() === "No") {
+                                        echo '❌';
+                                    } else if ($week->getFriday() === "Holiday") {
+                                        echo '☀️';
+                                    } else {
+                                        echo '-';
+                                    }
+                                    break;
+                                }
+                            }
+                            ?>
+                        </li>
+                        <?php
+                    }
+                    ?>
+                </ul>
+            </td>
+            <td><a href="index.php?route=espace-famille/cantine/modifier-semaine&semaine=<?= $week->getWeekOfYear(); ?>">Modifier</a></td>
+            <td>
+                <ul>
+                    <?php
+                    foreach ($this->data['childrenEnrollments'] as $childEnrollments)
+                    {
+                        ?>
+                        <li>
+                        <?php
+                        $firstName = $childEnrollments[0];
+                        echo $firstName;
+                            $foundMatch = false;
+                        foreach ($childEnrollments[1] as $enrollment)
+                        {
+                            //echo $enrollment->getWeekOfYear();
+                            //echo $week->getWeekOfYear();
+                            if (!$foundMatch && $week->getWeekOfYear() === $enrollment->getWeekOfyear())
+                            {
+                                $foundMatch = true;
+                                echo ' Inscrit';
+                                break;
+                            }
+                            else
+                            {
+                                echo ' Pas inscrit';
+                                break;
+                            }
+                        }
+                        ?>
+                        </li>
+                    <?php
+                    }
+                    ?>
+                </ul>
+            </td>
+        </tr>
         </tr>
         <?php
-                }
-            }
-        }
     }
     ?>
     </tbody>
