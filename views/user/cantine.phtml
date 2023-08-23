@@ -19,25 +19,25 @@ $childrenEnrollments = $this->data['childrenEnrollments'];
     </thead>
     <tbody>
     <?php
-    foreach ($weeks as $week)
-    {
-    $foundMatch = false;
     foreach ($childrenEnrollments as $childEnrollment)
     {
+    $foundMatch = false;
         //var_dump($childEnrollment);
         //echo '<br>';
-        $firstName = $childEnrollment['enfant'][0];
+        $firstName = $childEnrollment[0];
         //var_dump($firstName);
         //echo '<br>';
-        $enrollments = $childEnrollment['enfant'][1];
+        $enrollments = $childEnrollment[1];
         //var_dump($enrollments);
         //echo '<br>';
 
         foreach ($enrollments as $item)
         {
+            foreach ($weeks as $week)
+            {
             if (!$foundMatch && $week->getWeekOfYear() === $item->getWeekOfYear())
             {
-                $foundMatch = true;
+                //$foundMatch = true;
                 //echo $week->getWeekOfYear().' '.$item->getWeekOfYear().'<br>';
                 //echo $firstName.' registered for '.$week->getWeekOfYear();
 
@@ -46,7 +46,7 @@ $childrenEnrollments = $this->data['childrenEnrollments'];
                 <tr>
 
                     <td> <?= $data->getWeekOfYear(); ?></td>
-                    // have another td that takes all td with days inside of it inside a table and tr element
+                    <!--have another td that takes all td with days inside of it inside a table and tr element-->
                     <td> <?php
                         if($data->getMonday() === "Yes")
                         {
@@ -155,7 +155,7 @@ $childrenEnrollments = $this->data['childrenEnrollments'];
                 ?>
                 <tr>
 
-                    <td> <?= $data->getWeekOfYear(); ?></td>
+                    <td> Base <?= $data->getWeekOfYear(); ?></td>
                     <td> <?php
                         if($data->getMonday() === "Yes")
                         {
@@ -261,5 +261,67 @@ $childrenEnrollments = $this->data['childrenEnrollments'];
     }
     ?>
 
+    </tbody>
+</table>
+
+<?php
+    foreach ($this->data['childrenEnrollments'] as $childEnrollments)
+    {
+        $firstName = $childEnrollments[0];
+        foreach ($childEnrollments[1] as $enrollment)
+        {
+            //echo $firstName;
+            //echo $enrollment->getWeekOfYear();
+        }
+    }
+?>
+
+<table>
+    <thead>
+    <tr>
+        <th>Week</th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+        <th>Actions</th>
+        <th>Enfants</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php
+    foreach ($weeks as $week)
+    {
+        foreach ($this->data['childrenEnrollments'] as $childEnrollments)
+        {
+            $firstName = $childEnrollments[0];
+            foreach ($childEnrollments[1] as $enrollment)
+            {
+                //echo $firstName;
+                //echo $enrollment->getWeekOfYear();
+
+                if ($week->getWeekOfYear() === $enrollment->getWeekOfyear())
+                {
+
+        ?>
+        <tr>
+            <td> <?= $week->getWeekOfYear(); ?></td>
+            <td>
+
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><a href="#">modifier</a></td>
+            <td></td>
+        </tr>
+        <?php
+                }
+            }
+        }
+    }
+    ?>
     </tbody>
 </table>
