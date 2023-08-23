@@ -196,13 +196,13 @@
 
         public function Associations() : void
         {
-            $associations = $this->associationManager->getAll();
+            $associations = $this->associationManager->getAllAssociations();
             $this->render('views/admin/informations_locales/associations.phtml', ['associations' => $associations], 'Infos locales - associations', 'admin');
         }
 
         public function AddAssociation() : void
         {
-            if(isset($_POST['registerAssociation']))
+            if(isset($_POST['addAssociation']))
             {
                 //Create new address
                 $addressString = htmlspecialchars($_POST['address']);
@@ -224,10 +224,11 @@
                 $association = new Association(
                     $name,
                     $presidentFirstname,
-                    $presidentLastname
+                    $presidentLastname,
+                    'active'
                 );
                 $association->setAddress($newAddress);
-                $this->associationManager->registerAssociation($association);
+                $this->associationManager->addAssociation($association);
 
                 header('Location:index.php?route=admin/informations-locales/associations');
             }
@@ -241,31 +242,85 @@
         {
             if(isset($_POST['modifyAssociation']))
             {
-                $association = $this->associationManager->getAssociationById($associationId);
-                var_dump($association->getAddress());
-                xdebug_break();
-                $addressString = htmlspecialchars($_POST['address']);
-                $codePostal = htmlspecialchars($_POST['code-postal']);
-                $ville = htmlspecialchars($_POST['ville']);
+                $associationCurrentInformations = $this->associationManager->getAssociationById($associationId);
+                $associationCurrentAddress = $associationCurrentInformations->getAddress();
+                //var_dump(!empty($_POST['status']));
+                //xdebug_break();
+
+                //check if field for address have been filled and then make a new address object OR if not filled get the infos from previous address
+                if (!empty($_POST['address']))
+                {
+                    $addressString = htmlspecialchars($_POST['address']);
+                }
+                else {
+                    $addressString = $associationCurrentAddress->getAddress();
+                }
+
+                if (!empty($_POST['code-postal']))
+                {
+                    $codePostal = htmlspecialchars($_POST['code-postal']);
+                }
+                else {
+                    $codePostal = $associationCurrentAddress->getCodePostal();
+                }
+
+                if (!empty($_POST['ville']))
+                {
+                    $ville = htmlspecialchars($_POST['ville']);
+                }
+                else {
+                    $ville = $associationCurrentAddress->getCommune();
+                }
 
                 $address = new Address(
                     $codePostal,
                     $ville,
                     $addressString
                 );
-                $newAddress = $this->addressManager->addAddress($address);
+                $address->setId($associationCurrentAddress->getId());
 
-                $name = htmlspecialchars($_POST['name']);
-                $presidentFirstname = htmlspecialchars($_POST['presidentFirstname']);
-                $presidentLastname = htmlspecialchars($_POST['presidentLastname']);
+                $addressUpdated = $this->addressManager->editAddress($address);
+
+                if (!empty($_POST['name']))
+                {
+                    $name = htmlspecialchars($_POST['name']);
+                }
+                else {
+                    $name = $associationCurrentInformations->getName();
+                }
+
+                if (!empty($_POST['presidentFirstname']))
+                {
+                    $presidentFirstname = htmlspecialchars($_POST['presidentFirstname']);
+                }
+                else {
+                    $presidentFirstname = $associationCurrentInformations->getPresidentFirstName();
+                }
+                if (!empty($_POST['presidentLastname']))
+                {
+                    $presidentLastname = htmlspecialchars($_POST['presidentLastname']);
+                }
+                else {
+                    $presidentLastname = $associationCurrentInformations->getPresidentLastName();
+                }
+                if (!empty($_POST['status']))
+                {
+                    $status = htmlspecialchars($_POST['status']);
+                }
+                else {
+                    $status = $associationCurrentInformations->getStatus();
+                }
 
                 $association = new Association(
                     $name,
                     $presidentFirstname,
-                    $presidentLastname
+                    $presidentLastname,
+                    $status
                 );
-                $association->setAddress($newAddress);
-                $this->associationManager->modifyAssociation($associationId, $association);
+                $association->setAddress($addressUpdated);
+                $association->setId($associationCurrentInformations->getId());
+
+                $this->associationManager->editAssociation($association);
 
                 header('Location:index.php?route=admin/informations-locales/associations');
             }

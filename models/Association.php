@@ -4,18 +4,21 @@
         private string $name;
         private string $president_firstName;
         private string $president_lastName;
+        private string $status;
         private Address $address;
 
         /**
          * @param string $name
          * @param string $president_firstName
          * @param string $president_lastName
+         * @param string $status
          */
-        public function __construct(string $name, string $president_firstName, string $president_lastName)
+        public function __construct(string $name, string $president_firstName, string $president_lastName, string $status)
         {
             $this->name = $name;
             $this->president_firstName = $president_firstName;
             $this->president_lastName = $president_lastName;
+            $this->status = $status;
         }
 
         /**
@@ -80,6 +83,22 @@
         public function setPresidentLastName(string $president_lastName): void
         {
             $this->president_lastName = $president_lastName;
+        }
+
+        /**
+         * @return string
+         */
+        public function getStatus(): string
+        {
+            return $this->status;
+        }
+
+        /**
+         * @param string $status
+         */
+        public function setStatus(string $status): void
+        {
+            $this->status = $status;
         }
 
         /**

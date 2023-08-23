@@ -4,19 +4,21 @@
         private AddressManager $addressManager;
         public function __construct()
         {
+            parent::__construct();
             $this->addressManager = new AddressManager();
         }
 
-        public function registerAssociation(Association $association) : Association
+        public function addAssociation(Association $association) : Association
         {
             $query = $this->db->prepare('
-                INSERT INTO associations (name, president_firstName, president_lastName, assoc_address_id)
-                VALUES (:name, :president_firstName, :president_lastName, :assoc_address_id)
+                INSERT INTO associations (name, president_firstName, president_lastName, status, assoc_address_id)
+                VALUES (:name, :president_firstName, :president_lastName, :status, :assoc_address_id)
             ');
             $parameters = [
                 'name' => $association->getName(),
                 'president_firstName' => $association->getPresidentFirstName(),
                 'president_lastName' => $association->getPresidentLastName(),
+                'status' => $association->getStatus(),
                 'assoc_address_id' => $association->getAddress()->getId()
             ];
             $query->execute($parameters);
@@ -26,7 +28,7 @@
             return $association;
         }
 
-        public function getAll() : array
+        public function getAllAssociations() : array
         {
             $query = $this->db->prepare('
                 SELECT *
@@ -42,7 +44,8 @@
                 $newAssociation = new Association(
                     $association['name'],
                     $association['president_firstName'],
-                    $association['president_lastName']
+                    $association['president_lastName'],
+                    $association['status']
                 );
                 $newAssociation->setId($association['id']);
                 $associations[] = $newAssociation;
@@ -68,7 +71,8 @@
             $newAssociation = new Association(
                 $data['name'],
                 $data['president_firstName'],
-                $data['president_lastName']
+                $data['president_lastName'],
+                $data['status']
             );
             $address = $this->addressManager->getAddressById($data['assoc_address_id']);
             $newAssociation->setAddress($address);
@@ -77,20 +81,23 @@
             return $newAssociation;
         }
 
-        public function EditAssociation(int $id, Association $associationEdited) : void
+        public function editAssociation(Association $associationEdited) : Association
         {
             $query = $this->db->prepare('
                 UPDATE associations
-                SET name = :name, president_firstName = :presidentFirstName, president_lastName = :presidentLastName
+                SET name = :name, president_firstName = :presidentFirstName, president_lastName = :presidentLastName, status = :status
                 WHERE id = :id
             ');
             $parameters = [
+                'id' => $associationEdited->getId(),
                 'name' => $associationEdited->getName(),
                 'presidentFirstName' => $associationEdited->getPresidentFirstName(),
                 'presidentLastName' => $associationEdited->getPresidentLastName(),
-                'id' => $id
+                'status' => $associationEdited->getStatus()
             ];
             $query->execute($parameters);
+
+            return $associationEdited;
         }
     }
 ?>

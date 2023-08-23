@@ -44,5 +44,24 @@
 
             return $address;
         }
+
+        public function editAddress(Address $address) : Address
+        {
+            $query = $this->db->prepare('
+                UPDATE addresses
+                SET address = :address, code_postal = :code_postal, commune = :commune
+                WHERE id = :id
+            ');
+            $parameters = [
+                'id' => $address->getId(),
+                'address' => $address->getAddress(),
+                'code_postal' => $address->getCodePostal(),
+                'commune' => $address->getCommune()
+            ];
+            $query->execute($parameters);
+
+            return $address;
+
+        }
     }
 ?>
