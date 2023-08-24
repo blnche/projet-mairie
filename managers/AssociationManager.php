@@ -28,6 +28,25 @@
             return $association;
         }
 
+        public function editAssociation(Association $associationEdited) : Association
+        {
+            $query = $this->db->prepare('
+                UPDATE associations
+                SET name = :name, president_firstName = :presidentFirstName, president_lastName = :presidentLastName, status = :status
+                WHERE id = :id
+            ');
+            $parameters = [
+                'id' => $associationEdited->getId(),
+                'name' => $associationEdited->getName(),
+                'presidentFirstName' => $associationEdited->getPresidentFirstName(),
+                'presidentLastName' => $associationEdited->getPresidentLastName(),
+                'status' => $associationEdited->getStatus()
+            ];
+            $query->execute($parameters);
+
+            return $associationEdited;
+        }
+
         public function getAllAssociations() : array
         {
             $query = $this->db->prepare('
@@ -79,25 +98,6 @@
             $newAssociation->setId($data['id']);
 
             return $newAssociation;
-        }
-
-        public function editAssociation(Association $associationEdited) : Association
-        {
-            $query = $this->db->prepare('
-                UPDATE associations
-                SET name = :name, president_firstName = :presidentFirstName, president_lastName = :presidentLastName, status = :status
-                WHERE id = :id
-            ');
-            $parameters = [
-                'id' => $associationEdited->getId(),
-                'name' => $associationEdited->getName(),
-                'presidentFirstName' => $associationEdited->getPresidentFirstName(),
-                'presidentLastName' => $associationEdited->getPresidentLastName(),
-                'status' => $associationEdited->getStatus()
-            ];
-            $query->execute($parameters);
-
-            return $associationEdited;
         }
     }
 ?>

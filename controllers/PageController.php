@@ -10,6 +10,7 @@
         private AddressManager $addressManager;
         private AssociationManager $associationManager;
         private LocationManager $locationManager;
+        private LocalProfessionalManager $localProfessionalManager;
 
         public function __construct()
         {
@@ -22,6 +23,7 @@
             $this->addressManager = new AddressManager();
             $this->associationManager = new AssociationManager();
             $this->locationManager = new LocationManager();
+            $this->localProfessionalManager = new LocalProfessionalManager();
         }
 
         public function events() : array
@@ -134,6 +136,15 @@
             {
                 $this->render('views/admin/cantine/cantine.phtml', ['cafeteria-weeks' => $dates], 'Dates cantine', 'admin');
             }
+        }
+
+        public function Export() : void
+        {
+            foreach ($_POST['weekNumber'] as $week)
+            {
+                $weekChildrenEnrolled = $this->cafeteriaDateManager->getAllChildrenEnrolledForWeek($week);
+            }
+            header('Location:index.php?route=admin/cantine');
         }
 
         public function NewCafeteriaDates() : void
@@ -337,12 +348,142 @@
             }
         }
 
-        public function ProfessionnelsLocaux() : void
+        public function LocalProfessionals() : void
         {
-            $this->render('views/admin/informations_locales/professionnels-locaux.phtml', [], 'Infos locales - professionnels-locaux', 'admin');
+            $localProfessionals = $this->localProfessionalManager->getAllLocalProfessionals();
+            $this->render('views/admin/informations_locales/local-professionals/professionnels-locaux.phtml', ['local-professionals' => $localProfessionals], 'Infos locales - professionnels-locaux', 'admin');
         }
 
-        public function Lieux() : void
+        public function AddLocalProfessional() : void
+        {
+            if(isset($_POST['registerLocalProfessional']))
+            {
+                //Create new address
+                $addressString = htmlspecialchars($_POST['address']);
+                $codePostal = htmlspecialchars($_POST['code-postal']);
+                $ville = htmlspecialchars($_POST['ville']);
+
+                $address = new Address(
+                    $codePostal,
+                    $ville,
+                    $addressString
+                );
+                $newAddress = $this->addressManager->addAddress($address);
+
+                //Create new local professional
+                $name = htmlspecialchars($_POST['name']);
+                $sector = htmlspecialchars($_POST['sector']);
+                $firstname = htmlspecialchars($_POST['firstname']);
+                $lastname = htmlspecialchars($_POST['lastname']);
+
+                $localProfessional = new LocalProfessional(
+                    $name,
+                    $sector,
+                    $firstname,
+                    $lastname
+                );
+                $localProfessional->setAddress($newAddress);
+                $this->localProfessionalManager->addLocalProfessional($localProfessional);
+
+                header('Location:index.php?route=admin/informations-locales/professionnels-locaux');
+            }
+            else
+            {
+                $this->render('views/admin/informations_locales/local-professionals/_form-add-local-professional.phtml', [], 'Infos locales - professionnels-locaux', 'admin');
+            }
+        }
+
+        public function ModifyLocalProfessional(int $localProfessionalId) : void
+        {
+            if(isset($_POST['modifyLocalProfessional']))
+            {
+                $localProfessionalCurrentInformations = $this->localProfessionalManager->getLocalProfessionalById($localProfessionalId);
+                $localProfessionalCurrentAddress = $localProfessionalCurrentInformations->getAddress();
+
+                //check if field for address have been filled and then make a new address object OR if not filled get the infos from previous address
+                if (!empty($_POST['address']))
+                {
+                    $addressString = htmlspecialchars($_POST['address']);
+                }
+                else {
+                    $addressString = $localProfessionalCurrentAddress->getAddress();
+                }
+
+                if (!empty($_POST['code-postal']))
+                {
+                    $codePostal = htmlspecialchars($_POST['code-postal']);
+                }
+                else {
+                    $codePostal = $localProfessionalCurrentAddress->getCodePostal();
+                }
+
+                if (!empty($_POST['ville']))
+                {
+                    $ville = htmlspecialchars($_POST['ville']);
+                }
+                else {
+                    $ville = $localProfessionalCurrentAddress->getCommune();
+                }
+
+                $address = new Address(
+                    $codePostal,
+                    $ville,
+                    $addressString
+                );
+                $address->setId($localProfessionalCurrentAddress->getId());
+
+                $addressUpdated = $this->addressManager->editAddress($address);
+
+                if (!empty($_POST['name']))
+                {
+                    $name = htmlspecialchars($_POST['name']);
+                }
+                else {
+                    $name = $localProfessionalCurrentInformations->getName();
+                }
+
+                if (!empty($_POST['sector']))
+                {
+                    $sector = htmlspecialchars($_POST['sector']);
+                }
+                else {
+                    $sector = $localProfessionalCurrentInformations->getSector();
+                }
+                if (!empty($_POST['getCeoFirstname']))
+                {
+                    $firstname = htmlspecialchars($_POST['getCeoFirstname']);
+                }
+                else {
+                    $firstname = $localProfessionalCurrentInformations->getCeoFirstName();
+                }
+                if (!empty($_POST['lastname']))
+                {
+                    $lastname = htmlspecialchars($_POST['lastname']);
+                }
+                else {
+                    $lastname = $localProfessionalCurrentInformations->getCeoLastName();
+                }
+
+                $localProfessional = new LocalProfessional(
+                    $name,
+                    $sector,
+                    $firstname,
+                    $lastname
+                );
+                $localProfessional->setAddress($addressUpdated);
+                $localProfessional->setId($localProfessionalCurrentInformations->getId());
+
+                $this->localProfessionalManager->editLocalProfessional($localProfessional);
+
+                header('Location:index.php?route=admin/informations-locales/professionnels-locaux');
+            }
+            else
+            {
+                $this->render('views/admin/informations_locales/local-professionals/_form-modify-local-professional.phtml', [], 'Infos locales - professionnels-locaux', 'admin');
+            }
+        }
+
+        public function Locations() : void
         {
             $locations = $this->locationManager->getAllLocations();
             $this->render('views/admin/informations_locales/locations/lieux.phtml', ['locations' => $locations], 'Infos locales - lieux', 'admin');

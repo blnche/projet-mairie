@@ -1,0 +1,31 @@
+<form method="POST"  action="index.php?route=admin/informations-locales/professionnels-locaux/modifier&localProfessionalId=<?= $_GET['localProfessionalId'] ?>">
+    <fieldset>
+        <label for="name">nom entreprise</label>
+        <input type="text" name="name">
+    </fieldset>
+    <fieldset>
+        <label for="sector">secteur</label>
+        <input type="text" name="sector">
+    </fieldset>
+    <fieldset>
+        <label for="firstname">prénom ceo</label>
+        <input type="text" name="firstname">
+    </fieldset>
+    <fieldset>
+        <label for="lastname">nom ceo</label>
+        <input type="text" name="lastname">
+    </fieldset>
+    <fieldset>
+        <label for="address">Adresse postal :</label>
+        <input type="text" name="address">
+    </fieldset>
+    <fieldset>
+        <label for="code-postal">Code postal :</label>
+        <input type="text" name="code-postal">
+    </fieldset>
+    <fieldset>
+        <label for="ville">Ville/Commune :</label>
+        <input type="text" name="ville">
+    </fieldset>
+    <input type="submit" name="modifyLocalProfessional" value="Enregistrer professionnel modifié">
+</form>

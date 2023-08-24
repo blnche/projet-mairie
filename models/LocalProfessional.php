@@ -5,22 +5,19 @@
         private string $sector;
         private string $ceo_firstName;
         private string $ceo_lastName;
-        private Address $address;
 
         /**
          * @param string $name
          * @param string $sector
          * @param string $ceo_firstName
          * @param string $ceo_lastName
-         * @param Address $address
          */
-        public function __construct(string $name, string $sector, string $ceo_firstName, string $ceo_lastName, Address $address)
+        public function __construct(string $name, string $sector, string $ceo_firstName, string $ceo_lastName)
         {
             $this->name = $name;
             $this->sector = $sector;
             $this->ceo_firstName = $ceo_firstName;
             $this->ceo_lastName = $ceo_lastName;
-            $this->address = $address;
         }
 
         /**

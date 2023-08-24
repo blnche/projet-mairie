@@ -126,12 +126,23 @@
                             }
                             else
                             {
-                                $this->pageController->Lieux();
+                                $this->pageController->Locations();
                             }
                         }
                         else if (str_contains($route, 'professionnels-locaux'))
                         {
-                            $this->pageController->ProfessionnelsLocaux();
+                            if (str_contains($route, 'ajouter'))
+                            {
+                                $this->pageController->AddLocalProfessional();
+                            }
+                            else if (str_contains($route, 'modifier'))
+                            {
+                                $this->pageController->ModifyLocalProfessional(htmlspecialchars($_GET['localProfessionalId']));
+                            }
+                            else
+                            {
+                                $this->pageController->LocalProfessionals();
+                            }
                         }
                         else
                         {
@@ -143,6 +154,10 @@
                         if (str_contains($route, 'nouvelle-annee'))
                         {
                             $this->pageController->NewCafeteriaDates();
+                        }
+                        else if (str_contains($route, 'exporter'))
+                        {
+                            $this->pageController->Export();
                         }
                         else
                         {
