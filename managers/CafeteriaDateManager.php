@@ -143,5 +143,66 @@
 
             return $childEnrollments;
         }
+
+        public function getEnrollmentForWeekByChildId(int $weekId, int $childId) : array
+        {
+            $query = $this->db->prepare('
+                SELECT *
+                FROM inscription_child_cantine
+                WHERE children_id = :childId AND dates_cantine_id = :weekId
+            ');
+            $parameters = [
+                'childId' => $childId,
+                'weekId' => $weekId
+            ];
+            $query->execute($parameters);
+
+            $result = $query->fetch(PDO::FETCH_ASSOC);
+
+            $child = $this->childManager->getChildById($childId);
+
+            $childEnrollments = [];
+
+            $week = $this->getCafeteriaDateById($weekId);
+
+            $enrollment = new CafeteriaDate(
+                $week->getWeekOfYear()
+            );
+            $enrollment->setMonday($result['monday']);
+            $enrollment->setTuesday($result['tuesday']);
+            $enrollment->setWednesday($result['wednesday']);
+            $enrollment->setThursday($result['thursday']);
+            $enrollment->setFriday($result['friday']);
+
+            $childEnrollments = [$child, $enrollment];
+
+            return $childEnrollments;
+        }
+
+        public function getAllChildrenEnrolledForWeek($weekId) : array
+        {
+            $query = $this->db->prepare('
+                SELECT *
+                FROM inscription_child_cantine
+                WHERE dates_cantine_id = :weekId
+            ');
+            $parameters = [
+                'weekId' => $weekId
+            ];
+            $query->execute($parameters);
+
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+            $ChildrenEnrolled = [];
+
+            foreach($result as $enrollment)
+            {
+                $childEnrollments = $this->getEnrollmentForWeekByChildId($weekId, $enrollment['children_id']);
+
+                $ChildrenEnrolled[] = $childEnrollments;
+            }
+
+            return $ChildrenEnrolled;
+        }
     }
 ?>

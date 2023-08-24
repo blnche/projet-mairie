@@ -140,11 +140,22 @@
 
         public function Export() : void
         {
+            $weeks = [];
             foreach ($_POST['weekNumber'] as $week)
             {
-                $weekChildrenEnrolled = $this->cafeteriaDateManager->getAllChildrenEnrolledForWeek($week);
+                $week = $this->cafeteriaDateManager->getCafeteriaDateByWeekNumber($week);
+                $weekId = $week->getId();
+                $ChildrenEnrolled = $this->cafeteriaDateManager->getAllChildrenEnrolledForWeek($weekId);
+
+                $weeks[] = [$week, $ChildrenEnrolled];
             }
-            header('Location:index.php?route=admin/cantine');
+            //var_dump($weeks[0]);//first week
+            //var_dump($weeks[0][0]->getWeekOfYear());//week
+            //var_dump($weeks[0][1]);//childrenEnrolled
+            //var_dump($weeks[0][1][0]);//first child
+            //var_dump($weeks[0][1][0][0]->getAge());//child
+            //var_dump($weeks[0][1][0][1]->getWeekOfYear());//child enrollment for week
+            //header('Location:index.php?route=admin/cantine');
         }
 
         public function NewCafeteriaDates() : void

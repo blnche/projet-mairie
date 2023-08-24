@@ -33,7 +33,7 @@ $weeks = $this->data['cafeteria-weeks'];
                 <td>
                     <fieldset>
                         <label for="<?= $week->getWeekOfYear(); ?>"></label>
-                        <input type="checkbox" name="weekNumber" value="<?= $week->getWeekOfYear(); ?>">
+                        <input type="checkbox" name="weekNumber[]" value="<?= $week->getWeekOfYear(); ?>">
                     </fieldset>
                 </td>
             </tr>
