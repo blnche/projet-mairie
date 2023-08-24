@@ -2,6 +2,7 @@
     // Services
     require 'services/safeEcho.php';
     require 'services/weekStatusEcho.php';
+    require 'vendor/autoload.php';
 
     // Models
     require 'models/Address.php';

@@ -149,12 +149,47 @@
 
                 $weeks[] = [$week, $ChildrenEnrolled];
             }
+
+            $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+            $sheet = $spreadsheet->getActiveSheet();
+            $sheet->setCellValue('A1','Semaine');
+            $sheet->setCellValue('B1','Nom de famille');
+            $sheet->setCellValue('C1','Lundi');
+            $sheet->setCellValue('D1','Mardi');
+            $sheet->setCellValue('E1', 'Mercredi');
+            $sheet->setCellValue('F1','Jeudi');
+            $sheet->setCellValue('G1','Vendredi');
             //var_dump($weeks[0]);//first week
             //var_dump($weeks[0][0]->getWeekOfYear());//week
             //var_dump($weeks[0][1]);//childrenEnrolled
             //var_dump($weeks[0][1][0]);//first child
             //var_dump($weeks[0][1][0][0]->getAge());//child
             //var_dump($weeks[0][1][0][1]->getWeekOfYear());//child enrollment for week
+            $today = new DateTime();
+            $formattedDate = $today->format('Y-m-d');
+            $i = 2;
+            foreach($weeks as $week)
+            {
+                $sheet->setCellValue('A'.$i, $week[0]->getWeekOfYear());
+                foreach($week[1] as $child)
+                {
+                    $i++;
+                    $sheet->setCellValue('A'.$i, $child[0]->getLastName());
+                    $sheet->setCellValue('B'.$i, $child[0]->getFirstName());
+                    $sheet->setCellValue('C'.$i, $child[1]->getMonday());
+                    $sheet->setCellValue('D'.$i, $child[1]->getTuesday());
+                    $sheet->setCellValue('E'.$i, $child[1]->getWednesday());
+                    $sheet->setCellValue('F'.$i, $child[1]->getThursday());
+                    $sheet->setCellValue('G'.$i, $child[1]->getFriday());
+                }
+                $i++;
+            }
+
+            $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xlsx');
+            $writer->save('data/inscriptions-cantine/'.$formattedDate.'xlsx');
+
+            header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+            header('Content-Disposition: attachment; filename='.$formattedDate);
             //header('Location:index.php?route=admin/cantine');
         }
 
