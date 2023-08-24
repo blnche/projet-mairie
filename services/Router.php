@@ -113,13 +113,25 @@
                                 $this->pageController->Associations();
                             }
                         }
+                        else if (str_contains($route, 'lieux'))
+                        {
+                            if (str_contains($route, 'ajouter'))
+                            {
+                                $this->pageController->AddLocation();
+                            }
+                            else if (str_contains($route, 'modifier'))
+                            {
+                                var_dump($_GET['locationId']);
+                                $this->pageController->ModifyLocation(htmlspecialchars($_GET['locationId']));
+                            }
+                            else
+                            {
+                                $this->pageController->Lieux();
+                            }
+                        }
                         else if (str_contains($route, 'professionnels-locaux'))
                         {
                             $this->pageController->ProfessionnelsLocaux();
-                        }
-                        else if (str_contains($route, 'lieux'))
-                        {
-                            $this->pageController->Lieux();
                         }
                         else
                         {

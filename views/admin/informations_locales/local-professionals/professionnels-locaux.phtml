@@ -1,0 +1,31 @@
+<?php
+$localProfessionals = $this->data['local-professionals'];
+?>
+<h1><?= $this->pageTitle ?></h1>
+<table>
+    <thead>
+    <tr>
+        <th>Nom de l'entreprise</th>
+        <th>Secteur</th>
+        <th>CEO firstName</th>
+        <th>CEO LastName</th>
+        <th>actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php
+    foreach($localProfessionals as $localProfessional)
+    {
+        ?>
+        <tr>
+            <td> <?= $localProfessional->getName(); ?> </td>
+            <td> <?= $localProfessional->getSector(); ?> </td>
+            <td> <?= $localProfessional->getCeoFirstName(); ?> </td>
+            <td> <?= $localProfessional->getCeoLastName(); ?> </td>
+            <td><a href="index.php?route=admin/informations-locales/associations/modifier&associationId=<?= $localProfessional->getId(); ?>">modifier association</a></td>
+        </tr>
+        <?php
+    }
+    ?>
+    </tbody>
+</table>

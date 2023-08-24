@@ -12,15 +12,13 @@
          * @param string $type
          * @param string $telephone
          * @param string $description
-         * @param Address $address
          */
-        public function __construct(string $name, string $type, string $telephone, string $description, Address $address)
+        public function __construct(string $name, string $type, string $telephone, string $description)
         {
             $this->name = $name;
             $this->type = $type;
             $this->telephone = $telephone;
             $this->description = $description;
-            $this->address = $address;
         }
 
         /**

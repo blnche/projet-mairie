@@ -9,6 +9,7 @@
         private CafeteriaDateManager $cafeteriaDateManager;
         private AddressManager $addressManager;
         private AssociationManager $associationManager;
+        private LocationManager $locationManager;
 
         public function __construct()
         {
@@ -20,6 +21,7 @@
             $this->cafeteriaDateManager = new CafeteriaDateManager();
             $this->addressManager = new AddressManager();
             $this->associationManager = new AssociationManager();
+            $this->locationManager = new LocationManager();
         }
 
         public function events() : array
@@ -202,7 +204,7 @@
         public function Associations() : void
         {
             $associations = $this->associationManager->getAllAssociations();
-            $this->render('views/admin/informations_locales/associations.phtml', ['associations' => $associations], 'Infos locales - associations', 'admin');
+            $this->render('views/admin/informations_locales/associations/associations.phtml', ['associations' => $associations], 'Infos locales - associations', 'admin');
         }
 
         public function AddAssociation() : void
@@ -239,7 +241,7 @@
             }
             else
             {
-                $this->render('views/admin/informations_locales/_form-add-associations.phtml', [], 'Infos locales - associations', 'admin');
+                $this->render('views/admin/informations_locales/associations/_form-add-associations.phtml', [], 'Infos locales - associations', 'admin');
             }
         }
 
@@ -331,7 +333,7 @@
             }
             else
             {
-                $this->render('views/admin/informations_locales/_form-modify-association.phtml', [], 'Infos locales - associations', 'admin');
+                $this->render('views/admin/informations_locales/associations/_form-modify-association.phtml', [], 'Infos locales - associations', 'admin');
             }
         }
 
@@ -342,7 +344,137 @@
 
         public function Lieux() : void
         {
-            $this->render('views/admin/informations_locales/lieux.phtml', [], 'Infos locales - lieux', 'admin');
+            $locations = $this->locationManager->getAllLocations();
+            $this->render('views/admin/informations_locales/locations/lieux.phtml', ['locations' => $locations], 'Infos locales - lieux', 'admin');
+        }
+
+        public function AddLocation() : void
+        {
+            if(isset($_POST['registerLocation']))
+            {
+                //Create new address
+                $addressString = htmlspecialchars($_POST['address']);
+                $codePostal = htmlspecialchars($_POST['code-postal']);
+                $ville = htmlspecialchars($_POST['ville']);
+
+                $address = new Address(
+                    $codePostal,
+                    $ville,
+                    $addressString
+                );
+                $newAddress = $this->addressManager->addAddress($address);
+
+                //Create new location
+                $name = htmlspecialchars($_POST['name']);
+                $type = htmlspecialchars($_POST['type']);
+                $telephone = htmlspecialchars($_POST['telephone']);
+                $description = htmlspecialchars($_POST['description']);
+
+                $location = new Location(
+                    $name,
+                    $type,
+                    $telephone,
+                    $description
+                );
+                $location->setAddress($newAddress);
+                $this->locationManager->addLocation($location);
+
+                header('Location:index.php?route=admin/informations-locales/lieux');
+            }
+            else
+            {
+                $this->render('views/admin/informations_locales/locations/_form-add-location.phtml', [], 'Infos locales - locations', 'admin');
+            }
+        }
+
+        public function ModifyLocation(int $locationId) : void
+        {
+            if(isset($_POST['modifyLocation']))
+            {
+                $locationCurrentInformations = $this->locationManager->getLocationById($locationId);
+                $locationCurrentAddress = $locationCurrentInformations->getAddress();
+
+                //check if field for address have been filled and then make a new address object OR if not filled get the infos from previous address
+                if (!empty($_POST['address']))
+                {
+                    $addressString = htmlspecialchars($_POST['address']);
+                }
+                else {
+                    $addressString = $locationCurrentAddress->getAddress();
+                }
+
+                if (!empty($_POST['code-postal']))
+                {
+                    $codePostal = htmlspecialchars($_POST['code-postal']);
+                }
+                else {
+                    $codePostal = $locationCurrentAddress->getCodePostal();
+                }
+
+                if (!empty($_POST['ville']))
+                {
+                    $ville = htmlspecialchars($_POST['ville']);
+                }
+                else {
+                    $ville = $locationCurrentAddress->getCommune();
+                }
+
+                $address = new Address(
+                    $codePostal,
+                    $ville,
+                    $addressString
+                );
+                $address->setId($locationCurrentAddress->getId());
+
+                $addressUpdated = $this->addressManager->editAddress($address);
+
+                if (!empty($_POST['name']))
+                {
+                    $name = htmlspecialchars($_POST['name']);
+                }
+                else {
+                    $name = $locationCurrentInformations->getName();
+                }
+
+                if (!empty($_POST['type']))
+                {
+                    $type = htmlspecialchars($_POST['type']);
+                }
+                else {
+                    $type = $locationCurrentInformations->getType();
+                }
+                if (!empty($_POST['telephone']))
+                {
+                    $telephone = htmlspecialchars($_POST['telephone']);
+                }
+                else {
+                    $telephone = $locationCurrentInformations->getTelephone();
+                }
+                if (!empty($_POST['description']))
+                {
+                    $description = htmlspecialchars($_POST['description']);
+                }
+                else {
+                    $description = $locationCurrentInformations->getDescription();
+                }
+
+                $location = new Location(
+                    $name,
+                    $type,
+                    $telephone,
+                    $description
+                );
+                $location->setAddress($addressUpdated);
+                $location->setId($locationCurrentInformations->getId());
+
+                $this->locationManager->editLocation($location);
+
+                header('Location:index.php?route=admin/informations-locales/lieux');
+            }
+            else
+            {
+                $this->render('views/admin/informations_locales/locations/_form-modify-location.phtml', [], 'Infos locales - locations', 'admin');
+            }
         }
     }
 ?>

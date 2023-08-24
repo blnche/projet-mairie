@@ -1,0 +1,31 @@
+<form method="POST" action="index.php?route=admin/informations-locales/lieux/ajouter">
+    <fieldset>
+        <label for="name">Nom</label>
+        <input type="text" name="name" required>
+    </fieldset>
+    <fieldset>
+        <label for="type">Type</label>
+        <input type="text" name="type">
+    </fieldset>
+    <fieldset>
+        <label for="telephone">Telephone</label>
+        <input type="tel" name="telephone">
+    </fieldset>
+    <fieldset>
+        <label for="description">Description</label>
+        <textarea name="description" id="description" cols="30" rows="10"></textarea>
+    </fieldset>
+    <fieldset>
+        <label for="address">Adresse postal :</label>
+        <input type="text" name="address" required>
+    </fieldset>
+    <fieldset>
+        <label for="code-postal">Code postal :</label>
+        <input type="text" name="code-postal" required>
+    </fieldset>
+    <fieldset>
+        <label for="ville">Ville/Commune :</label>
+        <input type="text" name="ville" required>
+    </fieldset>
+    <input type="submit" name="registerLocation" value="Enregistrer nouveau lieu">
+</form>

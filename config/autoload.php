@@ -28,6 +28,7 @@
     require 'managers/ChildManager.php';
     require 'managers/CafeteriaDateManager.php';
     require 'managers/AssociationManager.php';
+    require 'managers/LocationManager.php';
 
     // Controllers
     require 'controllers/AbstractController.php';

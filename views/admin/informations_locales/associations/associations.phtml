@@ -19,7 +19,7 @@ $associations = $this->data['associations'];
         ?>
         <tr>
             <td> <?= $association->getName(); ?> </td>
-            <td> <?= $association->getPresidentLastName().' '.$association->getPresidentFirstName(); ?> </td>
+            <td> <?= $association->getPresidentLastName() . ' associations.phtml' .$association->getPresidentFirstName(); ?> </td>
             <td><a href="index.php?route=admin/informations-locales/associations/modifier&associationId=<?= $association->getId(); ?>">modifier association</a></td>
         </tr>
     <?php
