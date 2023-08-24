@@ -149,6 +149,12 @@
 
                 $weeks[] = [$week, $ChildrenEnrolled];
             }
+            //var_dump($weeks[0]);//first week
+            //var_dump($weeks[0][0]->getWeekOfYear());//week
+            //var_dump($weeks[0][1]);//childrenEnrolled
+            //var_dump($weeks[0][1][0]);//first child
+            //var_dump($weeks[0][1][0][0]->getAge());//child
+            //var_dump($weeks[0][1][0][1]->getWeekOfYear());//child enrollment for week
 
             $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
             $sheet = $spreadsheet->getActiveSheet();
@@ -159,12 +165,6 @@
             $sheet->setCellValue('E1', 'Mercredi');
             $sheet->setCellValue('F1','Jeudi');
             $sheet->setCellValue('G1','Vendredi');
-            //var_dump($weeks[0]);//first week
-            //var_dump($weeks[0][0]->getWeekOfYear());//week
-            //var_dump($weeks[0][1]);//childrenEnrolled
-            //var_dump($weeks[0][1][0]);//first child
-            //var_dump($weeks[0][1][0][0]->getAge());//child
-            //var_dump($weeks[0][1][0][1]->getWeekOfYear());//child enrollment for week
             $today = new DateTime();
             $formattedDate = $today->format('Y-m-d');
             $i = 2;
