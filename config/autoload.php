@@ -40,5 +40,5 @@
     require 'controllers/AuthenticationController.php';
 
     // Router
-    require 'services/Router.php';
+    require 'services/Router2.php';
 ?>

@@ -16,30 +16,38 @@
         private function splitRouteAndParameters(string $route) : array
         {
             $routeAndParams = [];
-            $routeAndParams["route"] = null;
-            $routeAndParams["categorySlug"] = null;
-            $routeAndParams["productSlug"] = null;
+            $routeAndParams['route'] = null;
+            $routeAndParams['espace-famille'] = null;
+            $routeAndParams['admin'] = null;
+            $routeAndParams['subRoute'] = null;
+            $routeAndParams['compte-rendu'] = null;
+            $routeAndParams['bulletin'] = null;
+            $routeAndParams['projet'] = null;
+            $routeAndParams['article'] = null;
+            $routeAndParams['association'] = null;
+            $routeAndParams['lieu'] = null;
+            $routeAndParams['professionnel-local'] = null;
+            $routeAndParams['utilisateur'] = null;
+            $routeAndParams['enfant'] = null;
+            $routeAndParams['semaine'] = null;
 
             if(strlen($route) > 0) // si la chaine de la route n'est pas vide (donc si ça n'est pas la home)
             {
                 $tab = explode("/", $route);
 
-                if() // écrire une condition pour le cas où la route commence par "categories"
+                if($tab[0] === 'admin')
                 {
-                    // mettre les bonnes valeurs dans le tableau
-                    $routeAndParams["route"] = "";
-                    $routeAndParams["categorySlug"] = "";
-                }
-                else if() // écrire une condition pour le cas où la route commence par "produits"
-                {
-                    // mettre les bonnes valeurs dans le tableau
-                    $routeAndParams["route"] = "";
-                    $routeAndParams["productSlug"] = "";
+                    $routeAndParams['route'] = 'admin';
+
+                    if(isset($tab[1]) && $tab[1] === 'informations-locales')
+                    {
+                        $routeAndParams['admin'] = $tab[1];
+                    }
                 }
             }
             else
             {
-                $routeAndParams["route"] = "";
+                $routeAndParams['route'] = '';
             }
 
             return $routeAndParams;
@@ -47,6 +55,8 @@
 
         public function checkRoute($route) : void
         {
+            $routeTab = $this->splitRouteAndParameters($route);
+
             // AUTHENTICATION
             if (str_contains($route, 'register'))
             {
@@ -62,7 +72,7 @@
             }
 
             // PUBLIC
-            else if ($route === 'accueil' || $route === '')
+            else if ($routeTab['route'] === 'accueil' || $routeTab['route'] === '')
             {
                 $this->pageController->publicHomepage();
             }
@@ -110,7 +120,7 @@
             }
 
             // ADMIN
-            else if(str_starts_with($route,'admin'))
+            else if($routeTab['route'] === 'admin')
             {
                 //check if session user is empty, if yes redirect to login, else check for the rest of the route or call dashboard
                 if (isset($_SESSION['user_id']) && (($_SESSION['user_role'] === 'ROLE_ADMIN') || ($_SESSION['user_role'] === 'ROLE_SUPER_ADMIN')))
@@ -127,7 +137,7 @@
                     {
                         $this->fileController->uploadFile($_GET['file']);
                     }
-                    else if (str_contains($route, 'informations-locales'))
+                    else if ($routeTab['admin'] === 'informations-locales')
                     {
                         if (str_contains($route, 'associations'))
                         {

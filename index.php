@@ -3,10 +3,10 @@
 
     require 'config/autoload.php';
 
-    $router = new Router();
-    if(isset($_GET['route']))
+    $router = new Router2();
+    if(isset($_GET['path']))
     {
-        $router->checkRoute($_GET['route']);
+        $router->checkRoute($_GET['path']);
     }
     else
     {
