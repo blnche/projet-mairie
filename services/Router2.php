@@ -17,32 +17,266 @@
         {
             $routeAndParams = [];
             $routeAndParams['route'] = null;
-            $routeAndParams['espace-famille'] = null;
-            $routeAndParams['admin'] = null;
             $routeAndParams['subRoute'] = null;
-            $routeAndParams['compte-rendu'] = null;
-            $routeAndParams['bulletin'] = null;
-            $routeAndParams['projet'] = null;
-            $routeAndParams['article'] = null;
-            $routeAndParams['association'] = null;
-            $routeAndParams['lieu'] = null;
-            $routeAndParams['professionnel-local'] = null;
-            $routeAndParams['utilisateur'] = null;
-            $routeAndParams['enfant'] = null;
-            $routeAndParams['semaine'] = null;
+            $routeAndParams['admin'] = null;
+            $routeAndParams['familySpace'] = null;
+            $routeAndParams['authentication'] = null;
+            $routeAndParams['action'] = null;
 
-            if(strlen($route) > 0) // si la chaine de la route n'est pas vide (donc si ça n'est pas la home)
+            $routeAndParams['user'] = null;
+            $routeAndParams['child'] = null;
+            $routeAndParams['week'] = null;
+
+            $routeAndParams['councilReportSlug'] = null;
+            $routeAndParams['bulletinSlug'] = null;
+            $routeAndParams['projectSlug'] = null;
+            $routeAndParams['postSlug'] = null;
+            $routeAndParams['associationSlug'] = null;
+            $routeAndParams['locationSlug'] = null;
+            $routeAndParams['localProfessionalSlug'] = null;
+
+            if(strlen($route) > 0)
             {
                 $tab = explode("/", $route);
 
-                if($tab[0] === 'admin')
+                if ($tab[0] === 'authentification')
+                {
+                    $routeAndParams['route'] = $tab[0];
+
+                    if(isset($tab[1]))
+                    {
+                        if($tab[1] === 'se-connecter')
+                        {
+                            $routeAndParams['authentication'] = $tab[1];
+                        }
+                        else if ($tab[1] === 'se-deconnecter')
+                        {
+                            $routeAndParams['authentication'] = $tab[1];
+                        }
+                        else if ($tab[1] === 'enregistrer-nouveau-compte')
+                        {
+                            $routeAndParams['authentication'] = $tab[1];
+                        }
+                    }
+                }
+                else if($tab[0] === 'admin')
                 {
                     $routeAndParams['route'] = 'admin';
 
-                    if(isset($tab[1]) && $tab[1] === 'informations-locales')
+                    if(isset($tab[1]))
                     {
-                        $routeAndParams['admin'] = $tab[1];
+                        if ($tab[1] === 'modifier-email')
+                        {
+                            $routeAndParams['admin'] = $tab[1];
+                        }
+                        else if ($tab[1] === 'ajouter-fichier')
+                        {
+                            $routeAndParams['admin'] = $tab[1];
+                        }
+                        else if ($tab[1] === 'bulletins-municipaux')
+                        {
+                            $routeAndParams['admin'] = $tab[1];
+
+                            if(isset($tab[2]))
+                            {
+                                $routeAndParams['bulletinSlug'] = $tab[2];
+                            }
+                        }
+                        else if ($tab[1] === 'comptes-rendus-conseil-municipaux')
+                        {
+                            $routeAndParams['admin'] = $tab[1];
+
+                            if(isset($tab[2]))
+                            {
+                                $routeAndParams['councilReportSlug'] = $tab[2];
+                            }
+                        }
+                        else if($tab[1] === 'informations-locales')
+                        {
+                            $routeAndParams['admin'] = $tab[1];
+
+                            if(isset($tab[2]))
+                            {
+                                if($tab[2] === 'associations')
+                                {
+                                    $routeAndParams['subRoute'] = $tab[2];
+
+                                    if(isset($tab[3]))
+                                    {
+                                        if ($tab[3] === 'ajouter')
+                                        {
+                                            $routeAndParams['route'] = $tab[3];
+                                        }
+                                        else if ($tab[3] === 'modifier')
+                                        {
+                                            $routeAndParams['route'] = $tab[3];
+                                            $routeAndParams['associationSlug'] = $tab[4];
+                                        }
+                                    }
+                                }
+                                else if ($tab[2] === 'lieux')
+                                {
+                                    $routeAndParams['subRoute'] = $tab[2];
+
+                                    if(isset($tab[3]))
+                                    {
+                                        if ($tab[3] === 'ajouter')
+                                        {
+                                            $routeAndParams['route'] = $tab[3];
+                                        }
+                                        else if ($tab[3] === 'modifier')
+                                        {
+                                            $routeAndParams['route'] = $tab[3];
+                                            $routeAndParams['locationSlug'] = $tab[4];
+                                        }
+                                    }
+                                }
+                                else if ($tab[2] === 'professionnels-locaux')
+                                {
+                                    $routeAndParams['subRoute'] = $tab[2];
+
+                                    if(isset($tab[3]))
+                                    {
+                                        if ($tab[3] === 'ajouter')
+                                        {
+                                            $routeAndParams['route'] = $tab[3];
+                                        }
+                                        else if ($tab[3] === 'modifier')
+                                        {
+                                            $routeAndParams['route'] = $tab[3];
+                                            $routeAndParams['localProfessionalSlug'] = $tab[4];
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
+                }
+                else if ($tab[0] === 'espace-famille')
+                {
+                    $routeAndParams['route'] = $tab[0];
+                    $routeAndParams['user'] = $tab[1];
+
+                    if(isset($tab[2]))
+                    {
+                        if ($tab[2] === 'enfants')
+                        {
+                            $routeAndParams['familySpace'] = $tab[2];
+
+                            if(isset($tab[3]))
+                            {
+                                if ($tab[3] === 'ajouter')
+                                {
+                                    $routeAndParams['action'] = $tab[3];
+                                }
+                                else if ($tab[3] === 'modifier')
+                                {
+                                    $routeAndParams['action'] = $tab[3];
+                                    $routeAndParams['child'] = $tab[4];
+                                }
+                                else {
+                                    $routeAndParams['child'] = $tab[3];
+                                }
+                            }
+                        }
+                        else if ($tab[2] === 'cantine')
+                        {
+                            $routeAndParams['familySpace'] = $tab[2];
+
+                            if(isset($tab[3]))
+                            {
+                                if ($tab[3] === 'inscrire')
+                                {
+                                    $routeAndParams['action'] = $tab[3];
+                                    $routeAndParams['week'] = $tab[4];
+                                }
+                                else if ($tab[3] === 'modifier')
+                                {
+                                    $routeAndParams['action'] = $tab[3];
+                                    $routeAndParams['week'] = $tab[4];
+                                }
+                            }
+                        }
+                    }
+                }
+                else if ($tab[0] === 'mairie')
+                {
+                    $routeAndParams['route'] = $tab[0];
+
+                    if (isset($tab[1]))
+                    {
+                        if ($tab[1] === 'conseil-municipal')
+                        {
+                            $routeAndParams['subRoute'] = $tab[1];
+
+                            if (isset($tab[2]))
+                            {
+                                if ($tab[2] === 'comptes-rendus-conseil-municipaux')
+                                {
+                                    $routeAndParams[''] = $tab[2];
+
+                                    if (isset($tab[3]))
+                                    {
+                                        $routeAndParams['councilReportSlug'] = $tab[3];
+                                    }
+                                }
+                                else if ($tab[2] === 'bulletins-municipaux')
+                                {
+                                    $routeAndParams[''] = $tab[2];
+
+                                    if (isset($tab[3]))
+                                    {
+                                        $routeAndParams['bulletinSlug'] = $tab[3];
+                                    }
+                                }
+                            }
+                        }
+                        else if ($tab[1] === 'services-municipaux')
+                        {
+                            $routeAndParams['subRoute'] = $tab[1];
+                        }
+                    }
+                }
+                else if ($tab[0]  === 'projets')
+                {
+                    $routeAndParams['route'] = $tab[0];
+
+                    if (isset($tab[1]))
+                    {
+                        $routeAndParams['projectSlug'] = $tab[1];
+                    }
+                }
+                else if ($tab[0]  === 'pratique')
+                {
+                    $routeAndParams['route'] = $tab[0];
+                    if (isset($tab[1]))
+                    {
+                        $routeAndParams['postSlug'] = $tab[1];
+                    }
+                }
+                else if ($tab[0]  === 'vivre')
+                {
+                    $routeAndParams['route'] = $tab[0];
+                    if (isset($tab[1]))
+                    {
+                        $routeAndParams['postSlug'] = $tab[1];
+                    }
+                }
+                else if ($tab[0]  === 'decouvrir')
+                {
+                    $routeAndParams['route'] = $tab[0];
+                    if (isset($tab[1]))
+                    {
+                        $routeAndParams['postSlug'] = $tab[1];
+                    }
+                }
+                else if ($tab[0]  === 'mention-legales')
+                {
+                    $routeAndParams['route'] = $tab[0];
+                }
+                else if ($tab[0]  === 'politique-confidentialité')
+                {
+                    $routeAndParams['route'] = $tab[0];
                 }
             }
             else
@@ -58,17 +292,20 @@
             $routeTab = $this->splitRouteAndParameters($route);
 
             // AUTHENTICATION
-            if (str_contains($route, 'register'))
+            if($routeTab['route'] === 'authentification')
             {
-                $this->authenticationController->register();
-            }
-            else if (str_contains($route,'login'))
-            {
-                $this->authenticationController->login();
-            }
-            else if (str_contains($route, 'logout'))
-            {
-                $this->authenticationController->logout();
+                if ($routeTab['authentication'] === 'enregistrer-nouveau-compte')
+                {
+                    $this->authenticationController->register();
+                }
+                else if ($routeTab['authentication'] === 'se-connecter')
+                {
+                    $this->authenticationController->login();
+                }
+                else if ($routeTab['authentication'] === 'se-deconnecter')
+                {
+                    $this->authenticationController->logout();
+                }
             }
 
             // PUBLIC
@@ -125,27 +362,41 @@
                 //check if session user is empty, if yes redirect to login, else check for the rest of the route or call dashboard
                 if (isset($_SESSION['user_id']) && (($_SESSION['user_role'] === 'ROLE_ADMIN') || ($_SESSION['user_role'] === 'ROLE_SUPER_ADMIN')))
                 {
-                    if (str_contains($route,'comptes-rendus-conseils-municipaux'))
+                    if ($routeTab['admin'] === 'modifier-email')
                     {
-                        $this->pageController->MunicipalCouncilReports();
+                        //user modifier email
                     }
-                    else if (str_contains($route,'bulletins-municipaux'))
-                    {
-                        $this->pageController->MunicipalBulletins();
-                    }
-                    else if (str_contains($route,'ajouter-un-fichier'))
+                    else if ($routeTab['admin'] === 'ajouter-un-fichier')
                     {
                         $this->fileController->uploadFile($_GET['file']);
                     }
+                    else if ($routeTab['admin'] === 'bulletins-municipaux')
+                    {
+                        $this->pageController->MunicipalBulletins();
+
+                        if(isset($routeTab['bulletinSlug']))
+                        {
+                            //show bulletin in pdf
+                        }
+                    }
+                    else if ($routeTab['admin'] === 'comptes-rendus-conseils-municipaux')
+                    {
+                        $this->pageController->MunicipalCouncilReports();
+
+                        if(isset($routeTab['councilReportSlug']))
+                        {
+                            //show councilreport in pdf
+                        }
+                    }
                     else if ($routeTab['admin'] === 'informations-locales')
                     {
-                        if (str_contains($route, 'associations'))
+                        if ($routeTab['subRoute'] === 'associations')
                         {
-                            if (str_contains($route, 'ajouter'))
+                            if ($routeTab['action'] === 'ajouter')
                             {
                                 $this->pageController->AddAssociation();
                             }
-                            else if (str_contains($route, 'modifier'))
+                            else if ($routeTab['action'] === 'modifier')
                             {
                                 var_dump($_GET['associationId']);
                                 $this->pageController->ModifyAssociation(htmlspecialchars($_GET['associationId']));
