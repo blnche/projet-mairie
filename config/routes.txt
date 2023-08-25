@@ -22,7 +22,7 @@
 
 /mention-legales
 
-/politique-confidentialité
+/politiques-confidentialité
 
 /admin
 /admin/modifier-email
@@ -41,6 +41,9 @@
 /admin/informations-locales/professionnels-locaux
 /admin/informations-locales/professionnels-locaux/ajouter
 /admin/informations-locales/professionnels-locaux/modifier/:localProfessional
+/admin/cantine
+/admin/cantine/creer-annee-scolaire
+/admin/cantine/exporter
 
 /espace-famille/:userLastName
 /espace-famille/:userLastName/enfants
