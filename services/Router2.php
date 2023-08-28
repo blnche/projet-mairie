@@ -220,9 +220,9 @@ class Router2
                                 $routeAndParams['action'] = $tab[3];
                             } else if ($tab[3] === 'modifier') {
                                 $routeAndParams['action'] = $tab[3];
-                                $routeAndParams['child'] = $tab[4];
+                                $routeAndParams['child'] = intval($tab[4]);
                             } else {
-                                $routeAndParams['child'] = $tab[3];
+                                $routeAndParams['child'] = intval($tab[3]);
                             }
                         }
                     } else if ($tab[2] === 'cantine') {
@@ -388,7 +388,8 @@ class Router2
                         $this->adminController->localInformation();
                     }
                 } else if ($routeTab['admin'] === 'cantine') {
-                    if ($routeTab['action'] === 'creer-annee-scolaire') {//render form if not submitted, if submitted send back to cantine
+                    if ($routeTab['action'] === 'creer-annee-scolaire') {
+                        //render form if not submitted, if submitted send back to cantine
                         $this->adminController->newCafeteriaDates();
                     } else if ($routeTab['action'] === 'exporter') {
                         $this->adminController->export();
@@ -397,7 +398,6 @@ class Router2
                     }
                 } else {
                     $this->adminController->adminHomepage();
-                    //require './views/admin/dashboard.phtml';//need a render instead to pass into data stuff for dashboard
                 }
             } else {
                 header('Location:/authentification/se-connecter');
@@ -415,13 +415,13 @@ class Router2
                     } else if ($routeTab['action'] === 'ajouter') {
                         $this->userController->createChild();
                     } else {
-                        $this->userController->Children($_SESSION['user_id']);
+                        $this->userController->readChildren($_SESSION['user_id']);
                     }
                 } else if ($routeTab['familySpace'] === 'cantine') {
                     if ($routeTab['action'] === 'inscrire') {
-                        $this->pageController->CafeteriaEnrollment();
+                        $this->pageController->cafeteriaEnrollment();
                     } else if ($routeTab['action'] === 'modifier') {
-                        $this->userController->CafeteriaEnrollmentModify();
+                        $this->userController->cafeteriaEnrollmentModify();
                     } else {
                         $this->userController->CafeteriaDates();
                     }

@@ -3,7 +3,7 @@ $week = $this->data['week'];
 $children = $this->data['children'];
 ?>
 <h1> cantine semaine <?= $_GET['semaine']; ?></h1>
-<form method="POST" action=" /espace-famille/<?= $_SESSION['user_lastName'] ?>/cantine/modifier-semaine/semaine=<?= $week->getWeekOfYear(); ?>"">
+<form method="POST" action=" /espace-famille/<?= $_SESSION['user_lastName'] ?>/cantine/inscrire/<?= $week->getWeekOfYear(); ?>">
     <fieldset>
         <label for="enfant">Choississez quel enfant inscrire</label>
         <select name="enfant" id="enfant">
@@ -30,35 +30,7 @@ $children = $this->data['children'];
         </thead>
         <tbody>
             <tr>
-                <td> <?php
-                    if($week->getMonday() === "Yes")
-                    {
-                        echo '✅';
-                    }
-                    else if ($week->getMonday() === "No")
-                    {
-                        echo '❌';
-                    }
-                    else if ($week->getMonday() === "Holiday")
-                    {
-                        ?>
-                        <fieldset>
-                            <label for="monday">(Vacances/Férié)</label>
-                            <input type="checkbox" name="mondayPlacebo" value="Holiday" checked disabled>
-                            <input type="hidden" value="Holiday" name="monday">
-                        </fieldset>
-                        <?php
-                    }
-                    else
-                    {
-                        ?>
-                        <fieldset>
-                            <label for="monday"></label>
-                            <input type="checkbox" name="monday" value="Yes">
-                        </fieldset>
-                        <?php
-                    }
-                    ?>
+                <td> <?= checkStatus($week->getMonday(), 'form', 'monday'); ?>
                 </td>
                 <td> <?php
                     if($week->getTuesday() === "Yes")
@@ -184,5 +156,5 @@ $children = $this->data['children'];
             </tr>
         </tbody>
     </table>
-    <input type="submit" value="Inscrire l'enfant">
+    <input type="submit" name="enrollChild" value="Inscrire l'enfant">
 </form>

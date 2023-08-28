@@ -12,7 +12,7 @@
 
         public function register() : void
         {
-            if(isset($_POST['register']))
+            if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register']))
             {
                 //Create new address
                 $addressString = htmlspecialchars($_POST['address']);
@@ -50,7 +50,7 @@
         }
         public function login() : void
         {
-            if (isset($_POST['login']))
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']))
             {
                 //Find user
                 $email = htmlspecialchars($_POST['email']);
@@ -71,28 +71,14 @@
                     //Check role to render corresponding dashboard
                     if ($role === 'ROLE_SUPER_ADMIN' || $role === 'ROLE_ADMIN')
                     {
-                        //$this->render('views/admin/dashboard.phtml',['user' => $user],'Tableau de bord Admin', 'admin');
                         header('Location:/admin');
-                    }
-                    else if ($role === 'ROLE_USER')
-                    {
-                        //$this->render('views/user/dashboard.phtml',[],'Tableau de bord de', 'user');
+                    } else if ($role === 'ROLE_USER') {
                         header('Location:/espace-famille/'.$_SESSION['user_lastName']);
                     }
+                } else {
+                    echo "L'un des champs est erroné";
                 }
-                else
-                {
-                    echo "L'adresse mail ou le mot de passe est erroné";
-                }
-
-
-
-
-                //when we need to echo lastname user or in the route have their name too, we can retrieve user infos in methods of controller rendering the page called
-
-            }
-            else
-            {
+            } else {
                 $this->render('views/authentication/login.phtml',[],'Se connecter', 'authentication');
             }
         }

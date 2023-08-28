@@ -57,7 +57,7 @@ class AdminController extends AbstractController
         $this->render('views/admin/informations_locales/dashboard.phtml', [], 'Infos locales', 'admin');
     }
 
-    //// ASSOCIATIONS
+    /// ASSOCIATIONS
     public function associations() : void
     {
         $associations = $this->associationManager->getAllAssociations();
@@ -65,7 +65,7 @@ class AdminController extends AbstractController
     }
     public function addAssociation() : void
     {
-        if(isset($_POST['addAssociation']))
+        if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['addAssociation']))
         {
             //Create new address
             $addressString = htmlspecialchars($_POST['address']);
@@ -102,7 +102,7 @@ class AdminController extends AbstractController
     }
     public function modifyAssociation(int $associationId) : void
     {
-        if(isset($_POST['modifyAssociation']))
+        if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modifyAssociation']))
         {
             $associationCurrentInformations = $this->associationManager->getAssociationById($associationId);
             $associationCurrentAddress = $associationCurrentInformations->getAddress();
@@ -192,7 +192,7 @@ class AdminController extends AbstractController
         }
     }
 
-    //// LOCAL PROFESSIONALS
+    /// LOCAL PROFESSIONALS
     public function localProfessionals() : void
     {
         $localProfessionals = $this->localProfessionalManager->getAllLocalProfessionals();
@@ -200,7 +200,7 @@ class AdminController extends AbstractController
     }
     public function addLocalProfessional() : void
     {
-        if(isset($_POST['registerLocalProfessional']))
+        if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['registerLocalProfessional']))
         {
             //Create new address
             $addressString = htmlspecialchars($_POST['address']);
@@ -238,7 +238,7 @@ class AdminController extends AbstractController
     }
     public function modifyLocalProfessional(int $localProfessionalId) : void
     {
-        if(isset($_POST['modifyLocalProfessional']))
+        if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modifyLocalProfessional']))
         {
             $localProfessionalCurrentInformations = $this->localProfessionalManager->getLocalProfessionalById($localProfessionalId);
             $localProfessionalCurrentAddress = $localProfessionalCurrentInformations->getAddress();
@@ -326,7 +326,7 @@ class AdminController extends AbstractController
         }
     }
 
-    //// LOCATIONS
+    /// LOCATIONS
     public function locations() : void
     {
         $locations = $this->locationManager->getAllLocations();
@@ -334,7 +334,7 @@ class AdminController extends AbstractController
     }
     public function addLocation() : void
     {
-        if(isset($_POST['registerLocation']))
+        if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['registerLocation']))
         {
             //Create new address
             $addressString = htmlspecialchars($_POST['address']);
@@ -372,7 +372,7 @@ class AdminController extends AbstractController
     }
     public function modifyLocation(int $locationId) : void
     {
-        if(isset($_POST['modifyLocation']))
+        if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modifyLocation']))
         {
             $locationCurrentInformations = $this->locationManager->getLocationById($locationId);
             $locationCurrentAddress = $locationCurrentInformations->getAddress();
@@ -470,7 +470,7 @@ class AdminController extends AbstractController
     public function newCafeteriaDates() : void
     {
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST')
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['createNewYear']))
         {
             $yearStart = htmlspecialchars($_POST['year-start']);
             $yearEnd = htmlspecialchars($_POST['year-end']);

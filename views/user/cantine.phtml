@@ -47,12 +47,12 @@ foreach ($weeks as $week)
 
                     <td> <?= $data->getWeekOfYear(); ?></td>
                     <!--have another td that takes all td with days inside of it inside a table and tr element-->
-                    <td> <?php checkStatus($data->getMonday()); ?> </td>
-                    <td> <?php checkStatus($data->getTuesday()); ?> </td>
-                    <td> <?php checkStatus($data->getWednesday()); ?> </td>
-                    <td> <?php checkStatus($data->getThursday()); ?> </td>
-                    <td> <?php checkStatus($data->getFriday()); ?> </td>
-                    <td><a href=" /espace-famille/<?= $_SESSION['user_lastName'] ?>/cantine/modifier-semaine&semaine=<?= $data->getWeekOfYear(); ?>">Modifier</a></td>
+                    <td> <?= checkStatus($data->getMonday(), '', 'monday'); ?> </td>
+                    <td> <?= checkStatus($data->getTuesday(), '', 'tuesday'); ?> </td>
+                    <td> <?= checkStatus($data->getWednesday(), '', 'wednesday'); ?> </td>
+                    <td> <?= checkStatus($data->getThursday(), '', 'thursday'); ?> </td>
+                    <td> <?= checkStatus($data->getFriday(),'', 'friday'); ?> </td>
+                    <td><a href=" /espace-famille/<?= $_SESSION['user_lastName'] ?>/cantine/modifier/<?= $data->getWeekOfYear(); ?>">Modifier</a></td>
                     <td> <?= $firstName ?> </td>
                 </tr>
                 <?php
@@ -65,12 +65,12 @@ foreach ($weeks as $week)
                 ?>
                 <tr>
                     <td> Base <?= $data->getWeekOfYear(); ?></td>
-                    <td> <?php checkStatus($data->getMonday()); ?> </td>
-                    <td> <?php checkStatus($data->getTuesday()); ?> </td>
-                    <td> <?php checkStatus($data->getWednesday()); ?> </td>
-                    <td> <?php checkStatus($data->getThursday()); ?> </td>
-                    <td> <?php checkStatus($data->getFriday()); ?> </td>
-                    <td><a href=" /espace-famille/<?= $_SESSION['user_lastName'] ?>/cantine/modifier-semaine&semaine=<?= $data->getWeekOfYear(); ?>">Modifier</a></td>
+                    <td> <?= checkStatus($data->getMonday(), '', 'monday'); ?> </td>
+                    <td> <?= checkStatus($data->getTuesday(), '', 'tuesday'); ?> </td>
+                    <td> <?= checkStatus($data->getWednesday(), '', 'wednesday'); ?> </td>
+                    <td> <?= checkStatus($data->getThursday(), '', 'thursday'); ?> </td>
+                    <td> <?= checkStatus($data->getFriday(),'', 'friday'); ?> </td>
+                    <td><a href=" /espace-famille/<?= $_SESSION['user_lastName'] ?>/cantine/modifier/<?= $data->getWeekOfYear(); ?>">Modifier</a></td>
                     <td> <?= $firstName ?> </td>
                 </tr>
                 <?php
@@ -118,10 +118,10 @@ foreach ($weeks as $week)
         <tr>
             <td> <?= $week->getWeekOfYear(); ?></td>
             <!--have another td that takes all td with days inside of it inside a table and tr element-->
-            <td> <?php checkStatus($week->getMonday()); ?></td>
-            <td> <?php checkStatus($week->getTuesday()); ?></td>
-            <td> <?php checkStatus($week->getWednesday()); ?></td>
-            <td> <?php checkStatus($week->getThursday()); ?> </td>
+            <td> <?= checkStatus($data->getMonday(), '', 'monday'); ?> </td>
+            <td> <?= checkStatus($data->getTuesday(), '', 'tuesday'); ?> </td>
+            <td> <?= checkStatus($data->getWednesday(), '', 'wednesday'); ?> </td>
+            <td> <?= checkStatus($data->getThursday(), '', 'thursday'); ?> </td>
             <td>
                 <ul>
                     <?php
@@ -142,13 +142,13 @@ foreach ($weeks as $week)
                                 {
                                     $foundMatch = true;
                                     //echo 'not empty';
-                                    checkStatus($enrollment->getFriday());
+                                    echo checkStatus($enrollment->getFriday(), '', 'friday');
                                     break;
                                 }
                                 else
                                 {
                                     //echo 'empty';
-                                    checkStatus($week->getFriday());
+                                    echo checkStatus($week->getFriday(), '', 'friday');
                                 }
                             }
                             ?>
@@ -158,7 +158,7 @@ foreach ($weeks as $week)
                     ?>
                 </ul>
             </td>
-            <td><a href=" /espace-famille/<?= $_SESSION['user_lastName'] ?>/cantine/modifier-semaine&semaine=<?= $week->getWeekOfYear(); ?>">Modifier</a></td>
+            <td><a href="/espace-famille/<?= $_SESSION['user_lastName'] ?>/cantine/modifier/<?= $week->getWeekOfYear(); ?>">Modifier</a></td>
             <td>
                 <ul>
                     <?php
