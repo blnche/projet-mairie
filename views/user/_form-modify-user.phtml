@@ -1,0 +1,35 @@
+<form method="POST" action="/espace-famille/<?= $user->getLastName ?>/modifier-parent">
+    <fieldset>
+        <label for="firstName">Prénom :</label>
+        <input type="text" name="firstName" required>
+    </fieldset>
+    <fieldset>
+        <label for="lastName">Nom de famille :</label>
+        <input type="text" name="lastName" required>
+    </fieldset>
+    <fieldset>
+        <label for="email">Adresse mail :</label>
+        <input type="email" name="email" required>
+    </fieldset>
+    <fieldset>
+        <label for="password">Mot de passe :</label>
+        <input type="password" name="password" required>
+    </fieldset>
+    <fieldset>
+        <label for="confirmPassword">Confirmer le Mot de passe :</label>
+        <input type="password" name="confirmPassword" required>
+    </fieldset>
+    <fieldset>
+        <label for="address">Adresse postal :</label>
+        <input type="text" name="address" required>
+    </fieldset>
+    <fieldset>
+        <label for="code-postal">Code postal :</label>
+        <input type="text" name="code-postal" required>
+    </fieldset>
+    <fieldset>
+        <label for="ville">Ville/Commune :</label>
+        <input type="text" name="ville" required>
+    </fieldset>
+    <input type="submit" name="modifyUser" value="Confirmer les modifications"/>
+</form>

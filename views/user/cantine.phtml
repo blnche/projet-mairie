@@ -52,7 +52,7 @@ foreach ($weeks as $week)
                     <td> <?php checkStatus($data->getWednesday()); ?> </td>
                     <td> <?php checkStatus($data->getThursday()); ?> </td>
                     <td> <?php checkStatus($data->getFriday()); ?> </td>
-                    <td><a href="/espace-famille/cantine/modifier-semaine&semaine=<?= $data->getWeekOfYear(); ?>">Modifier</a></td>
+                    <td><a href="/espace-famille/<?= $user->getLastName ?>/cantine/modifier-semaine&semaine=<?= $data->getWeekOfYear(); ?>">Modifier</a></td>
                     <td> <?= $firstName ?> </td>
                 </tr>
                 <?php
@@ -70,7 +70,7 @@ foreach ($weeks as $week)
                     <td> <?php checkStatus($data->getWednesday()); ?> </td>
                     <td> <?php checkStatus($data->getThursday()); ?> </td>
                     <td> <?php checkStatus($data->getFriday()); ?> </td>
-                    <td><a href="/espace-famille/cantine/modifier-semaine&semaine=<?= $data->getWeekOfYear(); ?>">Modifier</a></td>
+                    <td><a href="/espace-famille/<?= $user->getLastName ?>/cantine/modifier-semaine&semaine=<?= $data->getWeekOfYear(); ?>">Modifier</a></td>
                     <td> <?= $firstName ?> </td>
                 </tr>
                 <?php
@@ -158,7 +158,7 @@ foreach ($weeks as $week)
                     ?>
                 </ul>
             </td>
-            <td><a href="/espace-famille/cantine/modifier-semaine&semaine=<?= $week->getWeekOfYear(); ?>">Modifier</a></td>
+            <td><a href="/espace-famille/<?= $user->getLastName ?>/cantine/modifier-semaine&semaine=<?= $week->getWeekOfYear(); ?>">Modifier</a></td>
             <td>
                 <ul>
                     <?php

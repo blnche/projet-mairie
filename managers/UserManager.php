@@ -36,11 +36,10 @@
             $user = new User(
                 $result['email'],
                 $result['password'],
-                $result['role'],
-                $result['firstName'],
-                $result['lastName']
+                $result['role']
             );
-
+            $user->setFirstName($result['firstName']);
+            $user->setLastName($result['lastName']);
             $user->setId($result['id']);
             $user->setAddress($this->addressManager->getAddressById($result['user_address_id']));
 
@@ -64,11 +63,15 @@
             $user = new User(
                 $result['email'],
                 $result['password'],
-                $result['role'],
-                $result['firstName'],
-                $result['lastName']
+                $result['role']
             );
 
+            if(!empty($result['firstName'])) {
+                $user->setFirstName($result['firstName']);
+            }
+            if(!empty($result['lastName'])) {
+                $user->setLastName($result['lastName']);
+            }
             $user->setId($result['id']);
             $user->setAddress($this->addressManager->getAddressById($result['user_address_id']));
 
@@ -92,6 +95,30 @@
             $user->setId($this->db->lastInsertId());
 
             return $user;
+        }
+
+        public function editUser (User $userEdited) : User
+        {
+            $query = $this->db->prepare('
+                UPDATE users
+                SET email = :email, password = :password, firstName = :firstName, lastName = :lastName, user_address_id = :address_id
+                WHERE id = :id
+            ');
+            $parameters = [
+                'email' => $userEdited->getEmail(),
+                'password' => $userEdited->getPassword(),
+                'firstName' => $userEdited->getFirstName(),
+                'lastName' => $userEdited->getLastName(),
+                'address_id' => $userEdited->getAddress()->getId()
+            ];
+            $query->execute($parameters);
+
+            return $userEdited;
+        }
+
+        public function deleteUser (User $user) : void
+        {
+
         }
     }
 ?>

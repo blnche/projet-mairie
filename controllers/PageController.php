@@ -76,37 +76,12 @@
                 $this->render('views/public/mairie/conseil-municipal/bulletins-municipaux.phtml', ['bulletins' => $bulletins], 'Bulletins Municipaux');
             }
         }
-
-
-
-
-
         public function CafeteriaDates() : void
         {
             $dates = $this->cafeteriaDateManager->getAllCafeteriaDates();
-            //get inscription for children
-            //how do i check weeks on cantine for all children ? add a column for each child and if a inscription exist for the week number then say enrolled else not enrolled
-            //if a child enroll is ok for a day then say on this day enroll, else to decicde, the week row can have multiple line inside corresponding to each child status on enrollment
 
-            if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'ROLE_USER')
-            {
-                $children = $this->childManager->getChildrenByParentId($_SESSION['user_id']);
-                $childrenEnrollments = [];
-
-                foreach($children as $child)
-                {
-                    $childEnrollments = $this->cafeteriaDateManager->getEnrollmentCafeteriaDatesByChildId($child->getId());
-                    $childrenEnrollments[] = $childEnrollments;
-                }
-
-                $this->render('views/user/cantine.phtml', ['cafeteria-weeks' => $dates, 'children' => $children, 'childrenEnrollments' => $childrenEnrollments], 'Dates de la cantine', 'user');
-            }
-            else
-            {
-                $this->render('views/admin/cantine/cantine.phtml', ['cafeteria-weeks' => $dates], 'Dates cantine', 'admin');
-            }
+            $this->render('views/admin/cantine/cantine.phtml', ['cafeteria-weeks' => $dates], 'Dates cantine', 'admin');
         }
-
         public function Export() : void
         {
             $weeks = [];
@@ -176,37 +151,6 @@
             else
             {
                 $this->render('views/admin/cantine/_form_new-year.phtml', [], 'New year', 'admin');
-            }
-        }
-
-        public function CafeteriaEnrollment() : void
-        {
-            $week = $this->cafeteriaDateManager->getCafeteriaDateByWeekNumber(htmlspecialchars($_GET['semaine']));
-            $children = $this->childManager->getChildrenByParentId($_SESSION['user_id']);
-
-            if ($_SERVER['REQUEST_METHOD'] === 'POST')
-            {
-                $child = $this->childManager->getChildById(htmlspecialchars($_POST['enfant']));
-                $days = [
-                    'monday' => isset($_POST['monday']) ? htmlspecialchars($_POST['monday']) : 'No',
-                    'tuesday' => isset($_POST['tuesday']) ? htmlspecialchars($_POST['tuesday']) : 'No',
-                    'wednesday' => isset($_POST['wednesday']) ? htmlspecialchars($_POST['wednesday']) : 'No',
-                    'thursday' => isset($_POST['thursday']) ? htmlspecialchars($_POST['thursday']) : 'No',
-                    'friday' => isset($_POST['friday']) ? htmlspecialchars($_POST['friday']) : 'No'
-                ];
-                foreach ($days as $day)
-                {
-                    if($day === '')
-                    {
-                        $day = 'No';
-                    }
-                }
-                $this->cafeteriaDateManager->EnrollChildCafeteria($week, $child, $days);
-                header('Location:/espace-famille/cantine');
-            }
-            else
-            {
-                $this->render('views/user/cantine_semaine.phtml', ['week' => $week, 'children' => $children], 'Semaine du '.htmlspecialchars($_GET['semaine']), 'user' );
             }
         }
 

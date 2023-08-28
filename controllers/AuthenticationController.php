@@ -66,6 +66,7 @@
 
                     $_SESSION['user_id'] = $id;
                     $_SESSION['user_role'] = $role;
+                    $_SESSION['user_lastName'] = $user->getLastName();
 
                     //Check role to render corresponding dashboard
                     if ($role === 'ROLE_SUPER_ADMIN' || $role === 'ROLE_ADMIN')
@@ -76,7 +77,7 @@
                     else if ($role === 'ROLE_USER')
                     {
                         //$this->render('views/user/dashboard.phtml',[],'Tableau de bord de', 'user');
-                        header('Location:/espace-famille');
+                        header('Location:/espace-famille/'.$user->getLastName());
                     }
                 }
                 else

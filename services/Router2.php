@@ -235,6 +235,8 @@ class Router2
                                 $routeAndParams['week'] = $tab[4];
                             }
                         }
+                    } else if ($tab[2] === 'modifier-parent') {
+                        $routeAndParams['familySpace'] = $tab[2];
                     }
                 }
             }
@@ -403,29 +405,31 @@ class Router2
         // USER
         else if ($routeTab['route'] === 'espace-famille') {
             if (isset($_SESSION['user_id']) && ($_SESSION['user_role'] === 'ROLE_USER')) {
-                if ($routeTab['espace-famille'] === 'enfants') {
+                if ($routeTab['familySpace'] === 'enfants') {
                     if (isset($routeTab['child'])) {
-                        $this->pageController->Child($_GET['enfantId']);
+                        $this->userController->Child($_GET['enfantId']);
                     } else if ($routeTab['action'] === 'modifier') {
-                        $this->pageController->ModifyChild($_GET['enfantId']);
+                        $this->userController->ModifyChild($_GET['enfantId']);
                     } else if ($routeTab['action'] === 'ajouter') {
-                        $this->pageController->AddChild();
+                        $this->userController->AddChild();
                     } else {
-                        $this->pageController->Children($_SESSION['user_id']);
+                        $this->userController->Children($_SESSION['user_id']);
                     }
-                } else if ($routeTab['espace-famille'] === 'cantine') {
+                } else if ($routeTab['familySpace'] === 'cantine') {
                     if ($routeTab['action'] === 'inscrire') {
                         $this->pageController->CafeteriaEnrollment();
                     } else if ($routeTab['action'] === 'modifier') {
-                        $this->pageController->CafeteriaEnrollmentModify();
+                        $this->userController->CafeteriaEnrollmentModify();
                     } else {
-                        $this->pageController->CafeteriaDates();
+                        $this->userController->CafeteriaDates();
                     }
+                } else if ($routeTab['familySpace'] === 'modifier-parent') {
+                    $this->userController->updateUser();
                 } else {
-                    $this->pageController->userHomepage();
+                    $this->userController->userHomepage();
                 }
             } else {
-                header('Location:/projet-mairie/authentification/se-connecter');
+                header('Location:/authentification/se-connecter');
             }
         } 
         
