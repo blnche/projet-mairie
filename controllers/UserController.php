@@ -215,7 +215,8 @@ class UserController extends AbstractController
     }
     public function cafeteriaEnrollment(int $weekNumber) : void
     {
-        $week = $this->cafeteriaDateManager->getCafeteriaDateByWeekNumber(htmlspecialchars($_GET['semaine']));
+        $week = $this->cafeteriaDateManager->getCafeteriaDateByWeekNumber($weekNumber);
+        // if status is completed, then can't edit
         $children = $this->childManager->getChildrenByParentId($_SESSION['user_id']);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['enrollChild']))

@@ -419,7 +419,7 @@ class Router2
                     }
                 } else if ($routeTab['familySpace'] === 'cantine') {
                     if ($routeTab['action'] === 'inscrire') {
-                        $this->pageController->cafeteriaEnrollment();
+                        $this->userController->cafeteriaEnrollment($routeTab['week']);
                     } else if ($routeTab['action'] === 'modifier') {
                         $this->userController->cafeteriaEnrollmentModify();
                     } else {

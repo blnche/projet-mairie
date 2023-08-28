@@ -3,7 +3,7 @@ $weeks = $this->data['cafeteria-weeks'];
 $children = $this->data['children'];
 $childrenEnrollments = $this->data['childrenEnrollments'];
 ?>
-<h1> <?= $this->pageTitle; ?> </h1>cantine</h1>
+<h1> <?= $this->pageTitle; ?> </h1>
 <table>
     <thead>
     <tr>
@@ -52,13 +52,12 @@ foreach ($weeks as $week)
                     <td> <?= checkStatus($data->getWednesday(), '', 'wednesday'); ?> </td>
                     <td> <?= checkStatus($data->getThursday(), '', 'thursday'); ?> </td>
                     <td> <?= checkStatus($data->getFriday(),'', 'friday'); ?> </td>
-                    <td><a href=" /espace-famille/<?= $_SESSION['user_lastName'] ?>/cantine/modifier/<?= $data->getWeekOfYear(); ?>">Modifier</a></td>
+                    <td><a href=" /espace-famille/<?= $_SESSION['user_lastName'] ?>/cantine/inscrire/<?= $data->getWeekOfYear(); ?>">Inscrire</a></td>
                     <td> <?= $firstName ?> </td>
                 </tr>
                 <?php
             }
-            else
-            {
+            else {
                 //echo $week->getWeekOfYear().' '.$item->getWeekOfYear().'<br>';
                 //echo $firstName.' not registered for '.$week->getWeekOfYear();
                 $data = $week;
