@@ -32,24 +32,21 @@
                 if (!empty($_POST['address']))
                 {
                     $addressString = htmlspecialchars($_POST['address']);
-                }
-                else {
+                } else {
                     $addressString = $userCurrentAddress->getAddress();
                 }
 
                 if (!empty($_POST['code-postal']))
                 {
                     $codePostal = htmlspecialchars($_POST['code-postal']);
-                }
-                else {
+                } else {
                     $codePostal = $userCurrentAddress->getCodePostal();
                 }
 
                 if (!empty($_POST['ville']))
                 {
                     $ville = htmlspecialchars($_POST['ville']);
-                }
-                else {
+                } else {
                     $ville = $userCurrentAddress->getCommune();
                 }
 
@@ -63,34 +60,33 @@
                 $addressUpdated = $this->addressManager->editAddress($address);
 
                 //Check user changes
-                if(isset($_POST['email']))
+                if( !empty($_POST['email']))
                 {
                     $email = htmlspecialchars($_POST['email']);
                 } else {
                     $email = $userCurrentInformations->getEmail();
                 }
 
-                if(isset($_POST['password']))
+                if( !empty($_POST['password']))
                 {
                     if ($_POST['password'] === $_POST['confirmPassword'])
                     {
                         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-                    }
-                    else {
+                    } else {
                         echo 'Erreur';
                     }
                 } else {
                     $password = $userCurrentInformations->getPassword();
                 }
 
-                if(isset($_POST['firstName']))
+                if( !empty($_POST['firstName']))
                 {
                     $firstName = htmlspecialchars($_POST['firstName']);
                 } else {
                     $firstName = $userCurrentInformations->getFirstName();
                 }
 
-                if(isset($_POST['lastName']))
+                if( !empty($_POST['lastName']))
                 {
                     $lastName = htmlspecialchars($_POST['lastName']);
                 } else {
@@ -110,8 +106,7 @@
                 $this->userManager->editUser($user);
 
                 header('Location:/espace-famille/');
-            }
-            else {
+            } else {
                 $this->render('views/user/_form-modifify-user.phtml', [], 'Modifier vos informations');
             }
         }
@@ -133,13 +128,13 @@
         }
 
         // CHILD
-        public function Child($id) : void
+        public function readChild($id) : void
         {
             $child = $this->childManager->getChildById($id);
 
-            $this->render('views/user/profil_enfant.phtml', ['child'=>$child], $child->getFirstName(), 'user');
+            $this->render('views/user/profil-enfant.phtml', ['child'=>$child], $child->getFirstName(), 'user');
         }
-        public function AddChild() : void
+        public function createChild() : void
         {
             if($_SERVER["REQUEST_METHOD"] === "POST")
             {
@@ -151,11 +146,51 @@
                 $child->setParent($this->userManager->getUserById($_SESSION['user_id']));
 
                 $this->childManager->addChild($child);
-                header('Location:/espace-famille/<?= $user->getLastName ?>/enfants');
+                header('Location: /espace-famille/'.$_SESSION['user_lastName'].'/enfants');
+            } else {
+                $this->render('views/user/_form-add-child.phtml', [], 'Ajouter mon enfant', 'user');
             }
-            else
+        }
+        public function updateChild($id) : void
+        {
+            if($_SERVER["REQUEST_METHOD"] === "POST")
             {
-                $this->render('views/user/_add-child.phtml', [], 'Ajouter mon enfant', 'user');
+                if ($_POST['modifiyChild'])
+                {
+                    $childCurrentInformations = $this->childManager->getChildById($id);
+
+                    //Check child changes
+                    if( !empty($_POST['firstName'])) {
+                        $firstName = htmlspecialchars($_POST['firstName']);
+                    } else {
+                        $firstName = $childCurrentInformations->getFirstName();
+                    }
+
+                    if( !empty($_POST['lastName'])) {
+                        $lastName =  htmlspecialchars($_POST['lastName']);
+                    } else {
+                        $lastName = $childCurrentInformations->getLastName();
+                    }
+
+                    if( !empty($_POST['age'])) {
+                        $age = htmlspecialchars($_POST['age']);
+                    } else {
+                        $age = $childCurrentInformations->getAge();
+                    }
+
+                    $child = new Child(
+                        $firstName,
+                        $lastName,
+                        $age
+                    );
+                    $child->setParent($childCurrentInformations->getParent());
+                    $child->setId($childCurrentInformations->getId());
+
+                    $this->childManager->editChild($child);
+                    header('Location: /espace-famille/'.$_SESSION['user_lastName'].'/enfants');
+                }
+            } else {
+                $this->render('views/user/_form-modify-child.phtml', ['childId' => $id], 'Enregistrer mon enfant', 'user');
             }
         }
 
@@ -201,7 +236,7 @@
                     }
                 }
                 $this->cafeteriaDateManager->EnrollChildCafeteria($week, $child, $days);
-                header('Location:/espace-famille/<?= $user->getLastName ?>/cantine');
+                header('Location: /espace-famille/'.$_SESSION['user_lastName'].'/cantine');
             }
             else
             {

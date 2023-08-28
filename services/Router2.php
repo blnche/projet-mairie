@@ -7,6 +7,7 @@ class Router2
     private FileController $fileController;
     private AuthenticationController $authenticationController;
     private StaticPageController $staticPageController;
+    private AdminController $adminController;
 
     public function __construct()
     {
@@ -15,6 +16,7 @@ class Router2
         $this->fileController = new FileController();
         $this->authenticationController = new AuthenticationController();
         $this->staticPageController = new StaticPageController();
+        $this->adminController = new AdminController();
     }
 
     private function splitRouteAndParameters(string $route): array
@@ -42,7 +44,7 @@ class Router2
 
         if (strlen($route) > 0) {
             $tab = explode("/", $route);
-            var_dump($tab[0]);
+            var_dump($tab);
 
             //PUBLIC
             if ($tab[0] === 'mairie') {
@@ -339,19 +341,18 @@ class Router2
         // ADMIN
         else if ($routeTab['route'] === 'admin') {
             if (isset($_SESSION['user_id']) && (($_SESSION['user_role'] === 'ROLE_ADMIN') || ($_SESSION['user_role'] === 'ROLE_SUPER_ADMIN'))) {
-                echo 'there';
                 if ($routeTab['admin'] === 'modifier-email') {
                     // TODO user modifier email
                 } else if ($routeTab['admin'] === 'ajouter-un-fichier') {
                     $this->fileController->uploadFile($_GET['file']);
                 } else if ($routeTab['admin'] === 'bulletins-municipaux') {
-                    $this->pageController->MunicipalBulletins();
+                    $this->adminController->municipalBulletins();
 
                     if (isset($routeTab['bulletinSlug'])) {
                         // TODO show bulletin in pdf
                     }
                 } else if ($routeTab['admin'] === 'comptes-rendus-conseils-municipaux') {
-                    $this->pageController->MunicipalCouncilReports();
+                    $this->adminController->municipalCouncilReports();
 
                     if (isset($routeTab['councilReportSlug'])) {
                         // TODO show councilreport in pdf
@@ -359,45 +360,46 @@ class Router2
                 } else if ($routeTab['admin'] === 'informations-locales') {
                     if ($routeTab['subRoute'] === 'associations') {
                         if ($routeTab['action'] === 'ajouter') {
-                            $this->pageController->AddAssociation();
+                            $this->adminController->addAssociation();
                         } else if ($routeTab['action'] === 'modifier') {
                             var_dump($_GET['associationId']);
-                            $this->pageController->ModifyAssociation(htmlspecialchars($_GET['associationId']));
+                            $this->adminController->modifyAssociation(htmlspecialchars($_GET['associationId']));
                         } else {
-                            $this->pageController->Associations();
+                            $this->adminController->associations();
                         }
                     } else if ($routeTab['subRoute'] === 'lieux') {
                         if ($routeTab['action'] === 'ajouter') {
-                            $this->pageController->AddLocation();
+                            $this->adminController->addLocation();
                         } else if ($routeTab['action'] === 'modifier') {
                             var_dump($_GET['locationId']);
-                            $this->pageController->ModifyLocation(htmlspecialchars($_GET['locationId']));
+                            $this->adminController->modifyLocation(htmlspecialchars($_GET['locationId']));
                         } else {
-                            $this->pageController->Locations();
+                            $this->adminController->locations();
                         }
                     } else if ($routeTab['subRoute'] === 'professionnels-locaux') {
                         if ($routeTab['action'] === 'ajouter') {
-                            $this->pageController->AddLocalProfessional();
+                            $this->adminController->addLocalProfessional();
                         } else if ($routeTab['action'] === 'modifier') {
-                            $this->pageController->ModifyLocalProfessional(htmlspecialchars($_GET['localProfessionalId']));
+                            $this->adminController->modifyLocalProfessional(htmlspecialchars($_GET['localProfessionalId']));
                         } else {
-                            $this->pageController->LocalProfessionals();
+                            $this->adminController->localProfessionals();
                         }
+                    } else {
+                        $this->adminController->localInformation();
                     }
                 } else if ($routeTab['admin'] === 'cantine') {
                     if ($routeTab['action'] === 'creer-annee-scolaire') {//render form if not submitted, if submitted send back to cantine
-                        $this->pageController->NewCafeteriaDates();
+                        $this->adminController->newCafeteriaDates();
                     } else if ($routeTab['action'] === 'exporter') {
-                        $this->pageController->Export();
+                        $this->adminController->export();
                     } else {
-                        $this->pageController->CafeteriaDates();
+                        $this->adminController->cafeteriaDates();
                     }
                 } else {
-                    $this->pageController->adminHomepage();
+                    $this->adminController->adminHomepage();
                     //require './views/admin/dashboard.phtml';//need a render instead to pass into data stuff for dashboard
                 }
             } else {
-                echo 'here';
                 header('Location:/authentification/se-connecter');
             }
         } 
@@ -406,12 +408,12 @@ class Router2
         else if ($routeTab['route'] === 'espace-famille') {
             if (isset($_SESSION['user_id']) && ($_SESSION['user_role'] === 'ROLE_USER')) {
                 if ($routeTab['familySpace'] === 'enfants') {
-                    if (isset($routeTab['child'])) {
-                        $this->userController->Child($_GET['enfantId']);
+                    if (isset($routeTab['child']) && !isset($routeTab['action'])) {
+                        $this->userController->readChild($routeTab['child']);
                     } else if ($routeTab['action'] === 'modifier') {
-                        $this->userController->ModifyChild($_GET['enfantId']);
+                        $this->userController->updateChild($routeTab['child']);
                     } else if ($routeTab['action'] === 'ajouter') {
-                        $this->userController->AddChild();
+                        $this->userController->createChild();
                     } else {
                         $this->userController->Children($_SESSION['user_id']);
                     }

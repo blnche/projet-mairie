@@ -1,8 +1,7 @@
 <nav>
     <ul>
-        <?php $lastName = $_SESSION['user_lastName']; ?>
         <li><a href="/espace-famille">Dashboard</a></li>
-        <li><a href="/espace-famille/<?= $lastName ?>/enfants">enfants</a></li>
+        <li><a href="/espace-famille/<?=  $_SESSION['user_lastName'] ?>/enfants">enfants</a></li>
         <li><a href="/espace-famille/<?= $_SESSION['user_lastName'] ?>/cantine">cantine</a></li>
         <li><a href="/authentification/se-deconnecter">logout</a></li>
     </ul>

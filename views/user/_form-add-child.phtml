@@ -1,0 +1,15 @@
+<form method="POST" action=" /espace-famille/<?= $_SESSION['user_lastName'] ?>/ajouter">
+    <fieldset>
+        <label for="firstName">Prénom</label>
+        <input type="text" name="firstName">
+    </fieldset>
+    <fieldset>
+        <label for="lastName">Nom de famille</label>
+        <input type="text" name="lastName">
+    </fieldset>
+    <fieldset>
+        <label for="age">Age</label>
+        <input type="number" name="age">
+    </fieldset>
+    <input type="submit" name="add-child" value="Enregistrer mon enfant">
+</form>

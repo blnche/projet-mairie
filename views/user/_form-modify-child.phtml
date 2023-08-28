@@ -1,4 +1,4 @@
-<form method="POST" action="/espace-famille/<?= $user->getLastName ?>/ajouter-enfant">
+<form method="POST" action="/espace-famille/<?= $_SESSION['user_lastName']; ?>/enfants/modifier/<?= $this->data['childId'];?>">
     <fieldset>
         <label for="firstName">Prénom</label>
         <input type="text" name="firstName">
@@ -11,5 +11,5 @@
         <label for="age">Age</label>
         <input type="number" name="age">
     </fieldset>
-    <input type="submit" name="add-child" value="Enregistrer mon enfant">
+    <input type="submit" name="modifiyChild" value="Enregistrer les modifications">
 </form>

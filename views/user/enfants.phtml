@@ -6,11 +6,11 @@
     {
     ?>
         <li> <?= $child->getFirstName(); ?>
-            <a href="/espace-famille/<?= $user->getLastName ?>/consulter-enfant&enfantId=<?= $child->getId(); ?>">Consulter</a>
+            <a href=" /espace-famille/<?= $_SESSION['user_lastName'] ?>/enfants/<?= $child->getId(); ?>">Consulter</a>
         </li>
     <?php
     }
     ?>
 
 </ul>
-<a href="/espace-famille/<?= $user->getLastName ?>/ajouter-enfant">ajouter enfant</a>
+<a href=" /espace-famille/<?= $_SESSION['user_lastName'] ?>/enfants/ajouter">ajouter enfant</a>

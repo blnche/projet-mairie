@@ -3,4 +3,4 @@
 <ul>
     <li> <?= $child->getAge(); ?> </li>
 </ul>
-<a href="/espace-famille/<?= $user->getLastName ?>/modifier-enfant&enfantId=<?= $child->getId(); ?>">Modifier</a>
+<a href=" /espace-famille/<?= $_SESSION['user_lastName'] ?>/enfants/modifier/<?= $child->getId(); ?>">Modifier</a>

@@ -82,5 +82,23 @@
 
             return $child;
         }
+
+        public function editChild (Child $childEdited) : Child
+        {
+            $query = $this->db->prepare('
+                UPDATE children
+                SET firstName = :firstName, lastName = :lastName, age = :age
+                WHERE id = :id
+            ');
+            $parameters = [
+                'firstName' => $childEdited->getFirstName(),
+                'lastName' => $childEdited->getLastName(),
+                'age' => $childEdited->getAge(),
+                'id' => $childEdited->getId()
+            ];
+            $query->execute($parameters);
+
+            return $childEdited;
+        }
     }
 ?>
