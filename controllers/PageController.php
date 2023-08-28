@@ -39,10 +39,7 @@
             $events = $this->events();
             $this->render('views/public/homepage.phtml', ['allEvents' => $this->eventManager->getAllEvents(), 'futureEvents' => $this->eventManager->getFutureEvents(), 'pastEvents' => $this->eventManager->getPastEvents(), 'events' => $events['future']], 'Accueil');
         }
-        public function userHomepage() : void
-        {
-            $this->render('views/user/dashboard.phtml', [], 'User Accueil', 'user');
-        }
+
         public function adminHomepage() : void
         {
             $this->render('views/admin/dashboard.phtml', [], 'Admin Accueil', 'admin');
@@ -63,7 +60,7 @@
             }
             else
             {
-                $this->render('views/public/mairie/conseil_municipal/comptes_rendus_cm.phtml', ['comptes-rendus' => $comptes_rendus], 'Comptes rendus des conseils municipaux');
+                $this->render('views/public/mairie/conseil-municipal/comptes-rendus-cm.phtml', ['comptes-rendus' => $comptes_rendus], 'Comptes rendus des conseils municipaux');
             }
         }
         public function MunicipalBulletins() : void
@@ -76,41 +73,13 @@
             }
             else
             {
-                $this->render('views/public/mairie/conseil_municipal/bulletins_municipaux.phtml', ['bulletins' => $bulletins], 'Bulletins Municipaux');
+                $this->render('views/public/mairie/conseil-municipal/bulletins-municipaux.phtml', ['bulletins' => $bulletins], 'Bulletins Municipaux');
             }
         }
 
-        public function Child($id) : void
-        {
-            $child = $this->childManager->getChildById($id);
 
-            $this->render('views/user/profil_enfant.phtml', ['child'=>$child], $child->getFirstName(), 'user');
-        }
-        public function Children($id) : void
-        {
-            $children = $this->childManager->getChildrenByParentId($id);
 
-            $this->render('views/user/enfants.phtml', ['children' => $children], 'Mes enfants', 'user');
-        }
-        public function AddChild() : void
-        {
-            if($_SERVER["REQUEST_METHOD"] === "POST")
-            {
-                $child = new Child(
-                    htmlspecialchars($_POST['firstName']),
-                    htmlspecialchars($_POST['lastName']),
-                    htmlspecialchars($_POST['age'])
-                );
-                $child->setParent($this->userManager->getUserById($_SESSION['user_id']));
 
-                $this->childManager->addChild($child);
-                header('Location:index.php?route=espace-famille/enfants');
-            }
-            else
-            {
-                $this->render('views/user/_add-child.phtml', [], 'Ajouter mon enfant', 'user');
-            }
-        }
 
         public function CafeteriaDates() : void
         {
@@ -190,7 +159,7 @@
 
             header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
             header('Content-Disposition: attachment; filename='.$formattedDate);
-            //header('Location:index.php?route=admin/cantine');
+            //header('Location:/admin/cantine');
         }
 
         public function NewCafeteriaDates() : void
@@ -233,7 +202,7 @@
                     }
                 }
                 $this->cafeteriaDateManager->EnrollChildCafeteria($week, $child, $days);
-                header('Location:index.php?route=espace-famille/cantine');
+                header('Location:/espace-famille/cantine');
             }
             else
             {
@@ -241,12 +210,12 @@
             }
         }
 
-        public function conseilMunicipal() : void
+        public function townCouncil() : void
         {
             $bm = $this->bulletinManager->getAllMunicipalBulletins();
             $crcm = $this->councilReportManager->getAllMunicipalCouncilReports();
 
-            $this->render('views/public/mairie/conseil_municipal/conseil_municipal.phtml', ['bm' => $bm, 'crcm' => $crcm], 'Conseil Municipal');
+            $this->render('views/public/mairie/conseil-municipal/conseil-municipal.phtml', ['bm' => $bm, 'crcm' => $crcm], 'Conseil Municipal');
         }
         public function townHall() : void
         {
@@ -294,7 +263,7 @@
                 $association->setAddress($newAddress);
                 $this->associationManager->addAssociation($association);
 
-                header('Location:index.php?route=admin/informations-locales/associations');
+                header('Location:/admin/informations-locales/associations');
             }
             else
             {
@@ -386,7 +355,7 @@
 
                 $this->associationManager->editAssociation($association);
 
-                header('Location:index.php?route=admin/informations-locales/associations');
+                header('Location:/admin/informations-locales/associations');
             }
             else
             {
@@ -431,7 +400,7 @@
                 $localProfessional->setAddress($newAddress);
                 $this->localProfessionalManager->addLocalProfessional($localProfessional);
 
-                header('Location:index.php?route=admin/informations-locales/professionnels-locaux');
+                header('Location:/admin/informations-locales/professionnels-locaux');
             }
             else
             {
@@ -521,7 +490,7 @@
 
                 $this->localProfessionalManager->editLocalProfessional($localProfessional);
 
-                header('Location:index.php?route=admin/informations-locales/professionnels-locaux');
+                header('Location:/admin/informations-locales/professionnels-locaux');
             }
             else
             {
@@ -566,7 +535,7 @@
                 $location->setAddress($newAddress);
                 $this->locationManager->addLocation($location);
 
-                header('Location:index.php?route=admin/informations-locales/lieux');
+                header('Location:/admin/informations-locales/lieux');
             }
             else
             {
@@ -656,7 +625,7 @@
 
                 $this->locationManager->editLocation($location);
 
-                header('Location:index.php?route=admin/informations-locales/lieux');
+                header('Location:/admin/informations-locales/lieux');
             }
             else
             {

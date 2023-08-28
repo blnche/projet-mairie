@@ -6,7 +6,12 @@
 /mairie/conseil-municipal/comptes-rendus-conseil-municipaux/:crcmName
 /mairie/conseil-municipal/bulletins-municipaux
 /mairie/conseil-municipal/bulletins-municipaux/:bmName
+/mairie/conseil-municipal/elus
+/mairie/conseil-municipal/plu
 /mairie/services-municipaux
+/mairie/services-municipaux/recensement
+/mairie/services-municipaux/papiers-identite
+/mairie/services-municipaux/location-salle
 
 /projets
 /projets/:projectName
@@ -20,9 +25,9 @@
 /decouvrir
 /decouvrir/:postName
 
-/mention-legales
+/mentions-legales
 
-/politiques-confidentialité
+/politique-confidentialité
 
 /admin
 /admin/modifier-email

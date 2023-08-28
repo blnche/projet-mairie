@@ -102,7 +102,7 @@ class Router
                     //require './views/admin/dashboard.phtml';//need a render instead to pass into data stuff for dashboard
                 }
             } else {
-                header('Location:index.php?route=admin/login');
+                header('Location:/authentification/se-connecter');
             }
         } // USER
         else if (str_starts_with($route, 'espace-famille')) {
@@ -127,7 +127,7 @@ class Router
                     //require './views/user/dashboard.phtml';//need a render instead to pass into data stuff for dashboard
                 }
             } else {
-                header('Location:index.php?route=login');
+                header('Location:/authentification/se-connecter');
             }
         } // ERROR
         else {

@@ -6,11 +6,11 @@
     {
     ?>
         <li> <?= $child->getFirstName(); ?>
-            <a href="index.php?route=espace-famille/consulter-enfant&enfantId=<?= $child->getId(); ?>">Consulter</a>
+            <a href="/espace-famille/consulter-enfant&enfantId=<?= $child->getId(); ?>">Consulter</a>
         </li>
     <?php
     }
     ?>
 
 </ul>
-<a href="index.php?route=espace-famille/ajouter-enfant">ajouter enfant</a>
+<a href="/espace-famille/ajouter-enfant">ajouter enfant</a>

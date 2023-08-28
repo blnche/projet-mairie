@@ -41,7 +41,7 @@
                 );
                 $user->setAddress($newAddress);
                 $this->userManager->addUser($user);
-                header('Location:index.php?route=login');
+                header('Location:/authentification/se-connecter');
             }
             else
             {
@@ -71,12 +71,12 @@
                     if ($role === 'ROLE_SUPER_ADMIN' || $role === 'ROLE_ADMIN')
                     {
                         //$this->render('views/admin/dashboard.phtml',['user' => $user],'Tableau de bord Admin', 'admin');
-                        header('Location:index.php?route=admin');
+                        header('Location:/admin');
                     }
                     else if ($role === 'ROLE_USER')
                     {
                         //$this->render('views/user/dashboard.phtml',[],'Tableau de bord de', 'user');
-                        header('Location:index.php?route=espace-famille');
+                        header('Location:/espace-famille');
                     }
                 }
                 else
@@ -99,7 +99,7 @@
         public function logout() : void
         {
             session_destroy();
-            header('Location:index.php?route=accueil');
+            header('Location:/');
         }
     }
 ?>

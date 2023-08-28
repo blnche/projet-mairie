@@ -2,7 +2,7 @@
 $localProfessionals = $this->data['local-professionals'];
 ?>
 <h1><?= $this->pageTitle ?></h1>
-<a href="index.php?route=admin/informations-locales/professionnels-locaux/ajouter">add professionnel</a>
+<a href="/admin/informations-locales/professionnels-locaux/ajouter">add professionnel</a>
 
 <table>
     <thead>
@@ -24,7 +24,7 @@ $localProfessionals = $this->data['local-professionals'];
             <td> <?= $localProfessional->getSector(); ?> </td>
             <td> <?= $localProfessional->getCeoFirstName(); ?> </td>
             <td> <?= $localProfessional->getCeoLastName(); ?> </td>
-            <td><a href="index.php?route=admin/informations-locales/professionnels-locaux/modifier&localProfessionalId=<?= $localProfessional->getId(); ?>">modifier professionnel</a></td>
+            <td><a href="/admin/informations-locales/professionnels-locaux/modifier&localProfessionalId=<?= $localProfessional->getId(); ?>">modifier professionnel</a></td>
         </tr>
         <?php
     }

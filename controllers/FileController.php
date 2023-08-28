@@ -37,7 +37,7 @@
                     $this->councilReportManager->addMunicipalCouncilReport($newCouncilReport);
 
                     echo 'success';
-                    header('Location:index.php?route=admin/comptes-rendus-conseils-municipaux');
+                    header('Location:/admin/comptes-rendus-conseils-municipaux');
                 }
                 else
                 {
@@ -61,7 +61,7 @@
                     $this->bulletinManager->addMunicipalBulletin($newMunicipalBulletin);
 
                     echo 'success';
-                    header('Location:index.php?route=admin/bulletins-municipaux');
+                    header('Location:/admin/bulletins-municipaux');
                 }
                 else
                 {

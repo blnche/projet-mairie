@@ -38,6 +38,7 @@ require 'controllers/UserController.php';
 require 'controllers/PageController.php';
 require 'controllers/FileController.php';
 require 'controllers/AuthenticationController.php';
+require 'controllers/StaticPageController.php';
 
 // Router
 require 'services/Router2.php';
