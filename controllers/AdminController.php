@@ -472,8 +472,10 @@ class AdminController extends AbstractController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['createNewYear']))
         {
-            $yearStart = htmlspecialchars($_POST['year-start']);
-            $yearEnd = htmlspecialchars($_POST['year-end']);
+            $yearStart = htmlspecialchars($_POST['yearStart']);
+            $yearEnd = htmlspecialchars($_POST['yearEnd']);
+            $toussaintStart = htmlspecialchars($_POST['toussaintStart']);
+            $toussaintEnd = htmlspecialchars($_POST['toussaintEnd']);
 
             $dates = $this->cafeteriaDateManager->getAllCafeteriaDates();
             $this->render('views/admin/cantine/cantine.phtml', ['cafeteria-weeks' => $dates], 'dates cantine', 'admin');

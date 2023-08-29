@@ -2,18 +2,25 @@
     class CafeteriaDate {
         private ?int $id;
         private int $week_of_year;
+        private int $year;
         private ?string $monday;
         private ?string $tuesday;
         private ?string $wednesday;
         private ?string $thursday;
         private ?string $friday;
+        private string $status;
+
 
         /**
          * @param int $week_of_year
+         * @param int $year
+         * @param string $status
          */
-        public function __construct(int $week_of_year)
+        public function __construct(int $week_of_year, int $year, string $status)
         {
             $this->week_of_year = $week_of_year;
+            $this->year = $year;
+            $this->status = $status;
         }
 
 
@@ -47,6 +54,22 @@
         public function setWeekOfYear(int $week_of_year): void
         {
             $this->week_of_year = $week_of_year;
+        }
+
+        /**
+         * @return int
+         */
+        public function getYear(): int
+        {
+            return $this->year;
+        }
+
+        /**
+         * @param int $year
+         */
+        public function setYear(int $year): void
+        {
+            $this->year = $year;
         }
 
         /**
@@ -127,6 +150,21 @@
         public function setFriday(?string $friday): void
         {
             $this->friday = $friday;
+        }
+        /**
+         * @return string
+         */
+        public function getStatus(): string
+        {
+            return $this->status;
+        }
+
+        /**
+         * @param string $status
+         */
+        public function setStatus(string $status): void
+        {
+            $this->status = $status;
         }
 
     }

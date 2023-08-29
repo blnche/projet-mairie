@@ -216,33 +216,34 @@ class UserController extends AbstractController
     public function cafeteriaEnrollment(int $weekNumber) : void
     {
         $week = $this->cafeteriaDateManager->getCafeteriaDateByWeekNumber($weekNumber);
-        // if status is completed, then can't edit
         $children = $this->childManager->getChildrenByParentId($_SESSION['user_id']);
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['enrollChild']))
-        {
-            $child = $this->childManager->getChildById(htmlspecialchars($_POST['enfant']));
-            $days = [
-                'monday' => isset($_POST['monday']) ? htmlspecialchars($_POST['monday']) : 'No',
-                'tuesday' => isset($_POST['tuesday']) ? htmlspecialchars($_POST['tuesday']) : 'No',
-                'wednesday' => isset($_POST['wednesday']) ? htmlspecialchars($_POST['wednesday']) : 'No',
-                'thursday' => isset($_POST['thursday']) ? htmlspecialchars($_POST['thursday']) : 'No',
-                'friday' => isset($_POST['friday']) ? htmlspecialchars($_POST['friday']) : 'No'
-            ];
-            foreach ($days as $day)
-            {
-                if($day === '')
-                {
-                    $day = 'No';
+        if ($week->getStatus() === 'open') {
+
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['enrollChild'])) {
+                $child = $this->childManager->getChildById(htmlspecialchars($_POST['enfant']));
+                $days = [
+                    'monday' => isset($_POST['monday']) ? htmlspecialchars($_POST['monday']) : 'No',
+                    'tuesday' => isset($_POST['tuesday']) ? htmlspecialchars($_POST['tuesday']) : 'No',
+                    'wednesday' => isset($_POST['wednesday']) ? htmlspecialchars($_POST['wednesday']) : 'No',
+                    'thursday' => isset($_POST['thursday']) ? htmlspecialchars($_POST['thursday']) : 'No',
+                    'friday' => isset($_POST['friday']) ? htmlspecialchars($_POST['friday']) : 'No'
+                ];
+                foreach ($days as $day) {
+                    if($day === '') {
+                        $day = 'No';
+                    }
                 }
+                $this->cafeteriaDateManager->EnrollChildCafeteria($week, $child, $days);
+                header('Location: /espace-famille/'.$_SESSION['user_lastName'].'/cantine');
+            } else {
+                $this->render('views/user/cantine_semaine.phtml', ['week' => $week, 'children' => $children], 'Semaine du '.$weekNumber, 'user' );
             }
-            $this->cafeteriaDateManager->EnrollChildCafeteria($week, $child, $days);
-            header('Location: /espace-famille/'.$_SESSION['user_lastName'].'/cantine');
+        } else {
+            header( 'refresh:5;url=/espace-famille/'.$_SESSION['user_lastName'].'/cantine');
+            echo 'Les inscriptions pour cette semaine sont fermées. Vous allez être redirigés vers la page "cantine" ';
         }
-        else
-        {
-            $this->render('views/user/cantine_semaine.phtml', ['week' => $week, 'children' => $children], 'Semaine du '.$weekNumber, 'user' );
-        }
+
     }
 }
 ?>

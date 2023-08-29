@@ -22,7 +22,9 @@
             foreach($result as $week)
             {
                 $newWeek = new CafeteriaDate(
-                    $week['week_of_year']
+                    $week['week_of_year'],
+                    $week['year'],
+                    $week['status']
                 );
                 $newWeek->setMonday($week['monday']);
                 $newWeek->setTuesday($week['tuesday']);
@@ -50,7 +52,9 @@
             $week = $query->fetch(PDO::FETCH_ASSOC);
 
             $cafeteriaDate = new CafeteriaDate(
-                $week['week_of_year']
+                $week['week_of_year'],
+                $week['year'],
+                $week['status']
             );
             $cafeteriaDate->setMonday($week['monday']);
             $cafeteriaDate->setTuesday($week['tuesday']);
@@ -75,7 +79,9 @@
             $week = $query->fetch(PDO::FETCH_ASSOC);
 
             $cafeteriaDate = new CafeteriaDate(
-                $week['week_of_year']
+                $week['week_of_year'],
+                $week['year'],
+                $week['status']
             );
             $cafeteriaDate->setMonday($week['monday']);
             $cafeteriaDate->setTuesday($week['tuesday']);
@@ -128,7 +134,9 @@
                 $week = $this->getCafeteriaDateById($result['dates_cantine_id']);
 
                 $enrollment = new CafeteriaDate(
-                    $week->getWeekOfYear()
+                    $week->getWeekOfYear(),
+                    $week->getYear(),
+                    $week->getStatus()
                 );
                 $enrollment->setMonday($result['monday']);
                 $enrollment->setTuesday($result['tuesday']);
@@ -166,7 +174,9 @@
             $week = $this->getCafeteriaDateById($weekId);
 
             $enrollment = new CafeteriaDate(
-                $week->getWeekOfYear()
+                $week->getWeekOfYear(),
+                $week->getYear(),
+                $week->getStatus()
             );
             $enrollment->setMonday($result['monday']);
             $enrollment->setTuesday($result['tuesday']);

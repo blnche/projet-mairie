@@ -1,12 +1,59 @@
-<h1> <?= $this->pageTitle; ?> </h1>
+<h1>  </h1>
 <form method="POST" action="/admin/cantine/nouvelle-annee">
     <fieldset>
-        <label for="year-start">year start</label>
-        <input type="date" name="year-start">
+        <label for="yearStart">Rentrée</label>
+        <input type="date" name="yearStart" id="yearStart">
     </fieldset>
     <fieldset>
-        <label for="year-end">year end</label>
-        <input type="date" name="year-end">
+        <label for="yearEnd">Début vacances d'été (fin de l'année scolaire)</label>
+        <input type="date" name="yearEnd" id="yearEnd">
+    </fieldset>
+    <fieldset>
+        <p>Vacances de la Toussaint</p>
+        <label for="toussaintStart">Début</label>
+        <input type="date"  name="toussaintStart" id="toussaintStart">
+        <label for="toussaintEnd">Fin</label>
+        <input type="date"  name="toussaintEnd" id="toussaintEnd">
+    </fieldset>
+    <fieldset>
+        <p>Vacances de Noël</p>
+        <label for="noelStart">Début</label>
+        <input type="date"  name="noelStart" id="noelStart">
+        <label for="noelEnd">Fin</label>
+        <input type="date"  name="noelEnd" id="noelEnd">
+    </fieldset>
+    <fieldset>
+        <p>Vacances d'hiver (février)</p>
+        <label for="hiverStart">Début</label>
+        <input type="date"  name="hiverStart" id="hiverStart">
+        <label for="hiverEnd">Fin</label>
+        <input type="date"  name="hiverEnd" id="hiverEnd">
+    </fieldset>
+    <fieldset>
+        <p>Vacances de printemps</p>
+        <label for="printempsStart">Début</label>
+        <input type="date"  name="printempsStart" id="printempsStart">
+        <label for="printempsEnd">Fin</label>
+        <input type="date"  name="printempsEnd" id="printempsEnd">
+    </fieldset>
+    <fieldset>
+        <p>Les jours fériés</p>
+        <label for="toussaint">Toussaint</label>
+        <input type="date"  name="toussaint" id="toussaint">
+        <label for="armistice">Armistice</label>
+        <input type="date"  name="armistice" id="armistice">
+        <label for="noel">Noël</label>
+        <input type="date"  name="noel" id="noel">
+        <label for="nouvelAn">Jour de l'An</label>
+        <input type="date"  name="nouvelAn" id="nouvelAn">
+        <label for="victoire1945">Victoire 1945</label>
+        <input type="date"  name="victoire1945" id="victoire1945">
+        <label for="ascension">Ascension</label>
+        <input type="date"  name="ascension" id="ascension">
+        <label for="pentecote">Pentecôte</label>
+        <input type="date"  name="pentecote" id="pentecote">
+        <label for="feteNationale">Fête Nationale</label>
+        <input type="date"  name="feteNationale" id="feteNationale">
     </fieldset>
     <input type="submit" name="createNewYear" value="Générer la nouvelle année scolaire">
 </form>
