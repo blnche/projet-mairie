@@ -467,6 +467,56 @@ class AdminController extends AbstractController
 
         $this->render('views/admin/cantine/cantine.phtml', ['cafeteria-weeks' => $dates], 'Dates cantine', 'admin');
     }
+    public function generatingSchoolYearWeeksHolidayTools($startDate, $endDate) : void
+    {
+        $startDate = new Datetime($startDate);
+        $endDate = new Datetime($endDate);
+
+        $interval = new DateInterval('P1D');
+
+        $datePeriod = new DatePeriod($startDate, $interval, $endDate);
+
+        foreach($datePeriod as $date) {
+            $weekNumber = $date->format('W');
+            $day = $date->format('w');
+
+            $week = $this->cafeteriaDateManager->getCafeteriaDateByWeekNumber($weekNumber);
+            if ($day === '0') {
+                $week->setMonday('Holiday');
+            } else if ($day === '1') {
+                $week->setTuesday('Holiday');
+            } else if ($day === '2') {
+                $week->setWednesday('Holiday');
+            } else if ($day === '3') {
+                $week->setThursday('Holiday');
+            } else if ($day === '4') {
+                $week->setFriday('Holiday');
+            }
+
+            $this->cafeteriaDateManager->editCafeteriaDate($week);
+        }
+    }
+    public function generatingSchoolYearDayHolidayTools($date) : void
+    {
+        $holidayDate = new DateTime($date);
+        $weekNumber = $holidayDate->format('W');
+        $day = $holidayDate->format('w'); // 0 to 6 number
+
+        $week = $this->cafeteriaDateManager->getCafeteriaDateByWeekNumber($weekNumber);
+        if ($day === '0') {
+            $week->setMonday('Holiday');
+        } else if ($day === '1') {
+            $week->setTuesday('Holiday');
+        } else if ($day === '2') {
+            $week->setWednesday('Holiday');
+        } else if ($day === '3') {
+            $week->setThursday('Holiday');
+        } else if ($day === '4') {
+            $week->setFriday('Holiday');
+        }
+
+        $this->cafeteriaDateManager->editCafeteriaDate($week);
+    }
     public function newCafeteriaDates() : void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['createNewYear'])) {
@@ -497,7 +547,7 @@ class AdminController extends AbstractController
             $startDate = new DateTime($yearStart);
             $endDate = new DateTime($yearEnd);
 
-            /*while ($startDate <= $endDate) {
+            while ($startDate <= $endDate) {
                 $weekNumber = $startDate->format('W');
                 $year = $startDate->format('Y');
 
@@ -507,8 +557,21 @@ class AdminController extends AbstractController
                     'open'
                 );
 
-                //$this->cafeteriaDateManager->addCafeteriaDate($week);
-            }*/
+                $this->cafeteriaDateManager->addCafeteriaDate($week);
+                $startDate->modify('+7 days');
+            }
+
+            $this->generatingSchoolYearDayHolidayTools($toussaint);
+            $this->generatingSchoolYearDayHolidayTools($armistice);
+            $this->generatingSchoolYearDayHolidayTools($noel);
+            $this->generatingSchoolYearDayHolidayTools($nouvelAn);
+            $this->generatingSchoolYearDayHolidayTools($victoire1945);
+            $this->generatingSchoolYearDayHolidayTools($ascension);
+            $this->generatingSchoolYearDayHolidayTools($pentecote);
+            $this->generatingSchoolYearDayHolidayTools($feteNationale);
+
+            $this->generatingSchoolYearWeeksHolidayTools($noelStart, $noelEnd);
+            //$this->generatingSchoolYearWeeksHolidayTools($toussaintStart, $toussaintEnd);
             die;
             $dates = $this->cafeteriaDateManager->getAllCafeteriaDates();//hein ?
             $this->render('views/admin/cantine/cantine.phtml', ['cafeteria-weeks' => $dates], 'dates cantine', 'admin');

@@ -231,5 +231,24 @@
 
             return $week;
         }
+        public function editCafeteriaDate(CafeteriaDate $week) : CafeteriaDate
+        {
+            $query = $this->db->prepare('
+                UPDATE dates_cantine
+                SET monday = :monday, tuesday = :tuesday, wednesday = :wednesday, thursday = :thursday, friday = :friday
+                WHERE id = :id
+            ');
+            $parameters = [
+                'id' => $week->getId(),
+                'monday' => $week->getMonday(),
+                'tuesday' => $week->getTuesday(),
+                'wednesday' => $week->getWednesday(),
+                'thursday' => $week->getThursday(),
+                'friday' => $week->getFriday()
+            ];
+            $query->execute($parameters);
+
+            return $week;
+        }
     }
 ?>
