@@ -214,5 +214,22 @@
 
             return $ChildrenEnrolled;
         }
+        public function addCafeteriaDate(CafeteriaDate $week) : CafeteriaDate
+        {
+            $query = $this->db->prepare('
+                INSERT INTO dates_cantine (week_of_year, year, status) 
+                VALUES (:week_of_year, :year, :status)
+            ');
+            $parameters = [
+                'week_of_year' => $week->getWeekOfYear(),
+                'year' => $week->getYear(),
+                'status' => $week->getStatus()
+            ];
+            $query->execute($parameters);
+
+            $week->setId($this->db->lastInsertId());
+
+            return $week;
+        }
     }
 ?>

@@ -469,20 +469,51 @@ class AdminController extends AbstractController
     }
     public function newCafeteriaDates() : void
     {
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['createNewYear']))
-        {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['createNewYear'])) {
+            // Get holiday's dates
             $yearStart = htmlspecialchars($_POST['yearStart']);
             $yearEnd = htmlspecialchars($_POST['yearEnd']);
             $toussaintStart = htmlspecialchars($_POST['toussaintStart']);
             $toussaintEnd = htmlspecialchars($_POST['toussaintEnd']);
+            $hiverStart = htmlspecialchars($_POST['hiverStart']);
+            $hiverEnd = htmlspecialchars($_POST['toussaintEnd']);
+            $noelStart = htmlspecialchars($_POST['toussaintStart']);
+            $noelEnd = htmlspecialchars($_POST['noelEnd']);
+            $printempsStart = htmlspecialchars($_POST['toussaintStart']);
+            $printempsEnd = htmlspecialchars($_POST['printempsEnd']);
 
-            $dates = $this->cafeteriaDateManager->getAllCafeteriaDates();
+            $toussaint = htmlspecialchars($_POST['toussaint']);
+            $armistice = htmlspecialchars($_POST['armistice']);
+            $noel = htmlspecialchars($_POST['noel']);
+            $nouvelAn = htmlspecialchars($_POST['nouvelAn']);
+            $victoire1945 = htmlspecialchars($_POST['victoire1945']);
+            $ascension = htmlspecialchars($_POST['ascension']);
+            $pentecote = htmlspecialchars($_POST['pentecote']);
+            $feteNationale = htmlspecialchars($_POST['feteNationale']);
+
+            var_dump($yearStart);
+            var_dump($yearEnd);
+
+            $startDate = new DateTime($yearStart);
+            $endDate = new DateTime($yearEnd);
+
+            /*while ($startDate <= $endDate) {
+                $weekNumber = $startDate->format('W');
+                $year = $startDate->format('Y');
+
+                $week = new CafeteriaDate(
+                    $weekNumber,
+                    $year,
+                    'open'
+                );
+
+                //$this->cafeteriaDateManager->addCafeteriaDate($week);
+            }*/
+            die;
+            $dates = $this->cafeteriaDateManager->getAllCafeteriaDates();//hein ?
             $this->render('views/admin/cantine/cantine.phtml', ['cafeteria-weeks' => $dates], 'dates cantine', 'admin');
-        }
-        else
-        {
-            $this->render('views/admin/cantine/_form_new-year.phtml', [], 'New year', 'admin');
+        } else {
+            $this->render('views/admin/cantine/_form-new-year.phtml', [], 'New year', 'admin');
         }
     }
     public function export() : void

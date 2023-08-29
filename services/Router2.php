@@ -389,7 +389,6 @@ class Router2
                     }
                 } else if ($routeTab['admin'] === 'cantine') {
                     if ($routeTab['action'] === 'creer-annee-scolaire') {
-                        //render form if not submitted, if submitted send back to cantine
                         $this->adminController->newCafeteriaDates();
                     } else if ($routeTab['action'] === 'exporter') {
                         $this->adminController->export();

@@ -66,13 +66,13 @@
 
                     $_SESSION['user_id'] = $id;
                     $_SESSION['user_role'] = $role;
-                    $_SESSION['user_lastName'] = $user->getLastName();
 
                     //Check role to render corresponding dashboard
-                    if ($role === 'ROLE_SUPER_ADMIN' || $role === 'ROLE_ADMIN')
-                    {
+                    if ($role === 'ROLE_SUPER_ADMIN' || $role === 'ROLE_ADMIN') {
                         header('Location:/admin');
                     } else if ($role === 'ROLE_USER') {
+                        $_SESSION['user_lastName'] = $user->getLastName();
+
                         header('Location:/espace-famille/'.$_SESSION['user_lastName']);
                     }
                 } else {
