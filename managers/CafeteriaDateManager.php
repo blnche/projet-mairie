@@ -38,7 +38,7 @@
             return $weeks;
         }
 
-        public function getCafeteriaDateByWeekNumber($weekNumber) : CafeteriaDate
+        public function getCafeteriaDateByWeekNumber($weekNumber) : ?CafeteriaDate
         {
             $query = $this->db->prepare('
                 SELECT *
@@ -51,19 +51,23 @@
             $query->execute($parameters);
             $week = $query->fetch(PDO::FETCH_ASSOC);
 
-            $cafeteriaDate = new CafeteriaDate(
-                $week['week_of_year'],
-                $week['year'],
-                $week['status']
-            );
-            $cafeteriaDate->setMonday($week['monday']);
-            $cafeteriaDate->setTuesday($week['tuesday']);
-            $cafeteriaDate->setWednesday($week['wednesday']);
-            $cafeteriaDate->setThursday($week['thursday']);
-            $cafeteriaDate->setFriday($week['friday']);
-            $cafeteriaDate->setId($week['id']);
+            if($week) {
+                $cafeteriaDate = new CafeteriaDate(
+                    $week['week_of_year'],
+                    $week['year'],
+                    $week['status']
+                );
+                $cafeteriaDate->setMonday($week['monday']);
+                $cafeteriaDate->setTuesday($week['tuesday']);
+                $cafeteriaDate->setWednesday($week['wednesday']);
+                $cafeteriaDate->setThursday($week['thursday']);
+                $cafeteriaDate->setFriday($week['friday']);
+                $cafeteriaDate->setId($week['id']);
 
-            return $cafeteriaDate;
+                return $cafeteriaDate;
+            } else {
+                return null;
+            }
         }
         public function getCafeteriaDateById($weekId) : CafeteriaDate
         {

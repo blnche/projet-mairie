@@ -503,19 +503,21 @@ class AdminController extends AbstractController
         $day = $holidayDate->format('w'); // 0 to 6 number
 
         $week = $this->cafeteriaDateManager->getCafeteriaDateByWeekNumber($weekNumber);
-        if ($day === '0') {
-            $week->setMonday('Holiday');
-        } else if ($day === '1') {
-            $week->setTuesday('Holiday');
-        } else if ($day === '2') {
-            $week->setWednesday('Holiday');
-        } else if ($day === '3') {
-            $week->setThursday('Holiday');
-        } else if ($day === '4') {
-            $week->setFriday('Holiday');
-        }
 
-        $this->cafeteriaDateManager->editCafeteriaDate($week);
+        if ($week) {
+            if ($day === '1') {
+                $week->setMonday('Holiday');
+            } else if ($day === '2') {
+                $week->setTuesday('Holiday');
+            } else if ($day === '3') {
+                $week->setWednesday('Holiday');
+            } else if ($day === '4') {
+                $week->setThursday('Holiday');
+            } else if ($day === '5') {
+                $week->setFriday('Holiday');
+            }
+            $this->cafeteriaDateManager->editCafeteriaDate($week);
+        }
     }
     public function newCafeteriaDates() : void
     {
@@ -541,24 +543,28 @@ class AdminController extends AbstractController
             $pentecote = htmlspecialchars($_POST['pentecote']);
             $feteNationale = htmlspecialchars($_POST['feteNationale']);
 
-            var_dump($yearStart);
-            var_dump($yearEnd);
-
             $startDate = new DateTime($yearStart);
             $endDate = new DateTime($yearEnd);
+            $startDateFormatted = $startDate->format('Y-m-d');
+            $endDateFormatted = $endDate->format('Y-m-d');
 
-            while ($startDate <= $endDate) {
-                $weekNumber = $startDate->format('W');
-                $year = $startDate->format('Y');
+            $today = new DateTime();
+            $today = $today->format('Y-m-d');
 
-                $week = new CafeteriaDate(
-                    $weekNumber,
-                    $year,
-                    'open'
-                );
+            if ($startDateFormatted != $today && $endDateFormatted != $today) {
+                while ($startDate <= $endDate) {
+                    $weekNumber = $startDate->format('W');
+                    $year = $startDate->format('Y');
 
-                $this->cafeteriaDateManager->addCafeteriaDate($week);
-                $startDate->modify('+7 days');
+                    $week = new CafeteriaDate(
+                        $weekNumber,
+                        $year,
+                        'open'
+                    );
+
+                    $this->cafeteriaDateManager->addCafeteriaDate($week);
+                    $startDate->modify('+7 days');
+                }
             }
 
             $this->generatingSchoolYearDayHolidayTools($toussaint);
@@ -570,7 +576,7 @@ class AdminController extends AbstractController
             $this->generatingSchoolYearDayHolidayTools($pentecote);
             $this->generatingSchoolYearDayHolidayTools($feteNationale);
 
-            $this->generatingSchoolYearWeeksHolidayTools($noelStart, $noelEnd);
+            //$this->generatingSchoolYearWeeksHolidayTools($noelStart, $noelEnd);
             //$this->generatingSchoolYearWeeksHolidayTools($toussaintStart, $toussaintEnd);
             die;
             $dates = $this->cafeteriaDateManager->getAllCafeteriaDates();//hein ?
