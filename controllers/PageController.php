@@ -49,6 +49,22 @@ class PageController extends AbstractController
         $this->render('views/public/mairie/conseil-municipal/bulletins-municipaux.phtml', ['bulletins' => $bulletins], 'Bulletins Municipaux');
     }
 
+    public function projects() : void {
+        $this->render('views/public/projets/projets.phtml', [],'Projets');
+    }
+
+    public function reside() : void {
+        $this->render('views/public/vivre/vivre.phtml', [],'Vivre');
+    }
+
+    public function discover () : void {
+        $this->render('views/public/decouvrir/decouvrir.phtml', [],'Découvrir');
+    }
+
+    public function everydayLife () : void {
+        $this->render('views/public/pratique/pratique.phtml', [],'Pratique');
+    }
+
     // ERROR
     public function error404() : void
     {

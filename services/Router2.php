@@ -296,30 +296,26 @@ class Router2
             if (isset($routeTab['projectSlug'])) {
                 // TODO
             } else {
-                // TODO
-                require './views/public/projets/projets.phtml';
+                $this->pageController->projects();
             }
         } else if ($routeTab['route'] === 'pratique') {
             if (isset($routeTab['postSlug'])) {
                 // TODO
             } else {
-                // TODO
-                require './views/public/pratique/pratique.phtml';
+                $this->pageController->everydayLife();
 
             }
         } else if ($routeTab['route'] === 'vivre') {
             if (isset($routeTab['postSlug'])) {
                 // TODO
             } else {
-                // TODO
-                require './views/public/vivre/vivre.phtml';
+                $this->pageController->reside();
             }
         } else if ($routeTab['route'] === 'decouvrir') {
             if (isset($routeTab['postSlug'])) {
                 // TODO
             } else {
-                // TODO
-                require './views/public/decouvrir/decouvrir.phtml';
+                $this->pageController->discover();
             }
         } else if ($routeTab['route'] === 'mentions-legales') {
             $this->staticPageController->legalNotices();

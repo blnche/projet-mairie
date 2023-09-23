@@ -1,4 +1,4 @@
-<form method="post" action="/authentification/enregistrer-nouveau-compte">
+<form id="userRegisterForm" method="post" action="/authentification/enregistrer-nouveau-compte">
     <fieldset>
         <label for="firstName">Prénom :</label>
         <input type="text" name="firstName" id="firstName" required>
@@ -12,6 +12,7 @@
         <input type="email" name="email" id="email" required>
     </fieldset>
     <fieldset>
+        <p>Votre mot de passe doit contenir au moins 1 majuscule, 1 chiffre, 1 caractère spécial (!@#$%^&*) et faire une longueur minimale de 12 caractères.</p>
         <label for="password">Mot de passe :</label>
         <input type="password" name="password" id="password" required>
     </fieldset>
