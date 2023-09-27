@@ -10,14 +10,12 @@
          * @param string $title
          * @param datetime $date
          * @param string $description
-         * @param Address $address
          */
-        public function __construct(string $title, datetime $date, string $description, Address $address)
+        public function __construct(string $title, datetime $date, string $description)
         {
             $this->title = $title;
             $this->date = $date;
             $this->description = $description;
-            $this->address = $address;
         }
 
         /**

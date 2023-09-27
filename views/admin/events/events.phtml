@@ -1,1 +1,41 @@
-<h1> <?= $this->pageTitle; ?> </h1>events</h1>
+<?php
+$events = $this->data['events'];
+?>
+<h1><?= $this->pageTitle ?></h1>
+<a href="/admin/evenements/ajouter">add event</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>Nom de l'évènement</th>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Adresse</th>
+        <th>actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php
+    foreach($events as $event)
+    {
+        $rp = new ReflectionProperty('Event', 'address');
+        ?>
+        <tr>
+            <td> <?= $event->getTitle(); ?> </td>
+            <td> <?= $event->getDate()->format('d/m/Y'); ?> </td>
+            <td> <?= $event->getDescription(); ?> </td>
+            <td> <?php
+                if ($rp->isInitialized($event)){
+                    echo $event->getAddress()->getAddress().', '.$event->getAddress()->getCodePostal().' '.$event->getAddress()->getCommune();
+                } else {
+                    echo 'Pas d\'adresse spécifiée pour cet évènement';
+                }
+                ?>
+            </td>
+            <td><a href="/admin/evenements/modifier&eventId=<?= $event->getId(); ?>">modifier évènement</a></td>
+        </tr>
+        <?php
+    }
+    ?>
+    </tbody>
+</table>

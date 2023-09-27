@@ -192,6 +192,17 @@ class Router2
                                 }
                             }
                         }
+                    } else if ($tab[1] === 'evenements') {
+                        $routeAndParams['admin'] = $tab[1];
+
+                        if(isset($tab[2])) {
+                            if ($tab[2] === 'ajouter') {
+                                $routeAndParams['action'] = $tab[2];
+                            } else if ($tab[2] === 'modifier') {
+                                $routeAndParams['action'] = $tab[2];
+                            }
+                        }
+
                     } else if ($tab[1] === 'cantine') {
                         $routeAndParams['admin'] = $tab[1];
 
@@ -390,6 +401,14 @@ class Router2
                         $this->adminController->export();
                     } else {
                         $this->adminController->cafeteriaDates();
+                    }
+                } else if ($routeTab['admin'] === 'evenements') {
+                    if ($routeTab['action'] === 'ajouter') {
+                        $this->adminController->addEvent();
+                    } else if ($routeTab['action'] === 'modifier') {
+                        $this->adminController->modifyEvent(htmlspecialchars($_GET['eventId']));
+                    } else {
+                        $this->adminController->events();
                     }
                 } else {
                     $this->adminController->adminHomepage();

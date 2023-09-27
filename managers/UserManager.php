@@ -16,7 +16,26 @@
                 WHERE users.role = "ROLE_USER"
             ');
             $query->execute();
-            return $query->fetchAll(PDO::FETCH_ASSOC);
+
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+            $users = [];
+
+            foreach ($result as $user) {
+                $newUser = new User(
+                    $user['email'],
+                    $user['password'],
+                    $user['role']
+                );
+                $newUser->setFirstName($user['firstName']);
+                $newUser->setLastName($user['lastName']);
+                $newUser->setId($user['id']);
+                $newUser->setAddress($this->addressManager->getAddressById($user['user_address_id']));
+
+                $users[] = $newUser;
+            }
+
+            return $users;
         }
 
         public function getUserById (int $id) : User
@@ -65,13 +84,8 @@
                 $result['password'],
                 $result['role']
             );
-
-            if(!empty($result['firstName'])) {
-                $user->setFirstName($result['firstName']);
-            }
-            if(!empty($result['lastName'])) {
-                $user->setLastName($result['lastName']);
-            }
+            $user->setFirstName($result['firstName']);
+            $user->setLastName($result['lastName']);
             $user->setId($result['id']);
             $user->setAddress($this->addressManager->getAddressById($result['user_address_id']));
 
@@ -81,13 +95,15 @@
         public function addUser (User $user) : User
         {
             $query = $this->db->prepare('
-                INSERT INTO users (email, password, role, user_address_id)
-                VALUES (:email, :password, :role, :user_address_id)
+                INSERT INTO users (email, password, role, firstName, lastName, user_address_id)
+                VALUES (:email, :password, :role, :firstName, :lastName, :user_address_id)
             ');
             $parameters = [
                 'email' => $user->getEmail(),
                 'password' => $user->getPassword(),
                 'role' => $user->getRole(),
+                'firstName' => $user->getFirstName(),
+                'lastName' => $user->getLastName(),
                 'user_address_id' => $user->getAddress()->getId()
             ];
             $query->execute($parameters);

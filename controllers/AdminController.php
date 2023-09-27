@@ -22,15 +22,6 @@ class AdminController extends AbstractController
         $this->localProfessionalManager = new LocalProfessionalManager();
     }
 
-    public function events() : array
-    {
-        $allEvents = $this->eventManager->getAllEvents();
-        $futureEvents = $this->eventManager->getFutureEvents();
-        $pastEvents = $this->eventManager->getPastEvents();
-
-        return ['all' => $allEvents, 'future' => $futureEvents, 'past' => $pastEvents];
-    }
-
     // DASHBOARD
     public function adminHomepage() : void
     {
@@ -638,6 +629,157 @@ class AdminController extends AbstractController
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment; filename='.$formattedDate);
         //header('Location:/admin/cantine');
+    }
+
+    // EVENTS
+    public function events() : void
+    {
+        $events = $this->eventManager->getAllEvents();
+        $this->render('views/admin/events/events.phtml', ['events' => $events], 'Evènements', 'admin');
+    }
+    public function addEvent() : void {
+        if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['registerEvent']))
+        {
+            //Create new Address
+            $addressString = htmlspecialchars($_POST['address']);
+            $codePostal = htmlspecialchars($_POST['code-postal']);
+            $ville = htmlspecialchars($_POST['ville']);
+
+            $address = new Address(
+                $codePostal,
+                $ville,
+                $addressString
+            );
+            $newAddress = $this->addressManager->addAddress($address);
+
+            //Create new Event
+            $title = htmlspecialchars($_POST['title']);
+            $description = htmlspecialchars($_POST['description']);
+            $date = htmlspecialchars($_POST['date']);
+            $event_date = new DateTime($date);
+
+            $event = new Event(
+                $title,
+                $event_date,
+                $description
+            );
+            $event->setAddress($newAddress);
+            $this->eventManager->addEvent($event);
+
+            header('Location:/admin/evenements');
+        }
+        else
+        {
+            $this->render('views/admin/evenements/_form-add-event.phtml', [], 'Ajouter un évènement', 'admin');
+        }
+    }
+    public function modifyEvent(int $eventId) : void {
+        if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modifyEvent']))
+        {
+            $rp = new ReflectionProperty('Event', 'address');
+
+            $eventCurrentInformations = $this->eventManager->getEventById($eventId);
+
+            if (!empty($_POST['title']))
+            {
+                $title = htmlspecialchars($_POST['title']);
+            }
+            else {
+                $title = $eventCurrentInformations->getTitle();
+            }
+
+            if (!empty($_POST['date']))
+            {
+                $date = htmlspecialchars($_POST['date']);
+                $event_date = new DateTime($date);
+            }
+            else {
+                $event_date = $eventCurrentInformations->getDate();
+            }
+            if (!empty($_POST['description']))
+            {
+                $description = htmlspecialchars($_POST['description']);
+            }
+            else {
+                $description = $eventCurrentInformations->getDescription();
+            }
+
+            $event = new Event(
+                $title,
+                $event_date,
+                $description
+            );
+            $event->setId($eventCurrentInformations->getId());
+
+            // Check if object has address
+            if ($rp->isInitialized($eventCurrentInformations))
+            {
+                $eventCurrentAddress = $eventCurrentInformations->getAddress();
+
+                //check if field for address have been filled and then make a new address object OR if not filled get the infos from previous address
+                if (!empty($_POST['address']))
+                {
+                    $addressString = htmlspecialchars($_POST['address']);
+                }
+                else {
+                    $addressString = $eventCurrentAddress->getAddress();
+                }
+
+                if (!empty($_POST['code-postal']))
+                {
+                    $codePostal = htmlspecialchars($_POST['code-postal']);
+                }
+                else {
+                    $codePostal = $eventCurrentAddress->getCodePostal();
+                }
+
+                if (!empty($_POST['ville']))
+                {
+                    $ville = htmlspecialchars($_POST['ville']);
+                }
+                else {
+                    $ville = $eventCurrentAddress->getCommune();
+                }
+
+                $address = new Address(
+                    $codePostal,
+                    $ville,
+                    $addressString
+                );
+                $address->setId($eventCurrentAddress->getId());
+
+                $addressUpdated = $this->addressManager->editAddress($address);
+
+                $event->setAddress($addressUpdated);
+
+            } else {
+
+                //Create new address
+
+                if (isset($_POST['address']) && isset($_POST['code-postal']) && isset($_POST['ville'])) {
+                    $addressString = htmlspecialchars($_POST['address']);
+                    $codePostal = htmlspecialchars($_POST['code-postal']);
+                    $ville = htmlspecialchars($_POST['ville']);
+
+                    $address = new Address(
+                        $codePostal,
+                        $ville,
+                        $addressString
+                    );
+                    $newAddress = $this->addressManager->addAddress($address);
+
+                    $event->setAddress($newAddress);
+                }
+            }
+
+            $this->eventManager->editEvent($event);
+
+            header('Location:/admin/evenements');
+        }
+        else
+        {
+            $this->render('views/admin/events/_form-modify-event.phtml', [], 'Modifier un évènement', 'admin');
+        }
     }
 }
 ?>

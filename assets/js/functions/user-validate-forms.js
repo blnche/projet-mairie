@@ -5,7 +5,6 @@ export function validateUserRegisterForm () {
     let form = document.getElementById('userRegisterForm');
 
     form.addEventListener('submit', function(event) {
-        // event.preventDefault();
 
         let firstName = document.getElementById('firstName');
         let lastName = document.getElementById('lastName');
@@ -22,6 +21,10 @@ export function validateUserRegisterForm () {
 
         user.validate();
         address.validate();
+
+        if (!user.validate() || address.validate()) {
+            event.preventDefault();
+        }
 
     });
 }

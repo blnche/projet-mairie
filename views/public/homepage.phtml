@@ -1,7 +1,7 @@
 <?php
 $events = $this->data['events'];
 ?>
-<h1> <?= $this->pageTitle; ?> </h1>homepage public</h1>
+<h1> <?= $this->pageTitle; ?> </h1>
 <aside class="element-card main_aside">
     <h2>Évènements</h2>
     <ul>
@@ -10,13 +10,13 @@ $events = $this->data['events'];
         {
         ?>
             <li>
-                <?php echo $event['title'] ?>
+                <?php echo $event->getTitle(); ?>
                 <ul>
                     <li>
-                        <?php echo $event['date'] ?>
+                        <?php echo $event->getDate(); ?>
                     </li>
                     <li>
-                        <?php echo $event['description'] ?>
+                        <?php echo $event->getDescirption(); ?>
                     </li>
                 </ul>
             </li>

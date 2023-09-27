@@ -2,7 +2,7 @@
 //require_once 'AbstractManager.php';
     class AddressManager extends AbstractManager
     {
-        public function getAddressById($id) : Address
+        public function getAddressById($id) : ?Address
         {
             $query = $this->db->prepare('
                 SELECT *
@@ -16,15 +16,19 @@
 
             $result = $query->fetch(PDO::FETCH_ASSOC);
 
-            $address = new Address(
-                $result['code_postal'],
-                $result['commune'],
-                $result['address']
-            );
+            if ($result === false) {
+                return null;
+            } else {
+                $address = new Address(
+                    $result['code_postal'],
+                    $result['commune'],
+                    $result['address']
+                );
 
-            $address->setId($result['id']);
+                $address->setId($result['id']);
 
-            return $address;
+                return $address;
+            }
         }
 
         public function addAddress(Address $address) : Address

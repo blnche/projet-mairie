@@ -27,18 +27,30 @@
                 $newAddress = $this->addressManager->addAddress($address);
 
                 //Create new user
+                $firstname = htmlspecialchars($_POST['firstName']);
+                $lastname = htmlspecialchars($_POST['lastName']);
                 $email = htmlspecialchars($_POST['email']);
                 if ($_POST['password'] === $_POST['confirmPassword'])
                 {
                     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
                 }
-                $role = htmlspecialchars($_POST['role']);
+                $key = htmlspecialchars($_POST['role_key']);
+
+                if ($key === 'admin123azerty') {
+                    $role = 'ROLE_ADMIN';
+                } else if ($key === 'userazerty123') {
+                    $role = 'ROLE_USER';
+                } else if ($key === 'superadmin123azerty') {
+                    $role = 'ROLE_SUPER_ADMIN';
+                }
 
                 $user = new User(
                     $email,
                     $password,
                     $role
                 );
+                $user->setFirstName($firstname);
+                $user->setLastName($lastname);
                 $user->setAddress($newAddress);
                 $this->userManager->addUser($user);
                 header('Location:/authentification/se-connecter');
