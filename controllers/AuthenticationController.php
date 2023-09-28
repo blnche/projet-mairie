@@ -75,9 +75,11 @@
                     //Save user in session
                     $id = $user->getId();
                     $role = $user->getRole();
+                    $email = $user->getEmail();
 
                     $_SESSION['user_id'] = $id;
                     $_SESSION['user_role'] = $role;
+                    $_SESSION['user_email'] = $email;
 
                     //Check role to render corresponding dashboard
                     if ($role === 'ROLE_SUPER_ADMIN' || $role === 'ROLE_ADMIN') {

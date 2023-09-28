@@ -8,15 +8,25 @@ $events = $this->data['events'];
         <?php
         foreach($events as $event)
         {
+            $rp = new ReflectionProperty('Event', 'address');
         ?>
             <li>
-                <?php echo $event->getTitle(); ?>
+                <?= $event->getTitle(); ?>
                 <ul>
                     <li>
-                        <?php echo $event->getDate(); ?>
+                        <?= $event->getDate()->format('d/m/Y'); ?>
                     </li>
                     <li>
-                        <?php echo $event->getDescirption(); ?>
+                        <?= $event->getDescription(); ?>
+                    </li>
+                    <li>
+                        <?php
+                        if ($rp->isInitialized($event)){
+                            echo $event->getAddress()->getAddress().', '.$event->getAddress()->getCodePostal().' '.$event->getAddress()->getCommune();
+                        } else {
+                            echo 'Pas d\'adresse spécifiée pour cet évènement';
+                        }
+                        ?>
                     </li>
                 </ul>
             </li>

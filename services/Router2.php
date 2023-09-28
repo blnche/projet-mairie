@@ -349,7 +349,7 @@ class Router2
         else if ($routeTab['route'] === 'admin') {
             if (isset($_SESSION['user_id']) && (($_SESSION['user_role'] === 'ROLE_ADMIN') || ($_SESSION['user_role'] === 'ROLE_SUPER_ADMIN'))) {
                 if ($routeTab['admin'] === 'modifier-email') {
-                    // TODO user modifier email
+                    $this->adminController->modifyEmail();
                 } else if ($routeTab['admin'] === 'ajouter-un-fichier') {
                     $this->fileController->uploadFile($_GET['file']);
                 } else if ($routeTab['admin'] === 'bulletins-municipaux') {
@@ -369,7 +369,6 @@ class Router2
                         if ($routeTab['action'] === 'ajouter') {
                             $this->adminController->addAssociation();
                         } else if ($routeTab['action'] === 'modifier') {
-                            var_dump($_GET['associationId']);
                             $this->adminController->modifyAssociation(htmlspecialchars($_GET['associationId']));
                         } else {
                             $this->adminController->associations();
@@ -378,7 +377,6 @@ class Router2
                         if ($routeTab['action'] === 'ajouter') {
                             $this->adminController->addLocation();
                         } else if ($routeTab['action'] === 'modifier') {
-                            var_dump($_GET['locationId']);
                             $this->adminController->modifyLocation(htmlspecialchars($_GET['locationId']));
                         } else {
                             $this->adminController->locations();

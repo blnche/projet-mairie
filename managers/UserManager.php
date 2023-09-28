@@ -132,6 +132,22 @@
             return $userEdited;
         }
 
+        public function editUserEmail (User $userEdited) : User
+        {
+            $query = $this->db->prepare('
+                UPDATE users
+                SET email = :email
+                WHERE id = :id
+            ');
+            $parameters = [
+                'id' => $userEdited->getId(),
+                'email' => $userEdited->getEmail()
+            ];
+            $query->execute($parameters);
+
+            return $userEdited;
+        }
+
         public function deleteUser (User $user) : void
         {
 

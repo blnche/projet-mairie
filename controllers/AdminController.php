@@ -9,6 +9,7 @@ class AdminController extends AbstractController
     private AssociationManager $associationManager;
     private LocationManager $locationManager;
     private LocalProfessionalManager $localProfessionalManager;
+    private UserManager $userManager;
 
     public function __construct()
     {
@@ -20,6 +21,7 @@ class AdminController extends AbstractController
         $this->associationManager = new AssociationManager();
         $this->locationManager = new LocationManager();
         $this->localProfessionalManager = new LocalProfessionalManager();
+        $this->userManager = new UserManager();
     }
 
     // DASHBOARD
@@ -27,7 +29,30 @@ class AdminController extends AbstractController
     {
         $this->render('views/admin/dashboard.phtml', [], 'Admin Accueil', 'admin');
     }
+    public function modifyEmail() : void {
+        if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modifyEmail']))
+        {
+            $currentEmail = htmlspecialchars($_POST['email']);
+            $newEmail = htmlspecialchars($_POST['newEmail']);
 
+            $loggedEmail = $_SESSION['user_email'];
+
+            if ($currentEmail === $loggedEmail) {
+                $user = $this->userManager->getUserByEmail($currentEmail);
+
+                $user->setEmail($newEmail);
+
+                $this->userManager->editUserEmail($user);
+
+                header('Location:/admin');
+
+            } else {
+                echo 'L\'adresse email renseignée ne correspond pas à celle utilisée pour la connexion.';
+            }
+        } else {
+            $this->render('views/admin/_form-modify-email.phtml', [], 'Modifer votre adresse email', 'admin');
+        }
+    }
     // TOWN COUNCIL
     public function municipalCouncilReports() : void
     {
@@ -756,7 +781,7 @@ class AdminController extends AbstractController
 
                 //Create new address
 
-                if (isset($_POST['address']) && isset($_POST['code-postal']) && isset($_POST['ville'])) {
+                if (!empty($_POST['address']) && !empty($_POST['code-postal']) && !empty($_POST['ville'])) {
                     $addressString = htmlspecialchars($_POST['address']);
                     $codePostal = htmlspecialchars($_POST['code-postal']);
                     $ville = htmlspecialchars($_POST['ville']);
