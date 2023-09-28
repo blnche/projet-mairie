@@ -8,12 +8,41 @@
             $this->addressManager = new AddressManager();
         }
 
-        public function getAllUsers() : array
+        public function getAllUsersWithRoleUser() : array
         {
             $query = $this->db->prepare('
                 SELECT * 
                 FROM users
                 WHERE users.role = "ROLE_USER"
+            ');
+            $query->execute();
+
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+            $users = [];
+
+            foreach ($result as $user) {
+                $newUser = new User(
+                    $user['email'],
+                    $user['password'],
+                    $user['role']
+                );
+                $newUser->setFirstName($user['firstName']);
+                $newUser->setLastName($user['lastName']);
+                $newUser->setId($user['id']);
+                $newUser->setAddress($this->addressManager->getAddressById($user['user_address_id']));
+
+                $users[] = $newUser;
+            }
+
+            return $users;
+        }
+        public function getAllUsersWithRoleAdmin() : array
+        {
+            $query = $this->db->prepare('
+                SELECT * 
+                FROM users
+                WHERE users.role = "ROLE_ADMIN"
             ');
             $query->execute();
 

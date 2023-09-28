@@ -10,7 +10,22 @@
             ');
             $query->execute();
 
-            return $query->fetchAll(PDO::FETCH_ASSOC);
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+            $municipalCouncilReports = [];
+
+            foreach ($result as $municipalCouncilReport) {
+                $municipalCouncilReport_date = new DateTime($municipalCouncilReport['date']);
+
+                $newMunicipalCouncilReport = new MunicipalCouncilReport (
+                    $municipalCouncilReport_date,
+                    $municipalCouncilReport['url']
+                );
+
+                $municipalCouncilReports[] = $newMunicipalCouncilReport;
+            }
+
+            return $municipalCouncilReports;
         }
 
         public function addMunicipalCouncilReport(MunicipalCouncilReport $councilReport) : MunicipalCouncilReport

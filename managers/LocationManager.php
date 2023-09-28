@@ -67,7 +67,9 @@
                     $location['telephone'],
                     $location['description']
                 );
+                $newLocation->setAddress($this->addressManager->getAddressById($location['loca_address_id']));
                 $newLocation->setId($location['id']);
+
                 $locations[] = $newLocation;
             }
 

@@ -1,7 +1,31 @@
 <?php
-//require_once 'AbstractManager.php';
     class AddressManager extends AbstractManager
     {
+        public function getAllAddresses() : array {
+            $query = $this->db->prepare('
+                SELECT * 
+                FROM addresses
+            ');
+            $query->execute();
+
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+            $addresses = [];
+
+            foreach ($result as $address) {
+                $newAddress = new Address (
+                    $address['code_postal'],
+                    $address['commune'],
+                    $address['address']
+                );
+
+                $newAddress->setId($address['id']);
+
+                $addresses[] = $newAddress;
+            }
+
+            return $addresses;
+        }
         public function getAddressById($id) : ?Address
         {
             $query = $this->db->prepare('

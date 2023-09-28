@@ -5,6 +5,7 @@
         private string $sector;
         private string $ceo_firstName;
         private string $ceo_lastName;
+        private Address $address;
 
         /**
          * @param string $name

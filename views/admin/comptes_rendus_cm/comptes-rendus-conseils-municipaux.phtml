@@ -8,7 +8,7 @@
     {
         ?>
         <li>
-            <?php echo 'Compte rendu du '.substr($file['date'], 0, -8);?> <a target="_blank" href="<?=$file['url']?>">Consulter le fichier</a>
+            <?php echo 'Compte rendu du '.$file->getDate()->format('d/m/Y');?> <a target="_blank" href="<?=$file->getUrl()?>">Consulter le fichier</a>
         </li>
         <?php
     }

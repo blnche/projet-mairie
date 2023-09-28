@@ -1,33 +1,47 @@
 <?php
-//require_once 'AbstractManager.php';
-    class MunicipalBulletinManager extends AbstractManager
+class MunicipalBulletinManager extends AbstractManager
+{
+    public function getAllMunicipalBulletins() : array
     {
-        public function getAllMunicipalBulletins() : array
-        {
-            $query = $this->db->prepare('
-                SELECT *
-                FROM bulletins_municipaux
-            ');
-            $query->execute();
+        $query = $this->db->prepare('
+            SELECT *
+            FROM bulletins_municipaux
+        ');
+        $query->execute();
 
-            return $query->fetchAll(PDO::FETCH_ASSOC);
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        $municipalBulletins = [];
+
+        foreach ($result as $municipalBulletin) {
+            $municipalBulletin_date = new DateTime($municipalBulletin['date']);
+
+            $newMunicipalBulletin = new MunicipalBulletin (
+                $municipalBulletin_date,
+                $municipalBulletin['url']
+            );
+
+            $municipalBulletins[] = $newMunicipalBulletin;
         }
 
-        public function addMunicipalBulletin(MunicipalBulletin $municipalBulletin) : MunicipalBulletin
-        {
-            $query = $this->db->prepare('
-                INSERT INTO bulletins_municipaux (date, url) 
-                VALUES (:date, :url)
-            ');
-            $parameters = [
-                'date' => $municipalBulletin->getDate()->format('Y-m-d'),
-                'url' => $municipalBulletin->getUrl()
-            ];
-            $query->execute($parameters);
-
-            $municipalBulletin->setId($this->db->lastInsertId());
-
-            return $municipalBulletin;
-        }
+        return $municipalBulletins;
     }
+
+    public function addMunicipalBulletin(MunicipalBulletin $municipalBulletin) : MunicipalBulletin
+    {
+        $query = $this->db->prepare('
+            INSERT INTO bulletins_municipaux (date, url) 
+            VALUES (:date, :url)
+        ');
+        $parameters = [
+            'date' => $municipalBulletin->getDate()->format('Y-m-d'),
+            'url' => $municipalBulletin->getUrl()
+        ];
+        $query->execute($parameters);
+
+        $municipalBulletin->setId($this->db->lastInsertId());
+
+        return $municipalBulletin;
+    }
+}
 ?>

@@ -40,7 +40,8 @@
                 'name' => $associationEdited->getName(),
                 'presidentFirstName' => $associationEdited->getPresidentFirstName(),
                 'presidentLastName' => $associationEdited->getPresidentLastName(),
-                'status' => $associationEdited->getStatus()
+                'status' => $associationEdited->getStatus(),
+                'assoc_address_id' => $associationEdited->getAddress()->getId()
             ];
             $query->execute($parameters);
 
@@ -66,6 +67,7 @@
                     $association['president_lastName'],
                     $association['status']
                 );
+                $newAssociation->setAddress($this->addressManager->getAddressById($association['assoc_address_id']));
                 $newAssociation->setId($association['id']);
                 $associations[] = $newAssociation;
             }

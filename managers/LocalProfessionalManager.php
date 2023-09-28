@@ -67,7 +67,9 @@
                     $localProfessional['ceo_firstName'],
                     $localProfessional['ceo_lastName']
                 );
+                $newLocalProfessional->setAddress($this->addressManager->getAddressById($localProfessional['pl_address_id']));
                 $newLocalProfessional->setId($localProfessional['id']);
+
                 $localProfessionals[] = $newLocalProfessional;
             }
 

@@ -147,7 +147,7 @@ class Router2
                         if (isset($tab[2])) {
                             $routeAndParams['bulletinSlug'] = $tab[2];
                         }
-                    } else if ($tab[1] === 'comptes-rendus-conseil-municipaux') {
+                    } else if ($tab[1] === 'comptes-rendus-conseils-municipaux') {
                         $routeAndParams['admin'] = $tab[1];
 
                         if (isset($tab[2])) {
