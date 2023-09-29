@@ -1,33 +1,46 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mairie de Saint-Broladre</title>
+    <link rel="stylesheet" type="text/css" href="/assets/style/css/main-public.css"/>
 </head>
 <body>
     <header>
-        <h1>layout</h1>
-        <?php require 'views/partials/public/_header.phtml'; ?>
+        <section class="header-container">
+            <section class="header-title">
+                <h1>Saint-Broladre</h1>
+                <p>Commune de la baie du Mont Saint Michel</p>
+            </section>
+            <?php require 'views/partials/public/_header.phtml'; ?>
+            <section class="header-toggleBtn-container">
+                <img width="48" height="48" src="https://img.icons8.com/FFFFFF/fluency-systems-filled/48/menu.png" alt="menu" id="toggleNavBtn"/>
+        </section>
     </header>
 
     <main>
-        <?php require $this->template; ?>
-        <?php
-            if ((!isset($_GET['route'])) || ((isset($_GET['route']) && $_GET['route'] !== 'login')))
-            {
-                ?>
-                <section class="element-card main_contact-form">
-                    <h2>Nous contacter</h2>
-                    <?php require 'views/public/_form-contact.phtml'; ?>
-                </section>
-                <?php
-            }
-        ?>
+        <section class="">
+            <?php require $this->template; ?>
+            <?php
+                if ((!isset($_GET['route'])) || ((isset($_GET['route']) && $_GET['route'] !== 'login')))
+                {
+                    ?>
+                    <section class="element-card main_contact-form">
+                        <h2>Nous contacter</h2>
+                        <?php require 'views/public/_form-contact.phtml'; ?>
+                    </section>
+                    <?php
+                }
+            ?>
+        </section>
     </main>
 
     <footer>
-        <?php require 'views/partials/public/_footer.phtml'; ?>
+        <section class="footer-container">
+            <?php require 'views/partials/public/_footer.phtml'; ?>
+            <p>Thème créé par <a href="#">Blanche Peltier</a>. Icônes par <a href="https://icones8.fr/">Icons8</a>, et couleurs par <a href="https://www.radix-ui.com/colors">Radix</a>.</p>
+        </section>
     </footer>
     <script type="module" src="/assets/js/index.js"></script>
 </body>
