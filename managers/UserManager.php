@@ -94,7 +94,7 @@
             return $user;
         }
 
-        public function getUserByEmail (string $email) : User
+        public function getUserByEmail (string $email) : ?User
         {
             $query = $this->db->prepare('
                 SELECT * 
@@ -108,17 +108,21 @@
 
             $result = $query->fetch(PDO::FETCH_ASSOC);
 
-            $user = new User(
-                $result['email'],
-                $result['password'],
-                $result['role']
-            );
-            $user->setFirstName($result['firstName']);
-            $user->setLastName($result['lastName']);
-            $user->setId($result['id']);
-            $user->setAddress($this->addressManager->getAddressById($result['user_address_id']));
+            if ($result === false) {
+                return null;
+            } else {
+                $user = new User(
+                    $result['email'],
+                    $result['password'],
+                    $result['role']
+                );
+                $user->setFirstName($result['firstName']);
+                $user->setLastName($result['lastName']);
+                $user->setId($result['id']);
+                $user->setAddress($this->addressManager->getAddressById($result['user_address_id']));
 
-            return $user;
+                return $user;
+            }
         }
 
         public function addUser (User $user) : User

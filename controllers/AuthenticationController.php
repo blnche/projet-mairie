@@ -70,7 +70,7 @@
 
                 //Check password
                 $password = $_POST['password'];
-                if (password_verify($password, $user->getPassword()))
+                if ($user !== null && password_verify($password, $user->getPassword()))
                 {
                     //Save user in session
                     $id = $user->getId();
@@ -91,6 +91,7 @@
                     }
                 } else {
                     echo "L'un des champs est erroné";
+                    $this->render('views/authentication/login.phtml',[],'Se connecter', 'authentication');
                 }
             } else {
                 $this->render('views/authentication/login.phtml',[],'Se connecter', 'authentication');
