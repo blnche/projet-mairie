@@ -53,7 +53,7 @@
                 $user->setLastName($lastname);
                 $user->setAddress($newAddress);
                 $this->userManager->addUser($user);
-                header('Location:/authentification/se-connecter');
+                header('Location:/projet-final/projet-mairie/authentification/se-connecter');
             }
             else
             {
@@ -83,11 +83,11 @@
 
                     //Check role to render corresponding dashboard
                     if ($role === 'ROLE_SUPER_ADMIN' || $role === 'ROLE_ADMIN') {
-                        header('Location:/admin');
+                        header('Location:/projet-final/projet-mairie/admin');
                     } else if ($role === 'ROLE_USER') {
                         $_SESSION['user_lastName'] = $user->getLastName();
 
-                        header('Location:/espace-famille/'.$_SESSION['user_lastName']);
+                        header('Location:/projet-final/projet-mairie/espace-famille/'.$_SESSION['user_lastName']);
                     }
                 } else {
                     echo "L'un des champs est erroné";
@@ -101,7 +101,7 @@
         public function logout() : void
         {
             session_destroy();
-            header('Location:/');
+            header('Location:/projet-final/projet-mairie/');
         }
     }
 ?>

@@ -1,7 +1,7 @@
 // IMPORT
-import {validateUserLoginForm} from '/assets/js/functions/user-validate-forms.js';
-import {validateUserRegisterForm} from '/assets/js/functions/user-validate-forms.js';
-import {burgerMenu, foldingMenu} from '/assets/js/functions/menus.js';
+import {validateUserLoginForm} from '/projet-final/projet-mairie/assets/js/functions/user-validate-forms.js';
+import {validateUserRegisterForm} from '/projet-final/projet-mairie/assets/js/functions/user-validate-forms.js';
+import {burgerMenu, foldingMenu} from '/projet-final/projet-mairie/assets/js/functions/menus.js';
 // END IMPORT
 
 window.addEventListener("DOMContentLoaded", function () {

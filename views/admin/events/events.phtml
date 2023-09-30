@@ -2,7 +2,7 @@
 $events = $this->data['events'];
 ?>
 <h1><?= $this->pageTitle ?></h1>
-<a href="/admin/evenements/ajouter">add event</a>
+<a href="/projet-final/projet-mairie/admin/evenements/ajouter">add event</a>
 
 <table>
     <thead>
@@ -32,7 +32,7 @@ $events = $this->data['events'];
                 }
                 ?>
             </td>
-            <td><a href="/admin/evenements/modifier&eventId=<?= $event->getId(); ?>">modifier évènement</a></td>
+            <td><a href="/projet-final/projet-mairie/admin/evenements/modifier&eventId=<?= $event->getId(); ?>">modifier évènement</a></td>
         </tr>
         <?php
     }

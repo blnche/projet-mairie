@@ -2,7 +2,7 @@
 $locations = $this->data['locations'];
 ?>
 <h1><?= $this->pageTitle ?> </h1>
-<a href="/admin/informations-locales/lieux/ajouter">add location</a>
+<a href="/projet-final/projet-mairie/admin/informations-locales/lieux/ajouter">add location</a>
 <table>
     <thead>
     <tr>
@@ -23,7 +23,7 @@ $locations = $this->data['locations'];
             <td> <?= $location->getType(); ?> </td>
             <td> <?= $location->getTelephone(); ?></td>
             <td> <?= $location->getDescription(); ?></td>
-            <td><a href="/admin/informations-locales/lieux/modifier&locationId=<?= $location->getId(); ?>">modifier location</a></td>
+            <td><a href="/projet-final/projet-mairie/admin/informations-locales/lieux/modifier&locationId=<?= $location->getId(); ?>">modifier location</a></td>
         </tr>
         <?php
     }

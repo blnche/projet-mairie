@@ -3,7 +3,7 @@ $week = $this->data['week'];
 $children = $this->data['children'];
 ?>
 <h1> cantine semaine <?= $week->getWeekOfYear(); ?></h1>
-<form method="POST" action="/espace-famille/<?= $_SESSION['user_lastName'] ?>/cantine/inscrire/<?= $week->getWeekOfYear(); ?>">
+<form method="POST" action="/projet-final/projet-mairie/espace-famille/<?= $_SESSION['user_lastName'] ?>/cantine/inscrire/<?= $week->getWeekOfYear(); ?>">
     <fieldset>
         <label for="enfant">Choississez quel enfant inscrire</label>
         <select name="enfant" id="enfant">

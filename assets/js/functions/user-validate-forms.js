@@ -1,5 +1,5 @@
-import {User} from '/assets/js/classes/User.js';
-import {Address} from '/assets/js/classes/Address.js';
+import {User} from '/projet-final/projet-mairie/assets/js/classes/User.js';
+import {Address} from '/projet-final/projet-mairie/assets/js/classes/Address.js';
 
 export function validateUserRegisterForm () {
     let form = document.getElementById('userRegisterForm');

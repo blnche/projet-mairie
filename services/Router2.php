@@ -139,7 +139,7 @@ class Router2
                 if (isset($tab[1])) {
                     if ($tab[1] === 'modifier-email') {
                         $routeAndParams['admin'] = $tab[1];
-                    } else if ($tab[1] === 'ajouter-fichier') {
+                    } else if ($tab[1] === 'ajouter-un-fichier') {
                         $routeAndParams['admin'] = $tab[1];
                     } else if ($tab[1] === 'bulletins-municipaux') {
                         $routeAndParams['admin'] = $tab[1];
@@ -263,6 +263,7 @@ class Router2
     public function checkRoute(string $route): void
     {
         $routeTab = $this->splitRouteAndParameters($route);
+        var_dump($routeTab);
 
         // PUBLIC
         if ($routeTab['route'] === '') {
@@ -412,7 +413,7 @@ class Router2
                     $this->adminController->adminHomepage();
                 }
             } else {
-                header('Location:/authentification/se-connecter');
+                header('Location:/projet-final/projet-mairie/authentification/se-connecter');
             }
         } 
         
@@ -443,7 +444,7 @@ class Router2
                     $this->userController->userHomepage();
                 }
             } else {
-                header('Location:/authentification/se-connecter');
+                header('Location:/projet-final/projet-mairie/authentification/se-connecter');
             }
         } 
         

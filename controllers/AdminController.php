@@ -44,7 +44,7 @@ class AdminController extends AbstractController
 
                 $this->userManager->editUserEmail($user);
 
-                header('Location:/admin');
+                header('Location:/projet-final/projet-mairie/admin');
 
             } else {
                 echo 'L\'adresse email renseignée ne correspond pas à celle utilisée pour la connexion.';
@@ -109,7 +109,7 @@ class AdminController extends AbstractController
             $association->setAddress($newAddress);
             $this->associationManager->addAssociation($association);
 
-            header('Location:/admin/informations-locales/associations');
+            header('Location:/projet-final/projet-mairie/admin/informations-locales/associations');
         }
         else
         {
@@ -200,7 +200,7 @@ class AdminController extends AbstractController
 
             $this->associationManager->editAssociation($association);
 
-            header('Location:/admin/informations-locales/associations');
+            header('Location:/projet-final/projet-mairie/admin/informations-locales/associations');
         }
         else
         {
@@ -245,7 +245,7 @@ class AdminController extends AbstractController
             $localProfessional->setAddress($newAddress);
             $this->localProfessionalManager->addLocalProfessional($localProfessional);
 
-            header('Location:/admin/informations-locales/professionnels-locaux');
+            header('Location:/projet-final/projet-mairie/admin/informations-locales/professionnels-locaux');
         }
         else
         {
@@ -334,7 +334,7 @@ class AdminController extends AbstractController
 
             $this->localProfessionalManager->editLocalProfessional($localProfessional);
 
-            header('Location:/admin/informations-locales/professionnels-locaux');
+            header('Location:/projet-final/projet-mairie/admin/informations-locales/professionnels-locaux');
         }
         else
         {
@@ -379,7 +379,7 @@ class AdminController extends AbstractController
             $location->setAddress($newAddress);
             $this->locationManager->addLocation($location);
 
-            header('Location:/admin/informations-locales/lieux');
+            header('Location:/projet-final/projet-mairie/admin/informations-locales/lieux');
         }
         else
         {
@@ -468,7 +468,7 @@ class AdminController extends AbstractController
 
             $this->locationManager->editLocation($location);
 
-            header('Location:/admin/informations-locales/lieux');
+            header('Location:/projet-final/projet-mairie/admin/informations-locales/lieux');
         }
         else
         {
@@ -691,7 +691,7 @@ class AdminController extends AbstractController
             $event->setAddress($newAddress);
             $this->eventManager->addEvent($event);
 
-            header('Location:/admin/evenements');
+            header('Location:/projet-final/projet-mairie/admin/evenements');
         }
         else
         {
@@ -799,7 +799,7 @@ class AdminController extends AbstractController
 
             $this->eventManager->editEvent($event);
 
-            header('Location:/admin/evenements');
+            header('Location:/projet-final/projet-mairie/admin/evenements');
         }
         else
         {

@@ -16,7 +16,8 @@ class FileController extends AbstractController
         $councilReports = $this->councilReportManager->getAllMunicipalCouncilReports();
 
         return ['bulletins' => $bulletins, 'councilReports' => $councilReports];
-    } //needed ?
+    } //needed? 
+    
     public function uploadFile($fileType) : void
     {
         $today = new DateTime();
@@ -31,12 +32,12 @@ class FileController extends AbstractController
 
                 move_uploaded_file($file['tmp_name'], $path);
 
-                $newCouncilReport = new MunicipalCouncilReport($today, $path);
+                $newCouncilReport = new MunicipalCouncilReport($today, '/projet-final/projet-mairie/'.$path);
 
                 $this->councilReportManager->addMunicipalCouncilReport($newCouncilReport);
 
                 echo 'success';
-                header('Location:/admin/comptes-rendus-conseils-municipaux');
+                header('Location:/projet-final/projet-mairie/admin/comptes-rendus-conseils-municipaux');
             }
             else
             {
@@ -60,7 +61,7 @@ class FileController extends AbstractController
                 $this->bulletinManager->addMunicipalBulletin($newMunicipalBulletin);
 
                 echo 'success';
-                header('Location:/admin/bulletins-municipaux');
+                header('Location:/projet-final/projet-mairie/admin/bulletins-municipaux');
             }
             else
             {

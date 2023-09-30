@@ -2,7 +2,7 @@
 $associations = $this->data['associations'];
 ?>
 <h1><?= $this->pageTitle ?></h1>
-<a href="/admin/informations-locales/associations/ajouter">add association</a>
+<a href="/projet-final/projet-mairie/admin/informations-locales/associations/ajouter">add association</a>
 
 <table>
     <thead>
@@ -20,7 +20,7 @@ $associations = $this->data['associations'];
         <tr>
             <td> <?= $association->getName(); ?> </td>
             <td> <?= $association->getPresidentLastName() . ' ' .$association->getPresidentFirstName(); ?> </td>
-            <td><a href="/admin/informations-locales/associations/modifier&associationId=<?= $association->getId(); ?>">modifier association</a></td>
+            <td><a href="/projet-final/projet-mairie/admin/informations-locales/associations/modifier&associationId=<?= $association->getId(); ?>">modifier association</a></td>
         </tr>
     <?php
     }

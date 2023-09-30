@@ -105,7 +105,7 @@ class UserController extends AbstractController
 
             $this->userManager->editUser($user);
 
-            header('Location:/espace-famille/');
+            header('Location:/projet-final/projet-mairie/espace-famille/');
         } else {
             $this->render('views/user/_form-modifify-user.phtml', [], 'inscrire vos informations');
         }
@@ -146,7 +146,7 @@ class UserController extends AbstractController
             $child->setParent($this->userManager->getUserById($_SESSION['user_id']));
 
             $this->childManager->addChild($child);
-            header('Location: /espace-famille/'.$_SESSION['user_lastName'].'/enfants');
+            header('Location:/projet-final/projet-mairie/espace-famille/'.$_SESSION['user_lastName'].'/enfants');
         } else {
             $this->render('views/user/_form-add-child.phtml', [], 'Ajouter mon enfant', 'user');
         }
@@ -187,7 +187,7 @@ class UserController extends AbstractController
                 $child->setId($childCurrentInformations->getId());
 
                 $this->childManager->editChild($child);
-                header('Location: /espace-famille/'.$_SESSION['user_lastName'].'/enfants');
+                header('Location:/projet-final/projet-mairie/espace-famille/'.$_SESSION['user_lastName'].'/enfants');
             }
         } else {
             $this->render('views/user/_form-modify-child.phtml', ['childId' => $id], 'Enregistrer mon enfant', 'user');
@@ -235,12 +235,12 @@ class UserController extends AbstractController
                     }
                 }
                 $this->cafeteriaDateManager->EnrollChildCafeteria($week, $child, $days);
-                header('Location: /espace-famille/'.$_SESSION['user_lastName'].'/cantine');
+                header('Location:/projet-final/projet-mairie/espace-famille/'.$_SESSION['user_lastName'].'/cantine');
             } else {
                 $this->render('views/user/cantine_semaine.phtml', ['week' => $week, 'children' => $children], 'Semaine du '.$weekNumber, 'user' );
             }
         } else {
-            header( 'refresh:5;url=/espace-famille/'.$_SESSION['user_lastName'].'/cantine');
+            header( 'refresh:5;url=/projet-final/projet-mairie/espace-famille/'.$_SESSION['user_lastName'].'/cantine');
             echo 'Les inscriptions pour cette semaine sont fermées. Vous allez être redirigés vers la page "cantine" ';
         }
 

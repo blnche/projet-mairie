@@ -52,7 +52,7 @@ foreach ($weeks as $week)
                     <td> <?= checkStatus($data->getWednesday(), '', 'wednesday'); ?> </td>
                     <td> <?= checkStatus($data->getThursday(), '', 'thursday'); ?> </td>
                     <td> <?= checkStatus($data->getFriday(),'', 'friday'); ?> </td>
-                    <td><a href=" /espace-famille/<?= $_SESSION['user_lastName'] ?>/cantine/inscrire/<?= $data->getWeekOfYear(); ?>">Inscrire</a></td>
+                    <td><a href="/projet-final/projet-mairie/espace-famille/<?= $_SESSION['user_lastName'] ?>/cantine/inscrire/<?= $data->getWeekOfYear(); ?>">Inscrire</a></td>
                     <td> <?= $firstName ?> </td>
                 </tr>
                 <?php
@@ -69,7 +69,7 @@ foreach ($weeks as $week)
                     <td> <?= checkStatus($data->getWednesday(), '', 'wednesday'); ?> </td>
                     <td> <?= checkStatus($data->getThursday(), '', 'thursday'); ?> </td>
                     <td> <?= checkStatus($data->getFriday(),'', 'friday'); ?> </td>
-                    <td><a href=" /espace-famille/<?= $_SESSION['user_lastName'] ?>/cantine/modifier/<?= $data->getWeekOfYear(); ?>">Modifier</a></td>
+                    <td><a href="/projet-final/projet-mairie/espace-famille/<?= $_SESSION['user_lastName'] ?>/cantine/modifier/<?= $data->getWeekOfYear(); ?>">Modifier</a></td>
                     <td> <?= $firstName ?> </td>
                 </tr>
                 <?php
@@ -157,7 +157,7 @@ foreach ($weeks as $week)
                     ?>
                 </ul>
             </td>
-            <td><a href="/espace-famille/<?= $_SESSION['user_lastName'] ?>/cantine/modifier/<?= $week->getWeekOfYear(); ?>">Modifier</a></td>
+            <td><a href="/projet-final/projet-mairie/espace-famille/<?= $_SESSION['user_lastName'] ?>/cantine/modifier/<?= $week->getWeekOfYear(); ?>">Modifier</a></td>
             <td>
                 <ul>
                     <?php
