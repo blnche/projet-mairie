@@ -8,6 +8,7 @@ class Router2
     private AuthenticationController $authenticationController;
     private StaticPageController $staticPageController;
     private AdminController $adminController;
+    private PostController $postController;
 
     public function __construct()
     {
@@ -17,6 +18,7 @@ class Router2
         $this->authenticationController = new AuthenticationController();
         $this->staticPageController = new StaticPageController();
         $this->adminController = new AdminController();
+        $this->postController = new PostController();
     }
 
     private function splitRouteAndParameters(string $route): array
@@ -203,6 +205,16 @@ class Router2
                             }
                         }
 
+                    } else if ($tab[1] === 'articles') {
+                        $routeAndParams['admin'] = $tab[1];
+                        
+                        if(isset($tab[2])) {
+                            if ($tab[2] === 'ajouter') {
+                                $routeAndParams['action'] = $tab[2];
+                            } else if ($tab[2] === 'modifier') {
+                                $routeAndParams['action'] = $tab[2];
+                            }
+                        }
                     } else if ($tab[1] === 'cantine') {
                         $routeAndParams['admin'] = $tab[1];
 
@@ -408,6 +420,14 @@ class Router2
                         $this->adminController->modifyEvent(htmlspecialchars($_GET['eventId']));
                     } else {
                         $this->adminController->events();
+                    }
+                } else if ($routeTab['admin'] === 'articles') {
+                    if ($routeTab['action'] === 'ajouter') {
+                        $this->postController->addPost();
+                    } else if ($routeTab['action'] === 'modifier') {
+                        $this->postController->modifyPost(htmlspecialchars($_GET['postId']));
+                    } else {
+                        $this->postController->posts();
                     }
                 } else {
                     $this->adminController->adminHomepage();

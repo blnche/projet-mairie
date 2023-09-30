@@ -2,33 +2,24 @@
     class Post {
         private ?int $id;
         private string $title;
-        private string $content;
-        private string $page;
+        private ?string $content;
+        private ?Post $parentPage;
         private string $status;
-        private Address $address;
         private datetime $created_date;
-        private datetime $posted_date;
-        private array $deco_pictures;
-        private Picture $picture;
+        private ?datetime $posted_date;
+        private ?Picture $picture;
 
         /**
          * @param string $title
-         * @param string $content
-         * @param string $page
          * @param string $status
-         * @param Address $address
          * @param datetime $created_date
          * @param datetime $posted_date
          */
-        public function __construct(string $title, string $content, string $page, string $status, Address $address, datetime $created_date, datetime $posted_date)
+        public function __construct(string $title, string $status, datetime $created_date)
         {
             $this->title = $title;
-            $this->content = $content;
-            $this->page = $page;
             $this->status = $status;
-            $this->address = $address;
             $this->created_date = $created_date;
-            $this->posted_date = $posted_date;
         }
 
         /**
@@ -66,7 +57,7 @@
         /**
          * @return string
          */
-        public function getContent(): string
+        public function getContent(): ?string
         {
             return $this->content;
         }
@@ -74,7 +65,7 @@
         /**
          * @param string $content
          */
-        public function setContent(string $content): void
+        public function setContent(?string $content): void
         {
             $this->content = $content;
         }
@@ -82,17 +73,17 @@
         /**
          * @return string
          */
-        public function getPage(): string
+        public function getParentPage(): ?Post
         {
-            return $this->page;
+            return $this->parentPage;
         }
 
         /**
          * @param string $page
          */
-        public function setPage(string $page): void
+        public function setParentPage(?Post $parentPage): void
         {
-            $this->page = $page;
+            $this->parentPage = $parentPage;
         }
 
         /**
@@ -109,22 +100,6 @@
         public function setStatus(string $status): void
         {
             $this->status = $status;
-        }
-
-        /**
-         * @return Address
-         */
-        public function getAddress(): Address
-        {
-            return $this->address;
-        }
-
-        /**
-         * @param Address $address
-         */
-        public function setAddress(Address $address): void
-        {
-            $this->address = $address;
         }
 
         /**
@@ -146,7 +121,7 @@
         /**
          * @return datetime
          */
-        public function getPostedDate(): datetime
+        public function getPostedDate(): ?datetime
         {
             return $this->posted_date;
         }
@@ -154,31 +129,15 @@
         /**
          * @param datetime $posted_date
          */
-        public function setPostedDate(datetime $posted_date): void
+        public function setPostedDate(?datetime $posted_date): void
         {
             $this->posted_date = $posted_date;
         }
 
         /**
-         * @return array
-         */
-        public function getDecoPictures(): array
-        {
-            return $this->deco_pictures;
-        }
-
-        /**
-         * @param array $deco_pictures
-         */
-        public function setDecoPictures(array $deco_pictures): void
-        {
-            $this->deco_pictures = $deco_pictures;
-        }
-
-        /**
          * @return Picture
          */
-        public function getPicture(): Picture
+        public function getPicture(): ?Picture
         {
             return $this->picture;
         }
@@ -186,7 +145,7 @@
         /**
          * @param Picture $picture
          */
-        public function setPicture(Picture $picture): void
+        public function setPicture(?Picture $picture): void
         {
             $this->picture = $picture;
         }

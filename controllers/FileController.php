@@ -43,8 +43,7 @@ class FileController extends AbstractController
             {
                 $this->render('views/admin/comptes_rendus_cm/_form.phtml', [], 'Comptes rendus des CM', 'admin');
             }
-        }
-        if($fileType === 'bulletin')
+        } else if($fileType === 'bulletin')
         {
             if($_SERVER["REQUEST_METHOD"] === "POST")
             {
@@ -67,7 +66,7 @@ class FileController extends AbstractController
             {
                 $this->render('views/admin/bulletins_municipaux/_form.phtml', [], 'Bulletins municipaux', 'admin');
             }
-        }
+        } 
     }
 }
 ?>

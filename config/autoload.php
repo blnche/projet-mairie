@@ -31,6 +31,8 @@ require 'managers/CafeteriaDateManager.php';
 require 'managers/AssociationManager.php';
 require 'managers/LocationManager.php';
 require 'managers/LocalProfessionalManager.php';
+require 'managers/PostManager.php';
+require 'managers/PictureManager.php';
 
 // Controllers
 require 'controllers/AbstractController.php';
@@ -40,6 +42,7 @@ require 'controllers/FileController.php';
 require 'controllers/AuthenticationController.php';
 require 'controllers/StaticPageController.php';
 require 'controllers/AdminController.php';
+require 'controllers/PostController.php';
 
 // Router
 require 'services/Router2.php';
