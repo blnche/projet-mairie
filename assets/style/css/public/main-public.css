@@ -22,7 +22,6 @@ header .header-container {
 }
 header .header-container .header-title {
   height: 100%;
-  padding: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -40,8 +39,8 @@ header .header-container .header-toggleBtn-container {
   height: 45px;
   padding: 0.3rem;
   position: fixed;
-  top: 1.5rem;
-  right: 1.5rem;
+  top: 1.25rem;
+  right: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -69,7 +68,10 @@ header .header-container nav.mainNavActive {
 }
 header .header-container nav ul {
   padding-block: 2rem;
-  order: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-color: var(--clr-card-background);
   color: var(--clr-text-high-contrast);
   border-radius: 0.5rem;
@@ -77,14 +79,18 @@ header .header-container nav ul {
 }
 header .header-container nav ul li {
   margin-block: 1rem;
-  padding: 1rem 1.5rem;
+  padding: 1rem 2.5rem;
+  width: fit-content;
   position: relative;
   border-radius: 0.5rem;
   text-align: center;
   text-transform: uppercase;
 }
-header .header-container nav ul lihover {
+header .header-container nav ul li:hover {
   background-color: var(--clr-card-background-hover);
+}
+header .header-container nav ul li:active {
+  background-color: var(--clr-element-background-active);
 }
 header .header-container nav ul li a {
   position: relative;
@@ -226,6 +232,138 @@ footer p a {
   border: 1px solid var(--clr-card-border);
   border-radius: 0.5rem;
   box-shadow: 0 4px 24px -6px var(--clr-card-shadow);
+}
+
+.main-container {
+  padding: 1rem;
+  background-color: var(--clr-background);
+}
+.main-container h1 {
+  margin-block: 3.5rem 3rem;
+  font-size: var(--fs-page-title);
+  text-align: center;
+}
+.main-container h1::after {
+  margin: 1.5rem auto;
+  width: 10rem;
+  height: 0.35rem;
+  content: "";
+  display: block;
+  background-color: var(--clr-accent);
+}
+.main-container .sub-pages-list {
+  margin-bottom: 3.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.main-container .sub-pages-list a {
+  height: 10rem;
+  width: 15rem;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--clr-card-background);
+  box-shadow: 0 4px 24px -6px var(--clr-card-shadow);
+  border: 1px solid var(--clr-card-border);
+  border-radius: 0.5rem;
+  text-align: center;
+}
+.main-container .sub-pages-list a:hover {
+  background-color: var(--clr-card-background-hover);
+  border: 1px solid var(--clr-card-border-hover);
+}
+.main-container .sub-pages-list a:active {
+  background-color: var(--clr-card-background-active);
+  border: 1px solid var(--clr-card-border-active);
+}
+.main-container .list-items h2 {
+  margin-block: 2.5rem;
+  font-size: var(--fs-section-title);
+}
+.main-container .list-items article {
+  margin-block: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.main-container .list-items article:before {
+  width: 20rem;
+  height: 0.2rem;
+  margin: 1.5rem auto 3rem;
+  content: "";
+  display: block;
+  background-color: var(--clr-element-border);
+}
+.main-container .list-items article:after {
+  width: 20rem;
+  height: 0.2rem;
+  margin: 3rem auto 1.5rem;
+  content: "";
+  display: block;
+  background-color: var(--clr-element-border);
+}
+.main-container .list-items article h3 {
+  text-transform: uppercase;
+}
+.main-container .list-items article ul li {
+  margin-block: 1rem;
+  padding: 1rem;
+}
+.main-container .list-items article ul li a {
+  padding: 0.5rem;
+  background: var(--clr-link-background);
+}
+.main-container .list-items article ul li a:hover {
+  background: var(--clr-link-background-hover);
+}
+.main-container .list-items article ul li a:active {
+  background: var(--clr-link-background-active);
+}
+.main-container .list-items article a {
+  margin-block: 1rem;
+  padding: 1rem;
+  border: 2px solid var(--clr-link-background);
+  border-radius: 0.5rem;
+}
+.main-container .list-items article a:hover {
+  border: 2px solid var(--clr-link-background-hover);
+}
+.main-container .list-items article a:active {
+  border: 2px solid var(--clr-link-background-active);
+}
+.main-container .single-page {
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.main-container .single-page p {
+  padding: 1rem;
+  order: 1;
+}
+.main-container .single-page figure {
+  width: auto;
+  order: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--clr-background);
+}
+.main-container .single-page figure img {
+  width: 80%;
+  height: auto;
+  margin-block: 2rem;
+  order: 0;
+  border: 1px solid var(--clr-element-border);
+  border-radius: 0.5rem;
 }
 
 html {

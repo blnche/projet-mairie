@@ -1,15 +1,22 @@
-<h1> <?= $this->pageTitle; ?> </h1>bulletins municpaux</h1>
-<?php
-$bulletins = $this->data['bulletins'];
-?>
-<ul>
-    <?php
-foreach ($bulletins as $bulletin)
-{
-    ?>
-    <li> <?php echo 'Bulletin du '.substr($bulletin['date'], 0, -8);?> <a target="_blank" href="<?=$bulletin['url']?>">Consulter le fichier</a>
-    </li>
-<?php
-}
-?>
-</ul>
+<section class="main-container">
+    <h1> <?= $this->pageTitle; ?> </h1>
+    
+    <section class="list-items">
+        <article>
+            <?php
+            $bulletins = $this->data['bulletins'];
+            ?>
+            <ul>
+                <?php
+            foreach ($bulletins as $bulletin)
+            {
+                ?>
+                <li> <?php echo 'Bulletin du '.$bulletin->getDate()->format('d/m/Y');?> <a target="_blank" href="<?=$bulletin->getUrl()?>">Consulter le fichier</a>
+                </li>
+            <?php
+            }
+            ?>
+            </ul>
+        </article>
+    </section>
+</section>

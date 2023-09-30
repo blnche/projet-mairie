@@ -1,15 +1,23 @@
-<h1> <?= $this->pageTitle; ?> </h1>comptes rendus cm</h1>
-<?php
-$crcms = $this->data['comptes-rendus'];
-?>
-<ul>
-<?php
-foreach ($crcms as $crcm)
-{
-    ?>
-    <li> <?php echo 'Bulletin du '.substr($crcm['date'], 0, -8);?> <a target="_blank" href="<?=$crcm['url']?>">Consulter le fichier</a>
-    </li>
-    <?php
-}
-?>
-</ul>
+<section class="main-container">
+    <h1> <?= $this->pageTitle; ?> </h1>
+    
+    <section class="list-items">
+        <article>
+            <?php
+            $crcms = $this->data['comptes-rendus'];
+            ?>
+            <ul>
+            <?php
+            foreach ($crcms as $crcm)
+            {
+                ?>
+                <li> <?php echo 'Bulletin du '.$crcm->getDate()->format('d/m/Y');?> <a target="_blank" href="<?=$crcm->getUrl()?>">Consulter le fichier</a>
+                </li>
+                <?php
+            }
+            ?>
+            </ul>
+        </article>
+    </section>
+</section>
+

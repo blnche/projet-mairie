@@ -18,7 +18,6 @@ header .header-container {
 }
 header .header-container .header-title {
   height: 100%;
-  padding: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -36,8 +35,8 @@ header .header-container .header-toggleBtn-container {
   height: 45px;
   padding: 0.3rem;
   position: fixed;
-  top: 1.5rem;
-  right: 1.5rem;
+  top: 1.25rem;
+  right: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -65,7 +64,10 @@ header .header-container nav.mainNavActive {
 }
 header .header-container nav ul {
   padding-block: 2rem;
-  order: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-color: var(--clr-card-background);
   color: var(--clr-text-high-contrast);
   border-radius: 0.5rem;
@@ -73,14 +75,18 @@ header .header-container nav ul {
 }
 header .header-container nav ul li {
   margin-block: 1rem;
-  padding: 1rem 1.5rem;
+  padding: 1rem 2.5rem;
+  width: fit-content;
   position: relative;
   border-radius: 0.5rem;
   text-align: center;
   text-transform: uppercase;
 }
-header .header-container nav ul lihover {
+header .header-container nav ul li:hover {
   background-color: var(--clr-card-background-hover);
+}
+header .header-container nav ul li:active {
+  background-color: var(--clr-element-background-active);
 }
 header .header-container nav ul li a {
   position: relative;

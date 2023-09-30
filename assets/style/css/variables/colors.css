@@ -5,6 +5,10 @@
 
     --clr-text-high-contrast : hsl(216, 71.0%, 23.0%);
     --clr-text-low-contrast : rgb(255, 255, 255);
+    
+    --clr-link-background : hsl(209, 100%, 96.5%);
+    --clr-link-background-hover : hsl(210, 98.8%, 94.0%);
+    --clr-link-background-active: hsl(209, 95.0%, 90.1%);
 
     --clr-element-background : hsl(46, 38.2%, 93.7%);
     --clr-element-background-hover : hsl(44, 32.7%, 90.1%);

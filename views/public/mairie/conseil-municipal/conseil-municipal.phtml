@@ -1,39 +1,48 @@
-<h1> <?= $this->pageTitle; ?> </h1>conseil municipal</h1>
-<a href="/projet-final/projet-mairie/mairie/conseil-municipal/elus">elus</a>
-<a href="/projet-final/projet-mairie/mairie/conseil-municipal/plu">plu</a>
-<section>
-    <h1>comptes rendus cm</h1>
-    <?php
-    $crcms = $this->data['crcm'];
-    ?>
-    <ul>
-        <?php
-        foreach ($crcms as $crcm)
-        {
-            ?>
-            <li> <?php echo 'Bulletin du '.$crcm->getDate()->format('d/m/Y');?> <a target="_blank" href="<?=$crcm->getUrl()?>">Consulter le fichier</a>
-            </li>
+<section class="main-container">
+    <h1> <?= $this->pageTitle; ?> </h1>
+    
+    <section class="sub-pages-list">
+        <a href="/projet-final/projet-mairie/mairie/conseil-municipal/elus">Les élus</a>
+        <a href="/projet-final/projet-mairie/mairie/conseil-municipal/plu">Le Plan Local d'Urbanisme</a>
+    </section>
+    
+    <section class="list-items">
+        <article>
+            <h2>Derniers comptes-rendus des conseils municpaux</h2>
             <?php
-        }
-        ?>
-    </ul>
-    <a href="/projet-final/projet-mairie/mairie/conseil-municipal/crcm">Voir tous les crcm</a>
-</section>
-<section>
-    <h1>bulletins municpaux</h1>
-    <?php
-    $bulletins = $this->data['bm'];
-    ?>
-    <ul>
-        <?php
-        foreach ($bulletins as $bulletin)
-        {
+            $crcms = $this->data['crcm'];
             ?>
-            <li> <?php echo 'Compte rendu du '.$bulletin->getDate()->format('d/m/Y');?> <a target="_blank" href="<?=$bulletin->getUrl()?>">Consulter le fichier</a>
-            </li>
+            <ul>
+                <?php
+                foreach ($crcms as $crcm)
+                {
+                    ?>
+                    <li> <?php echo 'Bulletin du '.$crcm->getDate()->format('d/m/Y');?> <a target="_blank" href="<?=$crcm->getUrl()?>"> Consulter le fichier</a>
+                    </li>
+                    <?php
+                }
+                ?>
+            </ul>
+            <a href="/projet-final/projet-mairie/mairie/conseil-municipal/comptes-rendus-conseil-municipaux">Voir tous les bulletins</a>
+        </article>
+        <article>
+            <h2>Derniers bulletins municpaux</h2>
             <?php
-        }
-        ?>
-    </ul>
-    <a href="/projet-final/projet-mairie/mairie/conseil-municipal/bm">Voir tous les bm</a>
+            $bulletins = $this->data['bm'];
+            ?>
+            <ul>
+                <?php
+                foreach ($bulletins as $bulletin)
+                {
+                    ?>
+                    <li> <?php echo 'Compte rendu du '.$bulletin->getDate()->format('d/m/Y');?> <a target="_blank" href="<?=$bulletin->getUrl()?>"> Consulter le fichier</a>
+                    </li>
+                    <?php
+                }
+                ?>
+            </ul>
+            <a href="/projet-final/projet-mairie/mairie/conseil-municipal/bulletins-municipaux">Voir tous les comptes-rendus</a>
+        </article>
+    </section>
+    
 </section>

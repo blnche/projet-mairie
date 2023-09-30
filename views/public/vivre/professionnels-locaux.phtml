@@ -1,0 +1,21 @@
+<section class="main-container">
+    <h1> <?= $this->pageTitle; ?> </h1>
+    
+    <section class="list-items">
+        <article>
+            <?php
+            $data = $this->data['local-professionals'];
+            ?>
+            <ul>
+                <?php
+            foreach ($data as $item)
+            {
+                ?>
+                <li> <?php echo $item->getName();', '.$item->getSector(); ?></li>
+            <?php
+            }
+            ?>
+            </ul>
+        </article>
+    </section>
+</section>

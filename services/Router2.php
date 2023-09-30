@@ -101,19 +101,13 @@ class Router2
                 $routeAndParams['route'] = $tab[0];
 
                 if (isset($tab[1])) {
-                    $routeAndParams['postSlug'] = $tab[1];
+                    $routeAndParams['subRoute'] = $tab[1];
                 }
             } else if ($tab[0] === 'vivre') {
                 $routeAndParams['route'] = $tab[0];
 
                 if (isset($tab[1])) {
-                    $routeAndParams['postSlug'] = $tab[1];
-                }
-            } else if ($tab[0] === 'decouvrir') {
-                $routeAndParams['route'] = $tab[0];
-
-                if (isset($tab[1])) {
-                    $routeAndParams['postSlug'] = $tab[1];
+                    $routeAndParams['subRoute'] = $tab[1];
                 }
             } else if ($tab[0] === 'mentions-legales') {
                 $routeAndParams['route'] = $tab[0];
@@ -284,13 +278,13 @@ class Router2
             $this->pageController->publicHomepage();
         } else if ($routeTab['route'] === 'mairie') {
             if ($routeTab['subRoute'] === 'conseil-municipal') {
-                if ($routeTab['subSubRoute'] === 'crcm') {
+                if ($routeTab['subSubRoute'] === 'comptes-rendus-conseil-municipaux') {
                     if (isset($routeTab['councilReportSlug'])) {
                         // TODO
                     } else {
                         $this->pageController->MunicipalCouncilReports();
                     }
-                } else if ($routeTab['subSubRoute'] === 'bm') {
+                } else if ($routeTab['subSubRoute'] === 'bulletins-municipaux') {
                     if (isset($routeTab['bulletinSlug'])) {
                         // TODO
                     } else {
@@ -331,23 +325,19 @@ class Router2
                 $this->pageController->projects();
             }
         } else if ($routeTab['route'] === 'pratique') {
-            if (isset($routeTab['postSlug'])) {
-                // TODO
+            if ($routeTab['subRoute'] === 'agence-postale') {
+                $this->pageController->postOffice();
             } else {
                 $this->pageController->everydayLife();
 
             }
         } else if ($routeTab['route'] === 'vivre') {
-            if (isset($routeTab['postSlug'])) {
-                // TODO
+            if ($routeTab['subRoute'] === 'associations') {
+               $this->pageController->associations();
+            } else if ($routeTab['subRoute'] === 'professionnels-locaux') {
+                $this->pageController->localProfessionals();
             } else {
                 $this->pageController->reside();
-            }
-        } else if ($routeTab['route'] === 'decouvrir') {
-            if (isset($routeTab['postSlug'])) {
-                // TODO
-            } else {
-                $this->pageController->discover();
             }
         } else if ($routeTab['route'] === 'mentions-legales') {
             $this->staticPageController->legalNotices();
