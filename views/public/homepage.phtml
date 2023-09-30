@@ -1,37 +1,64 @@
 <?php
 $events = $this->data['events'];
 ?>
-<h1> <?= $this->pageTitle; ?> </h1>
-<aside class="element-card main_aside">
-    <h2>Évènements</h2>
-    <ul>
-        <?php
-        foreach($events as $event)
-        {
-            $rp = new ReflectionProperty('Event', 'address');
-        ?>
-            <li>
-                <?= $event->getTitle(); ?>
-                <ul>
-                    <li>
-                        <?= $event->getDate()->format('d/m/Y'); ?>
-                    </li>
-                    <li>
-                        <?= $event->getDescription(); ?>
-                    </li>
-                    <li>
-                        <?php
-                        if ($rp->isInitialized($event)){
-                            echo $event->getAddress()->getAddress().', '.$event->getAddress()->getCodePostal().' '.$event->getAddress()->getCommune();
-                        } else {
-                            echo 'Pas d\'adresse spécifiée pour cet évènement';
-                        }
-                        ?>
-                    </li>
-                </ul>
-            </li>
-        <?php
-        }
-        ?>
-    </ul>
-</aside>
+<section class="homepage-container">
+    
+    <section class="homepage-image-container">
+        <img src="/projet-final/projet-mairie/assets/images/cropped-anne-1568x427.jpg" alt="Bannière du site - Photo de la Chapelle de Saint-Anne, située sur la commune de Saint-Broladre">
+    </section>
+        
+    <section class="homepage-shortcutNav-container">
+        <nav class="shortcutNav">
+                <a href="">
+                    <div class="svg-container">
+                        <img src="/projet-final/projet-mairie/assets/images/homepage-shortcutNav-icons/icons8-city-hall-64.png" alt="">
+                    </div>
+                    <span class="label">Conseil Municipal</span>
+                </a>
+                <a href="">
+                    <div class="svg-container">
+                        <img src="/projet-final/projet-mairie/assets/images/homepage-shortcutNav-icons/icons8--64.png" alt="">
+                    </div>
+                    <span class="label">Associations</span>
+                </a>
+                <a href="">
+                    <div class="svg-container">
+                        <img src="/projet-final/projet-mairie/assets/images/homepage-shortcutNav-icons/icons8-contact-64.png" alt="">
+                    </div>
+                    <span class="label">Professionnels Locaux</span>
+                </a>
+                <a href="">
+                    <div class="svg-container">
+                        <img src="/projet-final/projet-mairie/assets/images/homepage-shortcutNav-icons/icons8-post-office-64.png" alt="">
+                    </div>
+                    <span class="label">Agence Postale Communale</span>
+                </a>
+                <a href="">
+                    <div class="svg-container">
+                        <img src="/projet-final/projet-mairie/assets/images/homepage-shortcutNav-icons/icons8--64.png" alt="">
+                    </div>
+                    <span class="label">Espace Famille</span>
+                </a>
+                <a href="">
+                    <div class="svg-container">
+                        <img src="/projet-final/projet-mairie/assets/images/homepage-shortcutNav-icons/icons8--64.png" alt="">
+                    </div>
+                    <span class="label">Services Municipaux</span>
+                </a>
+        </nav>
+    </section>
+        
+    <section class="agenda">
+        <h2>Agenda</h2>
+        <ul>
+            <?php
+            foreach($events as $event)
+            {
+                $rp = new ReflectionProperty('Event', 'address');
+            ?>
+                <li><?= $event->getTitle().', '.$event->getDate()->format('d/m/Y'); ?></li>
+            <?php } ?>
+        </ul>
+    </section>
+    
+</section>

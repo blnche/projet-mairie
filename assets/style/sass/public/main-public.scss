@@ -1,8 +1,10 @@
-@import "../css/reset.css";
-@import "../css/variables/colors.css";
-@import "../css/variables/fonts.css";
-@import "../css/variables/font-sizes.css";
+@import "../reset.css";
+@import "../variables/colors.css";
+@import "../variables/fonts.css";
+@import "../variables/font-sizes.css";
 @import "partials/header";
+@import "partials/footer";
+@import "homepage-public";
 
 
 html {

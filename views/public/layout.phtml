@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mairie de Saint-Broladre</title>
-    <!--<link rel="stylesheet" type="text/css" href="/projet-final/projet-mairie/assets/style/css/main-public.css"/>-->
+    <link rel="stylesheet" type="text/css" href="/projet-final/projet-mairie/assets/style/css/public/main-public.css"/>
 </head>
 <body>
     <header>
         <section class="header-container">
             <section class="header-title">
-                <h1>Saint-Broladre</h1>
+                <h1><a href="/projet-final/projet-mairie/">Saint-Broladre</a></h1>
                 <p>Commune de la baie du Mont Saint Michel</p>
             </section>
             <?php require 'views/partials/public/_header.phtml'; ?>
@@ -20,20 +20,7 @@
     </header>
 
     <main>
-        <section class="">
-            <?php require $this->template; ?>
-            <?php
-                if ((!isset($_GET['route'])) || ((isset($_GET['route']) && $_GET['route'] !== 'login')))
-                {
-                    ?>
-                    <section class="element-card main_contact-form">
-                        <h2>Nous contacter</h2>
-                        <?php require 'views/public/_form-contact.phtml'; ?>
-                    </section>
-                    <?php
-                }
-            ?>
-        </section>
+        <?php require $this->template; ?>
     </main>
 
     <footer>

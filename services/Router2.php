@@ -46,7 +46,7 @@ class Router2
 
         if (strlen($route) > 0) {
             $tab = explode("/", $route);
-            var_dump($tab);
+            //var_dump($tab);
 
             //PUBLIC
             if ($tab[0] === 'mairie') {
@@ -277,7 +277,7 @@ class Router2
     public function checkRoute(string $route): void
     {
         $routeTab = $this->splitRouteAndParameters($route);
-        var_dump($routeTab);
+        //var_dump($routeTab);
 
         // PUBLIC
         if ($routeTab['route'] === '') {

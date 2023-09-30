@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":[],"names":[],"mappings":"","file":"footer.css"}
+{"version":3,"sourceRoot":"","sources":["../../../sass/public/partials/footer.scss"],"names":[],"mappings":"AAAA;EACI;EAEA;;AAEA;EACI;EACA;EAEA;EACA;EACA;EACA;;AAGK;EACG;EACA;EAEA;EAEA;;AAEA;EACI;;AAGJ;EACI;;AAGJ;EACI;;AAMhB;EACI;EACA;EAEA;;AAEA;EACI","file":"footer.css"}

@@ -11,7 +11,7 @@
         foreach ($crcms as $crcm)
         {
             ?>
-            <li> <?php echo 'Bulletin du '.substr($crcm['date'], 0, -8);?> <a target="_blank" href="<?=$crcm['url']?>">Consulter le fichier</a>
+            <li> <?php echo 'Bulletin du '.$crcm->getDate()->format('d/m/Y');?> <a target="_blank" href="<?=$crcm->getUrl()?>">Consulter le fichier</a>
             </li>
             <?php
         }
@@ -29,7 +29,7 @@
         foreach ($bulletins as $bulletin)
         {
             ?>
-            <li> <?php echo 'Bulletin du '.substr($bulletin['date'], 0, -8);?> <a target="_blank" href="<?=$bulletin['url']?>">Consulter le fichier</a>
+            <li> <?php echo 'Compte rendu du '.$bulletin->getDate()->format('d/m/Y');?> <a target="_blank" href="<?=$bulletin->getUrl()?>">Consulter le fichier</a>
             </li>
             <?php
         }
