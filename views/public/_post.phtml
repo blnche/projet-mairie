@@ -1,1 +1,25 @@
-<h1> <?= $this->pageTitle; ?> </h1>ppost A</h1>
+<?php 
+//get page info
+$content = $this->data['content'];
+$picture = $this->data['picture'];
+?>
+<h1> <?= $this->pageTitle; ?> </h1>
+
+
+<?php 
+//for page with sub pages
+?>
+<?php foreach($pages as $page){
+?>
+<a href="#">
+    <?php if($page->getPicture() !== null) {
+        ?>
+    <section class="image-container">
+        <img src="<?= $page->getPicture()->getUrl() ?>">
+    </section>
+        <?php
+    }?>
+    <span class="label"> <?= $page->getTitle() ?></span>
+</a>
+<?php } 
+?>

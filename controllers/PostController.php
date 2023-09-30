@@ -16,7 +16,7 @@ class PostController extends AbstractController
     public function posts() : void 
     {
         $posts = $this->postManager->getAllPosts();
-        $this->render('views/admin/articles/posts/posts.phtml', ['posts' => $posts], 'Articles', 'admin');
+        $this->render('views/admin/articles/posts.phtml', ['posts' => $posts], 'Articles', 'admin');
     }
     
     public function addPost() : void 
@@ -35,18 +35,20 @@ class PostController extends AbstractController
             );
             
             // Check for content
-            if(!empty($_POST['content']))
-            {
+            if(!empty($_POST['content'])) {
                 $content = htmlspecialchars($_POST['content']);
-                $post->setContent($content);
+            } else {
+                $content = null;
             }
+            $post->setContent($content);
             
             // Check for status
             if($status === 'published') {
                 $postedDate = new DateTime();
-                
-                $post->setPostedDate($postedDate);
+            } else {
+                $postedDate = null;
             }
+            $post->setPostedDate($postedDate);
             
             // Check for picture
             if(!empty($_POST['picture-title'])) {
@@ -59,20 +61,22 @@ class PostController extends AbstractController
     
                 move_uploaded_file($picture['tmp_name'], $path);
     
-                $newPicture = new Picture($picture_title, $path);
+                $picture = new Picture($picture_title, $path);
     
-                $this->pictureManager->addPicture($newPicture);
+                $this->pictureManager->addPicture($picture);
     
-                $post->setPicture($newPicture);
+            } else {
+                $picture = null;
             }
+            $post->setPicture($picture);
             
             // Check for parent page
-            if(!empty($_POST['parent-page-id'])) 
-            {
+            if(!empty($_POST['parent-page-id'])) {
                 $parentPage = $this->postManager->getPostById(htmlspecialchars($_POST['parent-page-id']));
-                
-                $post->setParentPage($parentPage);
+            } else {
+                $parentPage = null;
             }
+            $post->setParentPage($parentPage);
             
             var_dump($post);
             
@@ -87,15 +91,13 @@ class PostController extends AbstractController
         }
     }
     
-    public function editPost(int $postId) : void
+    public function modifyPost(int $postId) : void
     {
-        if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modifyPost']))
+        if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modifyPage']))
         {
-            $rpParentPage = new ReflectionProperty('Post', 'parentPage');
-            $rpContent = new ReflectionProperty('Post', 'content');
-            $rpPicture = new ReflectionProperty('Post', 'picture');
-
             $postCurrentInformations = $this->postManager->getPostById($postId);
+            
+            $createdDate = $postCurrentInformations->getCreatedDate();
 
             if (!empty($_POST['title']))
             {
@@ -105,89 +107,77 @@ class PostController extends AbstractController
                 $title = $postCurrentInformations->getTitle();
             }
             
-            
 
             if (!empty($_POST['status']))
             {
                 $status = htmlspecialchars($_POST['status']);
-                
-                if($status === 'published') {
-                    $postedDate = new DateTime();
-                } else if ($status === 'draft') {
-                    $postedDate = null;
-                }
             }
             else {
                 $status = $postCurrentInformations->getStatus();
             }
             
-
             $postUpdated = new Post(
                 $title,
-                $content,
                 $status,
                 $createdDate
             );
             $postUpdated->setId($postCurrentInformations->getId());
-
-            // Check if object has parent page
-            if ($rp->isInitialized($postCurrentInformations))
+            
+            // Check for status
+            if($postUpdated->getStatus() === 'published') {
+                if (!empty($_POST['status'])) {
+                    $postedDate = new DateTime();
+                } else {
+                    $postedDate = $postCurrentInformations->getPostedDate();
+                }
+            } else if ($postUpdated->getStatus() === 'draft') {
+                $postedDate = null;
+            }
+            
+            // Check for parent page
+            $postCurrentParentPage = $postCurrentInformations->getParentPage();
+            if (!empty($_POST['parent-page-id']))
             {
-                $postCurrentParentPage = $postCurrentInformations->getParentPage();
+                $parentPage = $this->postManager->getPostById(htmlspecialchars($_POST['parent-page-id']));
+            die;
+            }
+            else {
+                $parentPage = $postCurrentParentPage;
+            }
+            $postUpdated->setParentPage($parentPage);
 
-                if (!empty($_POST['parent-page-id']))
-                {
-                    $parentPage = $this->postManager->getPostById(htmlspecialchars($_POST['parent-page-id']));
-                }
-                else {
-                    $parentPage = $postCurrentParentPage;
-                }
+            // Check for picture
+            $postCurrentPicture = $postCurrentInformations->getPicture();
+            if(!empty($_POST['picture-title'])) 
+            {
+                //Create new Picture
+                $picture = $_FILES['image'];
     
-                    $postUpdated->setParentPage($parentPage);
+                $picture_title = htmlspecialchars($picture['name']);
+    
+                $path = 'data/pictures/'.$picture_title;
+    
+                move_uploaded_file($picture['tmp_name'], $path);
+    
+                $picture = new Picture($picture_title, $path);
+    
+                $this->pictureManager->addPicture($picture);
             }
+            else {
+                $picture = $postCurrentPicture;
+            }
+            $postUpdated->setPicture($picture);
             
-            // Check if object has picture
-            if ($rpPicture->isInitialized($postCurrentInformations)) 
+            // Check for content
+            $postCurrentContent = $postCurrentInformations->getContent();
+            if(!empty($_POST['content'])) 
             {
-                $postCurrentPicture = $postCurrentInformations->getPicture();
-                
-                if(!empty($_POST['picture-title'])) 
-                {
-                    //Create new Picture
-                    $picture = $_FILES['image'];
-        
-                    $picture_title = htmlspecialchars($picture['name']);
-        
-                    $path = 'data/pictures/'.$picture_title;
-        
-                    move_uploaded_file($picture['tmp_name'], $path);
-        
-                    $picture = new Picture($picture_title, $path);
-        
-                    $this->pictureManager->addPicture($picture);
-                }
-                else {
-                    $picture = $postCurrentPicture;
-                }
-                
-                $postUpdated->setParentPage($picture);
+                $content = htmlspecialchars($_POST['content']);
             }
-            
-            // Check if object has content
-            if ($rpContent->isInitialized($postCurrentInformations))
-            {
-                $postCurrentContent = $postCurrentInformations->getContent();
-                
-                if(!empty($_POST['content'])) 
-                {
-                    $content = htmlspecialchars($_POST['content']);
-                }
-                else {
-                    $content = $postCurrentContent;
-                }
-                
-                $postUpdated->setParentPage($content);
+            else {
+                $content = $postCurrentContent;
             }
+            $postUpdated->setContent($content);
             
             $this->postManager->editPost($postUpdated);
             
@@ -197,6 +187,18 @@ class PostController extends AbstractController
         {
             $this->render('views/admin/articles/_form-modify-post.phtml', [], 'Modifier une page', 'admin');
         }
+    }
+    
+    //for public
+    
+    public function readPost (string $postName) : void 
+    {
+        $post = $this->postManager->getPostByName($postName);
+        $postTitle = $post->getTitle();
+        $postContent = $post->getContent();
+        $postPicture = $post->getPicture();
+        
+        $this->render('views/public/_post.phtml', ['content' => $postContent, 'picture' => $postPicture], $postTitle);
     }
 }
 ?>

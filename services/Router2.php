@@ -89,6 +89,8 @@ class Router2
                         }
                     }
                 }
+            } else if ($tab[0] === 'page') {
+                $routeAndParams['postSlug'] = $tab[0];
             } else if ($tab[0] === 'projets') {
                 $routeAndParams['route'] = $tab[0];
 
@@ -315,6 +317,12 @@ class Router2
                 }
             } else {
                 $this->pageController->townHall();
+            }
+        } else if($routeTab['route'] === 'page') {
+            if (isset($routeTab['postSlug'])) {
+            $this->postController->readPost($routeTab['postSlug']);
+            } else {
+                
             }
         } else if ($routeTab['route'] === 'projets') {
             if (isset($routeTab['projectSlug'])) {
