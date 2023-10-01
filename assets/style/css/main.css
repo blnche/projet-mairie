@@ -499,10 +499,12 @@ footer p a {
   top: -9999px;
   left: -9999px;
 }
+.table-container table tbody tr {
+  border-bottom: 1px solid var(--clr-element-border);
+}
 .table-container table tbody tr td {
   padding: 1rem;
   border: none;
-  border-bottom: 1px solid var(--clr-element-border);
   position: relative;
   padding-left: 50%;
 }
@@ -560,6 +562,12 @@ footer p a {
 }
 .form-container form fieldset input[type=radio] {
   width: fit-content;
+}
+.form-container form fieldset input[type=checkbox] {
+  width: 2rem;
+  height: 2rem;
+  margin: 0;
+  padding: 0;
 }
 .form-container form fieldset textarea {
   width: 90%;
@@ -679,7 +687,7 @@ footer p a {
     top: 0;
     left: 0;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
   }
   .table-container table thead tr th {
@@ -688,7 +696,7 @@ footer p a {
   .table-container table tbody tr {
     padding: 1.5rem;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
   }
   .table-container table tbody tr:hover {

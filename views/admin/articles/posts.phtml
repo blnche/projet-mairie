@@ -1,28 +1,31 @@
 <?php 
 $pages = $this->data['posts'];
-var_dump($pages);
 ?>
 
 <section class="main-container">
     <h1> <?= $this->pageTitle; ?></h1>
     
-    <a href="/projet-final/projet-mairie/admin/ajouter">Ajouter une page</a>
-    
-    <?php foreach($pages as $page){
-    ?>
-    <article>
-        <?php if($page->getPicture() !== null) {
-            ?>
-        <section class="image-container">
-            <img src="<?= $page->getPicture()->getUrl() ?>">
-        </section>
-            <?php
-        }?>
-        <span class="label"> <?= $page->getTitle() ?></span>
-        <a href="/projet-final/projet-mairie/admin/articles/modifier&postId=<?=$page->getId();?>">Modifier cette page</a>
-    </article>
-    <?php } 
-    ?>
+    <a class="main-container-link" href="/projet-final/projet-mairie/admin/articles/ajouter">Ajouter une page</a>
+    <section class="list-items">
+        <article>
+        <?php 
+        $counter = 0;
+        foreach($pages as $page) {
+            if($counter < 10) {
+        ?>
+            <ul>
+                <li>
+                    <?= $page->getTitle() ?> <a href="/projet-final/projet-mairie/admin/articles/modifier&postId=<?=$page->getId();?>">Modifier</a>
+                </li>
+            </ul>
+        <?php
+            }  else {
+                break;
+            }
+            $counter++;
+        } ?>
+        </article>
+    </section>
 </section>
 
 

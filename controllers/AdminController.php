@@ -620,6 +620,7 @@ class AdminController extends AbstractController
         //var_dump($weeks[0][1][0][1]->getWeekOfYear());//child enrollment for week
 
         $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+        
         $sheet = $spreadsheet->getActiveSheet();
         $sheet->setCellValue('A1','Semaine');
         $sheet->setCellValue('B1','Nom de famille');
@@ -649,11 +650,22 @@ class AdminController extends AbstractController
         }
 
         $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xlsx');
-        $writer->save('data/inscriptions-cantine/'.$formattedDate.'xlsx');
+        $writer->save('data/inscriptions-cantine/'.$formattedDate.'.xlsx');
 
+        $file = strval($formattedDate).'.xlsx';
+        var_dump($file);
+        //die;
+        header('Content-Disposition: attachment; filename="' . $file . '"');
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header('Content-Disposition: attachment; filename='.$formattedDate);
-        //header('Location:/admin/cantine');
+        header('Content-Length: ' . filesize($file));
+        header('Content-Transfer-Encoding: binary');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        ob_clean();
+        flush(); 
+        readfile($file);
+    
+        //$witer->save('php://output');
     }
 
     // EVENTS
