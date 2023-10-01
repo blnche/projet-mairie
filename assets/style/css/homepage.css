@@ -99,4 +99,47 @@
   box-shadow: 0 4px 24px -6px var(--clr-card-shadow);
 }
 
+@media (min-width: 1024px) and (max-width: 1510px) {
+  .homepage-container {
+    width: 80%;
+    margin-inline: auto;
+  }
+  .homepage-container .homepage-image-container {
+    height: 30rem;
+  }
+  .homepage-container .homepage-shortcutNav-container {
+    display: flex;
+    justify-content: center;
+  }
+  .homepage-container .homepage-shortcutNav-container .shortcutNav {
+    width: 70%;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .homepage-container .agenda {
+    width: 60%;
+    margin-inline: auto;
+  }
+}
+@media (min-width: 1511px) {
+  .homepage-container {
+    width: 80%;
+    margin-inline: auto;
+  }
+  .homepage-container .homepage-image-container {
+    height: 30rem;
+  }
+  .homepage-container .homepage-shortcutNav-container {
+    display: flex;
+    justify-content: center;
+  }
+  .homepage-container .homepage-shortcutNav-container .shortcutNav {
+    width: 70%;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .homepage-container .agenda {
+    width: 60%;
+    margin-inline: auto;
+  }
+}
+
 /*# sourceMappingURL=homepage.css.map */

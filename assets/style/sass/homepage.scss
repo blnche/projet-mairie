@@ -48,6 +48,17 @@
                 align-items: center;
             
                 position: relative;
+            
+                &:before {
+                    padding: 0.5rem;
+                
+                    content: url("/projet-final/projet-mairie/assets/images/homepage-shortcutNav-icons/icons8-wave-48-4.png");
+                
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    bottom: -13%;
+                }
                 
                 &:hover {
                     background-color: var(--clr-card-background-hover);
@@ -125,6 +136,82 @@
                 border-radius: 0.5rem;
                 box-shadow: 0 4px 24px -6px var(--clr-card-shadow);
             }
+        }
+    }
+}
+
+
+// TABLET
+@media (min-width: 768px) and (max-width: 1023px) {
+    
+}
+
+// DESKTOP
+@media (min-width: 1024px) and (max-width: 1510px) {
+    .homepage-container {
+        width: 80%;
+        margin-inline: auto;
+        
+        //BANNER IMAGE
+        .homepage-image-container {
+            height: 30rem;
+            
+            img {
+            }
+        }
+        
+        //HOMEPAGE SHORTCUT NAV
+        .homepage-shortcutNav-container {
+            display: flex;
+            justify-content: center;
+            
+            .shortcutNav {
+                width: 70%;
+                
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+        
+        //AGENDA
+        .agenda {
+            width: 60%;
+            
+            margin-inline: auto;
+        }
+    }
+}
+
+// LARGE DESKTOP
+@media (min-width: 1511px) {
+    .homepage-container {
+        width: 80%;
+        margin-inline: auto;
+        
+        //BANNER IMAGE
+        .homepage-image-container {
+            height: 30rem;
+            
+            img {
+            }
+        }
+        
+        //HOMEPAGE SHORTCUT NAV
+        .homepage-shortcutNav-container {
+            display: flex;
+            justify-content: center;
+            
+            .shortcutNav {
+                width: 70%;
+                
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+        
+        //AGENDA
+        .agenda {
+            width: 60%;
+            
+            margin-inline: auto;
         }
     }
 }
