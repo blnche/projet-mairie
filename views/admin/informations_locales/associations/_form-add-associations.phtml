@@ -1,27 +1,33 @@
-<form method="POST" action="/projet-final/projet-mairie/admin/informations-locales/associations/ajouter">
-    <fieldset>
-        <label for="name">Nom de l'association</label>
-        <input type="text" name="name" id="name" required>
-    </fieldset>
-    <fieldset>
-        <label for="presidentFirstname">Prénom du président/de la présidente de l'association</label>
-        <input type="text" name="presidentFirstname" id="presidentFirstname">
-    </fieldset>
-    <fieldset>
-        <label for="presidentLastname">Nom du président/de la présidente de l'association</label>
-        <input type="text" name="presidentLastname" id="presidentLastname" required>
-    </fieldset>
-    <fieldset>
-        <label for="address">Adresse postal :</label>
-        <input type="text" name="address" id="address">
-    </fieldset>
-    <fieldset>
-        <label for="code-postal">Code postal :</label>
-        <input type="text" name="code-postal" id="code-postal" required>
-    </fieldset>
-    <fieldset>
-        <label for="ville">Ville/Commune :</label>
-        <input type="text" name="ville" id="ville" required>
-    </fieldset>
-    <input type="submit" name="addAssociation" value="Enregistrer l'association">
-</form>
+<section class="main-container">
+    <h1><?= $this->pageTitle ?></h1>
+    
+    <section class="form-container">
+        <form method="POST" action="/projet-final/projet-mairie/admin/informations-locales/associations/ajouter">
+            <fieldset>
+                <label for="name">Nom de l'association</label>
+                <input type="text" name="name" id="name" required>
+            </fieldset>
+            <fieldset>
+                <label for="presidentFirstname">Prénom du président/de la présidente de l'association</label>
+                <input type="text" name="presidentFirstname" id="presidentFirstname">
+            </fieldset>
+            <fieldset>
+                <label for="presidentLastname">Nom du président/de la présidente de l'association</label>
+                <input type="text" name="presidentLastname" id="presidentLastname" required>
+            </fieldset>
+            <fieldset>
+                <label for="address">Adresse postal :</label>
+                <input type="text" name="address" id="address">
+            </fieldset>
+            <fieldset>
+                <label for="code-postal">Code postal :</label>
+                <input type="text" name="code-postal" id="code-postal" required>
+            </fieldset>
+            <fieldset>
+                <label for="ville">Ville/Commune :</label>
+                <input type="text" name="ville" id="ville" required>
+            </fieldset>
+            <input type="submit" name="addAssociation" value="Enregistrer l'association">
+        </form>
+    </section>
+</section>

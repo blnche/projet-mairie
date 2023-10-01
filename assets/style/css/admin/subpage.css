@@ -1,0 +1,74 @@
+.table-container {
+  display: flex;
+  flex-direction: column;
+}
+.table-container a {
+  width: fit-content;
+  margin-block: 2rem;
+  padding: 0.5rem 1rem;
+  background: var(--clr-link-background);
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+}
+.table-container a:hover {
+  background: var(--clr-link-background-hover);
+}
+.table-container a:active {
+  background: var(--clr-link-background-active);
+}
+.table-container table {
+  width: 100%;
+  margin-block: 1rem;
+  text-align: center;
+}
+.table-container table thead {
+  background: var(--clr-element-background);
+  border-bottom: 1px solid var(--clr-element-border);
+}
+.table-container table thead tr {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.table-container table thead tr th {
+  padding: 1rem;
+}
+.table-container table tbody tr {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.table-container table tbody tr:hover {
+  background-color: var(--clr-element-background-hover);
+}
+.table-container table tbody tr td {
+  padding: 1rem;
+}
+.table-container table a {
+  width: fit-content;
+  margin-block: 0rem;
+  padding: 0.5rem;
+  background: transparent;
+  border: 2px solid var(--clr-link-background);
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+}
+.table-container table a:hover {
+  background: transparent;
+  border: 2px solid var(--clr-link-background-hover);
+}
+.table-container table a:active {
+  background: transparent;
+  border: 2px solid var(--clr-link-background-active);
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/*# sourceMappingURL=subpage.css.map */

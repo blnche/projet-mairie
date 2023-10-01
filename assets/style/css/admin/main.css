@@ -170,14 +170,6 @@ footer p a {
   align-items: center;
   position: relative;
 }
-.homepage-container .homepage-shortcutNav-container .shortcutNav a:before {
-  padding: 0.5rem;
-  content: url("/projet-final/projet-mairie/assets/images/homepage-shortcutNav-icons/icons8-wave-48-4.png");
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: -13%;
-}
 .homepage-container .homepage-shortcutNav-container .shortcutNav a:hover {
   background-color: var(--clr-card-background-hover);
   border: 1px solid var(--clr-card-border-active);
@@ -366,6 +358,78 @@ footer p a {
   border-radius: 0.5rem;
 }
 
+.table-container {
+  display: flex;
+  flex-direction: column;
+}
+.table-container a {
+  width: fit-content;
+  margin-block: 2rem;
+  padding: 0.5rem 1rem;
+  background: var(--clr-link-background);
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+}
+.table-container a:hover {
+  background: var(--clr-link-background-hover);
+}
+.table-container a:active {
+  background: var(--clr-link-background-active);
+}
+.table-container table {
+  width: 100%;
+  margin-block: 1rem;
+  text-align: center;
+}
+.table-container table thead {
+  background: var(--clr-element-background);
+  border-bottom: 1px solid var(--clr-element-border);
+}
+.table-container table thead tr {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.table-container table thead tr th {
+  padding: 1rem;
+}
+.table-container table tbody tr {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.table-container table tbody tr:hover {
+  background-color: var(--clr-element-background-hover);
+}
+.table-container table tbody tr td {
+  padding: 1rem;
+}
+.table-container table a {
+  width: fit-content;
+  margin-block: 0rem;
+  padding: 0.5rem;
+  background: transparent;
+  border: 2px solid var(--clr-link-background);
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+}
+.table-container table a:hover {
+  background: transparent;
+  border: 2px solid var(--clr-link-background-hover);
+}
+.table-container table a:active {
+  background: transparent;
+  border: 2px solid var(--clr-link-background-active);
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 html {
   font-size: 62.5%;
   line-height: 1.5;
@@ -392,4 +456,4 @@ html body footer {
   width: 100%;
 }
 
-/*# sourceMappingURL=main-public.css.map */
+/*# sourceMappingURL=main.css.map */

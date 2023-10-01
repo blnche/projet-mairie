@@ -70,14 +70,14 @@ class AdminController extends AbstractController
     // LOCAL INFORMATION
     public function localInformation() : void
     {
-        $this->render('views/admin/informations_locales/dashboard.phtml', [], 'Infos locales', 'admin');
+        $this->render('views/admin/informations_locales/dashboard.phtml', [], 'Informations Locales', 'admin');
     }
 
     /// ASSOCIATIONS
     public function associations() : void
     {
         $associations = $this->associationManager->getAllAssociations();
-        $this->render('views/admin/informations_locales/associations/associations.phtml', ['associations' => $associations], 'Infos locales - associations', 'admin');
+        $this->render('views/admin/informations_locales/associations/associations.phtml', ['associations' => $associations], 'Associations', 'admin');
     }
     public function addAssociation() : void
     {
@@ -113,7 +113,7 @@ class AdminController extends AbstractController
         }
         else
         {
-            $this->render('views/admin/informations_locales/associations/_form-add-associations.phtml', [], 'Infos locales - associations', 'admin');
+            $this->render('views/admin/informations_locales/associations/_form-add-associations.phtml', [], 'Ajouter une association', 'admin');
         }
     }
     public function modifyAssociation(int $associationId) : void
@@ -204,7 +204,7 @@ class AdminController extends AbstractController
         }
         else
         {
-            $this->render('views/admin/informations_locales/associations/_form-modify-association.phtml', [], 'Infos locales - associations', 'admin');
+            $this->render('views/admin/informations_locales/associations/_form-modify-association.phtml', [], 'Modifier une associations', 'admin');
         }
     }
 
@@ -212,7 +212,7 @@ class AdminController extends AbstractController
     public function localProfessionals() : void
     {
         $localProfessionals = $this->localProfessionalManager->getAllLocalProfessionals();
-        $this->render('views/admin/informations_locales/local-professionals/professionnels-locaux.phtml', ['local-professionals' => $localProfessionals], 'Infos locales - professionnels-locaux', 'admin');
+        $this->render('views/admin/informations_locales/local-professionals/professionnels-locaux.phtml', ['local-professionals' => $localProfessionals], 'Professionnels Locaux', 'admin');
     }
     public function addLocalProfessional() : void
     {
@@ -249,7 +249,7 @@ class AdminController extends AbstractController
         }
         else
         {
-            $this->render('views/admin/informations_locales/local-professionals/_form-add-local-professional.phtml', [], 'Infos locales - professionnels-locaux', 'admin');
+            $this->render('views/admin/informations_locales/local-professionals/_form-add-local-professional.phtml', [], 'Professionnels Locaux', 'admin');
         }
     }
     public function modifyLocalProfessional(int $localProfessionalId) : void
@@ -338,7 +338,7 @@ class AdminController extends AbstractController
         }
         else
         {
-            $this->render('views/admin/informations_locales/local-professionals/_form-modify-local-professional.phtml', [], 'Infos locales - professionnels-locaux', 'admin');
+            $this->render('views/admin/informations_locales/local-professionals/_form-modify-local-professional.phtml', [], 'Modifier un professionnel local', 'admin');
         }
     }
 
@@ -346,7 +346,7 @@ class AdminController extends AbstractController
     public function locations() : void
     {
         $locations = $this->locationManager->getAllLocations();
-        $this->render('views/admin/informations_locales/locations/lieux.phtml', ['locations' => $locations], 'Infos locales - lieux', 'admin');
+        $this->render('views/admin/informations_locales/locations/lieux.phtml', ['locations' => $locations], 'Lieux', 'admin');
     }
     public function addLocation() : void
     {
@@ -383,7 +383,7 @@ class AdminController extends AbstractController
         }
         else
         {
-            $this->render('views/admin/informations_locales/locations/_form-add-location.phtml', [], 'Infos locales - locations', 'admin');
+            $this->render('views/admin/informations_locales/locations/_form-add-location.phtml', [], 'Lieux', 'admin');
         }
     }
     public function modifyLocation(int $locationId) : void
@@ -472,7 +472,7 @@ class AdminController extends AbstractController
         }
         else
         {
-            $this->render('views/admin/informations_locales/locations/_form-modify-location.phtml', [], 'Infos locales - locations', 'admin');
+            $this->render('views/admin/informations_locales/locations/_form-modify-location.phtml', [], 'Modifier un lieu', 'admin');
         }
     }
 
@@ -596,7 +596,7 @@ class AdminController extends AbstractController
             //$this->generatingSchoolYearWeeksHolidayTools($toussaintStart, $toussaintEnd);
             die;
             $dates = $this->cafeteriaDateManager->getAllCafeteriaDates();//hein ?
-            $this->render('views/admin/cantine/cantine.phtml', ['cafeteria-weeks' => $dates], 'dates cantine', 'admin');
+            $this->render('views/admin/cantine/cantine.phtml', ['cafeteria-weeks' => $dates], 'Cantine', 'admin');
         } else {
             $this->render('views/admin/cantine/_form-new-year.phtml', [], 'New year', 'admin');
         }
@@ -695,7 +695,7 @@ class AdminController extends AbstractController
         }
         else
         {
-            $this->render('views/admin/evenements/_form-add-event.phtml', [], 'Ajouter un évènement', 'admin');
+            $this->render('views/admin/events/_form-add-event.phtml', [], 'Ajouter un évènement', 'admin');
         }
     }
     public function modifyEvent(int $eventId) : void {

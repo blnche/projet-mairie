@@ -1,29 +1,35 @@
 <?php
 $associations = $this->data['associations'];
 ?>
-<h1><?= $this->pageTitle ?></h1>
-<a href="/projet-final/projet-mairie/admin/informations-locales/associations/ajouter">add association</a>
-
-<table>
-    <thead>
-    <tr>
-        <th>Nom de l'association</th>
-        <th>Nom et prénom de la présidente/du président</th>
-        <th>actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <?php
-    foreach($associations as $association)
-    {
-        ?>
-        <tr>
-            <td> <?= $association->getName(); ?> </td>
-            <td> <?= $association->getPresidentLastName() . ' ' .$association->getPresidentFirstName(); ?> </td>
-            <td><a href="/projet-final/projet-mairie/admin/informations-locales/associations/modifier&associationId=<?= $association->getId(); ?>">modifier association</a></td>
-        </tr>
-    <?php
-    }
-    ?>
-    </tbody>
-</table>
+<section class="main-container">
+    <h1><?= $this->pageTitle ?></h1>
+    
+    <section class="table-container">
+        <a href="/projet-final/projet-mairie/admin/informations-locales/associations/ajouter">Ajouter une association</a>
+        
+        <table>
+            <thead>
+            <tr>
+                <th>Nom de l'association</th>
+                <th>Nom et prénom du·de la président·e</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            foreach($associations as $association)
+            {
+                ?>
+                <tr>
+                    <td> <?= $association->getName(); ?> </td>
+                    <td> <?= $association->getPresidentLastName() . ' ' .$association->getPresidentFirstName(); ?> </td>
+                    <td><a href="/projet-final/projet-mairie/admin/informations-locales/associations/modifier&associationId=<?= $association->getId(); ?>">Modifier</a></td>
+                </tr>
+            <?php
+            }
+            ?>
+            </tbody>
+        </table>
+    </section>
+    
+</section>

@@ -1,0 +1,49 @@
+footer {
+    background-color: var(--clr-element-background);
+
+    border-top: 1px solid var(--clr-element-border);
+    
+    nav {
+        margin-block: 2rem;
+        padding: 1.5rem;
+    
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        ul {
+             li {
+                padding-block: 1.25rem;
+                padding-inline: 0.5rem;
+            
+                text-align: center;
+            
+                border-radius: 0.5rem;
+                
+                &:hover {
+                    background-color: var(--clr-element-background-hover);
+                }
+                
+                &:active {
+                    background-color: var(--clr-element-background-active);
+                }
+                
+                a {
+                    text-transform: uppercase;
+                }
+            }
+        }
+    }
+    
+    p {
+        margin-block: 6rem 3rem;
+        padding: 1.5rem;
+    
+        text-align: center;
+    
+        a {
+            font-weight: bold;
+        }
+    }
+}

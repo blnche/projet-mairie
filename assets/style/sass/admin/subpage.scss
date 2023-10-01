@@ -1,0 +1,120 @@
+.table-container {
+    
+    display: flex;
+    flex-direction: column;
+    
+    a {
+        width: fit-content;
+        
+        margin-block: 2rem;
+        padding: 0.5rem 1rem;
+        
+        background: var(--clr-link-background);
+        
+        border-radius: 0.5rem;
+        text-transform: uppercase;
+        
+        &:hover {
+            background: var(--clr-link-background-hover);
+        }
+        
+        &:active {
+            background: var(--clr-link-background-active);
+        }
+    }
+    
+    table {
+        width:100%;
+        
+        margin-block: 1rem;
+	    
+	    text-align: center;
+	    
+	    thead {
+	        background: var(--clr-element-background);
+	        
+	        border-bottom: 1px solid var(--clr-element-border);
+	        
+	        tr {
+	            padding: 1.5rem;
+	            
+	            display: flex;
+	            justify-content: center;
+	            align-items: center;
+	            
+	            th {
+	                padding: 1rem;
+	            
+	            }
+	        }
+	        
+	    }
+	    
+	    tbody {
+	        
+	        tr {
+	            padding: 1.5rem;
+	            
+	            display: flex;
+	            justify-content: center;
+	            align-items: center;
+	            
+	            &:hover {
+	                background-color: var(--clr-element-background-hover);
+	            }
+	            
+    	        td {
+    	            padding: 1rem;
+	                    
+    	        }
+	        }
+	    }
+        
+        a {
+            width: fit-content;
+            
+            margin-block: 0rem;
+            padding: 0.5rem;
+            
+            background: transparent;
+            
+            border: 2px solid var(--clr-link-background);
+            border-radius: 0.5rem;
+            
+            text-transform: uppercase;
+            
+            &:hover {
+                background: transparent;
+                
+                border: 2px solid var(--clr-link-background-hover);
+            }
+            
+            &:active {
+                background: transparent;
+                
+                border: 2px solid var(--clr-link-background-active);
+            }
+        }
+        
+    }
+    
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    form {
+        fieldset {
+            label {
+                
+            }
+            
+            input {
+                
+            }
+        }
+    }
+}

@@ -160,9 +160,9 @@ class Router2
 
                                 if (isset($tab[3])) {
                                     if ($tab[3] === 'ajouter') {
-                                        $routeAndParams['route'] = $tab[3];
+                                        $routeAndParams['action'] = $tab[3];
                                     } else if ($tab[3] === 'modifier') {
-                                        $routeAndParams['route'] = $tab[3];
+                                        $routeAndParams['action'] = $tab[3];
                                         $routeAndParams['associationSlug'] = $tab[4];
                                     }
                                 }
@@ -171,9 +171,9 @@ class Router2
 
                                 if (isset($tab[3])) {
                                     if ($tab[3] === 'ajouter') {
-                                        $routeAndParams['route'] = $tab[3];
+                                        $routeAndParams['action'] = $tab[3];
                                     } else if ($tab[3] === 'modifier') {
-                                        $routeAndParams['route'] = $tab[3];
+                                        $routeAndParams['action'] = $tab[3];
                                         $routeAndParams['locationSlug'] = $tab[4];
                                     }
                                 }
@@ -182,9 +182,9 @@ class Router2
 
                                 if (isset($tab[3])) {
                                     if ($tab[3] === 'ajouter') {
-                                        $routeAndParams['route'] = $tab[3];
+                                        $routeAndParams['action'] = $tab[3];
                                     } else if ($tab[3] === 'modifier') {
-                                        $routeAndParams['route'] = $tab[3];
+                                        $routeAndParams['action'] = $tab[3];
                                         $routeAndParams['localProfessionalSlug'] = $tab[4];
                                     }
                                 }
