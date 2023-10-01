@@ -53,11 +53,12 @@
                 $user->setLastName($lastname);
                 $user->setAddress($newAddress);
                 $this->userManager->addUser($user);
+                
                 header('Location:/projet-final/projet-mairie/authentification/se-connecter');
             }
             else
             {
-                $this->render('views/authentication/register.phtml', [], 'Créer un compte', 'authentication');
+                $this->render('views/authentication/_register-form.phtml', [], 'Créer un compte', 'authentication');
             }
         }
         public function login() : void
@@ -91,10 +92,10 @@
                     }
                 } else {
                     echo "L'un des champs est erroné";
-                    $this->render('views/authentication/login.phtml',[],'Se connecter', 'authentication');
+                    $this->render('views/authentication/_login-form.phtml',[],'Se connecter', 'authentication');
                 }
             } else {
-                $this->render('views/authentication/login.phtml',[],'Se connecter', 'authentication');
+                $this->render('views/authentication/_login-form.phtml',[],'Se connecter', 'authentication');
             }
         }
 

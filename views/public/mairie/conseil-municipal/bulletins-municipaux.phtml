@@ -8,12 +8,19 @@
             ?>
             <ul>
                 <?php
+            $counter = 0;
             foreach ($bulletins as $bulletin)
             {
+                if ($counter < 10) {
                 ?>
                 <li> <?php echo 'Bulletin du '.$bulletin->getDate()->format('d/m/Y');?> <a target="_blank" href="<?=$bulletin->getUrl()?>">Consulter le fichier</a>
                 </li>
             <?php
+                    
+                } else {
+                    break;
+                }
+                $counter++;
             }
             ?>
             </ul>

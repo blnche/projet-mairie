@@ -132,7 +132,7 @@ class UserController extends AbstractController
     {
         $child = $this->childManager->getChildById($id);
 
-        $this->render('views/user/profil-enfant.phtml', ['child'=>$child], $child->getFirstName(), 'user');
+        $this->render('views/user/profil-enfant.phtml', ['child'=>$child], 'Mon Enfant', 'user');
     }
     public function createChild() : void
     {

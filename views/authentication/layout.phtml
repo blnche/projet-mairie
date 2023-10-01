@@ -1,14 +1,36 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/projet-final/projet-mairie/assets/style/css/public/main.css"/>
     <title>Document</title>
 </head>
 <body>
-    <?php require $this->template; ?>
+    <header>
+        <section class="header-container">
+            <section class="header-title">
+                <h1><a href="/projet-final/projet-mairie/">Saint-Broladre</a></h1>
+                <p>Commune de la baie du Mont Saint Michel</p>
+            </section>
+            <?php require 'views/partials/public/_header.phtml'; ?>
+            <section class="header-toggleBtn-container">
+                <img width="48" height="48" src="https://img.icons8.com/FFFFFF/fluency-systems-filled/48/menu.png" alt="menu" id="toggleNavBtn"/>
+        </section>
+    </header>
+
+    <main>
+        <?php require $this->template; ?>
+    </main>
+
+    <footer>
+        <section class="footer-container">
+            <?php require 'views/partials/public/_footer.phtml'; ?>
+            <p>Site crée par <a href="#">Blanche Peltier</a>. Icônes par <a href="https://icones8.fr/">Icons8</a>, et couleurs par <a href="https://www.radix-ui.com/colors">Radix</a>.</p>
+        </section>
+    </footer>
     <script type="module" src="/projet-final/projet-mairie/assets/js/index.js"></script>
 </body>
 </html>

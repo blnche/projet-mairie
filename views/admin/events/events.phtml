@@ -1,41 +1,47 @@
 <?php
 $events = $this->data['events'];
 ?>
-<h1><?= $this->pageTitle ?></h1>
-<a href="/projet-final/projet-mairie/admin/evenements/ajouter">add event</a>
-
-<table>
-    <thead>
-    <tr>
-        <th>Nom de l'évènement</th>
-        <th>Date</th>
-        <th>Description</th>
-        <th>Adresse</th>
-        <th>actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <?php
-    foreach($events as $event)
-    {
-        $rp = new ReflectionProperty('Event', 'address');
-        ?>
-        <tr>
-            <td> <?= $event->getTitle(); ?> </td>
-            <td> <?= $event->getDate()->format('d/m/Y'); ?> </td>
-            <td> <?= $event->getDescription(); ?> </td>
-            <td> <?php
-                if ($rp->isInitialized($event)){
-                    echo $event->getAddress()->getAddress().', '.$event->getAddress()->getCodePostal().' '.$event->getAddress()->getCommune();
-                } else {
-                    echo 'Pas d\'adresse spécifiée pour cet évènement';
-                }
+<section class="main-container">
+    <h1><?= $this->pageTitle ?></h1>
+    
+    <section class="table-container">
+        <a href="/projet-final/projet-mairie/admin/evenements/ajouter">Ajouter un évènement</a>
+        
+        <table>
+            <thead>
+            <tr>
+                <th>Nom de l'évènement</th>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Adresse</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            foreach($events as $event)
+            {
+                $rp = new ReflectionProperty('Event', 'address');
                 ?>
-            </td>
-            <td><a href="/projet-final/projet-mairie/admin/evenements/modifier&eventId=<?= $event->getId(); ?>">modifier évènement</a></td>
-        </tr>
-        <?php
-    }
-    ?>
-    </tbody>
-</table>
+                <tr>
+                    <td> <?= $event->getTitle(); ?> </td>
+                    <td> <?= $event->getDate()->format('d/m/Y'); ?> </td>
+                    <td> <?= $event->getDescription(); ?> </td>
+                    <td> <?php
+                        if ($rp->isInitialized($event)){
+                            echo $event->getAddress()->getAddress().', '.$event->getAddress()->getCodePostal().' '.$event->getAddress()->getCommune();
+                        } else {
+                            echo 'Pas d\'adresse spécifiée pour cet évènement';
+                        }
+                        ?>
+                    </td>
+                    <td><a href="/projet-final/projet-mairie/admin/evenements/modifier&eventId=<?= $event->getId(); ?>">Modifier</a></td>
+                </tr>
+                <?php
+            }
+            ?>
+            </tbody>
+        </table>
+    </section>
+    
+</section>

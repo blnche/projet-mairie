@@ -1,16 +1,23 @@
-<p>Liste de vos enfants : </p>
-<ul>
-    <?php
-    $children = $this->data['children'];
-    foreach($children as $child)
-    {
-    ?>
-        <li> <?= $child->getFirstName(); ?>
-            <a href="/projet-final/projet-mairie/espace-famille/<?= $_SESSION['user_lastName'] ?>/enfants/<?= $child->getId(); ?>">Consulter</a>
-        </li>
-    <?php
-    }
-    ?>
-
-</ul>
-<a href="/projet-final/projet-mairie/espace-famille/<?= $_SESSION['user_lastName'] ?>/enfants/ajouter">ajouter enfant</a>
+<section class="main-container">
+    <h1> <?= $this->pageTitle; ?> </h1>
+    <a class="main-container-link" href="/projet-final/projet-mairie/espace-famille/<?= $_SESSION['user_lastName'] ?>/enfants/ajouter">Ajouter mon enfant</a>
+    
+    <section class="list-items">
+        <article>
+            <ul>
+                <?php
+                $children = $this->data['children'];
+                foreach($children as $child)
+                {
+                ?>
+                    <li> <?= $child->getFirstName(); ?>
+                        <a href="/projet-final/projet-mairie/espace-famille/<?= $_SESSION['user_lastName'] ?>/enfants/<?= $child->getId(); ?>">Consulter</a>
+                    </li>
+                <?php
+                }
+                ?>
+            
+            </ul>
+        </article>
+    </section>
+</section>

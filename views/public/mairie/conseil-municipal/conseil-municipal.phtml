@@ -14,34 +14,47 @@
             ?>
             <ul>
                 <?php
+                $counter = 0;
                 foreach ($crcms as $crcm)
                 {
+                    if($counter < 5) { 
                     ?>
-                    <li> <?php echo 'Bulletin du '.$crcm->getDate()->format('d/m/Y');?> <a target="_blank" href="<?=$crcm->getUrl()?>"> Consulter le fichier</a>
+                    <li> <?php echo 'Compte rendu du '.$crcm->getDate()->format('d/m/Y');?> <a target="_blank" href="<?=$crcm->getUrl()?>"> Consulter le fichier</a>
                     </li>
                     <?php
+                    } else {
+                        break;
+                    }
+                    $counter++;
                 }
                 ?>
             </ul>
-            <a href="/projet-final/projet-mairie/mairie/conseil-municipal/comptes-rendus-conseil-municipaux">Voir tous les bulletins</a>
+            <a href="/projet-final/projet-mairie/mairie/conseil-municipal/comptes-rendus-conseil-municipaux">Voir tous les comptes-rendus</a>
         </article>
         <article>
-            <h2>Derniers bulletins municpaux</h2>
+            <h2>Derniers bulletins municipaux</h2>
             <?php
             $bulletins = $this->data['bm'];
             ?>
             <ul>
                 <?php
+                $counter = 0;
                 foreach ($bulletins as $bulletin)
                 {
+                    if($counter < 5) { 
                     ?>
-                    <li> <?php echo 'Compte rendu du '.$bulletin->getDate()->format('d/m/Y');?> <a target="_blank" href="<?=$bulletin->getUrl()?>"> Consulter le fichier</a>
+                    <li> <?php echo 'Bulletin du '.$bulletin->getDate()->format('d/m/Y');?> <a target="_blank" href="<?=$bulletin->getUrl()?>"> Consulter le fichier</a>
                     </li>
                     <?php
+                        
+                    } else {
+                        break;
+                    }
+                    $counter++;
                 }
                 ?>
             </ul>
-            <a href="/projet-final/projet-mairie/mairie/conseil-municipal/bulletins-municipaux">Voir tous les comptes-rendus</a>
+            <a href="/projet-final/projet-mairie/mairie/conseil-municipal/bulletins-municipaux">Voir tous les bulletins</a>
         </article>
     </section>
     

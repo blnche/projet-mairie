@@ -1,3 +1,322 @@
+@charset "UTF-8";
+.table-container {
+  display: flex;
+  flex-direction: column;
+}
+.table-container a {
+  width: fit-content;
+  margin-block: 2rem;
+  padding: 0.5rem 1rem;
+  background: var(--clr-link-background);
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+}
+.table-container a:hover {
+  background: var(--clr-link-background-hover);
+}
+.table-container a:active {
+  background: var(--clr-link-background-active);
+}
+.table-container table, .table-container thead, .table-container tbody, .table-container th, .table-container td, .table-container tr {
+  display: block;
+}
+.table-container table thead tr {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+.table-container table tbody tr td {
+  padding: 1rem;
+  border: none;
+  border-bottom: 1px solid var(--clr-element-border);
+  position: relative;
+  padding-left: 50%;
+}
+.table-container table tbody tr td:before {
+  width: 45%;
+  padding-right: 10px;
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  white-space: nowrap;
+}
+.table-container table tbody tr td:hover {
+  background-color: var(--clr-element-background-hover);
+}
+.table-container table tbody tr td:nth-of-type(1):before {
+  content: "Nom de l'entité";
+}
+.table-container table a {
+  width: fit-content;
+  margin-block: 0rem;
+  padding: 0.5rem;
+  background: transparent;
+  border: 2px solid var(--clr-link-background);
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+}
+.table-container table a:hover {
+  background: transparent;
+  border: 2px solid var(--clr-link-background-hover);
+}
+.table-container table a:active {
+  background: transparent;
+  border: 2px solid var(--clr-link-background-active);
+}
 
+.form-container {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.form-container form fieldset input {
+  width: 90%;
+  margin-block: 1rem;
+  padding: 1rem;
+  box-shadow: 0 4px 24px -6px var(--clr-card-shadow);
+  border: 1px solid var(--clr-element-border);
+  border-radius: 0.5rem;
+}
+.form-container form fieldset input[type=radio] {
+  width: fit-content;
+}
+.form-container form fieldset textarea {
+  width: 90%;
+  margin-block: 1rem;
+  padding: 1rem;
+  box-shadow: 0 4px 24px -6px var(--clr-card-shadow);
+  border: 1px solid var(--clr-element-border);
+  border-radius: 0.5rem;
+}
+.form-container form fieldset select {
+  width: 90%;
+  margin-block: 1rem;
+  padding: 1rem;
+  box-shadow: 0 4px 24px -6px var(--clr-card-shadow);
+  border: 1px solid var(--clr-element-border);
+  border-radius: 0.5rem;
+}
+.form-container form #submit {
+  width: fit-content;
+  margin-block: 1rem;
+  padding: 1rem 1.5rem;
+  align-self: center;
+  background-color: var(--clr-button-background);
+  box-shadow: 0 4px 24px -6px var(--clr-button-shadow);
+  border: 1px solid var(--clr-button-border);
+  border-radius: 0.5rem;
+  color: var(--clr-text-high-contrast);
+  cursor: pointer;
+}
+.form-container form #submit:hover {
+  background-color: var(--clr-button-background-hover);
+  border: 1px solid var(--clr-button-border-active);
+}
+.form-container form #submit:active {
+  background-color: var(--clr-button-background-active);
+  border: 1px solid var(--clr-button-border-active);
+}
+
+.child-card {
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.child-card article {
+  width: 15rem;
+  margin: 1rem;
+  padding: 1rem;
+  background-color: var(--clr-card-background);
+  box-shadow: 0 4px 24px -6px var(--clr-card-shadow);
+  border: 1px solid var(--clr-card-border);
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.child-card article header {
+  z-index: unset;
+  position: relative;
+  background-color: transparent;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.child-card article header img {
+  width: 64px;
+  height: 64px;
+  margin-block: 1rem;
+  box-shadow: 0 4px 24px -6px var(--clr-card-shadow);
+  border: 1px solid var(--clr-card-border);
+  border-radius: 0.5rem;
+}
+.child-card article h3 {
+  text-transform: uppercase;
+}
+.child-card article ul li {
+  margin-block: 1rem;
+  padding: 1rem;
+}
+
+@media (min-width: 1024px) and (max-width: 1510px) {
+  .table-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .table-container a {
+    width: fit-content;
+    margin-block: 2rem;
+    padding: 0.5rem 1rem;
+    background: var(--clr-link-background);
+    border-radius: 0.5rem;
+    text-transform: uppercase;
+  }
+  .table-container a:hover {
+    background: var(--clr-link-background-hover);
+  }
+  .table-container a:active {
+    background: var(--clr-link-background-active);
+  }
+  .table-container table {
+    display: table;
+    width: 100%;
+    margin-block: 1rem;
+    text-align: center;
+  }
+  .table-container table thead {
+    background: var(--clr-element-background);
+    border-bottom: 1px solid var(--clr-element-border);
+  }
+  .table-container table thead tr {
+    padding: 1.5rem;
+    position: relative;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .table-container table thead tr th {
+    padding: 1rem;
+  }
+  .table-container table tbody tr {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .table-container table tbody tr:hover {
+    background-color: var(--clr-element-background-hover);
+  }
+  .table-container table tbody tr td {
+    padding: 1rem;
+  }
+  .table-container table tbody tr td:before {
+    display: none;
+  }
+  .table-container table a {
+    width: fit-content;
+    margin-block: 0rem;
+    padding: 0.5rem;
+    background: transparent;
+    border: 2px solid var(--clr-link-background);
+    border-radius: 0.5rem;
+    text-transform: uppercase;
+  }
+  .table-container table a:hover {
+    background: transparent;
+    border: 2px solid var(--clr-link-background-hover);
+  }
+  .table-container table a:active {
+    background: transparent;
+    border: 2px solid var(--clr-link-background-active);
+  }
+}
+@media (min-width: 1511px) {
+  .table-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .table-container a {
+    width: fit-content;
+    margin-block: 2rem;
+    padding: 0.5rem 1rem;
+    background: var(--clr-link-background);
+    border-radius: 0.5rem;
+    text-transform: uppercase;
+  }
+  .table-container a:hover {
+    background: var(--clr-link-background-hover);
+  }
+  .table-container a:active {
+    background: var(--clr-link-background-active);
+  }
+  .table-container table {
+    display: table;
+    width: 100%;
+    margin-block: 1rem;
+    text-align: center;
+  }
+  .table-container table thead {
+    background: var(--clr-element-background);
+    border-bottom: 1px solid var(--clr-element-border);
+  }
+  .table-container table thead tr {
+    padding: 1.5rem;
+    position: relative;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .table-container table thead tr th {
+    padding: 1rem;
+  }
+  .table-container table tbody tr {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .table-container table tbody tr:hover {
+    background-color: var(--clr-element-background-hover);
+  }
+  .table-container table tbody tr td {
+    padding: 1rem;
+  }
+  .table-container table tbody tr td:before {
+    display: none;
+  }
+  .table-container table a {
+    width: fit-content;
+    margin-block: 0rem;
+    padding: 0.5rem;
+    background: transparent;
+    border: 2px solid var(--clr-link-background);
+    border-radius: 0.5rem;
+    text-transform: uppercase;
+  }
+  .table-container table a:hover {
+    background: transparent;
+    border: 2px solid var(--clr-link-background-hover);
+  }
+  .table-container table a:active {
+    background: transparent;
+    border: 2px solid var(--clr-link-background-active);
+  }
+}
 
 /*# sourceMappingURL=subpage.css.map */

@@ -1,16 +1,30 @@
-<h1> <?= $this->pageTitle; ?> </h1>bulletins municipaux</h1>
-<a href="/projet-final/projet-mairie/admin/ajouter-un-fichier&file=bulletin">Ajouter un BM</a>
-<ul>
-    <?php
-    $files = $this->data['bulletins'];
-
-    foreach($files as $file)
-    {
-    ?>
-        <li>
-            <?php echo 'Bulletin du '.$file->getDate()->format('d/m/Y');?> <a target="_blank" href="<?=$file->getUrl()?>">Consulter le fichier</a>
-        </li>
-    <?php
-    }
-    ?>
-</ul>
+<section class="main-container">
+    <h1> <?= $this->pageTitle; ?> </h1>
+    <a class="main-container-link" href="/projet-final/projet-mairie/admin/ajouter-un-fichier&file=bulletin">Ajouter un bulletin</a>
+    
+    <section class="list-items">
+        <article>
+            <h3>Derniers bulletins :</h3>
+            <ul>
+                <?php
+                $files = $this->data['bulletins'];
+                $counter = 0;
+                foreach($files as $file)
+                {
+                    if ($counter < 5) {
+                ?>
+                    <li>
+                        <?php echo 'Bulletin du '.$file->getDate()->format('d/m/Y');?> <a target="_blank" href="<?=$file->getUrl()?>">Consulter le fichier</a>
+                    </li>
+                <?php
+                        
+                    } else {
+                        break;
+                    }
+                    $counter++;
+                }
+                ?>
+            </ul>
+        </article>
+    </section>
+</section>

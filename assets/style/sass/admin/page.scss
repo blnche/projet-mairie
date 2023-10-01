@@ -23,6 +23,26 @@
         }
     }
     
+    .main-container-link {
+        width: fit-content;
+        
+        margin-block: 2rem;
+        padding: 0.5rem 1rem;
+        
+        background: var(--clr-link-background);
+        
+        border-radius: 0.5rem;
+        text-transform: uppercase;
+        
+        &:hover {
+            background: var(--clr-link-background-hover);
+        }
+        
+        &:active {
+            background: var(--clr-link-background-active);
+        }
+    }
+    
     .sub-pages-list {
         margin-bottom: 3.5rem;
         

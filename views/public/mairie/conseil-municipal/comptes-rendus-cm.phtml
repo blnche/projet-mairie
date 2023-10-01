@@ -8,12 +8,19 @@
             ?>
             <ul>
             <?php
+            $counter = 0;
             foreach ($crcms as $crcm)
             {
+                if ($counter < 10) {
                 ?>
-                <li> <?php echo 'Bulletin du '.$crcm->getDate()->format('d/m/Y');?> <a target="_blank" href="<?=$crcm->getUrl()?>">Consulter le fichier</a>
+                <li> <?php echo 'Compte-rendu du '.$crcm->getDate()->format('d/m/Y');?> <a target="_blank" href="<?=$crcm->getUrl()?>">Consulter le fichier</a>
                 </li>
                 <?php
+                    
+                } else {
+                    break;
+                }
+                $counter++;
             }
             ?>
             </ul>

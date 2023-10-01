@@ -1,32 +1,38 @@
 <?php
 $locations = $this->data['locations'];
 ?>
-<h1><?= $this->pageTitle ?> </h1>
-<a href="/projet-final/projet-mairie/admin/informations-locales/lieux/ajouter">add location</a>
-<table>
-    <thead>
-    <tr>
-        <th>Nom du lieu</th>
-        <th>Type</th>
-        <th>telephone</th>
-        <th>description</th>
-        <th>actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <?php
-    foreach($locations as $location)
-    {
-        ?>
-        <tr>
-            <td> <?= $location->getName(); ?> </td>
-            <td> <?= $location->getType(); ?> </td>
-            <td> <?= $location->getTelephone(); ?></td>
-            <td> <?= $location->getDescription(); ?></td>
-            <td><a href="/projet-final/projet-mairie/admin/informations-locales/lieux/modifier&locationId=<?= $location->getId(); ?>">modifier location</a></td>
-        </tr>
-        <?php
-    }
-    ?>
-    </tbody>
-</table>
+<section class="main-container">
+    <h1><?= $this->pageTitle ?></h1>
+    
+    <section class="table-container">
+        <a href="/projet-final/projet-mairie/admin/informations-locales/lieux/ajouter">Ajouter un lieu</a>
+        <table>
+            <thead>
+            <tr>
+                <th>Nom du lieu</th>
+                <th>Type</th>
+                <th>Téléphone</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            foreach($locations as $location)
+            {
+                ?>
+                <tr>
+                    <td> <?= $location->getName(); ?> </td>
+                    <td> <?= $location->getType(); ?> </td>
+                    <td> <?= $location->getTelephone(); ?></td>
+                    <td> <?= $location->getDescription(); ?></td>
+                    <td><a href="/projet-final/projet-mairie/admin/informations-locales/lieux/modifier&locationId=<?= $location->getId(); ?>">Modifier</a></td>
+                </tr>
+                <?php
+            }
+            ?>
+            </tbody>
+        </table>
+    </section>
+    
+</section>

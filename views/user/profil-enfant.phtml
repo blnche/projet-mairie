@@ -1,6 +1,18 @@
 <?php $child = $this->data['child']; ?>
-<h1> <?php echo $child->getFirstName().' '.$child->getLastName(); ?> </h1>
-<ul>
-    <li> <?= $child->getAge(); ?> </li>
-</ul>
-<a href="/projet-final/projet-mairie/espace-famille/<?= $_SESSION['user_lastName'] ?>/enfants/modifier/<?= $child->getId(); ?>">Modifier</a>
+
+<section class="main-container">
+    <h1> <?= $this->pageTitle; ?> </h1>
+    <a class="main-container-link" href="/projet-final/projet-mairie/espace-famille/<?= $_SESSION['user_lastName'] ?>/enfants/modifier/<?= $child->getId(); ?>">Modifier</a>
+    
+    <section class="child-card">
+        <article>
+            <header>
+                <img src="/projet-final/projet-mairie/assets/images/homepage-shortcutNav-icons/icons8-desk-64.png">
+                <h2><?php echo $child->getFirstName().' '.$child->getLastName(); ?></h2>
+            </header>
+            <ul>
+                <li> Age : <?= $child->getAge(); ?> </li>
+            </ul>
+        </article>
+    </section>
+</section>

@@ -15,6 +15,20 @@
   display: block;
   background-color: var(--clr-accent);
 }
+.main-container .main-container-link {
+  width: fit-content;
+  margin-block: 2rem;
+  padding: 0.5rem 1rem;
+  background: var(--clr-link-background);
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+}
+.main-container .main-container-link:hover {
+  background: var(--clr-link-background-hover);
+}
+.main-container .main-container-link:active {
+  background: var(--clr-link-background-active);
+}
 .main-container .sub-pages-list {
   margin-bottom: 3.5rem;
   display: flex;
