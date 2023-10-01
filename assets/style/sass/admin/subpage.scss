@@ -107,13 +107,55 @@
     align-items: center;
     
     form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
         fieldset {
             label {
                 
             }
             
             input {
-                
+                width: 80%;
+
+                margin-block: 1rem;
+                padding: 1rem;
+            
+                box-shadow: 0 4px 24px -6px var(--clr-card-shadow);
+            
+                border: 1px solid var(--clr-element-border);
+                border-radius: 0.5rem;
+            }
+        }
+        
+        #submit {
+            width: fit-content;
+            
+            margin-block: 1rem;
+            padding: 1rem 1.5rem;
+            
+            align-self: center;
+        
+            background-color: var(--clr-button-background);
+            box-shadow: 0 4px 24px -6px var(--clr-button-shadow);
+        
+            border: 1px solid var(--clr-button-border);
+            border-radius: 0.5rem;
+        
+            color: var(--clr-text-high-contrast);
+        
+            cursor: pointer;
+            &:hover {
+                background-color: var(--clr-button-background-hover);
+            
+                border: 1px solid var(--clr-button-border-active);
+            }
+            
+            &:active {
+                background-color: var(--clr-button-background-active);
+            
+                border: 1px solid var(--clr-button-border-active);
             }
         }
     }

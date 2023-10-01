@@ -1,11 +1,17 @@
-<form id="userLoginForm" method="post" action="/projet-final/projet-mairie/authentification/se-connecter">
-    <fieldset>
-        <label for="email">Adresse mail :</label>
-        <input type="email" name="email" id="email" required>
-    </fieldset>
-    <fieldset>
-        <label for="password">Mot de passe :</label>
-        <input type="password" name="password" id="password" required>
-    </fieldset>
-    <input type="submit" name="login" value="Se connecter"/>
-</form>
+<section class="main-container">
+    <h1><?= $this->pageTitle ?></h1>
+    
+    <section class="form-container">
+        <form id="userLoginForm" method="post" action="/projet-final/projet-mairie/authentification/se-connecter">
+            <fieldset>
+                <label for="email">Adresse mail :</label>
+                <input type="email" name="email" id="email" required>
+            </fieldset>
+            <fieldset>
+                <label for="password">Mot de passe :</label>
+                <input type="password" name="password" id="password" required>
+            </fieldset>
+            <input id="submit" type="submit" name="login" value="Se connecter"/>
+        </form>
+    </section>
+</section>

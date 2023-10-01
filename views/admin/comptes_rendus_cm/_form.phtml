@@ -1,9 +1,15 @@
-<form enctype="multipart/form-data" method="post" action="/projet-final/projet-mairie/admin/ajouter-un-fichier&file=compte-rendu">
-    <input type="hidden" name="formName" value="uploadCRCM">
-    <input type="hidden" name="MAX_FILE_SIZE" value="3000000" />
-    <fieldset>
-        <label for="compte_rendu">Choisir votre fichier</label>
-        <input type="file" name="compte_rendu" id="compte_rendu">
-    </fieldset>
-    <input type="submit" name="uploadCRCM" value="Send File" />
-</form>
+<section class="main-container">
+    <h1><?= $this->pageTitle ?></h1>
+    
+    <section class="form-container">
+        <form enctype="multipart/form-data" method="post" action="/projet-final/projet-mairie/admin/ajouter-un-fichier&file=compte-rendu">
+            <input type="hidden" name="formName" value="uploadCRCM">
+            <input type="hidden" name="MAX_FILE_SIZE" value="3000000" />
+            <fieldset>
+                <label for="compte_rendu">Choisir votre fichier</label>
+                <input type="file" name="compte_rendu" id="compte_rendu">
+            </fieldset>
+            <input id="submit" type="submit" name="uploadCRCM" value="Send File" />
+        </form>
+    </section>
+</section>

@@ -1,31 +1,37 @@
-<form method="POST" action="/projet-final/projet-mairie/admin/informations-locales/lieux/modifier&locationId=<?= $_GET['locationId']?>">
-    <fieldset>
-        <label for="name">Nom</label>
-        <input type="text" name="name" id="name" required>
-    </fieldset>
-    <fieldset>
-        <label for="type">Type</label>
-        <input type="text" name="type" id="type">
-    </fieldset>
-    <fieldset>
-        <label for="telephone">Telephone</label>
-        <input type="tel" name="telephone" id="telephone">
-    </fieldset>
-    <fieldset>
-        <label for="description">Description</label>
-        <textarea name="description" id="description" cols="30" rows="10"></textarea>
-    </fieldset>
-    <fieldset>
-        <label for="address">Adresse postal :</label>
-        <input type="text" name="address" id="address">
-    </fieldset>
-    <fieldset>
-        <label for="code-postal">Code postal :</label>
-        <input type="text" name="code-postal" id="code-postal" required>
-    </fieldset>
-    <fieldset>
-        <label for="ville">Ville/Commune :</label>
-        <input type="text" name="ville" id="ville" required>
-    </fieldset>
-    <input type="submit" name="modifyLocation" value="Enregistrer lieu modifié">
-</form>
+<section class="main-container">
+    <h1><?= $this->pageTitle ?></h1>
+    
+    <section class="form-container">
+        <form method="POST" action="/projet-final/projet-mairie/admin/informations-locales/lieux/modifier&locationId=<?= $_GET['locationId']?>">
+            <fieldset>
+                <label for="name">Nom :</label>
+                <input type="text" name="name" id="name" required>
+            </fieldset>
+            <fieldset>
+                <label for="type">Type :</label>
+                <input type="text" name="type" id="type">
+            </fieldset>
+            <fieldset>
+                <label for="telephone">Téléphone :</label>
+                <input type="tel" name="telephone" id="telephone">
+            </fieldset>
+            <fieldset>
+                <label for="description">Description :</label>
+                <textarea name="description" id="description" cols="30" rows="10"></textarea>
+            </fieldset>
+            <fieldset>
+                <label for="address">Adresse postale (ex: 1 rue Dupont)</label>
+                <input type="text" name="address" id="address">
+            </fieldset>
+            <fieldset>
+                <label for="code-postal">Code postal :</label>
+                <input type="text" name="code-postal" id="code-postal" required>
+            </fieldset>
+            <fieldset>
+                <label for="ville">Ville/Commune :</label>
+                <input type="text" name="ville" id="ville" required>
+            </fieldset>
+            <input id="submit" type="submit" name="modifyLocation" value="Enregistrer lieu modifié">
+        </form>
+    </section>
+</section>

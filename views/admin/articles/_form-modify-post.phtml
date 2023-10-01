@@ -1,24 +1,30 @@
-<form method="POST" action="/projet-final/projet-mairie/admin/articles/modifier&postId=<?=$_GET['postId'];?>">
-    <fieldset>
-        <label for="title">Titre de votre page : </label>
-        <input type="text" name="title" id="title">
-    </fieldset>
-    <fieldset>
-        <label for="content">Votre texte : </label>
-        <textarea id="content" name="content" rows="5" cols="33">
-        </textarea>
-    </fieldset>
-    <fieldset>
-        <legend>Actions : </legend>
-        <input type="radio" id="statusPublished" name="status" value="published" />
-        <label for="statusPublished">Publier</label>
-        <input type="radio" id="statusDraft" name="status" value="draft" />
-        <label for="statusDraft">Brouillon</label>
-    </fieldset>
-    <fieldset>
-        <input type="hidden" name="MAX_FILE_SIZE" value="3000000" />
-        <label for="picture">Choisir votre image : </label>
-        <input type="file" name="picture" id="picture">
-    </fieldset>
-    <input type="submit" name="modifyPage" value="Modifier votre page">
-</form>
+<section class="main-container">
+    <h1><?= $this->pageTitle ?></h1>
+    
+    <section class="form-container">
+        <form method="POST" action="/projet-final/projet-mairie/admin/articles/modifier&postId=<?=$_GET['postId'];?>">
+            <fieldset>
+                <label for="title">Titre de votre page : </label>
+                <input type="text" name="title" id="title">
+            </fieldset>
+            <fieldset>
+                <label for="content">Votre texte : </label>
+                <textarea id="content" name="content" rows="5" cols="33">
+                </textarea>
+            </fieldset>
+            <fieldset>
+                <legend>Actions : </legend>
+                <input type="radio" id="statusPublished" name="status" value="published" />
+                <label for="statusPublished">Publier</label>
+                <input type="radio" id="statusDraft" name="status" value="draft" />
+                <label for="statusDraft">Brouillon</label>
+            </fieldset>
+            <fieldset>
+                <input type="hidden" name="MAX_FILE_SIZE" value="3000000" />
+                <label for="picture">Choisir votre image : </label>
+                <input type="file" name="picture" id="picture">
+            </fieldset>
+            <input id="submit" type="submit" name="modifyPage" value="Modifier votre page">
+        </form>
+    </section>
+</section>

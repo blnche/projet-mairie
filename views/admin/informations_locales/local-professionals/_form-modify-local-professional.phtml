@@ -1,31 +1,37 @@
-<form method="POST"  action="/projet-final/projet-mairie/admin/informations-locales/professionnels-locaux/modifier&localProfessionalId=<?= $_GET['localProfessionalId'] ?>">
-    <fieldset>
-        <label for="name">nom entreprise</label>
-        <input type="text" name="name" id="name" required>
-    </fieldset>
-    <fieldset>
-        <label for="sector">secteur</label>
-        <input type="text" name="sector" id="sector">
-    </fieldset>
-    <fieldset>
-        <label for="firstname">prénom ceo</label>
-        <input type="text" name="firstname" id="firstname">
-    </fieldset>
-    <fieldset>
-        <label for="lastname">nom ceo</label>
-        <input type="text" name="lastname" id="lastname" required>
-    </fieldset>
-    <fieldset>
-        <label for="address">Adresse postal :</label>
-        <input type="text" name="address" id="address">
-    </fieldset>
-    <fieldset>
-        <label for="code-postal">Code postal :</label>
-        <input type="text" name="code-postal" id="code-postal" required>
-    </fieldset>
-    <fieldset>
-        <label for="ville">Ville/Commune :</label>
-        <input type="text" name="ville" id="ville" required>
-    </fieldset>
-    <input type="submit" name="modifyLocalProfessional" value="Enregistrer professionnel modifié">
-</form>
+<section class="main-container">
+    <h1><?= $this->pageTitle ?></h1>
+    
+    <section class="form-container">
+        <form method="POST"  action="/projet-final/projet-mairie/admin/informations-locales/professionnels-locaux/modifier&localProfessionalId=<?= $_GET['localProfessionalId'] ?>">
+            <fieldset>
+                <label for="name">Nom de l'entreprise :</label>
+                <input type="text" name="name" id="name"  >
+            </fieldset>
+            <fieldset>
+                <label for="sector">Secteur :</label>
+                <input type="text" name="sector" id="sector">
+            </fieldset>
+            <fieldset>
+                <label for="firstname">Prénom du·de la président·eo :</label>
+                <input type="text" name="firstname" id="firstname">
+            </fieldset>
+            <fieldset>
+                <label for="lastname">Nom du·de la président·e :</label>
+                <input type="text" name="lastname" id="lastname"  >
+            </fieldset>
+            <fieldset>
+                <label for="address">Adresse postale (ex: 1 rue Dupont) :</label>
+                <input type="text" name="address" id="address">
+            </fieldset>
+            <fieldset>
+                <label for="code-postal">Code postal :</label>
+                <input type="text" name="code-postal" id="code-postal"  >
+            </fieldset>
+            <fieldset>
+                <label for="ville">Ville/Commune :</label>
+                <input type="text" name="ville" id="ville"  >
+            </fieldset>
+            <input id="submit" type="submit" name="modifyLocalProfessional" value="Enregistrer professionnel modifié">
+        </form>
+    </section>
+</section>

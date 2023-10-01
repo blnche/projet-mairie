@@ -430,6 +430,40 @@ footer p a {
   justify-content: center;
   align-items: center;
 }
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.form-container form fieldset input {
+  width: 80%;
+  margin-block: 1rem;
+  padding: 1rem;
+  box-shadow: 0 4px 24px -6px var(--clr-card-shadow);
+  border: 1px solid var(--clr-element-border);
+  border-radius: 0.5rem;
+}
+.form-container form #submit {
+  width: fit-content;
+  margin-block: 1rem;
+  padding: 1rem 1.5rem;
+  align-self: center;
+  background-color: var(--clr-button-background);
+  box-shadow: 0 4px 24px -6px var(--clr-button-shadow);
+  border: 1px solid var(--clr-button-border);
+  border-radius: 0.5rem;
+  color: var(--clr-text-high-contrast);
+  cursor: pointer;
+}
+.form-container form #submit:hover {
+  background-color: var(--clr-button-background-hover);
+  border: 1px solid var(--clr-button-border-active);
+}
+.form-container form #submit:active {
+  background-color: var(--clr-button-background-active);
+  border: 1px solid var(--clr-button-border-active);
+}
+
 html {
   font-size: 62.5%;
   line-height: 1.5;
