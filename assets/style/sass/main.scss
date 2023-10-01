@@ -43,3 +43,23 @@ html {
     }
   }
 }
+
+
+// TABLET
+@media (min-width: 768px) and (max-width: 1023px) {
+    
+}
+
+// DESKTOP
+@media (min-width: 1024px) and (max-width: 1510px) {
+    html body main {
+      margin-top: 0;
+    }
+}
+
+// LARGE DESKTOP
+@media (min-width: 1511px) {
+   html body main {
+      margin-top: 0;
+    }
+}

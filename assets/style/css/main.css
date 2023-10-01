@@ -98,6 +98,39 @@ header .header-container nav ul li a {
   font-family: var(--ff-links);
 }
 
+@media (min-width: 1024px) and (max-width: 1510px) {
+  header {
+    height: auto;
+    position: relative;
+  }
+  header .header-container {
+    width: 80%;
+    margin-top: 2rem;
+    margin-inline: auto;
+    padding: 0;
+  }
+  header .header-container .header-title {
+    align-items: center;
+  }
+  header .header-container .header-toggleBtn-container {
+    display: none;
+  }
+  header .header-container nav {
+    height: 100%;
+    padding: 0;
+    position: relative;
+    top: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  header .header-container nav ul {
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: transparent;
+  }
+}
 footer {
   background-color: var(--clr-element-background);
   border-top: 1px solid var(--clr-element-border);
@@ -134,6 +167,9 @@ footer p a {
   font-weight: bold;
 }
 
+.homepage-container {
+  background-color: var(--clr-background);
+}
 .homepage-container .homepage-image-container {
   height: 18rem;
   width: 100%;
@@ -780,6 +816,17 @@ html body main {
 }
 html body footer {
   width: 100%;
+}
+
+@media (min-width: 1024px) and (max-width: 1510px) {
+  html body main {
+    margin-top: 0;
+  }
+}
+@media (min-width: 1511px) {
+  html body main {
+    margin-top: 0;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

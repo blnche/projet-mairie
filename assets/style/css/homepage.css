@@ -1,3 +1,6 @@
+.homepage-container {
+  background-color: var(--clr-background);
+}
 .homepage-container .homepage-image-container {
   height: 18rem;
   width: 100%;

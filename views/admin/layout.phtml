@@ -7,19 +7,19 @@
     <link rel="stylesheet" type="text/css" href="/projet-final/projet-mairie/assets/style/css/main.css"/>
 </head>
 <body>
+
 <header>
-    <header>
-        <section class="header-container">
-            <section class="header-title">
-                <h1><a href="/projet-final/projet-mairie/admin">Saint-Broladre</a></h1>
-                <p>Commune de la baie du Mont Saint Michel</p>
-            </section>
-            <?php require 'views/partials/admin/_header.phtml'; ?>
-            <section class="header-toggleBtn-container">
-                <img width="48" height="48" src="https://img.icons8.com/FFFFFF/fluency-systems-filled/48/menu.png" alt="menu" id="toggleNavBtn"/>
+    <section class="header-container">
+        <section class="header-title">
+            <h1><a href="/projet-final/projet-mairie/admin">Saint-Broladre</a></h1>
+            <p>Commune de la baie du Mont Saint Michel</p>
         </section>
-    </header>
+        <?php require 'views/partials/admin/_header.phtml'; ?>
+        <section class="header-toggleBtn-container">
+            <img width="48" height="48" src="https://img.icons8.com/FFFFFF/fluency-systems-filled/48/menu.png" alt="menu" id="toggleNavBtn"/>
+    </section>
 </header>
+
 
 <main>
     <?php require $this->template; ?>
