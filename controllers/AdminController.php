@@ -652,20 +652,22 @@ class AdminController extends AbstractController
         $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xlsx');
         $writer->save('data/inscriptions-cantine/'.$formattedDate.'.xlsx');
 
-        $file = strval($formattedDate).'.xlsx';
-        var_dump($file);
-        //die;
-        header('Content-Disposition: attachment; filename="' . $file . '"');
-        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header('Content-Length: ' . filesize($file));
-        header('Content-Transfer-Encoding: binary');
-        header('Cache-Control: must-revalidate');
-        header('Pragma: public');
-        ob_clean();
-        flush(); 
-        readfile($file);
-    
-        //$witer->save('php://output');
+        $file_path = 'data/inscriptions-cantine/'.strval($formattedDate).'.xlsx';
+        
+        if (file_exists($file_path)) {
+            header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+            header('Content-Disposition: attachment; filename="' . basename($file_path) . '"');
+            
+            ob_clean();
+            flush();
+            
+            readfile($file_path);
+            
+            exit;
+        }
+        else {
+            echo 'Fichier non trouvé';
+        }
     }
 
     // EVENTS
