@@ -10,7 +10,7 @@ $weeks = $this->data['cafeteria-weeks'];
         
         <form method="POST" action="/projet-final/projet-mairie/admin/cantine/exporter">
             <input id="submit" type="submit" value="Exporter" name="exportCafeteriaWeeks">
-        
+            <input type="text" name="search" id="searchInput" placeholder="Chercher semaine XX ...">
             <section class="table-container">
                 <table>
                     <thead>
@@ -24,18 +24,18 @@ $weeks = $this->data['cafeteria-weeks'];
                             <th>Selectionner les semaines à exporter</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="searchListItems">
                     <?php
                     foreach ($weeks as $week)
                     {
                     ?>
                         <tr>
                             <td> <?= $week->getWeekOfYear(); ?> </td>
-                            <td> <?php checkStatus($week->getMonday(), '', 'monday'); ?></td>
-                            <td> <?php checkStatus($week->getTuesday(), '', 'tuesday'); ?></td>
-                            <td> <?php checkStatus($week->getWednesday(), '', 'wednesday'); ?></td>
-                            <td> <?php checkStatus($week->getThursday(), '', 'thursday'); ?> </td>
-                            <td> <?php checkStatus($week->getFriday(), '', 'friday'); ?> </td>
+                            <td> <?php echo checkStatus($week->getMonday(), '', 'monday'); ?></td>
+                            <td> <?php echo checkStatus($week->getTuesday(), '', 'tuesday'); ?></td>
+                            <td> <?php echo checkStatus($week->getWednesday(), '', 'wednesday'); ?></td>
+                            <td> <?php echo checkStatus($week->getThursday(), '', 'thursday'); ?> </td>
+                            <td> <?php echo checkStatus($week->getFriday(), '', 'friday'); ?> </td>
                             <td>
                                 <fieldset>
                                     <label for="<?= $week->getWeekOfYear(); ?>"></label>
