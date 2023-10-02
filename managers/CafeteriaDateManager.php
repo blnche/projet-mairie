@@ -49,6 +49,7 @@
                 'weekNumber' => $weekNumber
             ];
             $query->execute($parameters);
+            
             $week = $query->fetch(PDO::FETCH_ASSOC);
 
             if($week) {

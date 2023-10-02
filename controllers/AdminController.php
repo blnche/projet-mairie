@@ -493,10 +493,15 @@ class AdminController extends AbstractController
         $datePeriod = new DatePeriod($startDate, $interval, $endDate);
 
         foreach($datePeriod as $date) {
+            
             $weekNumber = $date->format('W');
+            
             $day = $date->format('w');
-
+            
+            
             $week = $this->cafeteriaDateManager->getCafeteriaDateByWeekNumber($weekNumber);
+            
+            
             if ($day === '0') {
                 $week->setMonday('Holiday');
             } else if ($day === '1') {
@@ -541,13 +546,17 @@ class AdminController extends AbstractController
             // Get holiday's dates
             $yearStart = htmlspecialchars($_POST['yearStart']);
             $yearEnd = htmlspecialchars($_POST['yearEnd']);
+            
             $toussaintStart = htmlspecialchars($_POST['toussaintStart']);
             $toussaintEnd = htmlspecialchars($_POST['toussaintEnd']);
+            
             $hiverStart = htmlspecialchars($_POST['hiverStart']);
-            $hiverEnd = htmlspecialchars($_POST['toussaintEnd']);
-            $noelStart = htmlspecialchars($_POST['toussaintStart']);
+            $hiverEnd = htmlspecialchars($_POST['hiverEnd']);
+            
+            $noelStart = htmlspecialchars($_POST['noelStart']);
             $noelEnd = htmlspecialchars($_POST['noelEnd']);
-            $printempsStart = htmlspecialchars($_POST['toussaintStart']);
+            
+            $printempsStart = htmlspecialchars($_POST['printempsStart']);
             $printempsEnd = htmlspecialchars($_POST['printempsEnd']);
 
             $toussaint = htmlspecialchars($_POST['toussaint']);
@@ -568,7 +577,9 @@ class AdminController extends AbstractController
             $today = $today->format('Y-m-d');
 
             if ($startDateFormatted != $today && $endDateFormatted != $today) {
+                
                 while ($startDate <= $endDate) {
+                    
                     $weekNumber = $startDate->format('W');
                     $year = $startDate->format('Y');
 
@@ -577,8 +588,9 @@ class AdminController extends AbstractController
                         $year,
                         'open'
                     );
-
+                    
                     $this->cafeteriaDateManager->addCafeteriaDate($week);
+                    $this->cafeteriaDateManager->getCafeteriaDateByWeekNumber($week->getWeekOfYear());
                     $startDate->modify('+7 days');
                 }
             }
@@ -592,11 +604,13 @@ class AdminController extends AbstractController
             $this->generatingSchoolYearDayHolidayTools($pentecote);
             $this->generatingSchoolYearDayHolidayTools($feteNationale);
 
-            //$this->generatingSchoolYearWeeksHolidayTools($noelStart, $noelEnd);
-            //$this->generatingSchoolYearWeeksHolidayTools($toussaintStart, $toussaintEnd);
-            die;
-            $dates = $this->cafeteriaDateManager->getAllCafeteriaDates();//hein ?
-            $this->render('views/admin/cantine/cantine.phtml', ['cafeteria-weeks' => $dates], 'Cantine', 'admin');
+            $this->generatingSchoolYearWeeksHolidayTools($noelStart, $noelEnd);
+            $this->generatingSchoolYearWeeksHolidayTools($hiverStart, $hiverEnd);
+            $this->generatingSchoolYearWeeksHolidayTools($toussaintStart, $toussaintEnd);
+            $this->generatingSchoolYearWeeksHolidayTools($printempsStart, $printempsEnd);
+            
+            
+            header('Location:/projet-final/projet-mairie/admin/cantine');
         } else {
             $this->render('views/admin/cantine/_form-new-year.phtml', [], 'New year', 'admin');
         }
