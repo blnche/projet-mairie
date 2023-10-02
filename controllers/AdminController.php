@@ -500,22 +500,22 @@ class AdminController extends AbstractController
             
             
             $week = $this->cafeteriaDateManager->getCafeteriaDateByWeekNumber($weekNumber);
-            
-            
-            if ($day === '0') {
+        
+            if ($day === '1') {
                 $week->setMonday('Holiday');
-            } else if ($day === '1') {
-                $week->setTuesday('Holiday');
             } else if ($day === '2') {
-                $week->setWednesday('Holiday');
+                $week->setTuesday('Holiday');
             } else if ($day === '3') {
-                $week->setThursday('Holiday');
+                $week->setWednesday('Holiday');
             } else if ($day === '4') {
+                $week->setThursday('Holiday');
+            } else if ($day === '5') {
                 $week->setFriday('Holiday');
             }
-
+            
             $this->cafeteriaDateManager->editCafeteriaDate($week);
         }
+       
     }
     public function generatingSchoolYearDayHolidayTools($date) : void
     {
@@ -526,6 +526,7 @@ class AdminController extends AbstractController
         $week = $this->cafeteriaDateManager->getCafeteriaDateByWeekNumber($weekNumber);
 
         if ($week) {
+            
             if ($day === '1') {
                 $week->setMonday('Holiday');
             } else if ($day === '2') {
@@ -603,10 +604,10 @@ class AdminController extends AbstractController
             $this->generatingSchoolYearDayHolidayTools($ascension);
             $this->generatingSchoolYearDayHolidayTools($pentecote);
             $this->generatingSchoolYearDayHolidayTools($feteNationale);
-
+            
+            $this->generatingSchoolYearWeeksHolidayTools($toussaintStart, $toussaintEnd);
             $this->generatingSchoolYearWeeksHolidayTools($noelStart, $noelEnd);
             $this->generatingSchoolYearWeeksHolidayTools($hiverStart, $hiverEnd);
-            $this->generatingSchoolYearWeeksHolidayTools($toussaintStart, $toussaintEnd);
             $this->generatingSchoolYearWeeksHolidayTools($printempsStart, $printempsEnd);
             
             
