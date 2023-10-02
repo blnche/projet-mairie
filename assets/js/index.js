@@ -2,6 +2,7 @@
 import {validateUserLoginForm} from '/projet-final/projet-mairie/assets/js/functions/user-validate-forms.js';
 import {validateUserRegisterForm} from '/projet-final/projet-mairie/assets/js/functions/user-validate-forms.js';
 import {burgerMenu, foldingMenu} from '/projet-final/projet-mairie/assets/js/functions/menus.js';
+import {lightDarkMode} from '/projet-final/projet-mairie/assets/js/functions/theme-mode.js';
 // END IMPORT
 
 window.addEventListener("DOMContentLoaded", function () {

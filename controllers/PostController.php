@@ -133,13 +133,14 @@ class PostController extends AbstractController
             } else if ($postUpdated->getStatus() === 'draft') {
                 $postedDate = null;
             }
+            $postUpdated->setPostedDate($postedDate);
             
             // Check for parent page
             $postCurrentParentPage = $postCurrentInformations->getParentPage();
+            
             if (!empty($_POST['parent-page-id']))
             {
                 $parentPage = $this->postManager->getPostById(htmlspecialchars($_POST['parent-page-id']));
-            die;
             }
             else {
                 $parentPage = $postCurrentParentPage;

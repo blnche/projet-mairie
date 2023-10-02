@@ -18,57 +18,15 @@
             INSERT INTO posts (title, content, posted_status, created_date, posted_date, picture_id, parent_page_id)
             VALUES (:title, :content, :posted_status, :created_date, :posted_date, :picture_id, :parent_page_id)
             ');
-            if($post->getPostedDate() === null && $post->getPicture() === null && $post->getParentPage() === null) {
-                $parameters = [
-                    'title' => $post->getTitle(),
-                    'content' => $post->getContent(),
-                    'posted_status' => $post->getStatus(),
-                    'created_date' => $post->getCreatedDate()->format('Y-m-d H:i:s'),
-                    'posted_date' => $post->getPostedDate(),
-                    'picture_id' => $post->getPicture(),
-                    'parent_page_id' => $post->getParentPage()
-                ];
-            } else if ($post->getPicture() !== null) {
-                $parameters = [
-                    'title' => $post->getTitle(),
-                    'content' => $post->getContent(),
-                    'posted_status' => $post->getStatus(),
-                    'created_date' => $post->getCreatedDate()->format('Y-m-d H:i:s'),
-                    'posted_date' => $post->getPostedDate(),
-                    'picture_id' => $post->getPicture()->getId(),
-                    'parent_page_id' => $post->getParentPage()
-                ];
-            } else if ($post->getPostedDate() !== null) {
-                $parameters = [
-                    'title' => $post->getTitle(),
-                    'content' => $post->getContent(),
-                    'posted_status' => $post->getStatus(),
-                    'created_date' => $post->getCreatedDate()->format('Y-m-d H:i:s'),
-                    'posted_date' => $post->getPostedDate()->format('Y-m-d H:i:s'),
-                    'picture_id' => $post->getPicture(),
-                    'parent_page_id' => $post->getParentPage()
-                ];
-            } else if ($post->getParentPage() !== null) {
-                $parameters = [
-                    'title' => $post->getTitle(),
-                    'content' => $post->getContent(),
-                    'posted_status' => $post->getStatus(),
-                    'created_date' => $post->getCreatedDate(),
-                    'posted_date' => $post->getPostedDate(),
-                    'picture_id' => $post->getPicture(),
-                    'parent_page_id' => $post->getParentPage()->getId()
-                ];
-            } else if ($post->getPostedDate() !== null && $post->getPicture() !== null && $post->getParentPage() !== null) {
-                $parameters = [
-                    'title' => $post->getTitle(),
-                    'content' => $post->getContent(),
-                    'posted_status' => $post->getStatus(),
-                    'created_date' => $post->getCreatedDate()->format('Y-m-d H:i:s'),
-                    'posted_date' => $post->getPostedDate()->format('Y-m-d H:i:s'),
-                    'picture_id' => $post->getPicture()->getId(),
-                    'parent_page_id' => $post->getParentPage()->getId()
-                ];
-            }
+            $parameters = [
+                'title' => $post->getTitle(),
+                'content' => $post->getContent(),
+                'posted_status' => $post->getStatus(),
+                'created_date' => $post->getCreatedDate()->format('Y-m-d H:i:s'),
+                'posted_date' => $post->getPostedDate() !== null ? $post->getPostedDate()->format('Y-m-d H:i:s') : null,
+                'picture_id' => $post->getPicture() !== null ? $post->getPicture()->getId() : null,
+                'parent_page_id' => $post->getParentPage() !== null ? $post->getParentPage()->getId() : null
+            ];
             
             $query->execute($parameters);
 
@@ -81,53 +39,19 @@
         {
             $query = $this->db->prepare('
             UPDATE posts
-            SET title= :title, content= :content, posted_status= :posted_status, created_date= :created_date, posted_date= posted_date, picture_id= picture_id, :parent_page_id
+            SET title = :title, content = :content, posted_status = :posted_status, created_date = :created_date, posted_date = :posted_date, picture_id = :picture_id, parent_page_id = :parent_page_id
             WHERE id = :id
             ');
-            if($postEdited->getPostedDate() === null && $postEdited->getPicture() === null) {
-                $parameters = [
-                    'id' => $postEdited->getId(),
-                    'title' => $postEdited->getTitle(),
-                    'content' => $postEdited->getContent(),
-                    'posted_status' => $postEdited->getStatus(),
-                    'created_date' => $postEdited->getCreatedDate()->format('Y-m-d H:i:s'),
-                    'posted_date' => $postEdited->getPostedDate(),
-                    'picture_id' => $postEdited->getPicture(),
-                    'parent_page_id' => $post->getParentPage()
-                ];
-            } else if ($postEdited->getPicture() !== null) {
-                $parameters = [
-                    'id' => $postEdited->getId(),
-                    'title' => $postEdited->getTitle(),
-                    'content' => $postEdited->getContent(),
-                    'posted_status' => $postEdited->getStatus(),
-                    'created_date' => $postEdited->getCreatedDate()->format('Y-m-d H:i:s'),
-                    'posted_date' => $postEdited->getPostedDate(),
-                    'picture_id' => $postEdited->getPicture()->getId(),
-                    'parent_page_id' => $post->getParentPage()
-                ];
-            } else if ($postEdited->getPostedDate() !== null) {
-                $parameters = [
-                    'id' => $postEdited->getId(),
-                    'title' => $postEdited->getTitle(),
-                    'content' => $postEdited->getContent(),
-                    'posted_status' => $postEdited->getStatus(),
-                    'created_date' => $postEdited->getCreatedDate()->format('Y-m-d H:i:s'),
-                    'posted_date' => $postEdited->getPostedDate()->format('Y-m-d H:i:s'),
-                    'picture_id' => $postEdited->getPicture(),
-                    'parent_page_id' => $post->getParentPage()
-                ];
-            } else if ($post->getPostedDate() !== null && $post->getPicture() !== null && $post->getParentPage() !== null) {
-                $parameters = [
-                    'title' => $post->getTitle(),
-                    'content' => $post->getContent(),
-                    'posted_status' => $post->getStatus(),
-                    'created_date' => $post->getCreatedDate()->format('Y-m-d H:i:s'),
-                    'posted_date' => $post->getPostedDate()->format('Y-m-d H:i:s'),
-                    'picture_id' => $post->getPicture()->getId(),
-                    'parent_page_id' => $post->getParentPage()->getId()
-                ];
-            }
+            $parameters = [
+                'id' => $postEdited->getId(),
+                'title' => $postEdited->getTitle(),
+                'content' => $postEdited->getContent(),
+                'posted_status' => $postEdited->getStatus(),
+                'created_date' => $postEdited->getCreatedDate()->format('Y-m-d H:i:s'),
+                'posted_date' => $postEdited->getPostedDate() !== null ? $postEdited->getPostedDate()->format('Y-m-d H:i:s') : null,
+                'picture_id' => $postEdited->getPicture() !== null ? $postEdited->getPicture()->getId() : null,
+                'parent_page_id' => $postEdited->getParentPage() !== null ? $postEdited->getParentPage()->getId() : null
+            ];
 
             $query->execute($parameters);
 

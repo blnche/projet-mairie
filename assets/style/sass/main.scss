@@ -41,8 +41,52 @@ html {
     footer {
       width: 100%;
     }
+    .menu-container {
+      padding: 0.25rem;
+  
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+  
+      display: flex;
+  
+      background-color: var(--clr-menu-background);
+  
+      border-radius: 0.5rem;
+  
+      z-index: 10;
+      
+      li {
+        width: 38px;
+        height: 38px;
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        a {
+          height: 32px;
+          width: 32px;
+      
+          padding: 0.25rem;
+      
+          display: block;
+      
+          background-color: var(--clr-menu-background);
+      
+          border-radius: 0.5rem;
+          
+          &:hover {
+            background-color: var(--clr-menu-background-hover);
+            
+          }
+        }
+      }
+    }
   }
 }
+
+
 
 
 // TABLET

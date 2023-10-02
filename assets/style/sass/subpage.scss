@@ -108,12 +108,24 @@
     align-items: center;
     
     form {
+        width: 100%;
+        
         display: flex;
         flex-direction: column;
         justify-content: center;
         
         fieldset {
+            margin: 1.5rem;
+            padding-block: 1rem;
             
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            
+            border-bottom: 1px solid var(--clr-element-border-active);
+            border-top: 1px solid var(--clr-element-border-active);
+        
             
             label {
                 
@@ -270,6 +282,8 @@
 
 // DESKTOP
 @media (min-width: 1024px) and (max-width: 1510px) {
+    
+    // TABLE STYLING
     .table-container {
     
         display: flex;
@@ -378,10 +392,17 @@
             }
         }
     }
+    
+    // FORM STYLING
+    .form-container {
+        width: 60%;
+    }
 }
 
 // LARGE DESKTOP
 @media (min-width: 1511px) {
+    
+    // TABLE STYLING
     .table-container {
     
         display: flex;
@@ -489,5 +510,9 @@
                 }
             }
         }
+    }
+    // FORM STYLING
+    .form-container {
+        width: 60%;
     }
 }

@@ -548,9 +548,20 @@ footer p a {
   align-items: center;
 }
 .form-container form {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+.form-container form fieldset {
+  margin: 1.5rem;
+  padding-block: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid var(--clr-element-border-active);
+  border-top: 1px solid var(--clr-element-border-active);
 }
 .form-container form fieldset input {
   width: 90%;
@@ -725,6 +736,9 @@ footer p a {
     background: transparent;
     border: 2px solid var(--clr-link-background-active);
   }
+  .form-container {
+    width: 60%;
+  }
 }
 @media (min-width: 1511px) {
   .table-container {
@@ -799,6 +813,9 @@ footer p a {
     background: transparent;
     border: 2px solid var(--clr-link-background-active);
   }
+  .form-container {
+    width: 60%;
+  }
 }
 html {
   font-size: 62.5%;
@@ -824,6 +841,34 @@ html body main {
 }
 html body footer {
   width: 100%;
+}
+html body .menu-container {
+  padding: 0.25rem;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  background-color: var(--clr-menu-background);
+  border-radius: 0.5rem;
+  z-index: 10;
+}
+html body .menu-container li {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+html body .menu-container li a {
+  height: 32px;
+  width: 32px;
+  padding: 0.25rem;
+  display: block;
+  background-color: var(--clr-menu-background);
+  border-radius: 0.5rem;
+}
+html body .menu-container li a:hover {
+  background-color: var(--clr-menu-background-hover);
 }
 
 @media (min-width: 1024px) and (max-width: 1510px) {

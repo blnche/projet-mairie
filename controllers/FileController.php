@@ -55,7 +55,7 @@ class FileController extends AbstractController
 
                 move_uploaded_file($file['tmp_name'], $path);
 
-                $newMunicipalBulletin = new MunicipalBulletin($today, $path);
+                $newMunicipalBulletin = new MunicipalBulletin($today, '/projet-final/projet-mairie/'.$path);
 
                 $this->bulletinManager->addMunicipalBulletin($newMunicipalBulletin);
 

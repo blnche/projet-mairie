@@ -622,8 +622,8 @@ class AdminController extends AbstractController
         $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
         
         $sheet = $spreadsheet->getActiveSheet();
-        $sheet->setCellValue('A1','Semaine');
-        $sheet->setCellValue('B1','Nom de famille');
+        $sheet->setCellValue('A1','Nom de famille');
+        $sheet->setCellValue('B1','Prénom');
         $sheet->setCellValue('C1','Lundi');
         $sheet->setCellValue('D1','Mardi');
         $sheet->setCellValue('E1', 'Mercredi');
@@ -634,7 +634,8 @@ class AdminController extends AbstractController
         $i = 2;
         foreach($weeks as $week)
         {
-            $sheet->setCellValue('A'.$i, $week[0]->getWeekOfYear());
+            $sheet->setCellValue('A'.$i, 'Semaine du '.$week[0]->getWeekOfYear());
+            
             foreach($week[1] as $child)
             {
                 $i++;
