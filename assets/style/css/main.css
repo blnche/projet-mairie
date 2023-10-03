@@ -832,6 +832,9 @@ html body {
   font-family: var(--ff-body);
   font-size: var(--fs-body);
 }
+html body .hidden {
+  display: none;
+}
 html body header {
   width: 100%;
 }

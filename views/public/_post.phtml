@@ -15,6 +15,7 @@ $picture = $this->data['picture'];
     <?php if($page->getPicture() !== null) {
         ?>
     <section class="image-container">
+        <h2 class="hidden">Ce titre sera préciser ultérieurement</h2>
         <img src="<?= $page->getPicture()->getUrl() ?>">
     </section>
         <?php

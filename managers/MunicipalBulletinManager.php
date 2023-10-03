@@ -20,6 +20,7 @@ class MunicipalBulletinManager extends AbstractManager
                 $municipalBulletin_date,
                 $municipalBulletin['url']
             );
+            $newMunicipalBulletin->setId($municipalBulletin['id']);
 
             $municipalBulletins[] = $newMunicipalBulletin;
         }

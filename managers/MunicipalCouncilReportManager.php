@@ -21,6 +21,7 @@
                     $municipalCouncilReport_date,
                     $municipalCouncilReport['url']
                 );
+                $newMunicipalCouncilReport->setId($municipalCouncilReport['id']);
 
                 $municipalCouncilReports[] = $newMunicipalCouncilReport;
             }

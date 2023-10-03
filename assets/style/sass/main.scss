@@ -27,6 +27,10 @@ html {
 
     font-family: var(--ff-body);
     font-size: var(--fs-body);
+    
+    .hidden {
+      display:none;
+    }
 
     header {
       width: 100%;
