@@ -1,6 +1,8 @@
 <?php
 function checkStatus($status, $type, $day) : string
 {
+    $print;
+    
     if ($status === "Yes") {
         $print = '✅';
     } else if ($status === "No") {
@@ -9,9 +11,9 @@ function checkStatus($status, $type, $day) : string
         if ($status === "Holiday") {
             $print = '
                 <fieldset>
-                    <label for="'.$day.'">(Vacances/Férié)</label>
+                    <label for="'.$day.'Placebo">(Vacances/Férié)</label>
                     <input type="checkbox" name="'.$day.'Placebo" value="Holiday" checked disabled>
-                    <input type="hidden" value="Holiday" name="'.$day.'">
+                    <input type="hidden" value="Holiday" name="'.$day.'Placebo">
                 </fieldset>';
         } else {
             $print = '
