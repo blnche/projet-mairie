@@ -9,7 +9,7 @@ import {search} from '/projet-final/projet-mairie/assets/js/functions/search.js'
 window.addEventListener("DOMContentLoaded", function () {
     burgerMenu();
     foldingMenu();
-    search();
+    lightDarkMode();
 
     console.log(window.location.pathname);
     let path = window.location.pathname;
@@ -19,4 +19,5 @@ window.addEventListener("DOMContentLoaded", function () {
     } else if (path === '/authentification/' + 'se-connecter') {
         validateUserLoginForm();
     }
+    search();
 })
