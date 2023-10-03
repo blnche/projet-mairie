@@ -198,6 +198,7 @@ class UserController extends AbstractController
     public function CafeteriaDates() : void
     {
         $dates = $this->cafeteriaDateManager->getAllCafeteriaDates();
+        
         //get inscription for children
         //how do i check weeks on cantine for all children ? add a column for each child and if a inscription exist for the week number then say enrolled else not enrolled
         //if a child enroll is ok for a day then say on this day enroll, else to decicde, the week row can have multiple line inside corresponding to each child status on enrollment
@@ -209,6 +210,7 @@ class UserController extends AbstractController
         {
             $childEnrollments = $this->cafeteriaDateManager->getEnrollmentCafeteriaDatesByChildId($child->getId());
             $childrenEnrollments[] = $childEnrollments;
+            //var_dump($childEnrollments);
         }
 
         $this->render('views/user/cantine.phtml', ['cafeteria-weeks' => $dates, 'children' => $children, 'childrenEnrollments' => $childrenEnrollments], 'Dates de la cantine', 'user');
@@ -237,7 +239,7 @@ class UserController extends AbstractController
                 $this->cafeteriaDateManager->EnrollChildCafeteria($week, $child, $days);
                 header('Location:/projet-final/projet-mairie/espace-famille/'.$_SESSION['user_lastName'].'/cantine');
             } else {
-                $this->render('views/user/cantine_semaine.phtml', ['week' => $week, 'children' => $children], 'Semaine du '.$weekNumber, 'user' );
+                $this->render('views/user/cantine_semaine.phtml', ['week' => $week, 'children' => $children], 'Semaine '.$weekNumber, 'user' );
             }
         } else {
             header( 'refresh:5;url=/projet-final/projet-mairie/espace-famille/'.$_SESSION['user_lastName'].'/cantine');

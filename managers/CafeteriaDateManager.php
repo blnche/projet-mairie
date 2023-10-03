@@ -70,7 +70,7 @@
                 return null;
             }
         }
-        public function getCafeteriaDateById($weekId) : CafeteriaDate
+        public function getCafeteriaDateById(int $weekId) : ?CafeteriaDate
         {
             $query = $this->db->prepare('
                 SELECT *
@@ -82,20 +82,24 @@
             ];
             $query->execute($parameters);
             $week = $query->fetch(PDO::FETCH_ASSOC);
-
-            $cafeteriaDate = new CafeteriaDate(
-                $week['week_of_year'],
-                $week['year'],
-                $week['status']
-            );
-            $cafeteriaDate->setMonday($week['monday']);
-            $cafeteriaDate->setTuesday($week['tuesday']);
-            $cafeteriaDate->setWednesday($week['wednesday']);
-            $cafeteriaDate->setThursday($week['thursday']);
-            $cafeteriaDate->setFriday($week['friday']);
-            $cafeteriaDate->setId($week['id']);
-
-            return $cafeteriaDate;
+            
+            if($week) {
+                $cafeteriaDate = new CafeteriaDate(
+                    $week['week_of_year'],
+                    $week['year'],
+                    $week['status']
+                );
+                $cafeteriaDate->setMonday($week['monday']);
+                $cafeteriaDate->setTuesday($week['tuesday']);
+                $cafeteriaDate->setWednesday($week['wednesday']);
+                $cafeteriaDate->setThursday($week['thursday']);
+                $cafeteriaDate->setFriday($week['friday']);
+                $cafeteriaDate->setId($week['id']);
+    
+                return $cafeteriaDate;
+            } else {
+                return null;
+            }
         }
 
         public function EnrollChildCafeteria(CafeteriaDate $week, Child $child, array $days) : void
@@ -116,7 +120,7 @@
             $query->execute($parameters);
         }
 
-        public function getEnrollmentCafeteriaDatesByChildId(int $childId) : array
+        public function getEnrollmentCafeteriaDatesByChildId(int $childId) : ?array
         {
             $query = $this->db->prepare('
                 SELECT *
@@ -129,35 +133,50 @@
             $query->execute($parameters);
 
             $results = $query->fetchAll(PDO::FETCH_ASSOC);
-
+            
             $child = $this->childManager->getChildById($childId);
-
             $childEnrollments[] = $child->getFirstName();
+            
+            if($results) {
+                
+                foreach ($results as $result)
+                {
+                    
+                    $week = $this->getCafeteriaDateById($result['dates_cantine_id']);
+                    
+                    if($week === null) {
+                        $enrollments = [];
+                        $childEnrollments[] = $enrollments;
+                    } else {
+                        $enrollment = new CafeteriaDate(
+                            $week->getWeekOfYear(),
+                            $week->getYear(),
+                            $week->getStatus()
+                        );
+                        $enrollment->setMonday($result['monday']);
+                        $enrollment->setTuesday($result['tuesday']);
+                        $enrollment->setWednesday($result['wednesday']);
+                        $enrollment->setThursday($result['thursday']);
+                        $enrollment->setFriday($result['friday']);
+                        $enrollment->setId($week->getId());
+        
+                        $enrollments[] = $enrollment;
+                    }
+                    
+                    $childEnrollments[] = $enrollments;
+                }
 
-            foreach ($results as $result)
-            {
-                $week = $this->getCafeteriaDateById($result['dates_cantine_id']);
-
-                $enrollment = new CafeteriaDate(
-                    $week->getWeekOfYear(),
-                    $week->getYear(),
-                    $week->getStatus()
-                );
-                $enrollment->setMonday($result['monday']);
-                $enrollment->setTuesday($result['tuesday']);
-                $enrollment->setWednesday($result['wednesday']);
-                $enrollment->setThursday($result['thursday']);
-                $enrollment->setFriday($result['friday']);
-
-                $enrollments[] = $enrollment;
+                return $childEnrollments;
+                
+            } else {
+                $childEnrollments[] = [];
+                return $childEnrollments;
             }
 
-            $childEnrollments[] = $enrollments;
-
-            return $childEnrollments;
+            
         }
 
-        public function getEnrollmentForWeekByChildId(int $weekId, int $childId) : array
+        public function getEnrollmentForWeekByChildId(int $weekId, int $childId) : ?array
         {
             $query = $this->db->prepare('
                 SELECT *
@@ -171,27 +190,32 @@
             $query->execute($parameters);
 
             $result = $query->fetch(PDO::FETCH_ASSOC);
+            
+            if ($result) {
+                $child = $this->childManager->getChildById($childId);
 
-            $child = $this->childManager->getChildById($childId);
-
-            $childEnrollments = [];
-
-            $week = $this->getCafeteriaDateById($weekId);
-
-            $enrollment = new CafeteriaDate(
-                $week->getWeekOfYear(),
-                $week->getYear(),
-                $week->getStatus()
-            );
-            $enrollment->setMonday($result['monday']);
-            $enrollment->setTuesday($result['tuesday']);
-            $enrollment->setWednesday($result['wednesday']);
-            $enrollment->setThursday($result['thursday']);
-            $enrollment->setFriday($result['friday']);
-
-            $childEnrollments = [$child, $enrollment];
-
-            return $childEnrollments;
+                $childEnrollments = [];
+    
+                $week = $this->getCafeteriaDateById($weekId);
+    
+                $enrollment = new CafeteriaDate(
+                    $week->getWeekOfYear(),
+                    $week->getYear(),
+                    $week->getStatus()
+                );
+                $enrollment->setMonday($result['monday']);
+                $enrollment->setTuesday($result['tuesday']);
+                $enrollment->setWednesday($result['wednesday']);
+                $enrollment->setThursday($result['thursday']);
+                $enrollment->setFriday($result['friday']);
+    
+                $childEnrollments = [$child, $enrollment];
+    
+                return $childEnrollments;
+            } else {
+                return null;
+            }
+            
         }
 
         public function getAllChildrenEnrolledForWeek($weekId) : array
