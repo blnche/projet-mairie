@@ -4,9 +4,6 @@ $weeks = $this->data['cafeteria-weeks'];
 $children = $this->data['children'];
 $childrenEnrollments = $this->data['childrenEnrollments'];
 
-//var_dump($childrenEnrollments);
-
-
 ?>
 <section class="main-container">
     <h1> <?= $this->pageTitle; ?> </h1>
@@ -34,7 +31,7 @@ $childrenEnrollments = $this->data['childrenEnrollments'];
                 ?>
                 <tr>
                     <td> <?= $week->getWeekOfYear(); ?></td>
-                      <td>
+                     <td>
                         <ul>
                             <?php
                             foreach ($this->data['childrenEnrollments'] as $childEnrollments)
@@ -55,11 +52,12 @@ $childrenEnrollments = $this->data['childrenEnrollments'];
                                             echo checkStatus($enrollment->getMonday(), '', 'monday');
                                             break;
                                         }
-                                        else
-                                        {
-                                            
-                                            echo checkStatus($week->getMonday(), '', 'monday');
-                                        }
+                                    }
+                                    if(!$foundMatch)
+                                    {
+                                        
+                                        echo checkStatus($week->getMonday(), '', 'monday');
+                                        
                                     }
                                     ?>
                                 </li>
@@ -89,11 +87,12 @@ $childrenEnrollments = $this->data['childrenEnrollments'];
                                             echo checkStatus($enrollment->getTuesday(), '', 'tuesday');
                                             break;
                                         }
-                                        else
-                                        {
-                                            
-                                            echo checkStatus($week->getTuesday(), '', 'tuesday');
-                                        }
+                                    }
+                                    if(!$foundMatch)
+                                    {
+                                        
+                                        echo checkStatus($week->getTuesday(), '', 'tuesday');
+                                        
                                     }
                                     ?>
                                 </li>
@@ -123,11 +122,12 @@ $childrenEnrollments = $this->data['childrenEnrollments'];
                                             echo checkStatus($enrollment->getWednesday(), '', 'wednesday');
                                             break;
                                         }
-                                        else
-                                        {
-                                           
-                                            echo checkStatus($week->getWednesday(), '', 'wednesday');
-                                        }
+                                    }
+                                    if(!$foundMatch)
+                                    {
+                                       
+                                        echo checkStatus($week->getWednesday(), '', 'wednesday');
+                                        
                                     }
                                     ?>
                                 </li>
@@ -157,11 +157,11 @@ $childrenEnrollments = $this->data['childrenEnrollments'];
                                             echo checkStatus($enrollment->getThursday(), '', 'thursday');
                                             break;
                                         }
-                                        else
-                                        {
-                                           
-                                            echo checkStatus($week->getThursday(), '', 'thursday');
-                                        }
+                                    }
+                                    if(!$foundMatch)
+                                    {
+                                       
+                                        echo checkStatus($week->getThursday(), '', 'thursday');
                                     }
                                     ?>
                                 </li>
@@ -191,11 +191,10 @@ $childrenEnrollments = $this->data['childrenEnrollments'];
                                             echo checkStatus($enrollment->getFriday(), '', 'friday');
                                             break;
                                         }
-                                        else
-                                        {
-                                            
-                                            echo checkStatus($week->getFriday(), '', 'friday');
-                                        }
+                                    }
+                                    if(!$foundMatch)
+                                    {
+                                        echo checkStatus($week->getFriday(), '', 'friday');
                                     }
                                     ?>
                                 </li>
@@ -225,10 +224,11 @@ $childrenEnrollments = $this->data['childrenEnrollments'];
                                         echo ' Inscrit';
                                         break;
                                     }
-                                    else
-                                    {
-                                        echo ' Pas inscrit';
-                                    }
+                                }
+                                if(!$foundMatch)
+                                {
+                                    echo ' Pas inscrit';
+                                    
                                 }
                                 ?>
                                 </li>

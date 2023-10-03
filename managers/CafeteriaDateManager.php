@@ -135,7 +135,7 @@
             $results = $query->fetchAll(PDO::FETCH_ASSOC);
             
             $child = $this->childManager->getChildById($childId);
-            $childEnrollments[] = $child->getFirstName();
+            //$childEnrollments[] = $child->getFirstName();
             
             if($results) {
                 
@@ -144,8 +144,8 @@
                     
                     $week = $this->getCafeteriaDateById($result['dates_cantine_id']);
                     
+                    $enrollments = [];
                     if($week === null) {
-                        $enrollments = [];
                         $childEnrollments[] = $enrollments;
                     } else {
                         $enrollment = new CafeteriaDate(
@@ -160,10 +160,9 @@
                         $enrollment->setFriday($result['friday']);
                         $enrollment->setId($week->getId());
         
-                        $enrollments[] = $enrollment;
+                        $childEnrollments[] = $enrollment;
                     }
                     
-                    $childEnrollments[] = $enrollments;
                 }
 
                 return $childEnrollments;

@@ -209,8 +209,7 @@ class UserController extends AbstractController
         foreach($children as $child)
         {
             $childEnrollments = $this->cafeteriaDateManager->getEnrollmentCafeteriaDatesByChildId($child->getId());
-            $childrenEnrollments[] = $childEnrollments;
-            //var_dump($childEnrollments);
+            $childrenEnrollments[] = [$child->getFirstName(), $childEnrollments];
         }
 
         $this->render('views/user/cantine.phtml', ['cafeteria-weeks' => $dates, 'children' => $children, 'childrenEnrollments' => $childrenEnrollments], 'Dates de la cantine', 'user');
