@@ -1,13 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>espace famille</h1>
-    <?php require '../partials/user/_header.phtml'; ?> 
+<section class="homepage-container">
     
-</body>
-</html>
+    <section class="homepage-image-container">
+        <h2 class="hidden">Ce titre sera préciser ultérieurement</h2>
+        <img src="/projet-final/projet-mairie/assets/images/cropped-anne-1568x427.jpg" alt="Bannière du site - Photo de la Chapelle de Saint-Anne, située sur la commune de Saint-Broladre">
+    </section>
+        
+    <section class="homepage-shortcutNav-container">
+        <h2 class="hidden">Ce titre sera préciser ultérieurement</h2>
+        <nav class="shortcutNav">
+                <a href="/projet-final/projet-mairie/espace-famille/<?=  $_SESSION['user_lastName'] ?>/enfants">
+                    <div class="svg-container">
+                        <img src="/projet-final/projet-mairie/assets/images/homepage-shortcutNav-icons/icons8-city-hall-64.png" alt="">
+                    </div>
+                    <span class="label">Mes Enfants</span>
+                </a>
+                <a href="/projet-final/projet-mairie/espace-famille/<?= $_SESSION['user_lastName'] ?>/cantine">
+                    <div class="svg-container">
+                        <img src="/projet-final/projet-mairie/assets/images/homepage-shortcutNav-icons/icons8-street-sign-64.png" alt="">
+                    </div>
+                    <span class="label">La Cantine</span>
+                </a>
+        </nav>
+    </section>
+</section>

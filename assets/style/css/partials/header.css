@@ -1,0 +1,130 @@
+header {
+  height: 12rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--clr-background);
+  box-shadow: 0 9px 38px -11px var(--clr-card-shadow);
+  border-radius: 0.5rem;
+  z-index: 1;
+}
+header .header-container {
+  height: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+header .header-container .header-title {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+header .header-container .header-title h1 {
+  font-family: var(--ff-header-title);
+  font-size: var(--fs-header-title);
+}
+header .header-container .header-title p {
+  font-family: var(--ff-header-p);
+  font-size: var(--fs-header-p);
+}
+header .header-container .header-toggleBtn-container {
+  width: 50px;
+  height: 45px;
+  padding: 0.3rem;
+  position: fixed;
+  top: 1.25rem;
+  right: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--clr-menu-background);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  z-index: 1000;
+}
+header .header-container .header-toggleBtn-container:hover {
+  background-color: var(--clr-menu-background-hover);
+}
+header .header-container nav {
+  height: 100%;
+  padding: 1rem;
+  display: none;
+  position: fixed;
+  top: 120px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--clr-background);
+}
+header .header-container nav.mainNavActive {
+  display: block;
+}
+header .header-container nav ul {
+  padding-block: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--clr-card-background);
+  color: var(--clr-text-high-contrast);
+  border-radius: 0.5rem;
+  overflow: auto;
+}
+header .header-container nav ul li {
+  margin-block: 1rem;
+  padding: 1rem 2.5rem;
+  width: fit-content;
+  position: relative;
+  border-radius: 0.5rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+header .header-container nav ul li:hover {
+  background-color: var(--clr-card-background-hover);
+}
+header .header-container nav ul li:active {
+  background-color: var(--clr-element-background-active);
+}
+header .header-container nav ul li a {
+  position: relative;
+  font-family: var(--ff-links);
+}
+
+@media (min-width: 1024px) and (max-width: 1510px) {
+  header {
+    height: auto;
+    position: relative;
+  }
+  header .header-container {
+    width: 80%;
+    margin-top: 2rem;
+    margin-inline: auto;
+    padding: 0;
+  }
+  header .header-container .header-title {
+    align-items: center;
+  }
+  header .header-container .header-toggleBtn-container {
+    display: none;
+  }
+  header .header-container nav {
+    height: 100%;
+    padding: 0;
+    position: relative;
+    top: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  header .header-container nav ul {
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: transparent;
+  }
+}
+
+/*# sourceMappingURL=header.css.map */

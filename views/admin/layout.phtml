@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mairie de Saint-Broladre</title>
+    <link rel="stylesheet" type="text/css" href="/projet-final/projet-mairie/assets/style/css/main.css"/>
+</head>
+<body>
+<menu id="interactive_menu" class="menu-container">
+    <li>
+        <a href="#" id="themeBtn">
+            <img width="32" height="32" src="https://img.icons8.com/FFFFFF/material-rounded/48/contrast.png" alt="contrast"/>
+        </a>
+    </li>
+    <li>
+        <a href="#top" id="ArrowUpBtn">
+            <img width="32" height="32" src="https://img.icons8.com/FFFFFF/fluency-systems-regular/48/up--v1.png" alt="up--v1"/>
+        </a>
+    </li>
+</menu> 
+<header>
+    <section class="header-container">
+        <h2 class="hidden">Ce titre sera préciser ultérieurement</h2>
+        <section class="header-title">
+            <h1><a href="/projet-final/projet-mairie/admin">Saint-Broladre</a></h1>
+            <p>Commune de la baie du Mont Saint Michel</p>
+        </section>
+        <?php require 'views/partials/admin/_header.phtml'; ?>
+        <section class="header-toggleBtn-container">
+            <h2 class="hidden">Ce titre sera préciser ultérieurement</h2>
+            <img width="48" height="48" src="https://img.icons8.com/FFFFFF/fluency-systems-filled/48/menu.png" alt="menu" id="toggleNavBtn"/>
+        </section>
+    </section>
+</header>
+
+
+<main>
+    <?php require $this->template; ?>
+</main>
+
+<footer>
+    <section class="footer-container">
+        <h2 class="hidden">Ce titre sera préciser ultérieurement</h2>
+            <?php require 'views/partials/admin/_footer.phtml'; ?>
+            <p>Site créé par <a href="#">Blanche Peltier</a>. Icônes par <a href="https://icones8.fr/">Icons8</a>, couleurs par <a href="https://www.radix-ui.com/colors">Radix</a>, et police d'écriture par <a href="https://pangrampangram.com/">Pangram Pangram Foundry</a> et <a href="https://margotleveque.com/">Margot Lévêque Type Foundry</a>.</p>
+        </section>
+</footer>
+<script type="module" src="/projet-final/projet-mairie/assets/js/index.js"></script>
+</body>
+</html>

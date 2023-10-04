@@ -1,0 +1,250 @@
+<?php
+$weeks = $this->data['cafeteria-weeks'];
+
+$children = $this->data['children'];
+$childrenEnrollments = $this->data['childrenEnrollments'];
+
+?>
+<section class="main-container">
+    <h1> <?= $this->pageTitle; ?> </h1>
+    <input type="text" name="search" id="searchInput" placeholder="Chercher semaine XX ...">
+    <section class="table-container">
+        <h2 class="hidden">Ce titre sera préciser ultérieurement</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Week</th>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednesday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+                <th>Actions</th>
+                <th>Enfants</th>
+            </tr>
+            </thead>
+            <tbody id="searchListItems">
+            <?php
+            foreach ($weeks as $week)
+            {
+        
+        
+                ?>
+                <tr>
+                    <td> <?= $week->getWeekOfYear(); ?></td>
+                     <td>
+                        <ul>
+                            <?php
+                            foreach ($this->data['childrenEnrollments'] as $childEnrollments)
+                            {
+                                ?>
+                                <li>
+                                    <?php
+                                    $firstName = $childEnrollments[0];
+                                    
+                                    $foundMatch = false;
+                                    foreach ($childEnrollments[1] as $enrollment)
+                                    {
+        
+                                        if (!$foundMatch && $enrollment->getWeekOfYear() === $week->getWeekOfYear())
+                                        {
+                                            $foundMatch = true;
+                                            
+                                            echo checkStatus($enrollment->getMonday(), '', 'monday');
+                                            break;
+                                        }
+                                    }
+                                    if(!$foundMatch)
+                                    {
+                                        
+                                        echo checkStatus($week->getMonday(), '', 'monday');
+                                        
+                                    }
+                                    ?>
+                                </li>
+                                <?php
+                            }
+                            ?>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <?php
+                            foreach ($this->data['childrenEnrollments'] as $childEnrollments)
+                            {
+                                ?>
+                                <li>
+                                    <?php
+                                    $firstName = $childEnrollments[0];
+                                    
+                                    $foundMatch = false;
+                                    foreach ($childEnrollments[1] as $enrollment)
+                                    {
+        
+                                        if (!$foundMatch && $enrollment->getWeekOfYear() === $week->getWeekOfYear())
+                                        {
+                                            $foundMatch = true;
+                                            
+                                            echo checkStatus($enrollment->getTuesday(), '', 'tuesday');
+                                            break;
+                                        }
+                                    }
+                                    if(!$foundMatch)
+                                    {
+                                        
+                                        echo checkStatus($week->getTuesday(), '', 'tuesday');
+                                        
+                                    }
+                                    ?>
+                                </li>
+                                <?php
+                            }
+                            ?>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <?php
+                            foreach ($this->data['childrenEnrollments'] as $childEnrollments)
+                            {
+                                ?>
+                                <li>
+                                    <?php
+                                    $firstName = $childEnrollments[0];
+                                   
+                                    $foundMatch = false;
+                                    foreach ($childEnrollments[1] as $enrollment)
+                                    {
+        
+                                        if (!$foundMatch && $enrollment->getWeekOfYear() === $week->getWeekOfYear())
+                                        {
+                                            $foundMatch = true;
+                                            
+                                            echo checkStatus($enrollment->getWednesday(), '', 'wednesday');
+                                            break;
+                                        }
+                                    }
+                                    if(!$foundMatch)
+                                    {
+                                       
+                                        echo checkStatus($week->getWednesday(), '', 'wednesday');
+                                        
+                                    }
+                                    ?>
+                                </li>
+                                <?php
+                            }
+                            ?>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <?php
+                            foreach ($this->data['childrenEnrollments'] as $childEnrollments)
+                            {
+                                ?>
+                                <li>
+                                    <?php
+                                    $firstName = $childEnrollments[0];
+                                    
+                                    $foundMatch = false;
+                                    foreach ($childEnrollments[1] as $enrollment)
+                                    {
+        
+                                        if (!$foundMatch && $enrollment->getWeekOfYear() === $week->getWeekOfYear())
+                                        {
+                                            $foundMatch = true;
+                                            
+                                            echo checkStatus($enrollment->getThursday(), '', 'thursday');
+                                            break;
+                                        }
+                                    }
+                                    if(!$foundMatch)
+                                    {
+                                       
+                                        echo checkStatus($week->getThursday(), '', 'thursday');
+                                    }
+                                    ?>
+                                </li>
+                                <?php
+                            }
+                            ?>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <?php
+                            foreach ($this->data['childrenEnrollments'] as $childEnrollments)
+                            {
+                                ?>
+                                <li>
+                                    <?php
+                                    $firstName = $childEnrollments[0];
+                                    
+                                    $foundMatch = false;
+                                    foreach ($childEnrollments[1] as $enrollment)
+                                    {
+        
+                                        if (!$foundMatch && $enrollment->getWeekOfYear() === $week->getWeekOfYear())
+                                        {
+                                            $foundMatch = true;
+                                            
+                                            echo checkStatus($enrollment->getFriday(), '', 'friday');
+                                            break;
+                                        }
+                                    }
+                                    if(!$foundMatch)
+                                    {
+                                        echo checkStatus($week->getFriday(), '', 'friday');
+                                    }
+                                    ?>
+                                </li>
+                                <?php
+                            }
+                            ?>
+                        </ul>
+                    </td>
+                    <td><a href="/projet-final/projet-mairie/espace-famille/<?= $_SESSION['user_lastName'] ?>/cantine/inscrire/<?= $week->getWeekOfYear(); ?>">Inscrire</a></td>
+                    <td>
+                        <ul>
+                            <?php
+                            foreach ($this->data['childrenEnrollments'] as $childEnrollments)
+                            {
+                                ?>
+                                <li>
+                                <?php
+                                $firstName = $childEnrollments[0];
+                                echo $firstName;
+                                    $foundMatch = false;
+                                foreach ($childEnrollments[1] as $enrollment)
+                                {
+                                    
+                                    if (!$foundMatch && $week->getWeekOfYear() === $enrollment->getWeekOfyear())
+                                    {
+                                        $foundMatch = true;
+                                        echo ' Inscrit';
+                                        break;
+                                    }
+                                }
+                                if(!$foundMatch)
+                                {
+                                    echo ' Pas inscrit';
+                                    
+                                }
+                                ?>
+                                </li>
+                            <?php
+                            }
+                            ?>
+                        </ul>
+                    </td>
+                </tr>
+                </tr>
+                <?php
+            }
+            ?>
+            </tbody>
+        </table>
+        
+    </section>
+</section>

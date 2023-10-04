@@ -1,0 +1,63 @@
+<section class="main-container">
+    <h1> <?= $this->pageTitle; ?> </h1>
+    
+    <section class="sub-pages-list">
+        <h2 class="hidden">Ce titre sera préciser ultérieurement</h2>
+        <a href="/projet-final/projet-mairie/mairie/conseil-municipal/elus">Les élus</a>
+        <a href="/projet-final/projet-mairie/mairie/conseil-municipal/plu">Le Plan Local d'Urbanisme</a>
+    </section>
+    
+    <section class="list-items">
+        <h2 class="hidden">Ce titre sera préciser ultérieurement</h2>
+        <article>
+            <h2>Derniers comptes-rendus des conseils municpaux</h2>
+            <?php
+            $crcms = $this->data['crcm'];
+            ?>
+            <ul>
+                <?php
+                $counter = 0;
+                foreach ($crcms as $crcm)
+                {
+                    if($counter < 5) { 
+                    ?>
+                    <li> <?php echo 'Compte rendu du '.$crcm->getDate()->format('d/m/Y');?> <a target="_blank" href="<?=$crcm->getUrl()?>"> Consulter le fichier</a>
+                    </li>
+                    <?php
+                    } else {
+                        break;
+                    }
+                    $counter++;
+                }
+                ?>
+            </ul>
+            <a href="/projet-final/projet-mairie/mairie/conseil-municipal/comptes-rendus-conseil-municipaux">Voir tous les comptes-rendus</a>
+        </article>
+        <article>
+            <h2>Derniers bulletins municipaux</h2>
+            <?php
+            $bulletins = $this->data['bm'];
+            ?>
+            <ul>
+                <?php
+                $counter = 0;
+                foreach ($bulletins as $bulletin)
+                {
+                    if($counter < 5) { 
+                    ?>
+                    <li> <?php echo 'Bulletin du '.$bulletin->getDate()->format('d/m/Y');?> <a target="_blank" href="<?=$bulletin->getUrl()?>"> Consulter le fichier</a>
+                    </li>
+                    <?php
+                        
+                    } else {
+                        break;
+                    }
+                    $counter++;
+                }
+                ?>
+            </ul>
+            <a href="/projet-final/projet-mairie/mairie/conseil-municipal/bulletins-municipaux">Voir tous les bulletins</a>
+        </article>
+    </section>
+    
+</section>

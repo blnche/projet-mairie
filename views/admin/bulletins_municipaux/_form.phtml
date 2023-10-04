@@ -1,0 +1,16 @@
+<section class="main-container">
+    <h1><?= $this->pageTitle ?></h1>
+    
+    <section class="form-container">
+        <h2 class="hidden">Ce titre sera préciser ultérieurement</h2>
+        <form enctype="multipart/form-data" method="post" action="/projet-final/projet-mairie/admin/ajouter-un-fichier&file=bulletin">
+            <input type="hidden" name="formName" value="uploadBM">
+            <input type="hidden" name="MAX_FILE_SIZE" value="3000000" />
+            <fieldset>
+                <label for="bulletin">Choisir votre fichier</label>
+                <input type="file" name="bulletin" id="bulletin">
+            </fieldset>
+            <input id="submit" type="submit" name="uploadBM" value="Send File" />
+        </form>
+    </section>
+</section>

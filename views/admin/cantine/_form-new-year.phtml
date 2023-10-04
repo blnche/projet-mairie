@@ -1,0 +1,65 @@
+<section class="main-container">
+    <h1><?= $this->pageTitle ?></h1>
+    
+    <section class="form-container">
+        <h2 class="hidden">Ce titre sera préciser ultérieurement</h2>
+        <form method="POST" action="/projet-final/projet-mairie/admin/cantine/creer-annee-scolaire">
+            <fieldset>
+                <label for="yearStart">Rentrée</label>
+                <input type="date" name="yearStart" id="yearStart" required value="2022-09-02">
+            </fieldset>
+            <fieldset>
+                <label for="yearEnd">Début vacances d'été (fin de l'année scolaire)</label>
+                <input type="date" name="yearEnd" id="yearEnd" required value="2023-07-06">
+            </fieldset>
+            <fieldset>
+                <p>Vacances de la Toussaint</p>
+                <label for="toussaintStart">Début</label>
+                <input type="date"  name="toussaintStart" id="toussaintStart" required value="2022-10-24">
+                <label for="toussaintEnd">Fin</label>
+                <input type="date"  name="toussaintEnd" id="toussaintEnd" required value="2022-11-06">
+            </fieldset>
+            <fieldset>
+                <p>Vacances de Noël</p>
+                <label for="noelStart">Début</label>
+                <input type="date"  name="noelStart" id="noelStart" required value="2022-12-19">
+                <label for="noelEnd">Fin</label>
+                <input type="date"  name="noelEnd" id="noelEnd" required value="2023-01-02">
+            </fieldset>
+            <fieldset>
+                <p>Vacances d'hiver (février)</p>
+                <label for="hiverStart">Début</label>
+                <input type="date"  name="hiverStart" id="hiverStart" required value="2023-02-20">
+                <label for="hiverEnd">Fin</label>
+                <input type="date"  name="hiverEnd" id="hiverEnd" required value="2023-03-06">
+            </fieldset>
+            <fieldset>
+                <p>Vacances de printemps</p>
+                <label for="printempsStart">Début</label>
+                <input type="date"  name="printempsStart" id="printempsStart" required value="2023-04-17">
+                <label for="printempsEnd">Fin</label>
+                <input type="date"  name="printempsEnd" id="printempsEnd" required value="2023-05-01">
+            </fieldset>
+            <fieldset>
+                <p>Les jours fériés</p>
+                <label for="toussaint">Toussaint</label>
+                <input type="date"  name="toussaint" id="toussaint" required value="2023-11-01">
+                <label for="armistice">Armistice</label>
+                <input type="date"  name="armistice" id="armistice" required value="2023-11-11">
+                <label for="noel">Noël</label>
+                <input type="date"  name="noel" id="noel" required value="2023-12-25">
+                <label for="nouvelAn">Jour de l'An</label>
+                <input type="date"  name="nouvelAn" id="nouvelAn" required value="2023-01-01">
+                <label for="victoire1945">Victoire 1945</label>
+                <input type="date"  name="victoire1945" id="victoire1945" required value="2023-05-08">
+                <label for="ascension">Ascension</label>
+                <input type="date"  name="ascension" id="ascension" required value="2023-05-25">
+                <label for="pentecote">Pentecôte</label>
+                <input type="date"  name="pentecote" id="pentecote" required value="2023-06-05">
+                <label for="feteNationale">Fête Nationale</label>
+                <input type="date"  name="feteNationale" id="feteNationale" required value="2023-07-14">
+            </fieldset>
+            <input id="submit" type="submit" name="createNewYear" value="Générer la nouvelle année scolaire">
+        </form>
+    </section>
+</section>

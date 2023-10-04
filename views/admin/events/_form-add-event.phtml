@@ -1,0 +1,34 @@
+<section class="main-container">
+    <h1><?= $this->pageTitle ?></h1>
+    
+    <section class="form-container">
+        <h2 class="hidden">Ce titre sera préciser ultérieurement</h2>
+        <form method="POST" action="/projet-final/projet-mairie/admin/evenements/ajouter">
+            <fieldset>
+                <label for="title">Nom de l'évènement : </label>
+                <input type="text" name="title" id="title" required>
+            </fieldset>
+            <fieldset>
+                <label for="description">Description :</label>
+                <input type="text" name="description" id="description">
+            </fieldset>
+            <fieldset>
+                <label for="date">Date : </label>
+                <input type="date" name="date" id="date" required>
+            </fieldset>
+            <fieldset>
+                <label for="address">Adresse postale (ex: 1 rue Dupont)</label>
+                <input type="text" name="address" id="address">
+            </fieldset>
+            <fieldset>
+                <label for="code-postal">Code postal :</label>
+                <input type="text" name="code-postal" id="code-postal" required>
+            </fieldset>
+            <fieldset>
+                <label for="ville">Ville/Commune :</label>
+                <input type="text" name="ville" id="ville" required>
+            </fieldset>
+            <input id="submit" type="submit" name="registerEvent" value="Enregistrer l'évènement">
+        </form>
+    </section>
+</section>

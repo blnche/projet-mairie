@@ -1,0 +1,148 @@
+.homepage-container {
+  background-color: var(--clr-background);
+}
+.homepage-container .homepage-image-container {
+  height: 18rem;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  background-color: var(--clr-background);
+}
+.homepage-container .homepage-image-container img {
+  object-fit: cover;
+}
+.homepage-container .homepage-shortcutNav-container {
+  padding: 1rem;
+}
+.homepage-container .homepage-shortcutNav-container .shortcutNav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+  justify-items: center;
+}
+.homepage-container .homepage-shortcutNav-container .shortcutNav a {
+  width: 10rem;
+  height: 11rem;
+  margin-bottom: 4.5rem;
+  padding-bottom: 4rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding-top: 1rem;
+  background-color: var(--clr-card-background);
+  box-shadow: 0 4px 24px -6px var(--clr-card-shadow);
+  border: 1px solid var(--clr-card-border);
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.homepage-container .homepage-shortcutNav-container .shortcutNav a:before {
+  padding: 0.5rem;
+  content: url("/projet-final/projet-mairie/assets/images/homepage-shortcutNav-icons/icons8-wave-48-4.png");
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -13%;
+}
+.homepage-container .homepage-shortcutNav-container .shortcutNav a:hover {
+  background-color: var(--clr-card-background-hover);
+  border: 1px solid var(--clr-card-border-active);
+}
+.homepage-container .homepage-shortcutNav-container .shortcutNav a:active {
+  background-color: var(--clr-card-background-active);
+  border: 1px solid var(--clr-card-border-active);
+}
+.homepage-container .homepage-shortcutNav-container .shortcutNav a .svg-container {
+  width: 48px;
+  height: 48px;
+}
+.homepage-container .homepage-shortcutNav-container .shortcutNav a .svg-container img {
+  width: 48px;
+  height: 48px;
+}
+.homepage-container .homepage-shortcutNav-container .shortcutNav a .label {
+  height: 6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.2;
+}
+.homepage-container .agenda {
+  margin-block: 2rem;
+  padding: 4rem 4rem 2rem;
+}
+.homepage-container .agenda h2 {
+  margin-block: 2rem;
+  font-size: var(--fs-section-title);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+}
+.homepage-container .agenda h2:after {
+  width: 10rem;
+  height: 0.35rem;
+  margin: 3rem auto;
+  content: "";
+  display: block;
+  background-color: var(--clr-accent);
+}
+.homepage-container .agenda ul {
+  margin-block: 3rem;
+}
+.homepage-container .agenda ul li {
+  margin-block: 2rem;
+  padding: 2rem;
+  background-color: var(--clr-card-background);
+  border: 1px solid var(--clr-card-border);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 24px -6px var(--clr-card-shadow);
+}
+
+@media (min-width: 1024px) and (max-width: 1510px) {
+  .homepage-container {
+    width: 80%;
+    margin-inline: auto;
+  }
+  .homepage-container .homepage-image-container {
+    height: 30rem;
+  }
+  .homepage-container .homepage-shortcutNav-container {
+    display: flex;
+    justify-content: center;
+  }
+  .homepage-container .homepage-shortcutNav-container .shortcutNav {
+    width: 70%;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .homepage-container .agenda {
+    width: 60%;
+    margin-inline: auto;
+  }
+}
+@media (min-width: 1511px) {
+  .homepage-container {
+    width: 80%;
+    margin-inline: auto;
+  }
+  .homepage-container .homepage-image-container {
+    height: 30rem;
+  }
+  .homepage-container .homepage-shortcutNav-container {
+    display: flex;
+    justify-content: center;
+  }
+  .homepage-container .homepage-shortcutNav-container .shortcutNav {
+    width: 70%;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .homepage-container .agenda {
+    width: 60%;
+    margin-inline: auto;
+  }
+}
+
+/*# sourceMappingURL=homepage.css.map */

@@ -1,0 +1,31 @@
+<section class="main-container">
+    <h1> <?= $this->pageTitle; ?> </h1>
+    <a class="main-container-link" href="/projet-final/projet-mairie/admin/ajouter-un-fichier&file=bulletin">Ajouter un bulletin</a>
+    
+    <section class="list-items">
+        <h2 class="hidden">Ce titre sera préciser ultérieurement</h2>
+        <article>
+            <h3>Derniers bulletins :</h3>
+            <ul>
+                <?php
+                $files = $this->data['bulletins'];
+                $counter = 0;
+                foreach($files as $file)
+                {
+                    if ($counter < 45) {
+                ?>
+                    <li>
+                        <?php echo 'Bulletin du '.$file->getDate()->format('d/m/Y');?> <a target="_blank" href="<?=$file->getUrl()?>">Consulter le fichier</a>
+                    </li>
+                <?php
+                        
+                    } else {
+                        break;
+                    }
+                    $counter++;
+                }
+                ?>
+            </ul>
+        </article>
+    </section>
+</section>

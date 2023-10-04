@@ -1,0 +1,162 @@
+.main-container {
+  padding: 1rem;
+  background-color: var(--clr-background);
+}
+.main-container h1 {
+  margin-block: 3.5rem 3rem;
+  font-size: var(--fs-page-title);
+  text-align: center;
+}
+.main-container h1::after {
+  margin: 1.5rem auto;
+  width: 10rem;
+  height: 0.35rem;
+  content: "";
+  display: block;
+  background-color: var(--clr-accent);
+}
+.main-container .main-container-link {
+  width: fit-content;
+  margin-block: 2rem;
+  padding: 0.5rem 1rem;
+  background: var(--clr-link-background);
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+}
+.main-container .main-container-link:hover {
+  background: var(--clr-link-background-hover);
+}
+.main-container .main-container-link:active {
+  background: var(--clr-link-background-active);
+}
+.main-container .sub-pages-list {
+  margin-bottom: 3.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.main-container .sub-pages-list a {
+  height: 10rem;
+  width: 15rem;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--clr-card-background);
+  box-shadow: 0 4px 24px -6px var(--clr-card-shadow);
+  border: 1px solid var(--clr-card-border);
+  border-radius: 0.5rem;
+  text-align: center;
+}
+.main-container .sub-pages-list a:hover {
+  background-color: var(--clr-card-background-hover);
+  border: 1px solid var(--clr-card-border-hover);
+}
+.main-container .sub-pages-list a:active {
+  background-color: var(--clr-card-background-active);
+  border: 1px solid var(--clr-card-border-active);
+}
+.main-container .list-items h2 {
+  margin-block: 2.5rem;
+  font-size: var(--fs-section-title);
+}
+.main-container .list-items article {
+  margin-block: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.main-container .list-items article:before {
+  width: 20rem;
+  height: 0.2rem;
+  margin: 1.5rem auto 3rem;
+  content: "";
+  display: block;
+  background-color: var(--clr-element-border);
+}
+.main-container .list-items article:after {
+  width: 20rem;
+  height: 0.2rem;
+  margin: 3rem auto 1.5rem;
+  content: "";
+  display: block;
+  background-color: var(--clr-element-border);
+}
+.main-container .list-items article h3 {
+  text-transform: uppercase;
+}
+.main-container .list-items article ul li {
+  margin-block: 1rem;
+  padding: 1rem;
+}
+.main-container .list-items article ul li a {
+  padding: 0.5rem;
+  background: var(--clr-link-background);
+}
+.main-container .list-items article ul li a:hover {
+  background: var(--clr-link-background-hover);
+}
+.main-container .list-items article ul li a:active {
+  background: var(--clr-link-background-active);
+}
+.main-container .list-items article a {
+  margin-block: 1rem;
+  padding: 1rem;
+  border: 2px solid var(--clr-link-background);
+  border-radius: 0.5rem;
+}
+.main-container .list-items article a:hover {
+  border: 2px solid var(--clr-link-background-hover);
+}
+.main-container .list-items article a:active {
+  border: 2px solid var(--clr-link-background-active);
+}
+.main-container .single-page {
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.main-container .single-page p {
+  padding: 1rem;
+  order: 1;
+}
+.main-container .single-page figure {
+  width: auto;
+  order: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--clr-background);
+}
+.main-container .single-page figure img {
+  width: 80%;
+  height: auto;
+  margin-block: 2rem;
+  order: 0;
+  border: 1px solid var(--clr-element-border);
+  border-radius: 0.5rem;
+}
+
+@media (min-width: 1024px) and (max-width: 1510px) {
+  .main-container {
+    width: 80%;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .main-container .list-items, .main-container .single-page, .main-container .sub-pages-list {
+    width: 60%;
+    margin-inline: auto;
+  }
+}
+
+/*# sourceMappingURL=page.css.map */

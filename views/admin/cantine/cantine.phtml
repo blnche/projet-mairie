@@ -1,0 +1,57 @@
+<?php
+$weeks = $this->data['cafeteria-weeks'];
+//var_dump($weeks);
+?>
+<section class="main-container">
+    <h1> <?= $this->pageTitle; ?> </h1>
+    <a class="main-container-link" href="/projet-final/projet-mairie/admin/cantine/creer-annee-scolaire">Créer l'année scolaire</a>
+    
+    <section class="form-container">
+        <h2 class="hidden">Ce titre sera préciser ultérieurement</h2>
+        <form method="POST" action="/projet-final/projet-mairie/admin/cantine/exporter">
+            <input id="submit" type="submit" value="Exporter" name="exportCafeteriaWeeks">
+            <input type="text" name="search" id="searchInput" placeholder="Chercher semaine XX ...">
+            <section class="table-container">
+                <h3 class="hidden">Ce titre sera préciser ultérieurement</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Week</th>
+                            <th>Monday</th>
+                            <th>Tuesday</th>
+                            <th>Wednesday</th>
+                            <th>Thursday</th>
+                            <th>Friday</th>
+                            <th>Selectionner les semaines à exporter</th>
+                        </tr>
+                    </thead>
+                    <tbody id="searchListItems">
+                    <?php
+                    foreach ($weeks as $week)
+                    {
+                    ?>
+                        <tr>
+                            <td> <?= $week->getWeekOfYear(); ?> </td>
+                            <td> <?php echo checkStatus($week->getMonday(), '', 'monday'); ?></td>
+                            <td> <?php echo checkStatus($week->getTuesday(), '', 'tuesday'); ?></td>
+                            <td> <?php echo checkStatus($week->getWednesday(), '', 'wednesday'); ?></td>
+                            <td> <?php echo checkStatus($week->getThursday(), '', 'thursday'); ?> </td>
+                            <td> <?php echo checkStatus($week->getFriday(), '', 'friday'); ?> </td>
+                            <td>
+                                <fieldset>
+                                    <label for="<?= $week->getWeekOfYear(); ?>"></label>
+                                    <input type="checkbox" name="weekNumber[]" value="<?= $week->getWeekOfYear(); ?>">
+                                </fieldset>
+                            </td>
+                        </tr>
+                    <?php
+                    }
+                    ?>
+                    </tbody>
+                </table>
+                
+            </section>
+        </form>
+        
+    </section>
+</section>

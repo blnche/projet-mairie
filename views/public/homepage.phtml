@@ -1,13 +1,67 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>homepage public</h1>
+<?php
+$events = $this->data['events'];
+?>
+<section class="homepage-container">
+    <h2 class="hidden">Ce titre sera préciser ultérieurement</h2>
     
+    <section class="homepage-image-container">
+        <h3 class="hidden">Ce titre sera préciser ultérieurement</h3>
+        <img src="/projet-final/projet-mairie/assets/images/cropped-anne-1568x427.jpg" alt="Bannière du site - Photo de la Chapelle de Saint-Anne, située sur la commune de Saint-Broladre">
+    </section>
+        
+    <section class="homepage-shortcutNav-container">
+        <h3 class="hidden">Ce titre sera préciser ultérieurement</h3>
+        <nav class="shortcutNav">
+                <a href="/projet-final/projet-mairie/mairie/conseil-municipal">
+                    <div class="svg-container">
+                        <img src="/projet-final/projet-mairie/assets/images/homepage-shortcutNav-icons/icons8-city-hall-64.png" alt="">
+                    </div>
+                    <span class="label">Conseil Municipal</span>
+                </a>
+                <a href="/projet-final/projet-mairie/vivre/associations">
+                    <div class="svg-container">
+                        <img src="/projet-final/projet-mairie/assets/images/homepage-shortcutNav-icons/icons8-street-sign-64.png" alt="">
+                    </div>
+                    <span class="label">Associations</span>
+                </a>
+                <a href="/projet-final/projet-mairie/vivre/professionnels-locaux">
+                    <div class="svg-container">
+                        <img src="/projet-final/projet-mairie/assets/images/homepage-shortcutNav-icons/icons8-contact-64.png" alt="">
+                    </div>
+                    <span class="label">Professionnels Locaux</span>
+                </a>
+                <a href="/projet-final/projet-mairie/pratique/agence-postale">
+                    <div class="svg-container">
+                        <img src="/projet-final/projet-mairie/assets/images/homepage-shortcutNav-icons/icons8-post-office-64.png" alt="">
+                    </div>
+                    <span class="label">Agence Postale Communale</span>
+                </a>
+                <a href="/projet-final/projet-mairie/espace-famille">
+                    <div class="svg-container">
+                        <img src="/projet-final/projet-mairie/assets/images/homepage-shortcutNav-icons/icons8-desk-64.png" alt="">
+                    </div>
+                    <span class="label">Espace Famille</span>
+                </a>
+                <a href="/projet-final/projet-mairie/mairie/services-municipaux">
+                    <div class="svg-container">
+                        <img src="/projet-final/projet-mairie/assets/images/homepage-shortcutNav-icons/icons8-clipboard-64.png" alt="">
+                    </div>
+                    <span class="label">Services Municipaux</span>
+                </a>
+        </nav>
+    </section>
+        
+    <section class="agenda">
+        <h2>Agenda</h2>
+        <ul>
+            <?php
+            foreach($events as $event)
+            {
+                $rp = new ReflectionProperty('Event', 'address');
+            ?>
+                <li><?= $event->getTitle().', '.$event->getDate()->format('d/m/Y'); ?></li>
+            <?php } ?>
+        </ul>
+    </section>
     
-</body>
-</html>
+</section>

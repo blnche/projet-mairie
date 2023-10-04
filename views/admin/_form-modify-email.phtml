@@ -1,0 +1,18 @@
+<section class="main-container">
+    <h1><?= $this->pageTitle ?></h1>
+    
+    <section class="form-container">
+        <h2 class="hidden">Ce titre sera préciser ultérieurement</h2>
+        <form method="POST" action="/projet-final/projet-mairie/admin/modifier-email">
+            <fieldset>
+                <label for="email">Préciser votre adresse email actuelle :</label>
+                <input type="email" name="email" id="email">
+            </fieldset>
+            <fieldset>
+                <label for="newEmail">Nouvelle adresse email :</label>
+                <input type="email" name="newEmail" id="newEmail">
+            </fieldset>
+            <input id="submit" type="submit" name="modifyEmail" value="Modifier votre adresse mail">
+        </form>
+    </section>
+</section>

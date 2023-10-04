@@ -1,0 +1,47 @@
+<section class="main-container">
+    <h1><?= $this->pageTitle ?></h1>
+    
+    <section class="form-container">
+        <h2 class="hidden">Ce titre sera préciser ultérieurement</h2>
+        <form id="userRegisterForm" method="post" action="/projet-final/projet-mairie/authentification/enregistrer-nouveau-compte">
+            <fieldset>
+                <label for="firstName">Prénom :</label>
+                <input type="text" name="firstName" id="firstName" required>
+            </fieldset>
+            <fieldset>
+                <label for="lastName">Nom de famille :</label>
+                <input type="text" name="lastName" id="lastName" required>
+            </fieldset>
+            <fieldset>
+                <label for="email">Adresse mail :</label>
+                <input type="email" name="email" id="email" required>
+            </fieldset>
+            <fieldset>
+                <p>Votre mot de passe doit contenir au moins 1 majuscule, 1 chiffre, 1 caractère spécial (!@#$%^&*) et faire une longueur minimale de 12 caractères.</p>
+                <label for="password">Mot de passe :</label>
+                <input type="password" name="password" id="password" required>
+            </fieldset>
+            <fieldset>
+                <label for="confirmPassword">Confirmer le Mot de passe :</label>
+                <input type="password" name="confirmPassword" id="confirmPassword" required>
+            </fieldset>
+            <fieldset>
+                <label for="address">Adresse postale (ex: 1 rue Dupont)</label>
+                <input type="text" name="address" id="address">
+            </fieldset>
+            <fieldset>
+                <label for="code-postal">Code postal :</label>
+                <input type="text" name="code-postal" id="code-postal" required>
+            </fieldset>
+            <fieldset>
+                <label for="ville">Ville/Commune :</label>
+                <input type="text" name="ville" id="ville" required>
+            </fieldset>
+            <fieldset>
+                <label for="role_key">Clé d'enregistrement :</label>
+                <input type="text" name="role_key" id="role_key" required>
+            </fieldset>
+            <input id="submit" type="submit" name="register" value="Créer son compte"/>
+        </form>
+    </section>
+</section>

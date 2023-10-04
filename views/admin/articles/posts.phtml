@@ -1,0 +1,37 @@
+<?php 
+$pages = $this->data['posts'];
+?>
+
+<section class="main-container">
+    <h1> <?= $this->pageTitle; ?></h1>
+    
+    <a class="main-container-link" href="/projet-final/projet-mairie/admin/articles/ajouter">Ajouter une page</a>
+    <section class="list-items">
+        <h2 class="hidden">Ce titre sera préciser ultérieurement</h2>
+        <article>
+            <h3 class="hidden">Ce titre sera préciser ultérieurement</h3>
+        <?php 
+        $counter = 0;
+        foreach($pages as $page) {
+            if($counter < 10) {
+        ?>
+            <ul>
+                <li>
+                    <?= $page->getTitle() ?> <a href="/projet-final/projet-mairie/admin/articles/modifier&postId=<?=$page->getId();?>">Modifier</a>
+                </li>
+            </ul>
+        <?php
+            }  else {
+                break;
+            }
+            $counter++;
+        } ?>
+        </article>
+    </section>
+</section>
+
+
+
+
+
+

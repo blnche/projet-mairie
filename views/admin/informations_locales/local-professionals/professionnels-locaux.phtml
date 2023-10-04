@@ -1,0 +1,40 @@
+<?php
+$localProfessionals = $this->data['local-professionals'];
+?>
+<section class="main-container">
+    <h1><?= $this->pageTitle ?></h1>
+    
+    <section class="table-container">
+        <h2 class="hidden">Ce titre sera préciser ultérieurement</h2>
+        <a href="/projet-final/projet-mairie/admin/informations-locales/professionnels-locaux/ajouter">Ajouter un professionnel</a>
+        
+        <table>
+            <thead>
+            <tr>
+                <th>Nom de l'entreprise</th>
+                <th>Secteur</th>
+                <th>Prénom du·de la président·e</th>
+                <th>Nom du·de la président·e</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            foreach($localProfessionals as $localProfessional)
+            {
+                ?>
+                <tr>
+                    <td> <?= $localProfessional->getName(); ?> </td>
+                    <td> <?= $localProfessional->getSector(); ?> </td>
+                    <td> <?= $localProfessional->getCeoFirstName(); ?> </td>
+                    <td> <?= $localProfessional->getCeoLastName(); ?> </td>
+                    <td><a href="/projet-final/projet-mairie/admin/informations-locales/professionnels-locaux/modifier&localProfessionalId=<?= $localProfessional->getId(); ?>">Modifier</a></td>
+                </tr>
+                <?php
+            }
+            ?>
+            </tbody>
+        </table>
+    </section>
+    
+</section>
