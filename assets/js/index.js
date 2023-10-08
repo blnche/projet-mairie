@@ -14,9 +14,9 @@ window.addEventListener("DOMContentLoaded", function () {
     console.log(window.location.pathname);
     let path = window.location.pathname;
 
-    if (path === '/authentification/' + 'enregistrer-nouveau-compte') {
+    if (path === '/projet-final/projet-mairie/authentification/' + 'enregistrer-nouveau-compte') {
         validateUserRegisterForm();
-    } else if (path === '/authentification/' + 'se-connecter') {
+    } else if (path === '/projet-final/projet-mairie/authentification/' + 'se-connecter') {
         validateUserLoginForm();
     }
     search();

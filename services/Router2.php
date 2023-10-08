@@ -163,7 +163,7 @@ class Router2
                                         $routeAndParams['action'] = $tab[3];
                                     } else if ($tab[3] === 'modifier') {
                                         $routeAndParams['action'] = $tab[3];
-                                        $routeAndParams['associationSlug'] = $tab[4];
+                                        //$routeAndParams['associationSlug'] = $tab[4];
                                     }
                                 }
                             } else if ($tab[2] === 'lieux') {

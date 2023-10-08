@@ -37,126 +37,13 @@ $children = $this->data['children'];
                         <tr>
                             <td> <?= checkStatus($week->getMonday(), 'form', 'monday'); ?>
                             </td>
-                            <td> <?php
-                                if($week->getTuesday() === "Yes")
-                                {
-                                    echo '✅';
-                                }
-                                else if ($week->getTuesday() === "No")
-                                {
-                                    echo '❌';
-                                }
-                                else if ($week->getTuesday() === "Holiday")
-                                {
-                                    ?>
-                                    <fieldset>
-                                        <label for="tuesday">(Vacances/Férié)</label>
-                                        <input type="checkbox" name="tuesdayPlacebo" value="Holiday" checked disabled>
-                                        <input type="hidden" value="Holiday" name="tuesday">
-                                    </fieldset>
-                                    <?php
-                                }
-                                else
-                                {
-                                    ?>
-                                    <fieldset>
-                                        <label for="tuesday"></label>
-                                        <input type="checkbox" name="tuesday" value="Yes">
-                                    </fieldset>
-                                    <?php
-                                }
-                                ?>
+                            <td> <?= checkStatus($week->getTuesday(), 'form', 'tuesday'); ?>
                             </td>
-                            <td> <?php
-                                if($week->getWednesday() === "Yes")
-                                {
-                                    echo '✅';
-                                }
-                                else if ($week->getWednesday() === "No")
-                                {
-                                    echo '❌';
-                                }
-                                else if ($week->getWednesday() === "Holiday")
-                                {
-                                    ?>
-                                    <fieldset>
-                                        <label for="wednesday">(Vacances/Férié)</label>
-                                        <input type="checkbox" name="wednesdayPlacebo" value="Holiday" checked disabled>
-                                        <input type="hidden" value="Holiday" name="wednesday">
-                                    </fieldset>
-                                    <?php
-                                }
-                                else
-                                {
-                                    ?>
-                                    <fieldset>
-                                        <label for="wednesday"></label>
-                                        <input type="checkbox" name="wednesday" value="Yes">
-                                    </fieldset>
-                                    <?php
-                                }
-                                ?>
+                            <td> <?= checkStatus($week->getWednesday(), 'form', 'wednesday'); ?>
                             </td>
-                            <td> <?php
-                                if($week->getThursday() === "Yes")
-                                {
-                                    echo '✅';
-                                }
-                                else if ($week->getThursday() === "No")
-                                {
-                                    echo '❌';
-                                }
-                                else if ($week->getThursday() === "Holiday")
-                                {
-                                    ?>
-                                    <fieldset>
-                                        <label for="thursday">(Vacances/Férié)</label>
-                                        <input type="checkbox" name="thursdayPlacebo" value="Holiday" checked disabled>
-                                        <input type="hidden" value="Holiday" name="thursday">
-                                    </fieldset>
-                                    <?php
-                                }
-                                else
-                                {
-                                    ?>
-                                    <fieldset>
-                                        <label for="thursday"></label>
-                                        <input type="checkbox" name="thursday" value="Yes">
-                                    </fieldset>
-                                    <?php
-                                }
-                                ?>
+                            <td> <?= checkStatus($week->getThursday(), 'form', 'thursday'); ?>
                             </td>
-                            <td> <?php
-                                if($week->getFriday() === "Yes")
-                                {
-                                    echo '✅';
-                                }
-                                else if ($week->getFriday() === "No")
-                                {
-                                    echo '❌';
-                                }
-                                else if ($week->getFriday() === "Holiday")
-                                {
-                                    //echo '☀️';
-                                    ?>
-                                    <fieldset>
-                                        <label for="friday">(Vacances/Férié)</label>
-                                        <input type="checkbox" name="fridayPlacebo" value="Holiday" checked disabled="disabled" id="friday">
-                                        <input type="hidden" value="Holiday" name="friday">
-                                    </fieldset>
-                                    <?php
-                                }
-                                else
-                                {
-                                    ?>
-                                    <fieldset>
-                                        <label for="friday"></label>
-                                        <input type="checkbox" name="friday" value="Yes">
-                                    </fieldset>
-                                    <?php
-                                }
-                                ?>
+                            <td> <?= checkStatus($week->getFriday(), 'form', 'friday'); ?>
                             </td>
                         </tr>
                     </tbody>

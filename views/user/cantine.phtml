@@ -43,15 +43,19 @@ $childrenEnrollments = $this->data['childrenEnrollments'];
                                     $firstName = $childEnrollments[0];
                                     
                                     $foundMatch = false;
-                                    foreach ($childEnrollments[1] as $enrollment)
-                                    {
-        
-                                        if (!$foundMatch && $enrollment->getWeekOfYear() === $week->getWeekOfYear())
+                                    
+                                    if(count($childEnrollments[1]) !== 1) {
+                                        
+                                        foreach ($childEnrollments[1] as $enrollment)
                                         {
-                                            $foundMatch = true;
-                                            
-                                            echo checkStatus($enrollment->getMonday(), '', 'monday');
-                                            break;
+            
+                                            if (!$foundMatch && $enrollment->getWeekOfYear() === $week->getWeekOfYear())
+                                            {
+                                                $foundMatch = true;
+                                                
+                                                echo checkStatus($enrollment->getMonday(), '', 'monday');
+                                                break;
+                                            }
                                         }
                                     }
                                     if(!$foundMatch)
@@ -78,15 +82,17 @@ $childrenEnrollments = $this->data['childrenEnrollments'];
                                     $firstName = $childEnrollments[0];
                                     
                                     $foundMatch = false;
-                                    foreach ($childEnrollments[1] as $enrollment)
-                                    {
-        
-                                        if (!$foundMatch && $enrollment->getWeekOfYear() === $week->getWeekOfYear())
+                                    if(count($childEnrollments[1]) !== 1) {
+                                        foreach ($childEnrollments[1] as $enrollment)
                                         {
-                                            $foundMatch = true;
-                                            
-                                            echo checkStatus($enrollment->getTuesday(), '', 'tuesday');
-                                            break;
+            
+                                            if (!$foundMatch && $enrollment->getWeekOfYear() === $week->getWeekOfYear())
+                                            {
+                                                $foundMatch = true;
+                                                
+                                                echo checkStatus($enrollment->getTuesday(), '', 'tuesday');
+                                                break;
+                                            }
                                         }
                                     }
                                     if(!$foundMatch)
@@ -113,15 +119,18 @@ $childrenEnrollments = $this->data['childrenEnrollments'];
                                     $firstName = $childEnrollments[0];
                                    
                                     $foundMatch = false;
-                                    foreach ($childEnrollments[1] as $enrollment)
-                                    {
-        
-                                        if (!$foundMatch && $enrollment->getWeekOfYear() === $week->getWeekOfYear())
+                                    
+                                    if(count($childEnrollments[1]) !== 1) {
+                                        foreach ($childEnrollments[1] as $enrollment)
                                         {
-                                            $foundMatch = true;
-                                            
-                                            echo checkStatus($enrollment->getWednesday(), '', 'wednesday');
-                                            break;
+            
+                                            if (!$foundMatch && $enrollment->getWeekOfYear() === $week->getWeekOfYear())
+                                            {
+                                                $foundMatch = true;
+                                                
+                                                echo checkStatus($enrollment->getWednesday(), '', 'wednesday');
+                                                break;
+                                            }
                                         }
                                     }
                                     if(!$foundMatch)
@@ -148,15 +157,18 @@ $childrenEnrollments = $this->data['childrenEnrollments'];
                                     $firstName = $childEnrollments[0];
                                     
                                     $foundMatch = false;
-                                    foreach ($childEnrollments[1] as $enrollment)
-                                    {
-        
-                                        if (!$foundMatch && $enrollment->getWeekOfYear() === $week->getWeekOfYear())
+                                    
+                                    if(count($childEnrollments[1]) !== 1) {
+                                        foreach ($childEnrollments[1] as $enrollment)
                                         {
-                                            $foundMatch = true;
-                                            
-                                            echo checkStatus($enrollment->getThursday(), '', 'thursday');
-                                            break;
+            
+                                            if (!$foundMatch && $enrollment->getWeekOfYear() === $week->getWeekOfYear())
+                                            {
+                                                $foundMatch = true;
+                                                
+                                                echo checkStatus($enrollment->getThursday(), '', 'thursday');
+                                                break;
+                                            }
                                         }
                                     }
                                     if(!$foundMatch)
@@ -182,15 +194,18 @@ $childrenEnrollments = $this->data['childrenEnrollments'];
                                     $firstName = $childEnrollments[0];
                                     
                                     $foundMatch = false;
-                                    foreach ($childEnrollments[1] as $enrollment)
-                                    {
-        
-                                        if (!$foundMatch && $enrollment->getWeekOfYear() === $week->getWeekOfYear())
+                                    
+                                    if(count($childEnrollments[1]) !== 1) {
+                                        foreach ($childEnrollments[1] as $enrollment)
                                         {
-                                            $foundMatch = true;
-                                            
-                                            echo checkStatus($enrollment->getFriday(), '', 'friday');
-                                            break;
+            
+                                            if (!$foundMatch && $enrollment->getWeekOfYear() === $week->getWeekOfYear())
+                                            {
+                                                $foundMatch = true;
+                                                
+                                                echo checkStatus($enrollment->getFriday(), '', 'friday');
+                                                break;
+                                            }
                                         }
                                     }
                                     if(!$foundMatch)
@@ -216,14 +231,17 @@ $childrenEnrollments = $this->data['childrenEnrollments'];
                                 $firstName = $childEnrollments[0];
                                 echo $firstName;
                                     $foundMatch = false;
-                                foreach ($childEnrollments[1] as $enrollment)
-                                {
                                     
-                                    if (!$foundMatch && $week->getWeekOfYear() === $enrollment->getWeekOfyear())
+                                if(count($childEnrollments[1]) !== 1) {
+                                    foreach ($childEnrollments[1] as $enrollment)
                                     {
-                                        $foundMatch = true;
-                                        echo ' Inscrit';
-                                        break;
+                                        
+                                        if (!$foundMatch && $week->getWeekOfYear() === $enrollment->getWeekOfyear())
+                                        {
+                                            $foundMatch = true;
+                                            echo ' Inscrit';
+                                            break;
+                                        }
                                     }
                                 }
                                 if(!$foundMatch)

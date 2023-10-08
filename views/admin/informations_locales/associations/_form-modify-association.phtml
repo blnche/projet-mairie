@@ -6,7 +6,7 @@
         <form method="POST" action="/projet-final/projet-mairie/admin/informations-locales/associations/modifier&associationId=<?= $_GET['associationId'] ?>">
             <fieldset>
                 <label for="name">Nom de l'association :</label>
-                <input type="text" name="name" id="name" required>
+                <input type="text" name="name" id="name">
             </fieldset>
             <fieldset>
                 <label for="presidentFirstname">Prénom du·de la président·e :</label>
@@ -14,7 +14,7 @@
             </fieldset>
             <fieldset>
                 <label for="presidentLastname">Nom du·de la président·e :</label>
-                <input type="text" name="presidentLastname" id="presidentLastname" required>
+                <input type="text" name="presidentLastname" id="presidentLastname">
             </fieldset>
             <fieldset>
                 <legend>Status : </legend>
@@ -29,11 +29,11 @@
             </fieldset>
             <fieldset>
                 <label for="code-postal">Code postal :</label>
-                <input type="text" name="code-postal" id="code-postal" required>
+                <input type="text" name="code-postal" id="code-postal">
             </fieldset>
             <fieldset>
                 <label for="ville">Ville/Commune :</label>
-                <input type="text" name="ville" id="ville" required>
+                <input type="text" name="ville" id="ville">
             </fieldset>
             <input id="submit" type="submit" name="modifyAssociation" value="Enregistrer l'association modifiée">
         </form>

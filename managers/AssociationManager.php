@@ -32,7 +32,7 @@
         {
             $query = $this->db->prepare('
                 UPDATE associations
-                SET name = :name, president_firstName = :presidentFirstName, president_lastName = :presidentLastName, status = :status
+                SET name = :name, president_firstName = :presidentFirstName, president_lastName = :presidentLastName, status = :status, assoc_address_id = :assoc_address_id
                 WHERE id = :id
             ');
             $parameters = [

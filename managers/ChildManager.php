@@ -100,5 +100,17 @@
 
             return $childEdited;
         }
+        
+        public function deleteChild (Child $child) : void 
+        {
+            $query = $this->db->prepare('
+            DELETE FROM children
+            WHERE id = :id
+            ');
+            $parameters = [
+                'id' => $child->getId()
+            ];
+            $query->execute($parameters);
+        }
     }
 ?>
