@@ -131,6 +131,39 @@ header .header-container nav ul li a {
     background-color: transparent;
   }
 }
+@media (min-width: 1511px) {
+  header {
+    height: auto;
+    position: relative;
+  }
+  header .header-container {
+    width: 80%;
+    margin-top: 2rem;
+    margin-inline: auto;
+    padding: 0;
+  }
+  header .header-container .header-title {
+    align-items: center;
+  }
+  header .header-container .header-toggleBtn-container {
+    display: none;
+  }
+  header .header-container nav {
+    height: 100%;
+    padding: 0;
+    position: relative;
+    top: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  header .header-container nav ul {
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: transparent;
+  }
+}
 footer {
   background-color: var(--clr-element-background);
   border-top: 1px solid var(--clr-element-border);
@@ -460,6 +493,20 @@ footer p a {
 }
 
 @media (min-width: 1024px) and (max-width: 1510px) {
+  .main-container {
+    width: 80%;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .main-container .list-items, .main-container .single-page, .main-container .sub-pages-list {
+    width: 60%;
+    margin-inline: auto;
+  }
+}
+@media (min-width: 1511px) {
   .main-container {
     width: 80%;
     margin-inline: auto;

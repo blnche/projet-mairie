@@ -5,16 +5,16 @@ export function validateUserRegisterForm () {
     let form = document.getElementById('userRegisterForm');
 
     form.addEventListener('submit', function(event) {
+        
+        let firstName = document.getElementById('firstName').value;
+        let lastName = document.getElementById('lastName').value;
+        let email = document.getElementById('email').value;
+        let password = document.getElementById('password').value;
+        let confirmPassword = document.getElementById('confirmPassword').value;
 
-        let firstName = document.getElementById('firstName');
-        let lastName = document.getElementById('lastName');
-        let email = document.getElementById('email');
-        let password = document.getElementById('password');
-        let confirmPassword = document.getElementById('confirmPassword');
-
-        let street = document.getElementById('address');
-        let zipCode = document.getElementById('code-postal');
-        let city = document.getElementById('ville');
+        let street = document.getElementById('address').value;
+        let zipCode = document.getElementById('code-postal').value;
+        let city = document.getElementById('ville').value;
 
         let user = new User (firstName, lastName, email, password, confirmPassword);
         let address = new Address (street, zipCode, city);
@@ -22,8 +22,11 @@ export function validateUserRegisterForm () {
         user.validate();
         address.validate();
 
-        if (!user.validate() || address.validate()) {
+        if (!user.validate() || !address.validate()) {
             event.preventDefault();
+            console.log('erreur');
+            console.log(user.errors);
+            console.log(address.errors);
         }
 
     });
@@ -35,8 +38,8 @@ export function validateUserLoginForm () {
     form.addEventListener('submit', function (event) {
         // event.preventDefault();
 
-        let email = document.getElementById('email');
-        let password = document.getElementById('password');
+        let email = document.getElementById('email').value;
+        let password = document.getElementById('password').value;
 
         // email.validateEmail();
         // password.validatePassword();

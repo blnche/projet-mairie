@@ -6,15 +6,15 @@
         <form method="POST" action="/projet-final/projet-mairie/espace-famille/<?= $_SESSION['user_lastName'] ?>/enfants/ajouter">
             <fieldset>
                 <label for="firstName">Prénom :</label>
-                <input type="text" name="firstName">
+                <input type="text" name="firstName" required>
             </fieldset>
             <fieldset>
                 <label for="lastName">Nom de famille :</label>
-                <input type="text" name="lastName">
+                <input type="text" name="lastName" required>
             </fieldset>
             <fieldset>
                 <label for="age">Age : </label>
-                <input type="number" name="age">
+                <input type="number" name="age" required>
             </fieldset>
             <input id="submit" type="submit" name="add-child" value="Enregistrer mon enfant">
         </form>

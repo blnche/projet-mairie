@@ -158,5 +158,19 @@
     margin-inline: auto;
   }
 }
+@media (min-width: 1511px) {
+  .main-container {
+    width: 80%;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .main-container .list-items, .main-container .single-page, .main-container .sub-pages-list {
+    width: 60%;
+    margin-inline: auto;
+  }
+}
 
 /*# sourceMappingURL=page.css.map */

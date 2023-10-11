@@ -11,9 +11,9 @@ function checkStatus($status, $type, $day) : string
         if ($status === "Holiday") {
             $print = '
                 <fieldset>
-                    <label for="'.$day.'Placebo">(Vacances/Férié)</label>
+                    <label for="'.$day.'">(Vacances/Férié)</label>
                     <input type="checkbox" name="'.$day.'Placebo" value="Holiday" checked disabled>
-                    <input type="hidden" value="Holiday" name="'.$day.'Placebo">
+                    <input type="hidden" value="Holiday" name="'.$day.'">
                 </fieldset>';
         } else {
             $print = '
